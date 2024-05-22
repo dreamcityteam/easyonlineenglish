@@ -1,0 +1,73 @@
+const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const { getResponse, send } = require('../../tools/functions');
+const Course = require('../../schemas/course.schema');
+const StudentCourse = require('../../schemas/studentCourse.schema');
+const CourseWord = require('../../schemas/courseWord.schema');
+const { formatLessons } = require('../../tools/functions');
+
+module.exports = async (req, res) => {
+  const response = getResponse(res);
+  const userId = req.user.id;
+  const idCourse = req.params.courseId;
+
+  try {
+    // Find the student's course
+    let studentCourse = await StudentCourse
+      .findOne({ idCourse: idCourse, idUser: userId })
+      .select({ __v: 0, idUser: 0, idCourse: 0 });
+    const courseWord = await CourseWord
+      .find({ idCourse: idCourse })
+      .select({ __v: 0, idCourse: 0 })
+      .sort({ _id: 1 });
+
+    if (!studentCourse) {
+      const firstWord = courseWord[0]._id;
+      studentCourse = new StudentCourse({
+        idCourse: idCourse,
+        idUser: userId,
+        unlockedWords: { [firstWord]: true },
+      });
+      await studentCourse.save();
+    }
+
+    const course = await Course.findOne({ _id: idCourse }).select({ __v: 0, _id: 0 });
+    const studentCourseObj = studentCourse.toObject();
+    const courseObj = course.toObject();
+
+    if (course && studentCourse && courseWord) {
+      const dataResponse = {
+        idStudentCourse: studentCourseObj._id,
+        ...courseObj,
+        ...studentCourseObj,
+        unlockedWords: Object.fromEntries(
+          studentCourseObj.unlockedWords
+        ),
+        completedWords: Object.fromEntries(
+          studentCourseObj.completedWords
+        ),
+        lessons: formatLessons(courseWord),
+      };
+
+      delete dataResponse._id;
+
+      response.statusCode = HTTP_STATUS_CODES.OK;
+      response.message = 'Courses fetched successfully';
+      response.data = dataResponse;
+    } else {
+      response.message = 'There are no courses available';
+    }
+  } catch (error) {
+    const idCourseMessage = error.message.includes('idCourse');
+
+    console.error('Error fetching courses:', error.message);
+    response.statusCode = idCourseMessage
+      ? HTTP_STATUS_CODES.NOT_FOUND
+      : HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
+
+    response.message = idCourseMessage
+      ? "We couldn't find the course"
+      : error.message;
+  }
+
+  send(response);
+};

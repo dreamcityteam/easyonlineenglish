@@ -1,0 +1,146 @@
+@import '../../../../public/mixin/index.module'
+
+$container__width: 1000px
+
+.form
+  @include hero-section-styles('https://lh3.googleusercontent.com/d/1uypWiwy-6VdT_kWOvzEaCvSI43PTJ-pZ')
+  padding-bottom: 20px
+
+  &__container
+    margin-left: 20%
+    z-index: 1
+
+    header
+      color: white
+
+    h1
+      color: #0e4fc6
+      font-size: 50px
+
+    h2
+      color: #0e4fc6
+      font-size: 29px
+
+  @include mobile
+    form
+      width: auto
+
+    &__container
+      margin: 0
+      padding: 20px
+
+      h1
+        font-size: 2rem
+
+      h2
+        font-size: 1.5rem
+
+    &::before
+      background: linear-gradient(90deg, #0a1d71 20%, rgba(9, 132, 227, 0.0592612045) 200%)
+
+.contact
+  align-items: center
+  display: flex
+  height: 500px
+  justify-content: space-evenly
+  padding: 20px
+
+  &__info
+    > img
+      width: 80px
+
+  &__infos
+    align-items: center
+    color: black
+    display: flex
+    flex-direction: column
+    list-style: none
+    padding: 20px
+
+  &__info
+    padding: 0
+
+  @include mobile
+    flex-direction: column
+    height: auto
+
+    &__info
+      > img
+        width: 50px
+
+    &__info
+      font-size: 16px
+
+      &:last-child
+        font-size: 14px
+
+.fag
+  background-color: #fafafa
+  color: black
+
+  &__container,
+  &__content
+    align-items: center
+    display: flex
+    justify-content: center
+
+  &__content
+    width: 1000px
+
+    > div
+      width: 50%
+
+  &__text
+    padding: 0
+
+  &__texts
+    padding: 20px
+
+  &__figure
+    display: flex
+    left: 20px
+    margin: 0
+    position: relative
+
+    figcaption
+      margin-left: 40px
+
+  &__title
+    text-align: center
+    font-size: 40px
+
+  &__image
+    border-radius: 50%
+    width: 70px
+
+  &__name
+    display: block
+    font-size: 20px
+    font-weight: bold
+
+  &__country
+    font-size: 15px
+    font-weight: 400
+
+  @include mobile
+    &__content
+      flex-direction: column
+      width: 100%
+
+      > div
+        width: 100%
+
+    &__title
+      text-align: center
+      font-size: 20px
+
+    &__name
+      display: block
+      font-size: 16px
+      font-weight: bold
+
+    &__question
+      font-size: 16px
+
+    &__text
+      font-size: 14px

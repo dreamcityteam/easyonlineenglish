@@ -1,0 +1,109 @@
+@import '../../../public/mixin/index.module'
+
+.navigator
+  background-color: white
+  border-bottom: solid 1px #e9e9e9
+  display: flex
+  height: 103.25px
+  justify-content: space-between
+  padding: 20px 81px
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 2
+
+  &__logo
+    width: 130px
+
+  &__links
+    display: flex
+    font-size: 15px
+    justify-content: space-around
+    list-style: none
+    position: relative
+    width: 400px
+
+    &:has(.navigator__user)
+      width: 600px
+
+  &__user
+    display: flex
+
+  &__link_container
+    margin-top: 15px
+
+  &__link
+    color: #0170b9
+    text-decoration: none
+    text-transform: capitalize
+    font-size: 14px
+    font-weight: bold
+
+  &__hamburger
+    cursor: pointer
+    display: none
+    flex-direction: column
+    height: 15px
+    justify-content: space-between
+    margin-top: 20px
+    width: 25px
+
+  &__target
+    border-bottom: solid 2px #3F51B5
+
+  &__line
+    background-color: #414141
+    height: 3px
+    width: 100%
+
+  &__picture
+    margin-left: 10px
+    border-radius: 50%
+    height: 50px
+    position: relative
+    right: 10px
+    width: 50px
+
+  &__user
+    align-items: center
+    color: #535353
+    display: flex
+    font-size: 14px
+    font-weight: bold
+    margin-top: 15px
+
+  &__user_name
+    overflow: hidden
+    padding: 15px 0
+    text-overflow: ellipsis
+    text-transform: capitalize
+    white-space: nowrap
+    width: 100px
+
+  @include mobile
+    padding: 20px
+
+    &__hamburger
+      display: flex
+
+    &__links
+      background: #ffffff
+      border: solid 1px #efefef
+      display: none
+      padding: 20px
+      padding-top: 0
+      position: fixed
+      right: 20px
+      top: 50px
+      width: 130px
+
+    &__open
+      & > .navigator__links
+        display: block
+
+    &__user
+      display: none
+
+    &__links
+      &:has(.navigator__user)
+        width: auto

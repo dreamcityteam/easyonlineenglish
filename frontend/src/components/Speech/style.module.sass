@@ -1,0 +1,26 @@
+@import '../../../public/mixin/index.module'
+
+.speech
+  align-items: center
+  display: flex
+  flex-direction: column
+
+  &__icon
+    cursor: pointer
+    @include background-gradient()
+    padding: 15px
+    border-radius: 50%
+    width: 60px
+
+  &__feedback
+    -webkit-background-clip: text
+    background-clip: text
+    @include background-gradient()
+    color: transparent
+    font-weight: bold
+
+  @include mobile
+    &__icon
+      width: 50px
+    p
+      font-size: 16px

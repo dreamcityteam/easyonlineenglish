@@ -1,0 +1,45 @@
+@mixin background-gradient()
+  background-image: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
+
+@mixin hero-section-styles($background-image, $color-white: #ffffff)
+  background-attachment: fixed
+  background-image: url(#{$background-image})
+  background-position: center center
+  background-repeat: no-repeat
+  background-size: cover
+  color: $color-white
+  display: flex
+  position: relative
+
+  @include mobile
+    height: auto
+
+  &:before
+    background: linear-gradient(90deg, #ffffff 0%, rgba(9, 132, 227, 0.0592612045) 50%)
+    content: ''
+    height: 100%
+    position: absolute
+    top: 0
+    width: 100%
+
+@mixin button($font-size: auto)
+  background-color: #f23000
+  color: $color__white
+  font-size: $font-size
+  padding: 20px
+  position: relative
+  text-decoration: none
+  top: 20px
+  transition: background-color 0.2s ease
+  font-size: 30px
+
+@mixin mobile
+  @media only screen and (max-width: 767px)
+    @content
+
+// @media (min-width:320px)  {} // smartphones, portrait iPhone, portrait 480x320 phones (Android) 
+// @media (min-width:480px)  {} // smartphones, Android phones, landscape iPhone
+// @media (min-width:600px)  {} // portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android)
+// @media (min-width:801px)  {} // tablet, landscape iPad, lo-res laptops ands desktops
+// @media (min-width:1025px) {} // big landscape tablets, laptops, and desktops
+// @media (min-width:1281px) {} // hi-res laptops and desktops

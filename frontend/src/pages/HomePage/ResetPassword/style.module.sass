@@ -1,0 +1,18 @@
+@import '../../../../public/mixin/index.module'
+
+.ResetPassword
+  display: flex
+  justify-content: center
+
+  input[type="button"]
+    width: 100%
+
+  &__error
+    padding: 10px
+    display: block
+    max-width: 400px
+    color: red
+
+  @include mobile
+    form
+      width: 300px

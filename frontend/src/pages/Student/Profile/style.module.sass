@@ -1,0 +1,89 @@
+@import '../../../../public/mixin/index.module'
+
+/* Variables */
+$primary-color: #0a95cf
+
+/* Profile Styles */
+.profile
+  display: flex
+  justify-content: center
+
+  &__container
+    align-items: center
+    border-radius: 5px
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+    display: flex
+    text-align: center
+    width: 700px
+
+  &__avatar
+    align-items: center
+    @include background-gradient()
+    color: #fff
+    display: flex
+    font-size: 50px
+    height: 300px
+    justify-content: center
+    text-transform: uppercase
+    width: 50%
+
+    & > span
+      padding: 20px
+      border: solid
+      border-radius: 50%
+
+  &__info_container
+    position: relative
+    height: 100%
+    width: 50%
+
+  &__button
+    background-color: #F44336
+    bottom: 0
+    color: white
+    left: 0
+    padding: 10px
+    position: absolute
+    width: 100%
+    cursor: pointer
+
+  &__info
+    align-items: flex-start
+    display: flex
+    flex-direction: column
+    justify-content: center
+    height: 80%
+
+    li
+      color: #646464
+      font-family: monospace
+      font-weight: 400
+      list-style: circle
+      margin-bottom: 10px
+
+      &:first-child
+        margin-bottom: 20px
+        text-align: left
+        text-transform: capitalize
+        font-size: 20px
+        font-weight: bold
+        list-style: none
+        margin-left: 0
+
+      &:nth-child(2)
+        text-transform: capitalize
+
+  @include mobile
+    &__info_container,
+    &__container,
+    &__info,
+    &__avatar
+      width: 100%
+
+    &__info
+      margin: 0
+      padding: 0
+      align-items: center
+
+    &__container
+      flex-direction: column

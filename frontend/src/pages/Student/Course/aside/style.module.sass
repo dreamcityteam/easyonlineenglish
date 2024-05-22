@@ -1,0 +1,129 @@
+@import '../../../../../public/mixin/index.module'
+
+.aside
+  background: #ffffff
+  border-bottom: none
+  border-top: none
+  border: solid 1px #f1f1f1
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%)
+  color: #020202
+  height: auto
+  position: absolute
+  z-index: 1
+
+  &__title
+    @include background-gradient()
+    color: white
+    text-align: center
+    overflow: hidden
+
+  &__button
+    align-items: center
+    border-bottom-right-radius: 5px
+    border-left: none
+    border-top: none
+    cursor: pointer
+    display: flex
+    height: 53px
+    justify-content: center
+    margin: 5px -30px
+    position: absolute
+    width: 57px
+
+    img
+      border-radius: 50%
+      @include background-gradient()
+
+  &__words
+    color: #4e4e4e
+    height: 0
+    overflow: hidden
+
+  &__lession
+    border-bottom: solid 1px #f1f1f1
+    cursor: pointer
+    list-style: none
+    overflow-y: auto
+
+    &:first-child
+      border-top: solid 1px #f1f1f1
+
+  &__lessions
+    margin: 0
+    padding: 0
+
+  &__element
+    margin-left: 30px
+
+  &__lession_title
+    color: #595959
+    display: block
+    list-style: none
+    padding: 20px
+    font-family: arial
+    font-weight: 400
+
+  &__word
+    cursor: pointer
+    list-style: none
+    padding: 20px
+    transition: background-color 0.3s ease
+
+    &:first-child
+      border-top: solid 1px #f1f1f1
+
+    &:hover
+      background-color: #fbfbfb
+
+  &__padlock
+    left: -5px
+    position: relative
+    top: 9px
+
+  @include mobile
+    &__button
+      height: 45px
+
+    &__title,
+    &__lession_title,
+    &__word
+      font-size: 14px
+
+    &__padlock
+      width: 15px
+      position: relative
+      left: -5px
+      top: 2px
+
+.hide__default
+  width: 0
+  height: 0
+
+.hide
+  animation: slideInAside 0.5s forwards
+
+.display
+  animation: slideOutAside 0.5s forwards
+
+.button__container
+  display: flex
+  justify-content: flex-end
+
+.word__display
+  overflow-y: scroll
+  height: 300px
+  padding: 0
+
+@keyframes slideInAside
+  from
+    width: 300px
+  to
+    height: 0
+    width: 0
+
+@keyframes slideOutAside
+  from
+    height: 0
+    width: 0
+  to
+    width: 300px

@@ -1,0 +1,108 @@
+@import '../../../../public/mixin/index.module'
+
+.courses
+  &__items
+    display: flex
+    justify-content: center
+    // display: inline-grid
+    // gap: 20px
+    // grid-template-columns: repeat(auto-fill, 380px)
+    width: 100%
+
+  &__header
+    text-align: center
+
+  &__container
+    border-radius: 30px
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3)
+    display: inline-block
+    height: 400px
+    margin: 30px
+    min-width: 400px
+    overflow: hidden
+    position: relative
+    width: 400px
+
+  &__progress
+    align-items: center
+    background-color: #fff
+    border-radius: 50%
+    bottom: 30%
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7)
+    display: flex
+    height: 80px
+    left: 30px
+    position: absolute
+    width: 80px
+
+    &_chart
+      justify-content: space-around
+      width: 100%
+
+    &_circular_chart
+      display: block
+      margin: 10px auto
+      max-height: 250px
+      max-width: 91px
+
+    &_circle_bg
+      fill: none
+      stroke-width: 3.8
+      stroke: #eee
+
+    &_circle
+      animation: progress 1s ease-out forwards
+      fill: none
+      stroke-linecap: round
+      stroke-width: 2.8
+      stroke: #3c9ee5
+
+    &_percentage
+      fill: #666
+      font-family: sans-serif
+      font-size: 0.5em
+      text-anchor: middle
+
+  &__background
+    background-image: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
+    border-radius: 30px
+    position: absolute
+    top: 55%
+    left: -5px
+    height: 65%
+    width: 108%
+    transform: skew(19deg, -9deg)
+
+  &__title
+    position: absolute
+    color: #fff
+    left: 30px
+    bottom: 10%
+
+  &__picture
+    width: 100%
+
+  &__text
+    bottom: 26%
+    color: #fff
+    font-weight: 400
+    left: 150px
+    position: absolute
+
+  &__button
+    position: absolute
+    color: #fff
+    right: 30px
+    bottom: 10%
+    padding: 10px 20px
+    border: 1px solid #fff
+
+    a
+      color: #fff
+      text-decoration: none
+
+  @keyframes progress
+    0%
+      stroke-dasharray: 0 100
+
+  @include mobile

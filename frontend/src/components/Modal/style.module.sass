@@ -1,0 +1,50 @@
+@import '../../../public/mixin/index.module'
+
+.modal
+  align-items: center
+  background: #ffffff
+  color: black
+  display: flex
+  height: 100%
+  justify-content: center
+  left: 0
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 9999
+
+  &__container
+    z-index: 4
+
+  &__title
+    font-size: 50px
+
+  &__paragraph
+    font-size: 1rem
+
+  &__header
+    position: relative
+
+  &__close
+    border-radius: 5px
+    cursor: pointer
+    font-family: cursive
+    font-weight: bold
+    padding: 5px 7px
+    position: absolute
+    right: 0
+    top: -50px
+
+  &__fadeIn
+    animation: fadeInOut 2s forwards alternate
+
+  @include mobile
+    &__close
+      right: 20px
+
+  @keyframes fadeInOut
+    0%
+      opacity: 0
+
+    100%
+      opacity: 1

@@ -1,0 +1,1193 @@
+[
+  {
+    "name": "Días de la semana",
+    "content": [
+      {
+        "englishWord": "monday",
+        "spanishTranslation": "lunes",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Days_of_the_week_Monday.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Monday.mp3"
+      },
+      {
+        "englishWord": "tuesday",
+        "spanishTranslation": "martes",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Days_of_the_week_Tuesday.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Tuesday.mp3"
+      },
+      {
+        "englishWord": "wednesday",
+        "spanishTranslation": "miercoles",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Days_of_the_week_Wednesday.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Wednesday.mp3"
+      },
+      {
+        "englishWord": "thursday",
+        "spanishTranslation": "jueves",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Days_of_the_week_Thursday.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Thursday.mp3"
+      },
+      {
+        "englishWord": "friday",
+        "spanishTranslation": "viernes",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Days_of_the_week_Friday.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Friday.mp3"
+      },
+      {
+        "englishWord": "saturday",
+        "spanishTranslation": "sábado",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Days_of_the_week_Saturday.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Saturday.mp3"
+      },
+      {
+        "englishWord": "sunday",
+        "spanishTranslation": "domingo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Days_of_the_week_Sunday.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Sunday.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Meses del año",
+    "content": [
+      {
+        "englishWord": "January",
+        "spanishTranslation": "Enero",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_January.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/January.mp3"
+      },
+      {
+        "englishWord": "February",
+        "spanishTranslation": "Febrero",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_February.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/February.mp3"
+      },
+      {
+        "englishWord": "March",
+        "spanishTranslation": "Marzo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_March.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/March.mp3"
+      },
+      {
+        "englishWord": "April",
+        "spanishTranslation": "Abril",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_April.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/April.mp3"
+      },
+      {
+        "englishWord": "May",
+        "spanishTranslation": "Mayo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_May.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/May.mp3"
+      },
+      {
+        "englishWord": "June",
+        "spanishTranslation": "Junio",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_June.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/June.mp3"
+      },
+      {
+        "englishWord": "July",
+        "spanishTranslation": "Julio",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_July.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/July.mp3"
+      },
+      {
+        "englishWord": "August",
+        "spanishTranslation": "Agosto",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_August.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/August.mp3"
+      },
+      {
+        "englishWord": "September",
+        "spanishTranslation": "Septiembre",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_Septiembre.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/September.mp3"
+      },
+      {
+        "englishWord": "October",
+        "spanishTranslation": "Octubre",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_Octubre.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/October.mp3"
+      },
+      {
+        "englishWord": "November",
+        "spanishTranslation": "Noviembre",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_Noviembre.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/November.mp3"
+      },
+      {
+        "englishWord": "December",
+        "spanishTranslation": "Diciembre",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Months_Diciembre.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/December.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Números",
+    "content": [
+      {
+        "englishWord": "one",
+        "spanishTranslation": "uno",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_One.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/One.mp3"
+      },
+      {
+        "englishWord": "two",
+        "spanishTranslation": "dos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Two.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Two.mp3"
+      },
+      {
+        "englishWord": "three",
+        "spanishTranslation": "tres",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Three.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Three.mp3"
+      },
+      {
+        "englishWord": "four",
+        "spanishTranslation": "cuadro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Four.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Four.mp3"
+      },
+      {
+        "englishWord": "five",
+        "spanishTranslation": "cinco",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Five.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Five.mp3"
+      },
+      {
+        "englishWord": "six",
+        "spanishTranslation": "seis",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Six.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Six.mp3"
+      },
+      {
+        "englishWord": "seven",
+        "spanishTranslation": "siete",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Seven.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Seven.mp3"
+      },
+      {
+        "englishWord": "eight",
+        "spanishTranslation": "ocho",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Eight.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Eight.mp3"
+      },
+      {
+        "englishWord": "nine",
+        "spanishTranslation": "nueve",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Nine.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Nine.mp3"
+      },
+      {
+        "englishWord": "ten",
+        "spanishTranslation": "diez",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Ten.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ten.mp3"
+      },
+      {
+        "englishWord": "eleven",
+        "spanishTranslation": "once",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Eleven.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Eleven.mp3"
+      },
+      {
+        "englishWord": "twelve",
+        "spanishTranslation": "Doce",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twelve.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twelve.mp3"
+      },
+      {
+        "englishWord": "thirteen",
+        "spanishTranslation": "Trece",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Thirteen.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Thirteen.mp3"
+      },
+      {
+        "englishWord": "fourteen",
+        "spanishTranslation": "Catorce",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Fourteen.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fourteen.mp3"
+      },
+      {
+        "englishWord": "Fifteen",
+        "spanishTranslation": "Quince",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Fifteen.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fiveteen.mp3"
+      },
+      {
+        "englishWord": "sixteen",
+        "spanishTranslation": "Dieciseis",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Sixteen.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Sixteen.mp3"
+      },
+      {
+        "englishWord": "seventeen",
+        "spanishTranslation": "Diecisiete",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Seventeen.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Seventeen.mp3"
+      },
+      {
+        "englishWord": "eighteen",
+        "spanishTranslation": "Dieciocho",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Eighteen.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Eighteen.mp3"
+      },
+      {
+        "englishWord": "nineteen",
+        "spanishTranslation": "Diecinueve",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Nineteen.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Nineteen.mp3"
+      },
+      {
+        "englishWord": "twenty",
+        "spanishTranslation": "Veinte",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty.mp3"
+      },
+      {
+        "englishWord": "twenty one",
+        "spanishTranslation": "Veintiuno",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_One.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-one.mp3"
+      },
+      {
+        "englishWord": "twenty two",
+        "spanishTranslation": "Veintidos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_Two.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-two.mp3"
+      },
+      {
+        "englishWord": "twenty three",
+        "spanishTranslation": "Veintitres",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_Three.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-Three.mp3"
+      },
+      {
+        "englishWord": "twenty four",
+        "spanishTranslation": "Veinticuatro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_Four.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-four.mp3"
+      },
+      {
+        "englishWord": "twenty five",
+        "spanishTranslation": "Veinticinco",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_Five.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-Five.mp3"
+      },
+      {
+        "englishWord": "twenty six",
+        "spanishTranslation": "Veintiseis",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_Six.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-Six.mp3"
+      },
+      {
+        "englishWord": "twenty seven",
+        "spanishTranslation": "Veintisiete",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_Seven.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-Seven.mp3"
+      },
+      {
+        "englishWord": "twenty eight",
+        "spanishTranslation": "Veintiocho",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_Eight.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-eitght.mp3"
+      },
+      {
+        "englishWord": "twenty nine",
+        "spanishTranslation": "Veintinueve",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Twenty_Nine.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-nine.mp3"
+      },
+      {
+        "englishWord": "thirty",
+        "spanishTranslation": "Treinta",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Thirty.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Thirty.mp3"
+      },
+      {
+        "englishWord": "forty",
+        "spanishTranslation": "Cuarenta",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Forty.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Forty.mp3"
+      },
+      {
+        "englishWord": "fifty",
+        "spanishTranslation": "Cincuenta",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Fifty.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fifty.mp3"
+      },
+      {
+        "englishWord": "sixty",
+        "spanishTranslation": "Sesenta",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Sixty.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Sixty.mp3"
+      },
+      {
+        "englishWord": "seventy",
+        "spanishTranslation": "Setenta",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Seventy.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Seventy.mp3"
+      },
+      {
+        "englishWord": "eighty",
+        "spanishTranslation": "Ochenta",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Eighty.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Eighty.mp3"
+      },
+      {
+        "englishWord": "ninety",
+        "spanishTranslation": "Noventa",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Ninety.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ninety.mp3"
+      },
+      {
+        "englishWord": "one hundred",
+        "spanishTranslation": "Cien",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_One_Hundred.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/One-hundred.mp3"
+      },
+      {
+        "englishWord": "one hundred one",
+        "spanishTranslation": "Ciento Uno",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_One_Hundred_One.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/One-hundred-one.mp3"
+      },
+      {
+        "englishWord": "two hundred",
+        "spanishTranslation": "Doscientos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Two_Hundred.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Two-hundred.mp3"
+      },
+      {
+        "englishWord": "three hundred",
+        "spanishTranslation": "Trescientos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Three_Hundred.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Three-hundred.mp3"
+      },
+      {
+        "englishWord": "six hundred",
+        "spanishTranslation": "Seiscientos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Six_Hundred.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Six-hundred.mp3"
+      },
+      {
+        "englishWord": "nine hundred",
+        "spanishTranslation": "Novecientos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Nine_Hundred.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Nine-hundred.mp3"
+      },
+      {
+        "englishWord": "one thousand",
+        "spanishTranslation": "Mil",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_One_Thousand.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/One-thousand.mp3"
+      },
+      {
+        "englishWord": "two thousand",
+        "spanishTranslation": "Dos mil",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_Two_Thousand.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Two-thousand.mp3"
+      },
+      {
+        "englishWord": "one hundred thousand",
+        "spanishTranslation": "Cien Mil",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Number_One_Hundred_Thousand.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/One-hundred-thousand.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Miembros de la familia",
+    "content": [
+      {
+        "englishWord": "mother",
+        "spanishTranslation": "madre",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Mother.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Mother.mp3"
+      },
+      {
+        "englishWord": "father",
+        "spanishTranslation": "padre",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Father.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Father.mp3"
+      },
+      {
+        "englishWord": "son",
+        "spanishTranslation": "hijo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Son.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Son.mp3"
+      },
+      {
+        "englishWord": "daugther",
+        "spanishTranslation": "hija",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Daughter.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Daughter.mp3"
+      },
+      {
+        "englishWord": "sister",
+        "spanishTranslation": "hermana",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Sister.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Sister.mp3"
+      },
+      {
+        "englishWord": "brother",
+        "spanishTranslation": "hermano",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Brother.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Brother.mp3"
+      },
+      {
+        "englishWord": "children",
+        "spanishTranslation": "niños",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Children.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Children.mp3"
+      },
+      {
+        "englishWord": "parents",
+        "spanishTranslation": "padres",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Parents.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parents.mp3"
+      },
+      {
+        "englishWord": "siblings",
+        "spanishTranslation": "hermanos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Siblings.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Siblings.mp3"
+      },
+      {
+        "englishWord": "husband",
+        "spanishTranslation": "esposo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Husband.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Husband.mp3"
+      },
+      {
+        "englishWord": "wife",
+        "spanishTranslation": "esposa",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Wife.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Wife.mp3"
+      },
+      {
+        "englishWord": "grand mother",
+        "spanishTranslation": "abuela",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Grandmother.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Grand-Mother.mp3"
+      },
+      {
+        "englishWord": "grand father",
+        "spanishTranslation": "abuelo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Grandfather.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Grand-Father.mp3"
+      },
+      {
+        "englishWord": "grand son",
+        "spanishTranslation": "nieto",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Grandson.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Grandson.mp3"
+      },
+      {
+        "englishWord": "grand daughter",
+        "spanishTranslation": "nieta",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Granddaughter.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Granddaughter.mp3"
+      },
+      {
+        "englishWord": "grand children",
+        "spanishTranslation": "nietos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Grandchildren.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Grandchildrens.mp3"
+      },
+      {
+        "englishWord": "grand parents",
+        "spanishTranslation": "abuelos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Grandparents.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Grandparents.mp3"
+      },
+      {
+        "englishWord": "cousin",
+        "spanishTranslation": "primo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Cousin.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Cousin.mp3"
+      },
+      {
+        "englishWord": "aunt",
+        "spanishTranslation": "tía",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Aunt.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Aunt.mp3"
+      },
+      {
+        "englishWord": "uncle",
+        "spanishTranslation": "tío",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Uncle.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Uncle.mp3"
+      },
+      {
+        "englishWord": "niece",
+        "spanishTranslation": "sobrina",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Niece.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Niece.mp3"
+      },
+      {
+        "englishWord": "nephew",
+        "spanishTranslation": "sobrino",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Nephew.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Nephew.mp3"
+      },
+      {
+        "englishWord": "stepsister",
+        "spanishTranslation": "hermanastra",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Stepsister.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Stepsister.mp3"
+      },
+      {
+        "englishWord": "stepbrother",
+        "spanishTranslation": "hermanastro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Stepbrother.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Stepbrother.mp3"
+      },
+      {
+        "englishWord": "stepson",
+        "spanishTranslation": "hijastro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Stepson.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Stepson.mp3"
+      },
+      {
+        "englishWord": "stepdaughter",
+        "spanishTranslation": "hijastra",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Stepdaughter.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Stepdaughter.mp3"
+      },
+      {
+        "englishWord": "stepmother",
+        "spanishTranslation": "madrastra",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Stepmother.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Stepmother.mp3"
+      },
+      {
+        "englishWord": "stepfather",
+        "spanishTranslation": "padrastro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Stepfather.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Stepfather.mp3"
+      },
+      {
+        "englishWord": "only child",
+        "spanishTranslation": "hijo único",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Only_child.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Only-Child.mp3"
+      },
+      {
+        "englishWord": "mother-in-law",
+        "spanishTranslation": "suegra",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Mother_in_law.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Mother-in-law.mp3"
+      },
+      {
+        "englishWord": "father-in-law",
+        "spanishTranslation": "suegro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Father_in_law.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Father-in-law.mp3"
+      },
+      {
+        "englishWord": "son-in-law",
+        "spanishTranslation": "yerno",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Son_in_law.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Son-in-law.mp3"
+      },
+      {
+        "englishWord": "daughter-in-law",
+        "spanishTranslation": "nuera",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Daughter_in_law.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Daughter-in-Law.mp3"
+      },
+      {
+        "englishWord": "relative",
+        "spanishTranslation": "pariente",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Relative.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Relative.mp3"
+      },
+      {
+        "englishWord": "orphan",
+        "spanishTranslation": "huérfano",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Orphan.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Orphan.mp3"
+      },
+      {
+        "englishWord": "god mother",
+        "spanishTranslation": "madrina",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Godmother.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/God-Mother.mp3"
+      },
+      {
+        "englishWord": "god father",
+        "spanishTranslation": "padrino",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Family_Godfather.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/God-Father.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Números ordinarios",
+    "content": [
+      {
+        "englishWord": "first",
+        "spanishTranslation": "primero",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_First.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/First.mp3"
+      },
+      {
+        "englishWord": "second",
+        "spanishTranslation": "segundo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Second.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Second.mp3"
+      },
+      {
+        "englishWord": "third",
+        "spanishTranslation": "tercero",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Third.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Third.mp3"
+      },
+      {
+        "englishWord": "fourth",
+        "spanishTranslation": "cuarto",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Fourth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fourth.mp3"
+      },
+      {
+        "englishWord": "fifth",
+        "spanishTranslation": "quinto",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Fifth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fifth.mp3"
+      },
+      {
+        "englishWord": "sixth",
+        "spanishTranslation": "sexto",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Sixth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Sixth.mp3"
+      },
+      {
+        "englishWord": "seventh",
+        "spanishTranslation": "séptimo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Sevent.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Seventh.mp3"
+      },
+      {
+        "englishWord": "eighth",
+        "spanishTranslation": "octavo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Eighth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Eighth.mp3"
+      },
+      {
+        "englishWord": "nineth",
+        "spanishTranslation": "noveno",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Nineth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Nineth.mp3"
+      },
+      {
+        "englishWord": "tenth",
+        "spanishTranslation": "decimo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Tenth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Tenth.mp3"
+      },
+      {
+        "englishWord": "eleventh",
+        "spanishTranslation": "decimo primero",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Eleventh.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Eleventh.mp3"
+      },
+      {
+        "englishWord": "twelfth",
+        "spanishTranslation": "decimo segundo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Twelfth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twelfth.mp3"
+      },
+      {
+        "englishWord": "thirteenth",
+        "spanishTranslation": "decimo tercero",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Thirteenth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Thirteenth.mp3"
+      },
+      {
+        "englishWord": "twentieth",
+        "spanishTranslation": "Vigésimo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Twentieth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twentieth.mp3"
+      },
+      {
+        "englishWord": "twenty first",
+        "spanishTranslation": "Vigésimo primero",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Twenty_first.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Twenty-first.mp3"
+      },
+      {
+        "englishWord": "thirtieth",
+        "spanishTranslation": "trigésimo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Thirtieth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Thirtieth.mp3"
+      },
+      {
+        "englishWord": "fortieth",
+        "spanishTranslation": "cuadragésimo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Fortieth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fortieth.mp3"
+      },
+      {
+        "englishWord": "hundredth",
+        "spanishTranslation": "Centésimo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ordinal_Number_Hundreth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Hundreth.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Animales",
+    "content": [
+      {
+        "englishWord": "Dog",
+        "spanishTranslation": "Perro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Dog.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Dog.mp3"
+      },
+      {
+        "englishWord": "Cat",
+        "spanishTranslation": "Gato",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Cat.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Cat.mp3"
+      },
+      {
+        "englishWord": "Rabbit",
+        "spanishTranslation": "Conejo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Rabbit.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Rabbit.mp3"
+      },
+      {
+        "englishWord": "Rat",
+        "spanishTranslation": "Ratón",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Rat.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Rat.mp3"
+      },
+      {
+        "englishWord": "Rooster",
+        "spanishTranslation": "Gallo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Rooster.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Rooster.mp3"
+      },
+      {
+        "englishWord": "Pig",
+        "spanishTranslation": "Cerdo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Pig.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Pig.mp3"
+      },
+      {
+        "englishWord": "Horse",
+        "spanishTranslation": "Caballo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Horse.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Horse.mp3"
+      },
+      {
+        "englishWord": "Chicken",
+        "spanishTranslation": "Pollo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Chicken.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Chicken.mp3"
+      },
+      {
+        "englishWord": "Cow",
+        "spanishTranslation": "Vaca",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Cow.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Cow.mp3"
+      },
+      {
+        "englishWord": "Duck",
+        "spanishTranslation": "Pato",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Duck.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Duck.mp3"
+      },
+      {
+        "englishWord": "Frog",
+        "spanishTranslation": "Rana",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Frog.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Frog.mp3"
+      },
+      {
+        "englishWord": "Snake",
+        "spanishTranslation": "Serpiente",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Snake.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Snake.mp3"
+      },
+      {
+        "englishWord": "Fish",
+        "spanishTranslation": "Pescado",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Fish.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fish.mp3"
+      },
+      {
+        "englishWord": "Shrimp",
+        "spanishTranslation": "Camarones",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Shrimp.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Shrimp.mp3"
+      },
+      {
+        "englishWord": "Shark",
+        "spanishTranslation": "Tiburón",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Shark.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Shark.mp3"
+      },
+      {
+        "englishWord": "Donkey",
+        "spanishTranslation": "Burro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Donkey.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Donkey.mp3"
+      },
+      {
+        "englishWord": "Monkey",
+        "spanishTranslation": "Mono",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Monkey.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Monkey.mp3"
+      },
+      {
+        "englishWord": "Zebra",
+        "spanishTranslation": "Cebra",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Zebra.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Zebra.mp3"
+      },
+      {
+        "englishWord": "Elephant",
+        "spanishTranslation": "Elefante",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Elephant.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Elephant.mp3"
+      },
+      {
+        "englishWord": "Gorilla",
+        "spanishTranslation": "Gorila",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Gorilla.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Gorilla.mp3"
+      },
+      {
+        "englishWord": "Giraffe",
+        "spanishTranslation": "Jirafa",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Giraffe.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Giraffe.mp3"
+      },
+      {
+        "englishWord": "Lion",
+        "spanishTranslation": "Leon",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Lion.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Lion.mp3"
+      },
+      {
+        "englishWord": "Sheep",
+        "spanishTranslation": "Oveja",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Sheep.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Sheep.mp3"
+      },
+      {
+        "englishWord": "Mouse",
+        "spanishTranslation": "Ratón",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Mouse.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Mouse.mp3"
+      },
+      {
+        "englishWord": "Tiger",
+        "spanishTranslation": "Tigre",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Tiger.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Tiger.mp3"
+      },
+      {
+        "englishWord": "Bull",
+        "spanishTranslation": "Toro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Bull.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Bull.mp3"
+      },
+      {
+        "englishWord": "Fox",
+        "spanishTranslation": "Zorro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Animals_Fox.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fox.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Estaciones del año",
+    "content": [
+      {
+        "englishWord": "Spring",
+        "spanishTranslation": "Primavera",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Season_of_the_year_Spring.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Spring.mp3"
+      },
+      {
+        "englishWord": "Summer",
+        "spanishTranslation": "Verano",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Season_of_the_year_Summer.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Summer.mp3"
+      },
+      {
+        "englishWord": "Fall",
+        "spanishTranslation": "Otoño",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Season_of_the_year_Fall.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fall.mp3"
+      },
+      {
+        "englishWord": "Winter",
+        "spanishTranslation": "Invierno",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Season_of_the_year_Winter.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Winter.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Colores",
+    "content": [
+      {
+        "englishWord": "Blue",
+        "spanishTranslation": "Azul",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Blue.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Blue.mp3"
+      },
+      {
+        "englishWord": "Yellow",
+        "spanishTranslation": "Amarillo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Yellow.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Yellow.mp3"
+      },
+      {
+        "englishWord": "White",
+        "spanishTranslation": "Blanco",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_White.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/White.mp3"
+      },
+      {
+        "englishWord": "Brown",
+        "spanishTranslation": "Marrón",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Brown.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Brown.mp3"
+      },
+      {
+        "englishWord": "Beige",
+        "spanishTranslation": "Crema",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Beige.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Beige.mp3"
+      },
+      {
+        "englishWord": "Gray",
+        "spanishTranslation": "Gris",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Gray.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Gray.mp3"
+      },
+      {
+        "englishWord": "Orange",
+        "spanishTranslation": "Naranja",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Orange.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Orange.mp3"
+      },
+      {
+        "englishWord": "Black",
+        "spanishTranslation": "Negro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Blanck.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Black.mp3"
+      },
+      {
+        "englishWord": "Red",
+        "spanishTranslation": "Rojo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Red.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Red.mp3"
+      },
+      {
+        "englishWord": "Pink",
+        "spanishTranslation": "Rosa",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Pink.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Pink.mp3"
+      },
+      {
+        "englishWord": "Green",
+        "spanishTranslation": "Verde",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Green.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Green.mp3"
+      },
+      {
+        "englishWord": "Purple",
+        "spanishTranslation": "Morado",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Purple.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Purple.mp3"
+      },
+      {
+        "englishWord": "Navy Blue",
+        "spanishTranslation": "Azul Marino",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Navy-Blue.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Navy-Blue.mp3"
+      },
+      {
+        "englishWord": "Light Blue",
+        "spanishTranslation": "Azul Claro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Light_Blue.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Light-Blue.mp3"
+      },
+      {
+        "englishWord": "Dark Blue",
+        "spanishTranslation": "Azul Oscuro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Dark_Blue.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Dark-Blue.mp3"
+      },
+      {
+        "englishWord": "Hues",
+        "spanishTranslation": "Tonalidades",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Colors_Hues.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Hues.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Partes del cuerpo",
+    "content": [
+      {
+        "englishWord": "Eyes",
+        "spanishTranslation": "Ojos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Eyes.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Eyes.mp3"
+      },
+      {
+        "englishWord": "Head",
+        "spanishTranslation": "Cabeza",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Head.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Head.mp3"
+      },
+      {
+        "englishWord": "Arm",
+        "spanishTranslation": "Brazo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Arm.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Arm.mp3"
+      },
+      {
+        "englishWord": "Bust",
+        "spanishTranslation": "Busto",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Bust.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Bust.mp3"
+      },
+      {
+        "englishWord": "Hip",
+        "spanishTranslation": "Cadera",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Hip.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Hip.mp3"
+      },
+      {
+        "englishWord": "Face",
+        "spanishTranslation": "Cara",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Face.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Face.mp3"
+      },
+      {
+        "englishWord": "Brain",
+        "spanishTranslation": "Cerebro",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Brain.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Brain.mp3"
+      },
+      {
+        "englishWord": "Heart",
+        "spanishTranslation": "Corazón",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Heart.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Heart.mp3"
+      },
+      {
+        "englishWord": "Waist",
+        "spanishTranslation": "Cintura",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Waist.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Waist.mp3"
+      },
+      {
+        "englishWord": "Neck",
+        "spanishTranslation": "Cuello",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Neck.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Neck.mp3"
+      },
+      {
+        "englishWord": "Elbow",
+        "spanishTranslation": "Codo",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Elbow.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Elbow.mp3"
+      },
+      {
+        "englishWord": "Fingers",
+        "spanishTranslation": "Dedos",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Fingers.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fingers.mp3"
+      },
+      {
+        "englishWord": "Tooth",
+        "spanishTranslation": "Diente",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Tooth.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Tooth.mp3"
+      },
+      {
+        "englishWord": "Back",
+        "spanishTranslation": "Espalda",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Back.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Back.mp3"
+      },
+      {
+        "englishWord": "Stomach",
+        "spanishTranslation": "Estómago",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Stomach.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Stomach.mp3"
+      },
+      {
+        "englishWord": "Genitals",
+        "spanishTranslation": "Genitales",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Genitals.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Genitals.mp3"
+      },
+      {
+        "englishWord": "Lips",
+        "spanishTranslation": "Labios",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Lips.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Lips.mp3"
+      },
+      {
+        "englishWord": "Tongue",
+        "spanishTranslation": "Lengua",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Tongue.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Tongue.mp3"
+      },
+      {
+        "englishWord": "Hand",
+        "spanishTranslation": "Mano",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Hand.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Hand.mp3"
+      },
+      {
+        "englishWord": "Ear",
+        "spanishTranslation": "Oído",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Ear.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Ear.mp3"
+      },
+      {
+        "englishWord": "Hair",
+        "spanishTranslation": "Cabello",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Hair.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Hair.mp3"
+      },
+      {
+        "englishWord": "Feet",
+        "spanishTranslation": "Pies",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Feet.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Feet.mp3"
+      },
+      {
+        "englishWord": "Leg",
+        "spanishTranslation": "Pierna",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Leg.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Leg.mp3"
+      },
+      {
+        "englishWord": "Fingernails",
+        "spanishTranslation": "Uñas",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_fingernails.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Fingernails.mp3"
+      },
+      {
+        "englishWord": "Blood",
+        "spanishTranslation": "Sangre",
+        "imageUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Parts_of_the_body_Blood.jpg",
+        "audioUrl": "https://easyonlineenglish.com/wp-content/uploads/2024/01/Blood.mp3"
+      }
+    ]
+  }
+]

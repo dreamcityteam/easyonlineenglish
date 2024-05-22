@@ -1,0 +1,279 @@
+@import '../../../../public/mixin/index.module'
+
+$color__text: #6a6a6a
+$color__white: #ffffff
+$container__background: #f4f4f4
+$container__width: 1000px
+$default__color: #000000
+
+.home
+  @include hero-section-styles('https://lh3.googleusercontent.com/d/12k7moSQXfkb6TWD_klZh0wWUZrvjXqio')
+  min-height: 680px
+
+  &__container
+    color: #0e4fc6
+    margin-left: 20%
+    z-index: 1
+
+  &__title
+    font-size: 80px
+
+  &__subtitle
+    font-size: 30px
+
+  &__button
+    @include button(20px)
+
+  &__item
+    margin-top: 10px
+
+  &__items
+    font-size: 20px
+
+  @include mobile
+    align-items: center
+    background-attachment: initial
+    display: flex
+    justify-content: center
+    min-height: 600px
+
+    &::before
+      background: linear-gradient(90deg, #ffffff 0%, rgba(9, 132, 227, 0.0592612045) 50%)
+
+    &__container
+      margin: 0
+
+    &__title,
+    &__subtitle
+      font-size: 30px
+
+    &__item
+      font-size: 18px
+
+    &__button
+      font-size: 12px
+
+.block
+  display: block
+
+.info__container,
+.info__content,
+.ceo__container,
+.ceo__content,
+.student__container,
+.student__content,
+.join__content,
+.join__container,
+.start__container,
+.start__content
+  align-items: center
+  display: flex
+  justify-content: center
+
+.info__content,
+.ceo__content,
+.student__content,
+.join__content,
+.start__content
+  padding: 50px 0
+  width: $container__width
+
+  @include mobile
+    flex-direction: column
+    width: 100%
+    padding: 20px
+
+.ceo__text,
+.info__text,
+.student__text,
+.join__text,
+.start__text
+  color: $color__text
+  font-size: 18px
+  font-weight: 400
+  line-height: 2
+
+.info
+  color: $color__text
+
+  &__items
+    color: $color__text
+
+  &__item
+    font-size: 18px
+    line-height: 2
+
+  &__title
+    font-size: 40px
+
+    &:nth-last-child(1)
+      text-align: center
+
+  &__subtitle
+    color: #f44336
+    font-size: 60px
+
+  &__image
+    width: 500px
+
+  @include mobile
+    &__image
+      width: 260px
+
+    &__items
+      padding: 20px
+
+    &__title
+      font-size: 2em
+
+    &__subtitle
+      font-size: 3em
+
+.ceo
+  background-color: $container__background
+
+  &__title
+    font-size: 40px
+
+  &__image
+    width: 300px
+
+  &__name,
+  &__experience,
+  &__text
+    font-weight: 400
+
+  &__figure
+    line-height: 1.2
+
+  &__name
+    font-weight: bold
+    font-size: 15px
+
+  &__experience
+    display: block
+    font-size: 12px
+
+  @include mobile
+    &__image
+      width: 200px
+
+    &__title
+      text-align: center
+      font-size: 2em
+
+    &__figure
+      text-align: center
+
+.student
+  color: $default__color
+
+  &__text
+    padding: 20px
+
+  &__figure
+    display: flex
+    left: 20px
+    margin: 0
+    position: relative
+
+    figcaption
+      margin-left: 40px
+
+  &__title
+    text-align: center
+    font-size: 40px
+
+  &__image
+    border-radius: 50%
+    width: 70px
+
+  &__name
+    display: block
+    font-size: 20px
+    font-weight: bold
+
+  &__country
+    font-size: 15px
+    font-weight: 400
+
+  @include mobile
+    &__title
+      text-align: center
+      font-size: 2em
+
+    &__name
+      display: block
+      font-size: 16px
+      font-weight: bold
+
+    &__country
+      font-size: 14px
+      font-weight: 400
+
+    figcaption
+      margin: 15px
+
+.join
+  background-color: $container__background
+  text-align: center
+
+  &__title
+    font-size: 45px
+    text-align: center
+
+  &__text
+    padding: 0
+
+  &__button
+    @include button()
+    border-radius: 0
+    top: 0px
+
+  &__bottom
+    padding: 20px
+
+  @include mobile
+    &__text
+      font-size: 14px
+
+    &__title
+      text-align: center
+      font-size: 2em
+
+    &__button
+      padding: 15px
+
+.start
+  color: $default__color
+
+  &__title
+    font-size: 2em
+    color: $default__color
+
+  &__text
+    padding: 20px
+
+  &__top
+    text-align: center
+
+  &__bottom
+    padding: 20px
+
+  @include mobile
+    &__text
+      text-align: justify
+
+.reverse
+  @include mobile
+    display: flex
+    flex-direction: column-reverse
+
+.info__text,
+.ceo__text,
+.student__text,
+.join__text,
+.start__text,
+.info__item
+  @include mobile
+    font-size: 14px
