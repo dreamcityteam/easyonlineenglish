@@ -6,7 +6,6 @@ import { Courses as TCourses } from '../../../global/state/type';
 import context from '../../../global/state/context';
 import GoogleDriveImage from '../../../components/Image';
 import style from './style.module.sass';
-import './main.css';
 
 interface Props {
   isDemo?: boolean;
