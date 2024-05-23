@@ -12,7 +12,6 @@ const Navigator: React.FC = (): JSX.Element => {
   const [canOpen, setCanOpen] = useState<boolean>(false);
   const nav: React.MutableRefObject<null> = useRef<null>(null);
   const [tabs, setTabs] = useState<Tab[]>([]);
-  const [target, setTarget] = useState<string>('');
   const location = useLocation();
 
   useEffect(() => {

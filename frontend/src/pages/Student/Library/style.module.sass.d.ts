@@ -3,7 +3,9 @@
 interface CssExports {
   'sound__icon': string;
   'table': string;
+  'table__feedback': string;
   'table__image': string;
+  'table__image_container': string;
   'table__tbodyTd': string;
   'table__tbodyTr': string;
   'table__theadTh': string;
@@ -14,6 +16,7 @@ interface CssExports {
   'vocabularies__section': string;
   'vocabularies__tab': string;
   'vocabularies__tabFocus': string;
+  'vocabularies__table': string;
   'vocabularies__tabs': string;
 }
 export const cssExports: CssExports;

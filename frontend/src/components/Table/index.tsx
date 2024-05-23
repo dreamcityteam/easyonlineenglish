@@ -10,7 +10,7 @@ interface Props {
   custom?: {
     [key: string]: {
       value?: string;
-      render?: (value: string) => JSX.Element;
+      render?: (value: string, item: any) => JSX.Element;
       avoid?: boolean;
     };
   };
@@ -50,7 +50,7 @@ const Table: React.FC<Props> = ({ data, custom = {}, action, style }) => {
           <tr key={rowIndex} className={style.table__tbodyTr}>
             {columns.map((column, colIndex: number) => {
               const customRow = custom[column];
-              const render = customRow?.render ? customRow.render(item[column]) : item[column];
+              const render = customRow?.render ? customRow.render(item[column], item) : item[column];
 
               if (customRow?.avoid == true) return null;
 

@@ -3,6 +3,9 @@
 .vocabularies
   color: black
 
+  &__table
+    width: 100%
+
   &__container
     border: #e9e9e9 solid 1px
     display: flex
@@ -36,6 +39,9 @@
     color: white
 
   @include mobile
+    &__table
+      overflow-x: scroll
+
     &__container
       flex-direction: column
       font-size: 1rem
@@ -47,6 +53,18 @@
   font-family: arial, sans-serif
   border-collapse: collapse
   width: 100%
+
+  &__image_container
+    align-items: center
+    display: flex
+    justify-content: center
+    position: relative
+
+  &__feedback
+    position: absolute
+    border-radius: 9px
+    color: white
+    padding: 10px 20px
 
   &__theadTh
     padding: 28px 0px
@@ -61,11 +79,15 @@
     text-transform: capitalize
 
   &__image
-    height: 100px
-    width: 100px
+    height: 120px
+    width: 120px
+
+  &__theadTh,
+  &__tbodyTd
+    padding: 20px
 
   @include mobile
-    table__theadTh,
+    &__theadTh,
     &__tbodyTd
       font-size: 1rem
 

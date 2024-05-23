@@ -7,7 +7,7 @@ interface Props {
   word: string;
   audioUrl: string;
   onCheck: (isCorrect: boolean) => void;
-  onPlaySpeech: (isCorrect: boolean) => void;
+  onPlaySpeech?: (isCorrect: boolean) => void;
   canNext?: { [key: string]: string; }
 };
 
@@ -28,7 +28,7 @@ const Speech: React.FC<Props> = ({
 
     audio.play();
     setCanPlay(true);
-    onPlaySpeech(true);
+    onPlaySpeech && onPlaySpeech(true);
 
     audio.onended = (): void => {
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
@@ -74,7 +74,7 @@ const Speech: React.FC<Props> = ({
 
       recognition.onend = (): void => {
         setCanPlay(false);
-        onPlaySpeech(false);
+        onPlaySpeech && onPlaySpeech(false);
         setOutput('Escuchar pronunciación');
       }
 

@@ -5,7 +5,7 @@ const infos: Info[] = [
   {
     googleId: '1P2H5fYPO1z9HzTWYKulQy1AkfpTru6O4',
     title: 'Llamanos 24/7',
-    info: '+1-234-456-789',
+    info: '+1 (849) 410-9664',
   },
   {
     googleId: '1ukYO8aBYl_kNArkX_hVV2AQlZtaS755P',
