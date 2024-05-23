@@ -17,6 +17,7 @@ const send = ({ api, data, token }: Request): Send => {
     try {
       const response = await fetch(`${protocol}//${host}/api/v1/${api}`, options);
       const responseData: Response = await response.json();
+      console.log(responseData)
       return responseData;
     } catch (error) {
       console.error('Error fetching data:', error);
