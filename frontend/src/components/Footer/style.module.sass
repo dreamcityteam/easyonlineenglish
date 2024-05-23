@@ -1,3 +1,5 @@
+@import '../../../public/mixin/index.module'
+
 .footer
   text-align: center
 
@@ -21,3 +23,13 @@
   &__title
     font-size: 12px
     font-weight: bold
+
+  @include mobile
+    &__items
+      padding: 0
+      flex-direction: column
+      padding-bottom: 10px
+
+    &__address
+      border-right: none
+      margin-bottom: 10px
