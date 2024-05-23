@@ -355,9 +355,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         <div className={style.course__content_container}>
           <div className={style.course__content}>
             <div className={style.course__content_text}>
+            <div>
               <span className={style.course__text_grandient}>
                 {sentence?.englishWord}
               </span>
+            </div>
               <span className={style.course__text_language}>
                 Inglés
               </span>
@@ -378,9 +380,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               )}
             </div>
             <div className={style.course__content_text}>
+            <div>
               <span className={style.course__text_grandient}>
                 {sentence?.spanishTranslation}
               </span>
+            </div>
               <span className={style.course__text_language}>
                 Español
               </span>
