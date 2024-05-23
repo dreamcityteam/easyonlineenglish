@@ -7,6 +7,7 @@ import context from '../../../global/state/context';
 import { LibraryCache, LibraryContent } from '../../../global/state/type';
 import Speech from '../../../components/Speech';
 import { Item } from './type';
+import ErrorConnection from '../../../components/ErrorConnection';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -50,69 +51,73 @@ const Library: React.FC = (): JSX.Element => {
     setSpeech((currentState) => ({ ...currentState, [englishWord]: isCorrect }));
 
   return (
-    <section className={style.vocabularies}>
-      <header className={style.vocabularies__header}>
-        <h1>Librería</h1>
-      </header>
-      <div className={style.vocabularies__container}>
-        <aside className={style.vocabularies__aside}>
-          <ul className={style.vocabularies__tabs}>
-            {data.map(({ name }: any, index: number): JSX.Element => (
-              <li
-                key={index}
-                onClick={() => handlerOnTab(index)}
-                className={`${style.vocabularies__tab} ${tabIndex === index ? style['vocabularies__tabFocus'] : ''}`}
-              >
-                <span className={style.vocabularies__section}>
-                  {name}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </aside>
-        <div className={style.vocabularies__table}>
-          <Table
-            data={content}
-            style={style}
-            custom={{
-              _id: { avoid: true },
-              englishWord: { value: 'Ingles' },
-              spanishTranslation: { value: 'Español' },
-              audioUrl: {
-                value: 'Pronunciación',
-                render: (value: string, item: Item): JSX.Element =>
-                  <Speech
-                    audioUrl={value}
-                    onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
-                    word={item.englishWord}
-                  />
-              },
-              imageUrl: {
-                value: 'Referencia',
-                render: (value: string, item: Item): JSX.Element => (
-                  <div className={style.table__image_container}>
-                    <img
-                      alt="vocabulary image"
-                      className={style.table__image}
-                      loading="lazy"
-                      src={value}
-                    />
-                    {typeof speech[item.englishWord] !== 'undefined' && (
-                      <span
-                        className={style.table__feedback}
-                        style={{ background: speech[item.englishWord] ? '#4caf50' : '#f44336' }}
-                      >
-                        {speech[item.englishWord] ? 'Correcto' : 'Incorrecto'}
-                      </span>
-                    )}
-                  </div>
-                )
-              },
-            }}
-          />
-        </div>
-      </div>
-    </section>
+    <>
+      {data.length ? (
+        <section className={style.vocabularies}>
+          <header className={style.vocabularies__header}>
+            <h1>Librería</h1>
+          </header>
+          <div className={style.vocabularies__container}>
+            <aside className={style.vocabularies__aside}>
+              <ul className={style.vocabularies__tabs}>
+                {data.map(({ name }: any, index: number): JSX.Element => (
+                  <li
+                    key={index}
+                    onClick={() => handlerOnTab(index)}
+                    className={`${style.vocabularies__tab} ${tabIndex === index ? style['vocabularies__tabFocus'] : ''}`}
+                  >
+                    <span className={style.vocabularies__section}>
+                      {name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+            <div className={style.vocabularies__table}>
+              <Table
+                data={content}
+                style={style}
+                custom={{
+                  _id: { avoid: true },
+                  englishWord: { value: 'Ingles' },
+                  spanishTranslation: { value: 'Español' },
+                  audioUrl: {
+                    value: 'Pronunciación',
+                    render: (value: string, item: Item): JSX.Element =>
+                      <Speech
+                        audioUrl={value}
+                        onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
+                        word={item.englishWord}
+                      />
+                  },
+                  imageUrl: {
+                    value: 'Referencia',
+                    render: (value: string, item: Item): JSX.Element => (
+                      <div className={style.table__image_container}>
+                        <img
+                          alt="vocabulary image"
+                          className={style.table__image}
+                          loading="lazy"
+                          src={value}
+                        />
+                        {typeof speech[item.englishWord] !== 'undefined' && (
+                          <span
+                            className={style.table__feedback}
+                            style={{ background: speech[item.englishWord] ? '#4caf50' : '#f44336' }}
+                          >
+                            {speech[item.englishWord] ? 'Correcto' : 'Incorrecto'}
+                          </span>
+                        )}
+                      </div>
+                    )
+                  },
+                }}
+              />
+            </div>
+          </div>
+        </section>
+      ) : <ErrorConnection />}
+    </>
   );
 }
 
