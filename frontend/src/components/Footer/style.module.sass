@@ -1,7 +1,12 @@
 @import '../../../public/mixin/index.module'
 
 .footer
+  padding-top: 10px
   text-align: center
+
+  &__term
+    font-size: 12px
+    height: 50px
 
   &__items,
   &__item
@@ -20,15 +25,25 @@
   &__item img
     padding: 0 10px
 
-  &__title
+  &__copyright
     font-size: 12px
     font-weight: bold
+
+  &__term
+    border-right: solid 1px #c1c1c1
+    width: 500px
+
+    > span
+      padding-right: 10px
 
   @include mobile
     &__items
       padding: 0
       flex-direction: column
       padding-bottom: 10px
+
+    &__term
+      width: auto
 
     &__address
       border-right: none

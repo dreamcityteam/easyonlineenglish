@@ -4,6 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const pathPublic = (fileName) =>
+  path.resolve(__dirname, 'public', fileName);
+
 module.exports = {
   mode: 'production',
   devtool: 'cheap-module-source-map',
@@ -64,11 +67,11 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        { from: './public/robots.txt', to: '' },
-        { from: './public/manifest.json', to: '' },
-        { from: './public/logo192.png', to: '' },
-        { from: './public/logo512.png', to: '' },
-        { from: './public/favicon.ico', to: '' },
+        { from: pathPublic('robots.txt'), to: '' },
+        { from: pathPublic('manifest.json'), to: '' },
+        { from: pathPublic('logo192.png'), to: '' },
+        { from: pathPublic('logo512.png'), to: '' },
+        { from: pathPublic('favicon.ico'), to: '' },
       ],
     }),
     new CleanWebpackPlugin(),
