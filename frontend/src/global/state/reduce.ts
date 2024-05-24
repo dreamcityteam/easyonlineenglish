@@ -17,9 +17,6 @@ const reducer = (state: State, { payload, type }: Option): State => ({
     name = '', phone = null, photo = '', role 
   }: any): State => ({
     ...state,
-    courseCache: {},
-    coursesCache: {},
-    libraryCache: [],
     user: { 
       _id,
       username,
@@ -64,7 +61,8 @@ const reducer = (state: State, { payload, type }: Option): State => ({
   [CLEAN_CACHE]: () : State => ({
     ...state,
     coursesCache: {},
-    courseCache: {}
+    courseCache: {},
+    libraryCache: []
   }),
 
   [SET_LIBRARY]: ({ library = [] }: any) : State => ({
