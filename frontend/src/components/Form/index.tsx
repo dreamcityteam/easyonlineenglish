@@ -12,9 +12,10 @@ interface Props {
   inputs: Inputs;
   onData: (data: any, updateState: (key: string, field: any) => void) => void;
   token?: string;
+  canCleanInput?: boolean;
 };
 
-const Form: React.FC<Props> = ({ inputs, api, buttonText = 'Enviar', token, onData }): JSX.Element => {
+const Form: React.FC<Props> = ({ inputs, api, buttonText = 'Enviar', token, onData, canCleanInput = false }): JSX.Element => {
   const keys: string[] = useMemo(() => Object.keys(inputs), []);
   const [state, setState] = useState<State>(useMemo(() => getInitialState(keys, inputs), []));
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -49,9 +50,22 @@ const Form: React.FC<Props> = ({ inputs, api, buttonText = 'Enviar', token, onDa
       const data: Response = await send({ api, data: getPayload(), token }).post();
 
       onData(data, updateState);
+      canCleanInput && cleanInput();
       setIsLoading(false);
     }
   }, [canSend]);
+
+  const cleanInput = (): void => {
+    setState((currentState) => {
+      const newState: any = {};
+
+      keys.forEach((key: string) => {
+        newState[key] = { ...currentState[key], value: '' }
+      });
+
+      return newState;
+    });
+  }
 
   const getPayload = (): Inputs =>
     keys.reduce((prevState: any, key: string) =>

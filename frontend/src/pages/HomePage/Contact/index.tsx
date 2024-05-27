@@ -34,6 +34,7 @@ const Contact: React.FC = () => {
             subTitle="¡Nosotros podemos ayudarle!"
           />
           <Form
+            canCleanInput
             api="contanct"
             buttonText="Enviar Mensaje"
             inputs={inputs}
