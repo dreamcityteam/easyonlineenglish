@@ -98,7 +98,6 @@ const sendEmail = async ({ from, to, subject, html }) => {
     await transporter.sendMail({ from, to, subject, html });
     return true;
   } catch (error) {
-    console.log(error)
     return false;
   }
 };
