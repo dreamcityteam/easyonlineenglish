@@ -19,7 +19,11 @@ const {
 
 const DB_URI = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_CLUSTER}/${DB_NAME}?${DB_PARAMS}`;
 
-mongoose.connect(DB_URI)
+mongoose.connect(DB_URI, {
+  connectTimeoutMS: 60000,
+  serverSelectionTimeoutMS: 60000,
+  maxIdleTimeMS: 30000,
+})
   .then(() => {
     console.log('Connected to MongoDB');
     initialDatabase();
