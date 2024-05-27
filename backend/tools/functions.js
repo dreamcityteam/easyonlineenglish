@@ -2,10 +2,9 @@ const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { HTTP_STATUS_CODES, LESSIONS_COUNT } = require('./constant');
-const { 
-  TOKEN_NAME, 
+const {
+  TOKEN_NAME,
   ACCESS_KEY_TOKEN,
-  EMAIL_SERVICE,
   EMAIL_HOST,
   EMAIL_USER,
   EMAIL_PASS,
@@ -84,15 +83,14 @@ const formatLessons = (words) => {
   return lessons;
 };
 
-const sendEmail = async ({ from, to, subject, html }) => {  
+const sendEmail = async ({ from, to, subject, html }) => {
   const transporter = nodemailer.createTransport({
-    service: EMAIL_SERVICE,
     host: EMAIL_HOST,
     port: EMAIL_PORT,
     secure: true,
     auth: {
       user: EMAIL_USER,
-      pass: EMAIL_PASS,
+      pass: EMAIL_PASS
     },
   });
 

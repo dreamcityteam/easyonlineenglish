@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     response.statusCode = HTTP_STATUS_CODES.OK;
     send(response);
   } else {
-    response.message = `Error sending email: ${error}`;
+    response.message = `Error sending email`;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
     send(response);
   }

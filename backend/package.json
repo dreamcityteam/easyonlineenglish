@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:win:dev": "set NODE_ENV=DEVELOPMENT && node --watch ./index.js",
-    "start:linux:dev": "NODE_ENV=DEVELOPMENT && node --watch ./index.js"    
+    "start:linux:dev": "NODE_ENV=DEVELOPMENT && node --watch ./index.js"
   },
   "keywords": [],
   "author": "",
