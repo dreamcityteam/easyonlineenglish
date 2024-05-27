@@ -102,7 +102,7 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
             disableBeacon: true
           },
           {
-            target: `.${courseStyle.course__content_text}:nth-child(1) > span`,
+            target: `.${courseStyle.course__content_text} .${courseStyle.course__text_grandient}`,
             content: <h2>Aquí podrás leer la frase u oración en inglés.</h2>,
             disableBeacon: true
           },
