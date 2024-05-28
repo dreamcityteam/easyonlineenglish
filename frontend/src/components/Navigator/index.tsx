@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { student, homepage } from './data';
 import { Tab } from './type';
 import style from './style.module.sass'
 import context from '../../global/state/context';
 import SVGLogo from '../../../public/svg/logo.svg';
-import { useLocation } from 'react-router-dom';
 
 const Navigator: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);

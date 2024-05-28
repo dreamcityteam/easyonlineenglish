@@ -52,13 +52,12 @@ const inputs: Inputs = {
   },
 
   phone: {
-    label: 'Teléfono (opcional)',
+    label: 'Teléfono',
     type: 'number',
     placeholder: 'Escriba su teléfono.',
     validation: {
       message: 'Por favor, introduzca un número de teléfono.',
       regExp: REGEXP.PHONE_NUMBER,
-      isOpcional: true
     },
   },
 

@@ -8,7 +8,7 @@ import { State } from '../../../global/state/type';
 import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 
-const Register: React.FC = () => {
+const Register: React.FC = (): JSX.Element => {
   const [_, dispatch] = useContext<[State, any]>(context);
   const navigate: NavigateFunction = useNavigate();
 
@@ -40,11 +40,11 @@ const Register: React.FC = () => {
     <section className={style.register}>
       <div>
         <header>
-          <h1>Inscripción</h1>
+          <h1>Registro</h1>
         </header>
         <Form
           api="register"
-          buttonText="Inscribirme ahora"
+          buttonText="Registrarse ahora"
           inputs={inputs}
           onData={onData}
         />

@@ -9,11 +9,13 @@ import Home from '../../pages/HomePage/Home';
 import Contact from '../../pages/HomePage/Contact';
 import Page404 from '../../pages/Page404';
 import Privacy from '../../pages/Terms/Privacy';
-import Payment from '../../pages/Terms/Payment';
+import TermPayment from '../../pages/Terms/Payment';
 import FinalUser from '../../pages/Terms/FinalUser';
 import Agreement from '../../pages/Terms/Agreement';
 import Conditions from '../../pages/Terms/Conditions';
 import Service from '../../pages/Terms/Service';
+import Plans from '../../pages/Plans/Index';
+import Payment from '../../pages/Payment';
 
 /*
  In the future, we're going to use these lines of code to implement code splitting.
@@ -40,10 +42,12 @@ const RouterStudent: React.FC = () => (
     <Route path="close" element={<CloseSection />} />
     <Route path="term-agreement" element={<Agreement />} />
     <Route path="term-user" element={<FinalUser />} />
-    <Route path="term-payment" element={<Payment />} />
+    <Route path="term-payment" element={<TermPayment />} />
     <Route path="term-privacy" element={<Privacy />} />
     <Route path="term-conditions" element={<Conditions />} />
     <Route path="term-service" element={<Service />} />
+    <Route path="payment/:paymentMethod" element={<Payment />} />
+    <Route path="plan" element={<Plans />} />
     <Route path="*" element={<Page404 />} />
   </Routes>
 );

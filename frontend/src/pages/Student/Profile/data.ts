@@ -33,14 +33,13 @@ const inputs = ({ name, lastname, phone }: any): Inputs => ({
   },
 
   phone: {
-    label: 'Teléfono (opcional)',
+    label: 'Teléfono',
     type: 'number',
     placeholder: 'Escriba su teléfono.',
     value: phone,
     validation: {
       message: 'Por favor, introduzca un número de teléfono.',
       regExp: REGEXP.PHONE_NUMBER,
-      isOpcional: true
     },
   },
 

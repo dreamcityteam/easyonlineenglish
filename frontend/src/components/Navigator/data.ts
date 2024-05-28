@@ -6,6 +6,7 @@ const student: Tab[] = [
   { path: '/courses', value: 'cursos' },
   { path: '/libraries', value: 'librería' },
   { path: '/profile', value: 'perfil' },
+  { path: '/plan', value: 'planes' },
   { path: '/close', value: 'cerrar sesión' },
 ];
 
@@ -14,7 +15,8 @@ const homepage: Tab[] = [
   { path: '/courses', value: 'cursos' },
   { path: '/contact', value: 'contacto' },
   { path: '/login', value: 'iniciar sesión' },
-  { path: '/register', value: 'inscribirse' },
+  { path: '/plan', value: 'planes' },
+  { path: '/register', value: 'Registro' },
 ];
 
 export { student, homepage };

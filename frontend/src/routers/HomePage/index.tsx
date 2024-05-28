@@ -16,6 +16,7 @@ import FinalUser from '../../pages/Terms/FinalUser';
 import Payment from '../../pages/Terms/Payment';
 import Conditions from '../../pages/Terms/Conditions';
 import Service from '../../pages/Terms/Service';
+import Plans from '../../pages/Plans/Index';
 
 /*
  In the future, we're going to use these lines of code to implement code splitting.
@@ -54,6 +55,7 @@ const RouterHomePage: React.FC = () => (
     <Route path="term-privacy" element={<Privacy />} />
     <Route path="term-conditions" element={<Conditions />} />
     <Route path="term-service" element={<Service />} />
+    <Route path="plan" element={<Plans />} />
     <Route path="*" element={<Page404 />} />
   </Routes>
 );

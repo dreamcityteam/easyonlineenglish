@@ -83,7 +83,7 @@ const Speech: React.FC<Props> = ({
   }
 
   const formatWord = (word: string): string => 
-    word.toLowerCase().replace(/\.|\?/g, '');
+    word.toLowerCase().replace(/\.|\?|,/g, '');
 
   const onStop = (): void => {
     recognition && recognition.stop();
