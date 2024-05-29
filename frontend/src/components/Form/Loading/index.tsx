@@ -14,7 +14,7 @@ const Loading: React.FC = (): JSX.Element => (
         cy="50"
         r="40"
         strokeWidth="6"
-        stroke={'#f23000'}
+        stroke={'#06609e'}
         strokeDasharray="62.83185307179586 62.83185307179586"
         fill="none"
         strokeLinecap="round"
