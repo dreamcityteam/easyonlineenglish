@@ -65,6 +65,7 @@ const inputs: Inputs = {
     label: 'Contraseña',
     type: 'password',
     placeholder: 'Escriba su contraseña',
+    autoComplete: 'off',
     validation: {
       message: 'Al menos 8 caracteres, una letra y un número.',
       regExp: REGEXP.PASSWORD,

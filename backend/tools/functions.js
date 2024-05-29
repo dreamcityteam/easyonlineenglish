@@ -63,26 +63,6 @@ const getResponse = (res, message = '') => ({
   statusCode: HTTP_STATUS_CODES.BAD_REQUEST,
 });
 
-const formatLessons = (words) => {
-  const getLessonData = (title) => ({ title: `Lección ${title}`, words: [] });
-  const lessons = [getLessonData(LESSIONS_COUNT[0])];
-  let currentLesson = lessons[0];
-
-  words.forEach((word, index) => {
-    currentLesson.words.push(word);
-
-    if ((index + 1) % 25 === 0) {
-      const len = lessons.length;
-      lessons.push(getLessonData(LESSIONS_COUNT[len]));
-      currentLesson = lessons[len];
-    }
-  });
-
-  if (currentLesson.words.length === 0) lessons.pop();
-
-  return lessons;
-};
-
 const sendEmail = async ({ from, to, subject, html }) => {
   const transporter = nodemailer.createTransport({
     host: EMAIL_HOST,
@@ -124,7 +104,6 @@ module.exports = {
   getToken,
   getResponse,
   hash,
-  formatLessons,
   sendEmail,
   auth,
 };

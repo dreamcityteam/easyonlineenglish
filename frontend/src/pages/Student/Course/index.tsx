@@ -16,6 +16,7 @@ import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
 import ErrorConnection from '../../../components/ErrorConnection';
+import { LESSIONS_COUNT } from './data';
 
 interface Props {
   isDemo?: boolean;
@@ -60,15 +61,37 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         method: 'get',
         endpoint: isDemo ? 'student-course-demo' : `student-course/${idCourse}`
       },
-      success: (data): void => {
-        setCourseData(data);
-        saveCourseCacheData(data);
+      success: ({ words, ...data}): void => {
+        const course = { ...data, lessons: formatLessons(words) }
+
+        setCourseData(course);
+        saveCourseCacheData(course);
       }
     });
   };
 
-  const setCourseData = (data: TCourse): void => {
-    const course: TCourse = { ...data };
+  const formatLessons = (words: Word[]): Lesson[] => {
+    const getLessonData = (title: string) => ({ title: `Lección ${title}`, words: [] });
+    const lessons = [getLessonData(LESSIONS_COUNT[0])];
+    let currentLesson = lessons[0];
+
+    words.forEach((word: Word, index: number): void => {
+      // @ts-ignore
+      currentLesson.words.push(word);
+
+      if ((index + 1) % 25 === 0) {
+        const len = lessons.length;
+        lessons.push(getLessonData(LESSIONS_COUNT[len]));
+        currentLesson = lessons[len];
+      }
+    });
+
+    if (currentLesson.words.length === 0) lessons.pop();
+
+    return lessons;
+  };
+
+  const setCourseData = (course: TCourse): void => {
     const currentLession: Lesson = course.lessons[course.index.lesson];
     const cache: TCourse = courseCache[idCache];
     const sentenceIndex: number = cache ? cache.index.sentence || 0 : 0;
@@ -174,7 +197,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           currentState.completedWords[completedWords] = true;
           currentState.unlockedWords[unlockedWords] = true;
           currentState.index = { lesson: index.lesson, word: index.word };
-          currentState.progress = courseProgress.progress;
 
           saveCourseCacheData(currentState);
           return currentState;
@@ -208,7 +230,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       } else {
         updateStateCourse(courseProgress);
 
-        if (isCourseCompleted) redirect('/register');
+        if (isCourseCompleted) redirect('/plan');
         else onNextWord(true);
       }
     }

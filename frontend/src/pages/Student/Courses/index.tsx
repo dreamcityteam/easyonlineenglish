@@ -45,6 +45,18 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     });
   }
 
+  const getDemoCourseProgress = (key: string): number => {
+    const course = courseCache[`${key}-demo`];
+
+    if (course) {
+      const progress: any = (Object.keys(course.completedWords).length / course.lessons[0].words.length) * 100;
+
+      return Math.round(progress.toFixed(1));
+    }
+
+    return 0;
+  }
+
   return (
     <>
       {courses.length ? (
@@ -54,7 +66,9 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           </header>
           <div className={style.courses__items}>
             {courses.map(({ _id, picture, title, description, progress = 0 }: TCourses): JSX.Element => {
-              const _progress: number = courseCache[_id] ? courseCache[_id].progress : progress;
+              let _progress: number = courseCache[_id] ? courseCache[_id].progress : progress;
+
+              _progress = isDemo ? getDemoCourseProgress(_id) : _progress;
 
               return (
                 <article className={style.courses__container}>

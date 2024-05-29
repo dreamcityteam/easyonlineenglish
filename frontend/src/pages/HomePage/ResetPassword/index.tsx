@@ -15,7 +15,7 @@ const ResetPassword: React.FC = (): JSX.Element => {
       }
     };
 
-   if (message.includes('existe')) {
+    if (message.includes('existe')) {
       field.validation.serverErrorMessage = message;
       updateState('email', field);
     } else if (statusCode === HTTP_STATUS_CODES.OK) {
@@ -29,17 +29,13 @@ const ResetPassword: React.FC = (): JSX.Element => {
 
   return (
     <section className={style.ResetPassword}>
-      <div>
-        <header>
-          <h1>Restablecer contraseña</h1>
-        </header>
-        <Form
-          api="send-email-reset-password"
-          buttonText="Enviar"
-          inputs={inputs}
-          onData={onData}
-        />
-      </div>
+      <Form
+        title="Restablecer contraseña"
+        api="send-email-reset-password"
+        buttonText="Enviar"
+        inputs={inputs}
+        onData={onData}
+      />
     </section>
   );
 };

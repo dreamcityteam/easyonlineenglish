@@ -1,3 +1,4 @@
+@import '../../../public/mixin/index.module'
 
 .plan
   color: black
@@ -9,3 +10,8 @@
   &__title
     padding: 20px 0
     text-align: center
+
+  @include mobile
+    &__cards
+      align-items: center
+      flex-direction: column

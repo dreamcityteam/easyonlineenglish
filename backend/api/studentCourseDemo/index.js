@@ -1,5 +1,5 @@
 const { HTTP_STATUS_CODES, INITIAL_COURSE } = require('../../tools/constant');
-const { getResponse, send, formatLessons } = require('../../tools/functions');
+const { getResponse, send } = require('../../tools/functions');
 const Course = require('../../schemas/course.schema');
 const CourseWord = require('../../schemas/courseWord.schema');
 
@@ -23,7 +23,7 @@ module.exports = async (_req, res) => {
         progress: 0,
         unlockedWords: { [firstWord]: true },
         completedWords: {},
-        lessons: formatLessons(courseWord)
+        words: courseWord
       };
 
       response.statusCode = HTTP_STATUS_CODES.OK;
