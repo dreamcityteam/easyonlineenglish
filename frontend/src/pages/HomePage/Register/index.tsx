@@ -38,17 +38,13 @@ const Register: React.FC = (): JSX.Element => {
 
   return (
     <section className={style.register}>
-      <div>
-        <header>
-          <h1>Registro</h1>
-        </header>
-        <Form
-          api="register"
-          buttonText="Registrarse ahora"
-          inputs={inputs}
-          onData={onData}
-        />
-      </div>
+      <Form
+        api="register"
+        title="Registro"
+        buttonText="Proceder al pago"
+        inputs={inputs}
+        onData={onData}
+      />
     </section>
   );
 }

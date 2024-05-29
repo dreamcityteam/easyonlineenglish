@@ -3,7 +3,6 @@ const { getResponse, send } = require('../../tools/functions');
 const Course = require('../../schemas/course.schema');
 const StudentCourse = require('../../schemas/studentCourse.schema');
 const CourseWord = require('../../schemas/courseWord.schema');
-const { formatLessons } = require('../../tools/functions');
 
 module.exports = async (req, res) => {
   const response = getResponse(res);
@@ -45,7 +44,7 @@ module.exports = async (req, res) => {
         completedWords: Object.fromEntries(
           studentCourseObj.completedWords
         ),
-        lessons: formatLessons(courseWord),
+        words: courseWord,
       };
 
       delete dataResponse._id;

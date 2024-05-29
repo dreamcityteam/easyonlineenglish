@@ -29,9 +29,8 @@ const FamilyPlan: React.FC<Props> = ({ price }): JSX.Element => (
           <span>Price </span>
           <span> ${price}</span>
         </div>
-      
-        <Link className={style.familyPlan__link} to="/payment/4">
-          Comenzar ahora
+        <Link className={style.familyPlan__link} to="#">
+          Muy pronto
         </Link>
       </div>
     </div>

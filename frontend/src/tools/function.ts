@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import { CLEAR_LOAD, SET_LOAD } from '../global/state/actionTypes';
 import { HTTP_STATUS_CODES } from './constant';
 import { Request, RequestOptions, Send, Store, Response, Data } from './type';
+import context from '../global/state/context';
 
 const send = ({ api, data, token }: Request): Send => {
   const { protocol, host } = window.location;
@@ -145,11 +147,18 @@ const cookie = {
   }
 }
 
+const isUser = (): boolean => {
+  const [{ user }, dispatch] = useContext(context);
+
+  return !!user;
+}
+
 export {
   send,
   store,
   formatPhoneNumber,
   isModeDevelopment,
   getData,
-  cookie
+  cookie,
+  isUser
 };

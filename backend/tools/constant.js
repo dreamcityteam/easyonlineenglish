@@ -44,34 +44,10 @@ const INITIAL_COURSE = {
   PICTURE: '18z84mnyK6xQGngcZiXUEeYEUcDd2GcJJ'
 }
 
-const LESSIONS_COUNT = [
-  'uno',
-  'dos',
-  'tres',
-  'cuatro',
-  'cinco',
-  'seis',
-  'siete',
-  'ocho',
-  'nueve',
-  'diez',
-  'once',
-  'doce',
-  'trece',
-  'catorce',
-  'quince',
-  'dieciséis',
-  'diecisiete',
-  'dieciocho',
-  'diecinueve',
-  'veinte'
-];
-
 module.exports = {
   HTTP_STATUS_CODES,
   ROLE,
   REGEXP,
   ENDPOINT,
   INITIAL_COURSE,
-  LESSIONS_COUNT,
 }

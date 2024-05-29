@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './style.module.sass';
 import SVGStar from '../../../../public/svg/star.svg';
+import { isUser } from '../../../tools/function';
 
 interface Props {
   unitTime: string;
@@ -60,7 +61,7 @@ const Card: React.FC<Props> = ({
       <span className={style.card__priceValue}>${prices}</span>
     </div>
     <div>
-      <Link className={style.card__link} to={`/payment/${plan}`}>
+      <Link className={style.card__link} to={isUser() ? `/payment/${plan}` : '/register'}>
         Comenzar ahora
       </Link>
     </div>

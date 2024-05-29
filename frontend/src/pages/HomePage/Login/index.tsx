@@ -28,14 +28,12 @@ const Login: React.FC = () => {
   return (
     <section className={style.login}>
       <div>
-        <header>
-          <h1>Log in</h1>
-        </header>
         <div>
           <span className={style.login__error}>{text}</span>
         </div>
         <Form
           api="auth"
+          title="Login"
           buttonText="Log in"
           inputs={inputs}
           onData={onData}

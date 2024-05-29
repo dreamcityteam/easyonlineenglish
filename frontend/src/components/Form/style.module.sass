@@ -1,8 +1,11 @@
+@import '../../../public/mixin/vars.module'
+
 .form
-  background: white
-  border-radius: 8px
-  border: solid 1px #cfcfcf
-  padding: 20px
+  background-color: #ffffff
+  border-radius: 24px
+  border: solid 2px #06609e
+  margin-top: 50px
+  padding: 20px 36px
   width: 400px
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -13,52 +16,50 @@
   input[type="number"]
     -moz-appearance: textfield
 
-.label
-  color: #000000
-  display: block
-  font-size: 15px
-  padding: 10px 5px
+  &__container
+    display: block
+    margin-bottom: 15px
 
-.input__container
-  display: block
+  &__title
+    color: $main__color
+    font-family: monospace
+    font-size: 25px
+    margin-bottom: 25px
+    text-align: center
 
-.field
-  border-radius: 5px
-  border: 1px solid #c0c4c9
-  display: block
-  font-size: 13px
-  outline: none
-  padding: 11px 10px
-  width: 100%
+  label
+    color: #000000
+    display: block
+    font-size: 15px
+    padding: 10px 5px
+
+  input,
+  textarea
+    border-radius: 5px
+    border: 1px solid #c0c4c9
+    display: block
+    font-size: 13px
+    outline: none
+    padding: 8px 10px
+    width: 100%
+
+  textarea
+    resize: none
+    height: 200px
+
+  .button
+    background-color: $main__color
+    border-radius: 5px
+    border: none
+    color: #ffffff
+    cursor: pointer
+    font-size: 15px
+    padding: 15px 20px
+    transition: background-color 0.5s ease
 
 textarea.field
   resize: none
   height: 200px
 
-.message__container
-  padding: 10px 5px
-  position: relative
-  text-decoration: none
-
-.error__message,
-.success__message
-  color: #f44336
-  font-size: 12px
-  position: absolute
-  top: 8px
-
-.success__message
-  color: #4caf50
-
 .button__container
-  margin-top: 10px
-
-.button
-  background-color: #f23000f4
-  border-radius: 5px
-  border: none
-  color: #ffffff
-  cursor: pointer
-  padding: 15px 20px
-  transition: background-color 0.5s ease
-
+  margin-top: 30px

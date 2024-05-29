@@ -5,6 +5,7 @@ import style from './style.module.sass';
 import { send } from '../../tools/function';
 import Loading from './Loading';
 import { Response } from '../../tools/type';
+import Input from './Input';
 
 interface Props {
   api: string;
@@ -13,9 +14,20 @@ interface Props {
   onData: (data: any, updateState: (key: string, field: any) => void) => void;
   token?: string;
   canCleanInput?: boolean;
+  custom?: (props: any) => JSX.Element;
+  title?: string;
 };
 
-const Form: React.FC<Props> = ({ inputs, api, buttonText = 'Enviar', token, onData, canCleanInput = false }): JSX.Element => {
+const Form: React.FC<Props> = ({
+  inputs,
+  api,
+  buttonText = 'Enviar',
+  token,
+  onData,
+  canCleanInput = false,
+  custom,
+  title
+}): JSX.Element => {
   const keys: string[] = useMemo(() => Object.keys(inputs), []);
   const [state, setState] = useState<State>(useMemo(() => getInitialState(keys, inputs), []));
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -99,50 +111,37 @@ const Form: React.FC<Props> = ({ inputs, api, buttonText = 'Enviar', token, onDa
   };
 
   return (
-    <form className={style.form}>
-      {Object.values(state).map(({ validation, label, type = 'text', ...inputAttr }: FieldForm, index: number) => (
-        <div key={index} className={style.input__container}>
-          {label && <label className={style.label}>{label}</label>}
-          {type === 'textarea' && (
-            <textarea
-              className={style.field}
-              onChange={(e) => onChange(keys[index], e)}
-              {...inputAttr}
-              onKeyDown={handleKeyPress}
-            />)}
-          {type !== 'textarea' && (
-            <input
-              className={style.field}
-              onChange={(e)  => onChange(keys[index], e)}
-              type={type}
-              {...inputAttr}
-              onKeyDown={handleKeyPress}
-            />)}
-          <div className={style.message__container}>
-            {validation?.isNotValid && (
-              <span className={validation.successMessage ? style.success__message : style.error__message}>
-                {
-                  validation.successMessage ||
-                  validation.emptyErrorMessage ||
-                  validation.serverErrorMessage ||
-                  validation.message
-                }
-              </span>
+    <div className={style.form}>
+      {title && (
+        <header className={style.form__title}>
+          <h1>{title}</h1>
+        </header>
+      )}
+      {custom ? custom({ state, onChange, handleKeyPress, onSend, isLoading }) : (
+        <form >
+          {Object.keys(state).map((field: string, index: number) => (
+            <div key={index} className={style.form__container}>
+              <Input
+                field={field}
+                state={state}
+                onChange={onChange}
+                handleKeyPress={handleKeyPress}
+              />
+            </div>
+          ))}
+          <div className={style.button__container}>
+            {isLoading ? <Loading /> : (
+              <input
+                className={style.button}
+                onClick={onSend}
+                type="button"
+                value={buttonText}
+              />
             )}
           </div>
-        </div>
-      ))}
-      <div className={style.button__container}>
-        {isLoading ? <Loading /> : (
-          <input
-            className={style.button}
-            onClick={onSend}
-            type="button"
-            value={buttonText}
-          />
-        )}
-      </div>
-    </form>
+        </form>
+      )}
+    </div>
   );
 };
 
