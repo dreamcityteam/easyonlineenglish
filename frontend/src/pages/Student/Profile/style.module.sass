@@ -1,4 +1,5 @@
 @import '../../../../public/mixin/index.module'
+@import '../../../../public/mixin/vars.module'
 
 /* Variables */
 $primary-color: #0a95cf
@@ -18,7 +19,7 @@ $primary-color: #0a95cf
 
   &__avatar
     align-items: center
-    @include background-gradient()
+    background-color: $main__color
     color: #fff
     display: flex
     font-size: 50px
@@ -29,8 +30,8 @@ $primary-color: #0a95cf
 
     & > span
       padding: 20px
-      border: solid
-      border-radius: 50%
+      border: solid 2.5px
+      border-radius: 8px
 
   &__info_container
     position: relative

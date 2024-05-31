@@ -61,7 +61,7 @@ const Card: React.FC<Props> = ({
       <span className={style.card__priceValue}>${prices}</span>
     </div>
     <div>
-      <Link className={style.card__link} to={isUser() ? `/payment/${plan}` : '/register'}>
+      <Link className={style.card__link} to={isUser() ? `/payment/${plan}` : `/register/${plan}`}>
         Comenzar ahora
       </Link>
     </div>
