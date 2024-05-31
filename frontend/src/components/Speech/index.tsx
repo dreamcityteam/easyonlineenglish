@@ -8,7 +8,7 @@ interface Props {
   audioUrl: string;
   onCheck: (isCorrect: boolean) => void;
   onPlaySpeech?: (isCorrect: boolean) => void;
-  canNext?: { [key: string]: string; }
+  canNext?: { [key: string]: string[]; }
 };
 
 const Speech: React.FC<Props> = ({
@@ -55,7 +55,7 @@ const Speech: React.FC<Props> = ({
 
         onCheck(
           pronunciation === wordFormated ||
-          canNext[pronunciation] === wordFormated
+          canNext[wordFormated].includes(pronunciation) 
         );
         setCanPlay(false);
         setOutput('Escuchar pronunciación');
