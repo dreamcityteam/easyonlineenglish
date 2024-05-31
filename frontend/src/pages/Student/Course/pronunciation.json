@@ -1,4 +1,5 @@
 {
-  "de pizza": "the pizza",
-  "robert is at the capitol": "robert is at the capital"
+  "the pizza": ["de pizza"],
+  "robert is at the capital": ["robert is at the capitol"],
+  "i wanna go": ["i want to go"]
 }
