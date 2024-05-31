@@ -1,4 +1,5 @@
 @import '../../../public/mixin/vars.module'
+@import '../../../public/mixin/index.module'
 
 .form
   background-color: #ffffff
@@ -56,6 +57,9 @@
     font-size: 15px
     padding: 15px 20px
     transition: background-color 0.5s ease
+
+  @include mobile
+    width: 100%
 
 textarea.field
   resize: none

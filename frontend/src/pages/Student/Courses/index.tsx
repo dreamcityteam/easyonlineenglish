@@ -60,7 +60,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   return (
     <>
       {courses.length ? (
-        <section style={{ padding: '50px' }}>
+        <section className={style.courses}>
           <header className={style.courses__header}>
             <h1>Cursos</h1>
           </header>
@@ -99,7 +99,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                     <p>{description}</p>
                   </div>
                   <div className={style.courses__title}>
-                    <p>{title}</p>
+                    <p>{isDemo ? '¡Prueba gratis!' : title}</p>
                   </div>
                   <div className={style.courses__button}>
                     <Link to={`/course/${_id}`}>

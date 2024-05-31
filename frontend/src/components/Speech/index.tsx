@@ -55,7 +55,7 @@ const Speech: React.FC<Props> = ({
 
         onCheck(
           pronunciation === wordFormated ||
-          canNext[wordFormated].includes(pronunciation) 
+          !!canNext[wordFormated] && canNext[wordFormated].includes(pronunciation) 
         );
         setCanPlay(false);
         setOutput('Escuchar pronunciación');
