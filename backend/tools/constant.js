@@ -36,12 +36,13 @@ const ENDPOINT = {
   SEND_EMAIL_RESET_PASSWORD: '/send-email-reset-password',
   RESET_PASSWORD: '/reset-password',
   RESET_PASSWORD_AUTH: '/reset-password-auth',
+  AZUL_PAYMENT: '/azul-payment'
 }
 
 const INITIAL_COURSE = {
   TITLE: 'Inglés Conversacional',
   DESCRIPTION: 'Nuestro curso online de inglés conversacional te brinda la oportunidad de mejorar tus habilidades de comunicación en inglés de manera efectiva y práctica. A través de lecciones interactivas y dinámicas, te sumergirás en situaciones cotidianas para aprender a expresarte con confianza.',
-  PICTURE: '18z84mnyK6xQGngcZiXUEeYEUcDd2GcJJ'
+  PICTURE: 'https://easyonlineenglish.com/wp-content/uploads/2024/06/Square1.jpg'
 }
 
 module.exports = {
@@ -49,5 +50,5 @@ module.exports = {
   ROLE,
   REGEXP,
   ENDPOINT,
-  INITIAL_COURSE,
+  INITIAL_COURSE
 }

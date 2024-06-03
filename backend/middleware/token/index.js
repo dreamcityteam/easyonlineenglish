@@ -30,6 +30,7 @@ module.exports = (req, res, next) => {
       isEndpoint(ENDPOINT.STUDENT_COURSE_PROGRESS) ||
       isEndpoint(ENDPOINT.LIBRARY) ||
       isEndpoint(ENDPOINT.STUDENT_UPDATE) ||
+      isEndpoint(ENDPOINT.AZUL_PAYMENT) ||
       /^\/api\/v1\/student-course\/\w/.test(URL)
     )
   ) {

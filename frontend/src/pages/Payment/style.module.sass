@@ -2,17 +2,20 @@
 @import '../../../public/mixin/vars.module'
 
 .payment
-  display: flex
-  justify-content: center
   align-items: center
-  height: 100vh
+  display: flex
+  flex-direction: column
 
   &__container
+    align-items: center
+    background-color: #f5f5f5
+    border-radius: 10px
     display: flex
     justify-content: center
-    align-items: center
+    padding: 20px
 
   &__inputs
+    margin-top: 20px
     display: flex
 
   &__inputs_container
@@ -24,21 +27,35 @@
   &__input
     border-radius: 8px
     border: solid 1px #d1d1d1
-    outline: none
     margin-top: 10px
+    outline: none
     padding: 10px
     width: 100%
 
   input[name="cvc"]
-    width: 80px
     margin-left: 10px
+    width: 160px
 
   &__input_button
-    background-color: $main__color
-    border-radius: 8px
-    border: none
-    color: #fff
-    cursor: pointer
-    margin-top: 10px
-    padding: 10px 20px
-    width: 100%
+    margin-top: 13px
+
+    button
+      background-color: #06609e
+      border-radius: 8px
+      border: none
+      color: #fff
+      cursor: pointer
+      padding: 10px 20px
+      width: 100%
+
+  &__errorMessage
+    color: #f44336
+    display: block
+    font-size: 12px
+    margin-top: 5px
+    position: absolute
+
+  &__title
+    color: $main__color
+    font-family: monospace
+    font-size: 40px

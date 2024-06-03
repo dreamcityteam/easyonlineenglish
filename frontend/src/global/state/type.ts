@@ -16,6 +16,7 @@ type User = {
   phone: string;
   photo: string;
   role: string;
+  isPayment: boolean;
 };
 
 type Course = {

@@ -353,7 +353,7 @@ const Home: React.FC = () => {
 
                 {user === null && (
                   <>
-                    <Link to="register" className={style.block}>Inscríbete Ahora</Link>
+                    <Link to="plan" className={style.block}>Inscríbete Ahora</Link>
                     <Link to="login" className={style.block}>¿Ya tienes tu cuenta con nosotros?</Link>
                   </>
                 )}

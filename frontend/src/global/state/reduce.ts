@@ -14,7 +14,7 @@ import { Option, State } from './type';
 const reducer = (state: State, { payload, type }: Option): State => ({
   [SET_USER]: ({ 
     _id = '', username = '', email = '', lastname= '', 
-    name = '', phone = null, photo = '', role 
+    name = '', phone = null, photo = '', role, isPayment = false
   }: any): State => ({
     ...state,
     user: { 
@@ -25,7 +25,8 @@ const reducer = (state: State, { payload, type }: Option): State => ({
       name,
       phone,
       photo: photo || DEFAULT_PHOTO,
-      role
+      role,
+      isPayment
     }
   }),
 

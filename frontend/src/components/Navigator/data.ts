@@ -1,6 +1,6 @@
 import { Tab } from './type';
 
-const student: Tab[] = [
+const studentPayment: Tab[] = [
   { path: '/', value: 'Inicio' },
   { path: '/contact', value: 'contacto' },
   { path: '/courses', value: 'cursos' },
@@ -10,12 +10,20 @@ const student: Tab[] = [
   { path: '/close', value: 'cerrar sesión' },
 ];
 
+const studentPendingPayment: Tab[] = [
+  { path: '/', value: 'Inicio' },
+  { path: '/contact', value: 'contacto' },
+  { path: '/profile', value: 'perfil' },
+  { path: '/plan', value: 'planes' },
+  { path: '/close', value: 'cerrar sesión' },
+]
+
 const homepage: Tab[] = [
   { path: '/', value: 'inicio' },
   { path: '/courses', value: 'cursos' },
   { path: '/contact', value: 'contacto' },
   { path: '/login', value: 'iniciar sesión' },
-  { path: '/plan', value: 'Registro' },
+  { path: '/plan', value: 'Planes' },
 ];
 
-export { student, homepage };
+export { studentPendingPayment, studentPayment, homepage };
