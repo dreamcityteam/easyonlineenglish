@@ -36,6 +36,7 @@ const ENDPOINT = {
   SEND_EMAIL_RESET_PASSWORD: '/send-email-reset-password',
   RESET_PASSWORD: '/reset-password',
   RESET_PASSWORD_AUTH: '/reset-password-auth',
+  AZULPAYMENT: '/azul-payment'
 }
 
 const INITIAL_COURSE = {
