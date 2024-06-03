@@ -4,7 +4,7 @@ import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import style from './style.module.sass';
 import context from '../../global/state/context';
 import { useParams } from 'react-router-dom';
-import { send } from '../../tools/function';
+
 
 const PaymentForms: React.FC = () => {
   const { paymentMethod } = useParams<string>();
@@ -31,11 +31,15 @@ const PaymentForms: React.FC = () => {
     });
   };
 
+  
   const processPayment = async (): Promise<void> => {
     console.log('paymentMethod', paymentMethod);
     console.log('user', user);
     console.log(JSON.stringify(state));
-    const response = await send({ api: '', data: {} }).post();
+
+    await fetchAzulData(state)
+
+
   };
 
   return (

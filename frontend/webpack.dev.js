@@ -40,7 +40,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.scss', '.sass', '.css']
+    extensions: ['.tsx', '.ts', '.js', '.scss', '.sass', '.css'],
   },
 
   plugins: [
