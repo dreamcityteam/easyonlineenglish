@@ -72,10 +72,10 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
               return (
                 <article className={style.courses__container}>
-                  <GoogleDriveImage
+                  <img
                     className={style.courses__picture}
                     alt={title}
-                    id={picture}
+                    src={picture}
                   />
                   <div className={style.courses__background} />
                   <div className={style.courses__progress}>

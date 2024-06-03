@@ -1,6 +1,14 @@
 const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
 const User = require('../../schemas/user.schema');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const StudentPayment = require('../../schemas/studentPayment.schema');
+
+const getIsPayment = async () => {
+  const payment = await StudentPayment.findOne().sort({ _id: -1 });
+  const isPayment = payment ? new Date(payment.dateEnd) > new Date() : false;
+
+  return isPayment;
+}
 
 const auth = async (req, res) => {
   const { username = '', password = '' } = req.body;
@@ -13,7 +21,8 @@ const auth = async (req, res) => {
       if (!user) {
         response.message = 'User not found';
       } else {
-        response.data = user;
+        response.data = user.toObject();
+        response.data.isPayment = await getIsPayment();
         response.statusCode = HTTP_STATUS_CODES.OK;
         response.message = 'Success!';
       }
@@ -33,6 +42,7 @@ const auth = async (req, res) => {
       response.statusCode = HTTP_STATUS_CODES.OK;
       response.message = 'Success!';
       response.data = userData;
+      response.data.isPayment = await getIsPayment();
     }
   } catch (error) {
     response.message = `Error saving user! ${error}`;

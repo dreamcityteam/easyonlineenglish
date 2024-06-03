@@ -31,12 +31,16 @@ import Payment from '../../pages/Payment';
   );
 */
 
-const RouterStudent: React.FC = () => (
+const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
   <Routes>
     <Route index element={<Home />} />
     <Route path="contact" element={<Contact />} />
-    <Route path="courses" element={<Courses />} />
-    <Route path="course/:idCourse" element={<Course />} />
+    {isPayment && (
+      <>
+        <Route path="courses" element={<Courses />} />
+        <Route path="course/:idCourse" element={<Course />} />
+      </>
+    )}
     <Route path="profile" element={<Profile />} />
     <Route path="libraries" element={<Library />} />
     <Route path="close" element={<CloseSection />} />

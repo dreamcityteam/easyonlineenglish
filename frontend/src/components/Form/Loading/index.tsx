@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Loading: React.FC = (): JSX.Element => (
+interface Props {
+  color?: string;
+}
+
+const Loading: React.FC<Props> = ({ color = '#06609e' }): JSX.Element => (
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
     <svg
       width={50}
@@ -14,7 +18,7 @@ const Loading: React.FC = (): JSX.Element => (
         cy="50"
         r="40"
         strokeWidth="6"
-        stroke={'#06609e'}
+        stroke={color}
         strokeDasharray="62.83185307179586 62.83185307179586"
         fill="none"
         strokeLinecap="round"

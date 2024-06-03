@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { student, homepage } from './data';
+import { studentPayment, studentPendingPayment, homepage } from './data';
 import { Tab } from './type';
 import style from './style.module.sass'
 import context from '../../global/state/context';
@@ -14,7 +14,17 @@ const Navigator: React.FC = (): JSX.Element => {
   const location = useLocation();
 
   useEffect(() => {
-    setTabs(user === null ? homepage : student);
+    let tab: Tab[] = [];
+
+    if (user === null) {
+      tab = homepage;
+    } else if (user.isPayment) {
+      tab = studentPayment;
+    } else {
+      tab = studentPendingPayment;
+    }
+
+    setTabs(tab);
   }, [user]);
 
   const onOpenNavMobile = (): void => {
@@ -35,7 +45,7 @@ const Navigator: React.FC = (): JSX.Element => {
       : ''
   );
 
-  const Links = () =>
+  const Links = (): JSX.Element[] =>
     tabs.map(({ path, value }: Tab, index: number): JSX.Element => (
       <li key={index} className={style.navigator__link_container}>
         <Link

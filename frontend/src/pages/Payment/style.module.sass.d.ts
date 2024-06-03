@@ -3,11 +3,13 @@
 interface CssExports {
   'payment': string;
   'payment__container': string;
+  'payment__errorMessage': string;
   'payment__form': string;
   'payment__input': string;
   'payment__input_button': string;
   'payment__inputs': string;
   'payment__inputs_container': string;
+  'payment__title': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

@@ -38,7 +38,7 @@ const App: React.FC = (): JSX.Element => {
         <Router>
           <Navigator />
           {state.user === null && isUserDataComplete && <RouterHomePage />}
-          {state?.user?.role === ROLE.STUDENT && <RouterStudent />}
+          {state?.user?.role === ROLE.STUDENT && <RouterStudent isPayment={state.user.isPayment} />}
           <Footer />
         </Router>
       </context.Provider>
