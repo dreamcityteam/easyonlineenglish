@@ -3,8 +3,8 @@ const User = require('../../schemas/user.schema');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
 const StudentPayment = require('../../schemas/studentPayment.schema');
 
-const getIsPayment = async () => {
-  const payment = await StudentPayment.findOne().sort({ _id: -1 });
+const getIsPayment = async (id) => {
+  const payment = await StudentPayment.findOne({ idUser: id }).sort({ _id: -1 });
   const isPayment = payment ? new Date(payment.dateEnd) > new Date() : false;
 
   return isPayment;
@@ -22,7 +22,7 @@ const auth = async (req, res) => {
         response.message = 'User not found';
       } else {
         response.data = user.toObject();
-        response.data.isPayment = await getIsPayment();
+        response.data.isPayment = await getIsPayment(req.user.id);
         response.statusCode = HTTP_STATUS_CODES.OK;
         response.message = 'Success!';
       }
@@ -31,7 +31,7 @@ const auth = async (req, res) => {
     }
 
     const field = username.toLowerCase();
-    const user = await User.findOne({ $or: [{ email: field }, { username: field }] }).select({ __v: 0});
+    const user = await User.findOne({ $or: [{ email: field }, { username: field }] }).select({ __v: 0 });
 
     if (!user) {
       response.message = 'User not found';
@@ -42,7 +42,7 @@ const auth = async (req, res) => {
       response.statusCode = HTTP_STATUS_CODES.OK;
       response.message = 'Success!';
       response.data = userData;
-      response.data.isPayment = await getIsPayment();
+      response.data.isPayment = await getIsPayment(userData._id);
     }
   } catch (error) {
     response.message = `Error saving user! ${error}`;

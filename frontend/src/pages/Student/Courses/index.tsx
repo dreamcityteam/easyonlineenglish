@@ -101,11 +101,9 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                   <div className={style.courses__title}>
                     <p>{isDemo ? '¡Prueba gratis! Las primeras 10 palabras.' : title}</p>
                   </div>
-                  <div className={style.courses__button}>
-                    <Link to={`/course/${_id}`}>
-                      ¡Comienza ya!
-                    </Link>
-                  </div>
+                  <Link className={style.courses__button} to={`/course/${_id}`}>
+                    ¡Comienza ya!
+                  </Link>
                 </article>
               )
             })}
