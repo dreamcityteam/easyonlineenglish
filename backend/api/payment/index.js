@@ -1,12 +1,13 @@
 const fs = require('fs');
 const https = require('https');
 const axios = require('axios');
-const { getResponse, send, getMonth } = require('../../tools/functions');
+const { getResponse, send, sendEmail } = require('../../tools/functions');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
-const { getData } = require('./function');
+const { getData, getMessage, getDurationInMonth, formatPhoneNumber } = require('./function');
 const { PAYMENT_METHOD } = require('./const');
 const path = require('path');
 const StudentPayment = require('../../schemas/studentPayment.schema');
+const User = require('../../schemas/user.schema');
 
 module.exports = async (req, res) => {
   const response = getResponse(res);
@@ -49,19 +50,38 @@ module.exports = async (req, res) => {
     });
 
     if (data.IsoCode === '00') {
-      await (new StudentPayment({
-        idUser: req.user.id,
-        name,
-        plan,
-        dateEnd: getMonth(PAYMENT.DURATION_IN_MONTHS),
-        RRN: data.RRN,
-        CustomOrderId: data.CustomOrderId,
-        AzulOrderId: data.AzulOrderId,
-        Ticket: data.Ticket,
-        amount: PAYMENT.AMOUNT
-      }).save());
+      const user = await User.findOne({ _id: req.user.id }).select({ __v: 0 });
 
-      response.statusCode = HTTP_STATUS_CODES.OK;
+      if (user) {
+        const emailConfig = {
+          from: process.env.EMAIL_USER,
+          to: user.email,
+          subject: 'easyonlineenglish - FACTURA',
+          html: getMessage({
+            name: `${user.name} ${user.lastname}`,
+            phone: formatPhoneNumber(user.phone),
+            description: PAYMENT.DESCRIPTION,
+            price: PAYMENT.AMOUNT,
+            total: PAYMENT.AMOUNT,
+          }),
+        };
+
+        if (await sendEmail(emailConfig)) {
+          await (new StudentPayment({
+            idUser: req.user.id,
+            name,
+            plan,
+            dateEnd: getDurationInMonth(PAYMENT.DURATION_IN_MONTHS),
+            RRN: data.RRN,
+            CustomOrderId: data.CustomOrderId,
+            AzulOrderId: data.AzulOrderId,
+            Ticket: data.Ticket,
+            amount: PAYMENT.AMOUNT
+          }).save());
+        }
+
+        response.statusCode = HTTP_STATUS_CODES.OK;
+      }
     }
 
     response.data = data;
@@ -70,6 +90,6 @@ module.exports = async (req, res) => {
     response.message = error.message;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
   }
-  console.log(response.message)
+
   return send(response);
 }
