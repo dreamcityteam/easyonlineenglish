@@ -39,15 +39,13 @@ const Figure: React.FC<Prop> = ({ img, subTitle, title, className }) => (
 
 const Home: React.FC = () => {
   const [{ user }] = useContext(context);
-  const START_NOW_PATH = 'courses';
   const [buttonUrl, setButtonUrl] = useState<string>('');
 
   useEffect(() => {
-
     if (user === null) {
       setButtonUrl('/plan');
     } else if (user.isPayment) {
-      setButtonUrl('/course');
+      setButtonUrl('/courses');
     } else {
       setButtonUrl('/plan');
     }
