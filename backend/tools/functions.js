@@ -98,14 +98,6 @@ const auth = (res, req) => {
   }
 };
 
-const getMonth = (durationInMonth) => {
-  const currentDate = new Date();
-
-  currentDate.setMonth(currentDate.getMonth() + durationInMonth);
-
-  return new Date(currentDate);
-}
-
 module.exports = {
   send,
   setCookie,
@@ -114,5 +106,4 @@ module.exports = {
   hash,
   sendEmail,
   auth,
-  getMonth
 };

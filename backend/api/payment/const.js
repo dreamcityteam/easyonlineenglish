@@ -8,7 +8,7 @@ const PAYMENT_METHOD = {
   2: {
     DURATION_IN_MONTHS: 12,
     AMOUNT: 130,
-    description: 'MEMBRESÍA POR 1 AÑO.'
+    DESCRIPTION: 'MEMBRESÍA POR 1 AÑO.'
   },
 
   3: {
