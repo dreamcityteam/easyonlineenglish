@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
 import GoogleDriveImage from '../../../components/Image';
@@ -40,6 +40,18 @@ const Figure: React.FC<Prop> = ({ img, subTitle, title, className }) => (
 const Home: React.FC = () => {
   const [{ user }] = useContext(context);
   const START_NOW_PATH = 'courses';
+  const [buttonUrl, setButtonUrl] = useState<string>('');
+
+  useEffect(() => {
+
+    if (user === null) {
+      setButtonUrl('/plan');
+    } else if (user.isPayment) {
+      setButtonUrl('/course');
+    } else {
+      setButtonUrl('/plan');
+    }
+  }, [user]);
 
   return (
     <section>
@@ -60,7 +72,7 @@ const Home: React.FC = () => {
             <li className={style.home__item}>Conveniencia</li>
           </ul>
           <Link
-            to={START_NOW_PATH}
+            to={buttonUrl}
             className={style.home__button}
           >
             Empieza Ahora
@@ -328,7 +340,7 @@ const Home: React.FC = () => {
               </p>
               <div className={style.join__bottom}>
                 <Link
-                  to={START_NOW_PATH}
+                  to={buttonUrl}
                   className={style.join__button}
                 >
                   Comienza Ahora

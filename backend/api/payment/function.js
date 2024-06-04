@@ -1,8 +1,6 @@
-const { PAYMENT_ECOMMERCEURL, PAYMENT_CHANNEL, PAYMENT_STORE } = process.env;
-
 const getData = ({ number, expiration, csv, amount }) => ({
-  Channel: PAYMENT_CHANNEL,
-  Store: PAYMENT_STORE,
+  Channel: 'EC',
+  Store: '39038540035',
   CardNumber: number,
   Expiration: expiration,
   CVC: csv,
@@ -22,7 +20,7 @@ const getData = ({ number, expiration, csv, amount }) => ({
   AzulOrderId: null,
   CustomerServicePhone: '',
   OrderNumber: '456432165',
-  ECommerceUrl: PAYMENT_ECOMMERCEURL,
+  ECommerceUrl: 'www.easyonlineenglish.com',
   CustomOrderId: 'trx123',
   DataVaultToken: '',
   SaveToDataVault: '0',
