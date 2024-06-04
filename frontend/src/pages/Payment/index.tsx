@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { send } from '../../tools/function';
 import { SET_USER } from '../../global/state/actionTypes';
 import Loading from '../../components/Form/Loading';
+import { HTTP_STATUS_CODES } from '../../tools/constant';
 
 const PaymentForms: React.FC = () => {
   const redirect = useNavigate();
@@ -66,7 +67,8 @@ const PaymentForms: React.FC = () => {
 
     setIsLoading(true);
 
-    const { response: { data } }: any = await send({
+    let field = { key: '', messageError: '' }
+    const { response: { data = {}, statusCode } }: any = await send({
       api: 'azul-payment', data: {
         plan: paymentMethod,
         csv: state.cvc.value,
@@ -75,14 +77,29 @@ const PaymentForms: React.FC = () => {
         name: state.name.value
       }
     }).post();
-
-    if (data.IsoCode === '00') {
+ 
+    if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
+      field.messageError = 'Error al intentar hacer la transacción, inténtalo más tarde.';
+      field.key = 'expiry';
+    } else if (statusCode === HTTP_STATUS_CODES.OK) {
       redirect('/courses');
       dispatch({ type: SET_USER, payload: { ...user, isPayment: true } });
     } else if (data.IsoCode === '99') {
-      setState((state: any) => ({ ...state, number: { ...state.number, messageError: 'Número de tarjeta inválido.' } }));
+      field.messageError = 'Número de tarjeta inválido.';
+      field.key = 'number';
     } else if (data.ErrorDescription === 'VALIDATION_ERROR:Expiration') {
-      setState((state: any) => ({ ...state, expiry: { ...state.expiry, messageError: 'Fecha de expiración inválida.' } }));
+      field.messageError = 'Fecha de expiración inválida.';
+      field.key = 'expiry';
+    }
+
+    if (field.messageError) {
+      setState((state: any) => ({
+        ...state,
+        [field.key]: {
+          ...state[field.key],
+          messageError: field.messageError
+        }
+      }));
     }
 
     setIsLoading(false);

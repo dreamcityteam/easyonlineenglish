@@ -60,11 +60,12 @@ module.exports = async (req, res) => {
         Ticket: data.Ticket,
         amount: PAYMENT.AMOUNT
       }).save());
+
+      response.statusCode = HTTP_STATUS_CODES.OK;
     }
 
     response.data = data;
     response.message = data.ErrorDescription;
-    response.statusCode = HTTP_STATUS_CODES.OK;
   } catch (error) {
     response.message = error.message;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;

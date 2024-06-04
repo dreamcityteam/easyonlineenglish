@@ -10,7 +10,7 @@ type Field = {
   placeholder?: string;
   type?: 'text' | 'password' | 'email' | 'textarea' | 'tel' | 'hidden' | 'number';
   value?: string;
-  autoComplete?: 'off' | 'on';
+  autoComplete?: 'off' | 'on' | 'new-password';
   validation?: Validation;
 };
 
