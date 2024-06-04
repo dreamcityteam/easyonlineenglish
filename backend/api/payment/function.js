@@ -44,14 +44,18 @@ const formatDate = () => {
 }
 
 const getMessage = ({ name, phone, description, price, total }) => `
-  <div style="box-sizing: border-box; padding: 20px; font-family: arial; width: 100%; color: black; display: flex; justify-content: center;">
-    <div style="width: 600px;">
-      <header style="align-items: center; border-bottom: solid #598da6 2px; display: flex; justify-content: space-between; width: 100%;">
-        <img src="https://easyonlineenglish.com/wp-content/uploads/2023/12/Logo-Demo-12.png" alt="logo" style="width: 252px;">
-        <h2 style="color: #06609e; font-size: 60px;">FACTURA</h2>
+  <div style="box-sizing: border-box; padding: 20px; font-family: arial; width: 100%; color: black; display: flex;">
+    <div style="width: 1000px;">
+      <header style="align-items: center; border-bottom: solid #598da6 2px; display: flex; width: 100%;">
+        <div style="width: 300px;">
+        <img src="https://easyonlineenglish.com/wp-content/uploads/2023/12/Logo-Demo-12.png" alt="logo" style="width: 100%;">
+        </div>
+        <div style="width: 700px; text-align: right;">
+          <h2 style="color: #06609e; font-size: 60px;">FACTURA</h2>
+        </div>
       </header>
       <div style="display: flex; padding-bottom: 20px; justify-content: space-between; margin-top: 20px; width: 100%; justify-content: space-between;">
-        <div style="line-height: 1.5;">
+        <div style="width: 100%; line-height:1.5;">
           <div>
             <strong>Datos del cliente</strong>
           </div>
@@ -62,7 +66,7 @@ const getMessage = ({ name, phone, description, price, total }) => `
             <span>${phone}</span>
           </div>
         </div>
-        <div>
+        <div style="width: 100%; text-align: right;">
           <div>
             <span>${formatDate()}</span>
           </div>
