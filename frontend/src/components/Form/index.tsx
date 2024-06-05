@@ -16,6 +16,7 @@ interface Props {
   canCleanInput?: boolean;
   custom?: (props: any) => JSX.Element;
   title?: string;
+  errorMessage?: string;
 };
 
 const Form: React.FC<Props> = ({
@@ -26,7 +27,8 @@ const Form: React.FC<Props> = ({
   onData,
   canCleanInput = false,
   custom,
-  title
+  title,
+  errorMessage
 }): JSX.Element => {
   const keys: string[] = useMemo(() => Object.keys(inputs), []);
   const [state, setState] = useState<State>(useMemo(() => getInitialState(keys, inputs), []));
@@ -115,6 +117,7 @@ const Form: React.FC<Props> = ({
       {title && (
         <header className={style.form__title}>
           <h1>{title}</h1>
+          <span className={style.form__errorMessage}>{errorMessage}</span>
         </header>
       )}
       {custom ? custom({ state, onChange, handleKeyPress, onSend, isLoading }) : (
