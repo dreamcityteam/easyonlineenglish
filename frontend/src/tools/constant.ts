@@ -6,7 +6,11 @@ const REGEXP: { [key: string]: RegExp; } = {
   PHONE_NUMBER: /^\+?\d{1,3}[- ]?\(?\d{1,3}\)?[- ]?\d{3,5}[- ]?\d{4}$/,
   NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
   LAST_NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
-  PASSWORD: /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+  PASSWORD: /^.{8,}$/
+}
+
+const MESSAGE: { [key: string]: string; } = {
+  PASSWORD: 'Su contraseña debería tener al menos 8 caracteres.'
 }
 
 const ROLE: Role = {
@@ -36,4 +40,5 @@ export {
   DEFAULT_PHOTO,
   TUTORIAL,
   ASSETS_URL,
+  MESSAGE
 }

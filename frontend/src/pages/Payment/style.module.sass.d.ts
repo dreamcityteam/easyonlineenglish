@@ -2,7 +2,9 @@
 // Please do not change this file!
 interface CssExports {
   'payment': string;
+  'payment__card': string;
   'payment__container': string;
+  'payment__cvc': string;
   'payment__errorMessage': string;
   'payment__form': string;
   'payment__input': string;

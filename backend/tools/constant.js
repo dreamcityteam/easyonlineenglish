@@ -4,7 +4,7 @@ const REGEXP = {
   PHONE_NUMBER: /^\+?\d{1,3}[- ]?\(?\d{1,3}\)?[- ]?\d{3,5}[- ]?\d{4}$/,
   NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
   LAST_NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
-  PASSWORD: /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+  PASSWORD: /^.{8,}$/
 }
 
 const ROLE = {
@@ -36,7 +36,8 @@ const ENDPOINT = {
   SEND_EMAIL_RESET_PASSWORD: '/send-email-reset-password',
   RESET_PASSWORD: '/reset-password',
   RESET_PASSWORD_AUTH: '/reset-password-auth',
-  AZUL_PAYMENT: '/azul-payment'
+  AZUL_PAYMENT: '/azul-payment',
+  STUDENT_TUTORIAL: '/tutorial'
 }
 
 const INITIAL_COURSE = {

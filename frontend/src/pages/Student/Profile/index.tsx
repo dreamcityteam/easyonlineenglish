@@ -56,7 +56,7 @@ const Profile: React.FC = (): JSX.Element => {
             <li>{user?.name}</li>
             <li><strong>Apellido: </strong>{user?.lastname}</li>
             <li><strong>Email: </strong>{user?.email}</li>
-            <li><strong>Teléfono: </strong>{formatPhoneNumber(user?.phone)}</li>
+            <li><strong>Teléfono: </strong>{formatPhoneNumber(user?.phone) || 'N/A'}</li>
             <li><strong>Contraseña: </strong> **********</li>
           </ul>
           <span onClick={onOpenMondal} className={style.profile__button}> Editar</span>

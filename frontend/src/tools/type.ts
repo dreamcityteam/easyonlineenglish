@@ -49,6 +49,7 @@ type Send = {
   post: () => Promise<Response>;
   delete: () => Promise<Response>;
   put: () => Promise<Response>;
+  patch: () => Promise<Response>;
 }
 
 type Store = {

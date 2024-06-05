@@ -17,7 +17,8 @@ type User = {
   photo: string;
   role: string;
   isPayment: boolean;
-};
+  isTutorial: boolean;
+}
 
 type Course = {
   idStudentCourse: string;
@@ -30,7 +31,7 @@ type Course = {
   completedWords: { [key: string]: boolean };
   lessons: Lesson[];
   progress: number;
-};
+}
 
 type Courses = {
   _id: string;
@@ -38,7 +39,7 @@ type Courses = {
   title: string;
   description: string;
   progress?: number;
-};
+}
 
 type LibraryContent = {
   _id: string;
@@ -46,26 +47,26 @@ type LibraryContent = {
   spanishTranslation: string;
   imageUrl: string;
   audioUrl: string;
-};
+}
 
 type LibraryCache = {
   _id: string;
   name: string;
   content: LibraryContent[];
-}[];
+}[]
 
 type CoursesCache = {
   [key: string]: Courses[];
-};
+}
 
 type CourseCache = {
   [key: string]: Course;
-};
+}
 
 type Lesson = {
   title: string;
   words: Word[];
-};
+}
 
 type Word = {
   _id: number;
@@ -73,7 +74,7 @@ type Word = {
   spanishTranslation: string;
   audioUrl: string;
   sentences: Sentence[];
-};
+}
 
 type Sentence = {
   spanishTranslation: string;
@@ -81,12 +82,12 @@ type Sentence = {
   imageUrl: string;
   audioUrl: string;
   isCompleted?: boolean;
-};
+}
 
 type Loading = {
   canShow: boolean;
   text: string;
-};
+}
 
 type State = {
   user: User | null;
@@ -95,7 +96,7 @@ type State = {
   courseCache: CourseCache;
   coursesCache: CoursesCache;
   libraryCache: any;
-};
+}
 
 type Action =
   | typeof SET_USER
@@ -108,7 +109,7 @@ type Action =
 type Option = {
   payload?: any;
   type: Action;
-};
+}
 
 export type {
   State,

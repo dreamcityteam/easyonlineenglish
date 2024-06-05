@@ -18,6 +18,11 @@ module.exports = async (req, res) => {
   const PAYMENT = PAYMENT_METHOD[plan];
   const API = 'https://pruebas.azul.com.do/WebServices/JSON/default.aspx';
 
+  response.data = {
+    field: 'number',
+    message: 'Approvado'
+  };
+
   try {
     if (!PAYMENT) {
       response.message = 'Invalid payment method.';
@@ -80,15 +85,26 @@ module.exports = async (req, res) => {
           }).save());
         }
 
+        response.data.message = 'Aprovado.';
         response.statusCode = HTTP_STATUS_CODES.OK;
       }
+    } else if (data.IsoCode === '99') {
+      response.data.message = 'Número de tarjeta inválido.';
+    } else if (data.IsoCode === '63') {
+      response.data.message = 'Lo sentimos, su tarjeta ha sido declinada.';
+    } else if (['Expiration', 'ExpirationPassed'].includes(data.ErrorDescription.replace('VALIDATION_ERROR:', ''))) {
+      response.data.message = 'Fecha de expiración inválida.';
+      response.data.field = 'expiry';
+    } else if (data.ErrorDescription === 'VALIDATION_ERROR:CVC') {
+      response.data.message = 'El cvc es incorrecto.';
+      response.data.field = 'cvc';
     }
 
-    response.data = data;
     response.message = data.ErrorDescription;
   } catch (error) {
     response.message = error.message;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
+    response.data.message = 'Error al intentar hacer la transacción, inténtalo más tarde.';
   }
 
   return send(response);

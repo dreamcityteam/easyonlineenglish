@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Lesson } from '../../../../global/state/type';
 import SVGArrowLeft from '../../../../../public/svg/arrowDropleftCircle.svg';
 import SVGArrowRight from '../../../../../public/svg/arrowDroprightCircle.svg';
@@ -9,8 +9,9 @@ import style from './style.module.sass';
 import courseStyle from '../../Course/style.module.sass';
 import speechStyle from '../../../../components/Speech/style.module.sass';
 import Joyride from 'react-joyride';
-import { cookie } from '../../../../tools/function';
+import { cookie, send } from '../../../../tools/function';
 import { TUTORIAL } from '../../../../tools/constant';
+import context from '../../../../global/state/context';
 
 interface Props {
   onClick: ({ word, wordIndex, indexLesson }: any) => void;
@@ -29,9 +30,14 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
   const currentFocusLessonRef = useRef<HTMLLIElement | any>(null);
   const [run, setRun] = useState<boolean>(isTutorial);
   const [spotlightWidth, setSpotlightWidth] = useState<string>('');
+  const [{ user }, dispatch] = useContext(context);
 
   useEffect(() => {
-    cookie.get(TUTORIAL) && setRun(false);
+    if (user === null && cookie.get(TUTORIAL)) {
+      setRun(false);
+    } else if (user) {
+      setRun(user?.isTutorial);
+    }
   }, []);
 
   const toggleSidebar = (): void => {
@@ -64,7 +70,7 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
     }
   };
 
-  const handleStepChange = (data: any): void => {
+  const handleStepChange = async (data: any): Promise<void> => {
     if (data.index === 3) {
       setSpotlightWidth('205px');
     } else {
@@ -72,7 +78,8 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
     }
 
     if (data.action === 'reset') {
-      cookie.set(TUTORIAL, 'true', 1); 
+      cookie.set(TUTORIAL, 'true', 1);
+      await send({ api: 'tutorial' }).patch();
     }
   };
 
@@ -88,27 +95,27 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
         steps={[
           {
             target: `.${style.aside__button}`,
-            content: <h2>Aquí puedes desplegar el menú de navegación del curso.</h2>,
+            content: <h2 className={style.tutorial__title}>Aquí puedes desplegar el menú de navegación del curso.</h2>,
             disableBeacon: true
           },
           {
             target: `.${courseStyle.course__englishWord}`,
-            content: <h2>Aquí podrás ver la palabra en inglés. Si haces clic en la palabra, podrás escuchar su pronunciación.</h2>,
+            content: <h2 className={style.tutorial__title}>Aquí podrás ver la palabra en inglés. Si haces clic en la palabra, podrás escuchar su pronunciación.</h2>,
             disableBeacon: true
           },
           {
             target: `.${courseStyle.course__spanishTranslation}`,
-            content: <h2>Aquí podrás leer la traducción al español de la palabra en inglés.</h2>,
+            content: <h2 className={style.tutorial__title}>Aquí podrás leer la traducción al español de la palabra en inglés.</h2>,
             disableBeacon: true
           },
           {
             target: `.${courseStyle.course__content_text} .${courseStyle.course__text_grandient}`,
-            content: <h2>Aquí podrás leer la frase u oración en inglés. Si haces clic, podrás escuchar su pronunciación.</h2>,
+            content: <h2 className={style.tutorial__title}>Aquí podrás leer la frase u oración en inglés. Si haces clic, podrás escuchar su pronunciación.</h2>,
             disableBeacon: true
           },
           {
             target: `.${speechStyle.speech}`,
-            content: <h2>Aquí podrás escuchar la oración o frase en inglés y, cuando escuches un sonido, tendrás que pronunciarla.</h2>,
+            content: <h2 className={style.tutorial__title}>Aquí podrás escuchar la oración o frase en inglés y, cuando escuches un sonido, tendrás que pronunciarla.</h2>,
             disableBeacon: true
           }
         ]}

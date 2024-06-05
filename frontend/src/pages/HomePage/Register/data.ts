@@ -1,5 +1,5 @@
 import { Field } from '../../../components/Form/type';
-import { REGEXP } from '../../../tools/constant';
+import { MESSAGE, REGEXP } from '../../../tools/constant';
 
 type Inputs = {
   username: Field;
@@ -67,7 +67,7 @@ const inputs: Inputs = {
     placeholder: 'Escriba su contraseña',
     autoComplete: 'new-password',
     validation: {
-      message: 'Al menos 8 caracteres, una letra y un número.',
+      message: MESSAGE.PASSWORD,
       regExp: REGEXP.PASSWORD,
     },
   },

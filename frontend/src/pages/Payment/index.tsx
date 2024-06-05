@@ -8,6 +8,7 @@ import { send } from '../../tools/function';
 import { SET_USER } from '../../global/state/actionTypes';
 import Loading from '../../components/Form/Loading';
 import { HTTP_STATUS_CODES } from '../../tools/constant';
+import { Field } from './type';
 
 const PaymentForms: React.FC = () => {
   const redirect = useNavigate();
@@ -36,7 +37,7 @@ const PaymentForms: React.FC = () => {
     Object.keys(state).forEach(key => {
       const field = state[key];
 
-      const messageError: string = field && !field.value && key !== 'focus' ? 'Por favor, complete este campo.' : '';
+      const messageError: string = field && !field.value && key !== 'focus' ? 'Complete este campo.' : '';
 
       if (messageError) {
         isEmpty = true
@@ -49,9 +50,17 @@ const PaymentForms: React.FC = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    let value = e.target.value;
+
+    if (e.target.name === 'number') {
+      value = getNumber(value);
+    } else if (e.target.name === 'expiry') {
+      value = getNumber(value);
+    }
+
     setState({
       ...state,
-      [e.target.name]: { ...state[e.target.name], value: e.target.value }
+      [e.target.name]: { ...state[e.target.name], value }
     });
   };
 
@@ -63,65 +72,77 @@ const PaymentForms: React.FC = () => {
   };
 
   const processPayment = async (): Promise<void> => {
+    let field = { key: '', messageError: '' };
+    const EXPIRY_PREFIX = '20';
+    console.log({
+      plan: paymentMethod,
+      csv: state.cvc.value,
+      expiration: `${EXPIRY_PREFIX}${state.expiry.value}`,
+      number: state.number.value,
+      name: state.name.value
+    })
+
     if (isEmptyField()) return;
 
     setIsLoading(true);
 
-    let field = { key: '', messageError: '' }
     const { response: { data = {}, statusCode } }: any = await send({
       api: 'azul-payment', data: {
         plan: paymentMethod,
         csv: state.cvc.value,
-        expiration: state.expiry.value,
+        expiration: `${EXPIRY_PREFIX}${state.expiry.value}`,
         number: state.number.value,
         name: state.name.value
       }
     }).post();
- 
-    if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
-      field.messageError = 'Error al intentar hacer la transacción, inténtalo más tarde.';
-      field.key = 'expiry';
-    } else if (statusCode === HTTP_STATUS_CODES.OK) {
+
+    if (statusCode === HTTP_STATUS_CODES.OK) {
       redirect('/courses');
       dispatch({ type: SET_USER, payload: { ...user, isPayment: true } });
-    } else if (data.IsoCode === '99') {
-      field.messageError = 'Número de tarjeta inválido.';
-      field.key = 'number';
-    } else if (data.ErrorDescription === 'VALIDATION_ERROR:Expiration') {
-      field.messageError = 'Fecha de expiración inválida.';
-      field.key = 'expiry';
     }
 
-    if (field.messageError) {
-      setState((state: any) => ({
-        ...state,
-        [field.key]: {
-          ...state[field.key],
-          messageError: field.messageError
-        }
-      }));
+    if (data.message) {
+      setState((state: any) => ({ ...state, [data.field]: { ...state[data.field], messageError: data.message } }));
     }
 
     setIsLoading(false);
   };
 
-  const getErrorMessage = (field: { value: string; messageError: string; }): JSX.Element => (
-    <span className={style.payment__errorMessage}>{field && field.messageError}</span>
+  const getErrorMessage = (field: Field): JSX.Element => (
+    <span className={style.payment__errorMessage}>
+      {field && field.messageError}
+    </span>
   );
+
+  const formatInput = (type: 'number' | 'expiry', value: string): string => {
+    const format = {
+      number: { regExp: /.{1,4}/g, sing: ' ' },
+      expiry: { regExp: /.{1,2}/g, sing: '/' }
+    }
+    const cleaned = value.replace(/\D/g, '');
+    const groups = cleaned.match(format[type].regExp);
+
+    return groups ? groups.join(format[type].sing) : value;
+  }
+
+  const getNumber = (value: string): string =>
+    value.replace(/\D/g, '');
 
   return (
     <section className={style.payment}>
-      <header>
-        <h1 className={style.payment__title}>{paymentTitle}</h1>
-      </header>
       <div className={style.payment__container}>
-        <Cards
-          number={state.number.value}
-          name={state.name.value}
-          expiry={state.expiry.value}
-          cvc={state.cvc.value}
-        />
+        <div className={style.payment__card}>
+          <Cards
+            number={state.number.value}
+            name={state.name.value}
+            expiry={state.expiry.value}
+            cvc={state.cvc.value}
+          />
+        </div>
         <form className={style.payment__form}>
+          <header>
+            <h1 className={style.payment__title}>{paymentTitle}</h1>
+          </header>
           <div className={style.payment__inputs}>
             <div className={style.payment__inputs_container}>
               <input
@@ -132,6 +153,7 @@ const PaymentForms: React.FC = () => {
                 onFocus={handleFocusChange}
                 placeholder="Nombre"
                 className={style.payment__input}
+                value={state.name.value}
               />
               {getErrorMessage(state.name)}
             </div>
@@ -141,10 +163,12 @@ const PaymentForms: React.FC = () => {
               <input
                 type="text"
                 name="number"
+                maxLength={19}
                 onChange={handleInputChange}
                 onFocus={handleFocusChange}
                 placeholder="Número de la tarjeta"
                 className={style.payment__input}
+                value={formatInput('number', state.number.value)}
               />
               {getErrorMessage(state.number)}
             </div>
@@ -154,11 +178,12 @@ const PaymentForms: React.FC = () => {
               <input
                 type="text"
                 name="expiry"
-                maxLength={6}
+                maxLength={5}
                 onChange={handleInputChange}
                 onFocus={handleFocusChange}
                 placeholder="Fecha de expiración"
                 className={style.payment__input}
+                value={formatInput('expiry', state.expiry.value)}
               />
               {getErrorMessage(state.expiry)}
             </div>
@@ -166,13 +191,16 @@ const PaymentForms: React.FC = () => {
               <input
                 type="text"
                 name="cvc"
-                maxLength={4}
+                maxLength={3}
                 onChange={handleInputChange}
                 onFocus={handleFocusChange}
                 placeholder="CVC"
                 className={style.payment__input}
+                value={state.cvc.value}
               />
-              {getErrorMessage(state.cvc)}
+              <div className={style.payment__cvc}>
+                {getErrorMessage(state.cvc)}
+              </div>
             </div>
           </div>
           <div className={style.payment__input_button}>

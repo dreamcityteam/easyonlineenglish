@@ -8,26 +8,37 @@ import {
   SET_COURSES_CACHE,
   CLEAN_CACHE,
   SET_LIBRARY,
+  SET_TUTORIAL,
 } from './actionTypes';
 import { Option, State } from './type';
 
 const reducer = (state: State, { payload, type }: Option): State => ({
-  [SET_USER]: ({ 
-    _id = '', username = '', email = '', lastname= '', 
-    name = '', phone = null, photo = '', role, isPayment = false
+  [SET_USER]: ({
+    _id = '', username = '', email = '', lastname = '',
+    name = '', phone = null, photo = '', role,
+    isPayment = false, isTutorial = true
   }: any): State => ({
     ...state,
-    user: { 
+    user: {
       _id,
       username,
       email,
-      lastname, 
+      lastname,
       name,
       phone,
       photo: photo || DEFAULT_PHOTO,
       role,
-      isPayment
+      isPayment,
+      isTutorial
     }
+  }),
+
+  [SET_TUTORIAL]: ({ isTutorial = true }: any): State => ({
+    ...state,
+    user: state.user ? {
+      ...state.user,
+      isTutorial
+    } : state.user,
   }),
 
   [SIGN_OUT]: (): State => ({
@@ -51,7 +62,7 @@ const reducer = (state: State, { payload, type }: Option): State => ({
     }
   }),
 
-  [SET_COURSES_CACHE]: ({ value = [], key = 'demo' }: any) : State => ({
+  [SET_COURSES_CACHE]: ({ value = [], key = 'demo' }: any): State => ({
     ...state,
     coursesCache: {
       ...state.coursesCache,
@@ -59,14 +70,14 @@ const reducer = (state: State, { payload, type }: Option): State => ({
     }
   }),
 
-  [CLEAN_CACHE]: () : State => ({
+  [CLEAN_CACHE]: (): State => ({
     ...state,
     coursesCache: {},
     courseCache: {},
     libraryCache: []
   }),
 
-  [SET_LIBRARY]: ({ library = [] }: any) : State => ({
+  [SET_LIBRARY]: ({ library = [] }: any): State => ({
     ...state,
     libraryCache: library,
   }),

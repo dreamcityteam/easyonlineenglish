@@ -13,6 +13,7 @@ const sendEmailResetPassword = require('../api/sendEmailResetPassword');
 const resetPasswordAuth = require('../api/resetPasswordAuth');
 const resetPassword = require('../api/resetPassword');
 const azulPayment = require('../api/payment');
+const studentTutorial = require('../api/studentTutorial');
 
 const { ENDPOINT } = require('../tools/constant');
 
@@ -91,5 +92,10 @@ module.exports = [
     path: ENDPOINT.AZUL_PAYMENT,
     method: 'post',
     func: azulPayment,
+  },
+  {
+    path: ENDPOINT.STUDENT_TUTORIAL,
+    method: 'patch',
+    func: studentTutorial,
   },
 ];
