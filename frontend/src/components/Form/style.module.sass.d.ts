@@ -6,6 +6,7 @@ interface CssExports {
   'field': string;
   'form': string;
   'form__container': string;
+  'form__errorMessage': string;
   'form__title': string;
 }
 export const cssExports: CssExports;

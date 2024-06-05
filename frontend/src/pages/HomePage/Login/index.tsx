@@ -29,12 +29,10 @@ const Login: React.FC = () => {
   return (
     <section className={style.login}>
       <div>
-        <div>
-          <span className={style.login__error}>{text}</span>
-        </div>
         <Form
           api="auth"
           title="Login"
+          errorMessage={text}
           buttonText="Log in"
           inputs={inputs}
           onData={onData}

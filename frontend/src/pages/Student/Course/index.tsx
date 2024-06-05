@@ -310,12 +310,14 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     );
   };
 
-  const handlerOnPlayWord = (): void => {
-    if (word?.audioUrl) {
-      const audio: HTMLAudioElement = new Audio(word.audioUrl);
+  const handlerOnPlayWord = (type: 'word' | 'sentence'): void => {
+    const url: string | undefined = type === 'word' ? word?.audioUrl : sentence?.audioUrl;
 
-      audio.play();
-    }
+    if (!url) return;
+
+    const audio: HTMLAudioElement = new Audio(url);
+
+    audio.play();
   };
 
   return (
@@ -343,7 +345,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               </div>
               <div className={style.course__englishWord_container}>
                 <span
-                  onClick={handlerOnPlayWord}
+                  onClick={() => handlerOnPlayWord('word')}
                   className={`${style.course__text_grandient} ${style.course__englishWord}`}
                 >
                   "{word?.englishWord}"
@@ -381,11 +383,17 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               <div className={style.course__content}>
                 <div className={style.course__content_text}>
                   <div>
-                    <span className={style.course__text_grandient}>
+                    <span
+                      onClick={() => handlerOnPlayWord('sentence')}
+                      className={style.course__text_grandient}
+                    >
                       {sentence?.englishWord}
                     </span>
                   </div>
-                  <span className={style.course__text_language}>
+                  <span
+                 
+                    className={style.course__text_language}
+                  >
                     Inglés
                   </span>
                 </div>

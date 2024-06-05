@@ -35,6 +35,7 @@ const auth = async (req, res) => {
 
     if (!user) {
       response.message = 'User not found';
+      response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
     } else if (await hash.compare({ password, hash: user.password })) {
       setCookie({ res, value: getToken({ id: user._id }) });
       const { password, ...userData } = user.toObject();
