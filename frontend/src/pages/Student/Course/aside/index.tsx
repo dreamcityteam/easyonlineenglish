@@ -100,7 +100,7 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
           },
           {
             target: `.${courseStyle.course__englishWord}`,
-            content: <h2 className={style.tutorial__title}>Aquí podrás ver la palabra en inglés. Si haces clic en la palabra, podrás escuchar su pronunciación.</h2>,
+            content: <h2 className={style.tutorial__title}>Aquí podrás ver la palabra en inglés. Si haces clic en la palabra, podrás escuchar su pronunciación a dos velocidades distintas.</h2>,
             disableBeacon: true
           },
           {
@@ -110,7 +110,7 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
           },
           {
             target: `.${courseStyle.course__content_text} .${courseStyle.course__text_grandient}`,
-            content: <h2 className={style.tutorial__title}>Aquí podrás leer la frase u oración en inglés. Si haces clic, podrás escuchar su pronunciación.</h2>,
+            content: <h2 className={style.tutorial__title}>Aquí podrás leer la frase u oración en inglés. Si haces click, podrás escuchar su pronunciación a dos velocidades distintas.</h2>,
             disableBeacon: true
           },
           {
