@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Course as TCourse, Lesson, Sentence, Word } from '../../../global/state/type';
 import Aside from './Aside';
 import Speech from '../../../components/Speech';
@@ -37,8 +37,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [lessonIndex, setLessonIndex] = useState<number>(0);
   const [wordIndex, setWordIndex] = useState<number>(0);
   const [isSavingProgress, setIsSavingProgress] = useState<boolean>(false);
-  const redirect = useNavigate();
   const idCache: string = isDemo ? `${idCourse}-demo` : idCourse || '';
+  const [canSlowAudio, setCanSlowAudio] = useState<{ [key: string]: boolean; }>({
+    word: false,
+    sentence: false
+  });
 
   useEffect(() => {
     saveCourseData();
@@ -61,7 +64,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         method: 'get',
         endpoint: isDemo ? 'student-course-demo' : `student-course/${idCourse}`
       },
-      success: ({ words, ...data}): void => {
+      success: ({ words, ...data }): void => {
         const course = { ...data, lessons: formatLessons(words) }
 
         setCourseData(course);
@@ -170,6 +173,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       } else {
         handleNextWord(word, wordIndex, lessonIndex, true);
       }
+
+      setCanSlowAudio({ word: false, sentence: false });
     }
   };
 
@@ -230,7 +235,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       } else {
         updateStateCourse(courseProgress);
 
-        if (isCourseCompleted) redirect('/plan');
+        if (isCourseCompleted) setCanShowModal(true);
         else onNextWord(true);
       }
     }
@@ -317,7 +322,9 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
     const audio: HTMLAudioElement = new Audio(url);
 
+    audio.playbackRate = canSlowAudio[type] ? 0.8 : 1;
     audio.play();
+    setCanSlowAudio((state) => ({ ...state, [type]: !canSlowAudio[type] }));
   };
 
   return (
@@ -391,7 +398,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                     </span>
                   </div>
                   <span
-                 
                     className={style.course__text_language}
                   >
                     Inglés
@@ -452,13 +458,23 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           </div>
           <Modal
             canShow={canShowModal}
-            text="Has completado el curso."
             title="¡Felicidades!"
             isFadeIn
           >
-            <Link to="/courses" className={style.course__modalButton}>
-              Volver a los cursos
-            </Link>
+            <div className={style.course__modal}>
+              {isDemo ? (
+                <p>¡Felicidades por completar el curso demo! Si estás listo para seguir adelante, ¡dale clic al botón "Planes" y prepárate para más aprendizaje! Estoy aquí para ayudarte en tu viaje. ¡Adelante!</p>
+              ) : (
+                <p>¡Felicidades por completar el curso demo! Eso es un gran logro y demuestra tu compromiso con aprender y crecer.</p>
+              )}
+
+              <Link
+                to={isDemo ? '/plan' : '/courses'}
+                className={style.course__modalButton}
+              >
+                {isDemo ? 'planes' : 'Cursos'}
+              </Link>
+            </div>
             <Confetti />
           </Modal>
         </section>

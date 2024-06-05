@@ -15,5 +15,4 @@ const ErrorConnection: React.FC = (): JSX.Element => (
   </section>
 );
 
-
 export default ErrorConnection;

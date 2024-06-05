@@ -17,6 +17,7 @@ interface CssExports {
   'hide__default': string;
   'slideInAside': string;
   'slideOutAside': string;
+  'tutorial__title': string;
   'word__display': string;
 }
 export const cssExports: CssExports;

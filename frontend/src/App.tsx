@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import RouterHomePage from './routers/HomePage';
 import context from './global/state/context';
 import initialState from './global/state/state';
@@ -7,7 +8,6 @@ import { SET_USER } from './global/state/actionTypes';
 import RouterStudent from './routers/Student';
 import { getData } from './tools/function';
 import { ROLE } from './tools/constant';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Navigator from './components/Navigator';
 import Footer from './components/Footer';
 import Loading from './components/Loading';

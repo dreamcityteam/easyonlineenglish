@@ -27,7 +27,7 @@ const register = async (req, res) => {
     invalidFields['email'] = 'Por favor, introduzca una dirección de correo electrónico válida.';
   }
 
-  if (!REGEXP.PHONE_NUMBER.test(phone) && phone) {
+  if (!REGEXP.PHONE_NUMBER.test(phone)) {
     invalidFields['phone'] = 'Por favor, introduzca un número de teléfono válido.';
   }
 

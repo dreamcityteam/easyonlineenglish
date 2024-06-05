@@ -58,6 +58,11 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+
+  isTutorial: {
+    type: Boolean,
+    default: true,
+  }
 });
 
 const User = mongoose.model('User', userSchema);

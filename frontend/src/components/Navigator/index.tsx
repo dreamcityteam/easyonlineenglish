@@ -40,7 +40,8 @@ const Navigator: React.FC = (): JSX.Element => {
 
   const getTargetClassName = (path: string): string => (
     location.pathname === path || 
-    (path === '/courses') && location.pathname.includes('course')
+    (path === '/courses') && location.pathname.includes('course') ||
+    (path === '/plan') && location.pathname.includes('payment') 
       ? style.navigator__target
       : ''
   );

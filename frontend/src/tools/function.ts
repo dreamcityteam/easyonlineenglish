@@ -53,6 +53,11 @@ const send = ({ api, data, token }: Request): Send => {
       options.method = 'PUT';
       return request(options);
     },
+
+    patch: (): Promise<Response> => {
+      options.method = 'PATCH';
+      return request(options);
+    },
   };
 };
 
