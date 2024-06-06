@@ -4,7 +4,7 @@ const axios = require('axios');
 const path = require('path');
 const { getResponse, send, sendEmail } = require('../../tools/functions');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
-const { getData, getMessage, getDurationInMonth, formatPhoneNumber } = require('./function');
+const { getData, getMessage, getDurationInMonth, formatPhoneNumber, getMonthsDiff } = require('./function');
 const { PAYMENT_METHOD } = require('./const');
 const connectToDatabase = require('../../db');
 const StudentPayment = require('../../schemas/studentPayment.schema');
@@ -75,21 +75,24 @@ module.exports = async (req, res) => {
         };
 
         if (await sendEmail(emailConfig)) {
+          const payment = await StudentPayment.findOne({ idUser: req.user.id }).sort({ _id: -1 });
+          const lastPayment = payment ? getMonthsDiff(payment.dateStart, payment.dateEnd) : 0;
+
           await (new StudentPayment({
             idUser: req.user.id,
             name,
             plan,
-            dateEnd: getDurationInMonth(PAYMENT.DURATION_IN_MONTHS),
+            dateEnd: getDurationInMonth(lastPayment + PAYMENT.DURATION_IN_MONTHS),
             RRN: data.RRN,
             CustomOrderId: data.CustomOrderId,
             AzulOrderId: data.AzulOrderId,
             Ticket: data.Ticket,
             amount: PAYMENT.AMOUNT
           }).save());
-        }
 
-        response.data.message = 'Aprovado.';
-        response.statusCode = HTTP_STATUS_CODES.OK;
+          response.data.message = 'Aprovado.';
+          response.statusCode = HTTP_STATUS_CODES.OK;
+        }
       }
     } else if (data.IsoCode === '99') {
       response.data.message = 'Número de tarjeta inválido.';
@@ -101,9 +104,9 @@ module.exports = async (req, res) => {
     } else if (data.ErrorDescription === 'VALIDATION_ERROR:CVC') {
       response.data.message = 'El cvc es incorrecto.';
       response.data.field = 'cvc';
+    } else {
+      response.message = data.ErrorDescription;
     }
-
-    response.message = data.ErrorDescription;
   } catch (error) {
     response.message = error.message;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;

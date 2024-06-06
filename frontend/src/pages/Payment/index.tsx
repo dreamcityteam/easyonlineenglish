@@ -128,6 +128,12 @@ const PaymentForms: React.FC = () => {
   const getNumber = (value: string): string =>
     value.replace(/\D/g, '');
 
+  const handleKeyPress = (event: any) => {
+    if (event.key === 'Enter') {
+      processPayment();
+    }
+  };
+
   return (
     <section className={style.payment}>
       <div className={style.payment__container}>
@@ -154,6 +160,7 @@ const PaymentForms: React.FC = () => {
                 placeholder="Nombre"
                 className={style.payment__input}
                 value={state.name.value}
+                onKeyDown={handleKeyPress}
               />
               {getErrorMessage(state.name)}
             </div>
@@ -169,6 +176,7 @@ const PaymentForms: React.FC = () => {
                 placeholder="Número de la tarjeta"
                 className={style.payment__input}
                 value={formatInput('number', state.number.value)}
+                onKeyDown={handleKeyPress}
               />
               {getErrorMessage(state.number)}
             </div>
@@ -184,6 +192,7 @@ const PaymentForms: React.FC = () => {
                 placeholder="Fecha de expiración"
                 className={style.payment__input}
                 value={formatInput('expiry', state.expiry.value)}
+                onKeyDown={handleKeyPress}
               />
               {getErrorMessage(state.expiry)}
             </div>
@@ -197,6 +206,7 @@ const PaymentForms: React.FC = () => {
                 placeholder="CVC"
                 className={style.payment__input}
                 value={state.cvc.value}
+                onKeyDown={handleKeyPress}
               />
               <div className={style.payment__cvc}>
                 {getErrorMessage(state.cvc)}

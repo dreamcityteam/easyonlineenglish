@@ -3,7 +3,7 @@ const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/constant');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 
-const register = async (req, res) => {
+module.exports = async (req, res) => {
   const {
     username = '', name = '', lastname = '',
     email = '', phone = '', password = ''
@@ -67,4 +67,3 @@ const register = async (req, res) => {
   send(response);
 };
 
-module.exports = register;

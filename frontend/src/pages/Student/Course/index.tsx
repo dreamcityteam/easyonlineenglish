@@ -38,6 +38,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [wordIndex, setWordIndex] = useState<number>(0);
   const [isSavingProgress, setIsSavingProgress] = useState<boolean>(false);
   const idCache: string = isDemo ? `${idCourse}-demo` : idCourse || '';
+  const [canDisabledAudio, setCanDisabledAudio] = useState<boolean>(false);
   const [canSlowAudio, setCanSlowAudio] = useState<{ [key: string]: boolean; }>({
     word: false,
     sentence: false
@@ -46,6 +47,9 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   useEffect(() => {
     saveCourseData();
   }, []);
+
+  const disabledSlowAudio = (): void =>
+    setCanSlowAudio({ word: false, sentence: false });
 
   const saveCourseCacheData = (course: TCourse): void =>
     dispatch({ type: SET_COURSE_CACHE, payload: { ...course, idCourse: idCache } });
@@ -137,6 +141,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       setSentenceIndex(sentenceIndex);
       cleanFeedback();
     }
+
+    disabledSlowAudio();
   };
 
   const getWordSentenceCompleted = (word: Word): Word => {
@@ -174,7 +180,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         handleNextWord(word, wordIndex, lessonIndex, true);
       }
 
-      setCanSlowAudio({ word: false, sentence: false });
+      disabledSlowAudio();
     }
   };
 
@@ -290,6 +296,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const onPlaySpeech = (isPlay: boolean): void => {
     isPlay && cleanFeedback();
     setPlaySpeech(isPlay);
+    setCanDisabledAudio(isPlay);
   };
 
   const cleanFeedback = (): void => {
@@ -318,7 +325,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const handlerOnPlayWord = (type: 'word' | 'sentence'): void => {
     const url: string | undefined = type === 'word' ? word?.audioUrl : sentence?.audioUrl;
 
-    if (!url) return;
+    if (!url || canDisabledAudio) return;
 
     const audio: HTMLAudioElement = new Audio(url);
 

@@ -30,7 +30,7 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
   const currentFocusLessonRef = useRef<HTMLLIElement | any>(null);
   const [run, setRun] = useState<boolean>(isTutorial);
   const [spotlightWidth, setSpotlightWidth] = useState<string>('');
-  const [{ user }, dispatch] = useContext(context);
+  const [{ user }] = useContext(context);
 
   useEffect(() => {
     if (user === null && cookie.get(TUTORIAL)) {

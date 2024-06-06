@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { HTTP_STATUS_CODES, LESSIONS_COUNT } = require('./constant');
+const { HTTP_STATUS_CODES } = require('./constant');
 const {
   TOKEN_NAME,
   ACCESS_KEY_TOKEN,

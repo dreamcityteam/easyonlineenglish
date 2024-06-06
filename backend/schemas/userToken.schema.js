@@ -7,12 +7,10 @@ const userTokenSchema = new Schema({
     ref: 'User',
     required: true
   },
-
   token: {
     type: String,
     required: true,
   },
-
   type: {
     type: String,
     enum: ['PASSWORD', 'AUTH'],

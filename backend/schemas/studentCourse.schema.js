@@ -7,18 +7,15 @@ const studentCourseSchema = new Schema({
     ref: 'User',
     required: true
   },
-
   idCourse: {
     type: Schema.Types.ObjectId,
     ref: 'Course',
     required: true
   },
-
   isCompleted: {
     type: Boolean,
     default: false
   },
-
   index: {
     lesson: {
       type: Number,
@@ -29,19 +26,16 @@ const studentCourseSchema = new Schema({
       default: 0
     } 
   },
-
   unlockedWords: {
     type: Map, 
     of: Boolean,
     default: {}
   },
-
   completedWords: {
     type: Map,
     of: Boolean,
     default: {} 
   },
-
   progress: {
     type: Number,
     default: 0

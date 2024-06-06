@@ -153,7 +153,7 @@ const cookie = {
 }
 
 const isUser = (): boolean => {
-  const [{ user }, dispatch] = useContext(context);
+  const [{ user }] = useContext(context);
 
   return !!user;
 }

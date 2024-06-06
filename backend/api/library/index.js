@@ -3,7 +3,7 @@ const { getResponse, send } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const Library = require('../../schemas/library.schema');
 
-module.exports = async (req, res) => {
+module.exports = async (_, res) => {
   const response = getResponse(res);
 
   try {

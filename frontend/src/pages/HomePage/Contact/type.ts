@@ -7,13 +7,6 @@ type Inputs = {
   message: Field;
 };
 
-type Info = {
-  googleId: string;
-  title: string;
-  info: string;
-}
-
 export type {
-  Inputs,
-  Info
+  Inputs
 }

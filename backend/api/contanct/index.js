@@ -18,10 +18,10 @@ module.exports = async (req, res) => {
   if (await sendEmail(emailConfig)) {
     response.message = 'Email sent successfully';
     response.statusCode = HTTP_STATUS_CODES.OK;
-    send(response);
   } else {
     response.message = `Error sending email`;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
-    send(response);
   }
+
+  send(response);
 };
