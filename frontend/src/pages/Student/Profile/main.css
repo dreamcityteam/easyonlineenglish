@@ -194,7 +194,7 @@
 
 @media (max-width: 990px) {
   .profile-page .content__title {
-    margin-top: 1.5rem;
+    margin-top: 4.5rem;
   }
 }
 
@@ -220,12 +220,14 @@
   margin-top: 2rem;
   list-style-type: none;
   order: 3;
+  padding: 0;
 }
 
 @media (max-width: 990px) {
   .profile-page .content__list {
-    margin-top: 1.5rem;
     order: 2;
+    width: 100%;
+    flex-direction: column;
   }
 }
 
@@ -238,6 +240,7 @@
 @media (max-width: 990px) {
   .profile-page .content__list li {
     font-size: 0.8rem;
+    margin-bottom: 20px;
   }
 }
 
