@@ -16,7 +16,10 @@ type User = {
   phone: string;
   photo: string;
   role: string;
-  isPayment: boolean;
+  payment: {
+    isPayment: boolean;
+    plan: string;
+  };
   isTutorial: boolean;
 }
 

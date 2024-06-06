@@ -18,7 +18,7 @@ const Navigator: React.FC = (): JSX.Element => {
 
     if (user === null) {
       tab = homepage;
-    } else if (user.isPayment) {
+    } else if (user.payment.isPayment) {
       tab = studentPayment;
     } else {
       tab = studentPendingPayment;

@@ -9,6 +9,12 @@ type Inputs = {
   oldPassword: Field;
 };
 
+const PLAN: any = {
+  '1': '1 MES',
+  '2': '1 AÑO',
+  '3': '3 MES'
+}
+
 const inputs = ({ name, lastname, phone }: any): Inputs => ({
   name: {
     label: 'Nombre',
@@ -68,5 +74,6 @@ const inputs = ({ name, lastname, phone }: any): Inputs => ({
 });
 
 export {
-  inputs
+  inputs,
+  PLAN
 }

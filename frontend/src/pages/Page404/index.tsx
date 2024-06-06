@@ -10,7 +10,7 @@ const page404: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     const canRedirectStudentPendingPayment = (
-      (location.pathname.includes('/course') || location.pathname === '/courses') && user && !user.isPayment
+      (location.pathname.includes('/course') || location.pathname === '/courses') && user && !user.payment.isPayment
     );
 
     canRedirectStudentPendingPayment && redirect('/plan');

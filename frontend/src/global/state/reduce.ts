@@ -16,7 +16,7 @@ const reducer = (state: State, { payload, type }: Option): State => ({
   [SET_USER]: ({
     _id = '', username = '', email = '', lastname = '',
     name = '', phone = null, photo = '', role,
-    isPayment = false, isTutorial = true
+    payment = { isPayment: false, plan: '' }, isTutorial = true
   }: any): State => ({
     ...state,
     user: {
@@ -28,7 +28,7 @@ const reducer = (state: State, { payload, type }: Option): State => ({
       phone,
       photo: photo || DEFAULT_PHOTO,
       role,
-      isPayment,
+      payment,
       isTutorial
     }
   }),
