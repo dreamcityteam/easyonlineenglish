@@ -1,6 +1,7 @@
 const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
-const User = require('../../schemas/user.schema');
+const connectToDatabase = require('../../db');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const User = require('../../schemas/user.schema');
 const StudentPayment = require('../../schemas/studentPayment.schema');
 
 const getIsPayment = async (id) => {
@@ -15,6 +16,8 @@ const auth = async (req, res) => {
   const response = getResponse(res);
 
   try {
+    await connectToDatabase();
+
     if (req.user) {
       const user = await User.findById(req.user.id, { password: 0, __v: 0 });
 

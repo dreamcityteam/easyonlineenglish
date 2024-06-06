@@ -1,5 +1,6 @@
 const { HTTP_STATUS_CODES, INITIAL_COURSE } = require('../../tools/constant');
 const { getResponse, send } = require('../../tools/functions');
+const connectToDatabase = require('../../db');
 const Course = require('../../schemas/course.schema');
 const CourseWord = require('../../schemas/courseWord.schema');
 
@@ -7,6 +8,8 @@ module.exports = async (_req, res) => {
   const response = getResponse(res);
 
   try {
+    await connectToDatabase();
+
     const course = await Course.findOne({ title: INITIAL_COURSE.TITLE }).select({ __v: 0 });
     const courseWord = await CourseWord
       .find({ idCourse: course._id })

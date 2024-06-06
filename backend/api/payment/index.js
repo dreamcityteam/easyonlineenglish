@@ -1,11 +1,12 @@
 const fs = require('fs');
 const https = require('https');
 const axios = require('axios');
+const path = require('path');
 const { getResponse, send, sendEmail } = require('../../tools/functions');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
 const { getData, getMessage, getDurationInMonth, formatPhoneNumber } = require('./function');
 const { PAYMENT_METHOD } = require('./const');
-const path = require('path');
+const connectToDatabase = require('../../db');
 const StudentPayment = require('../../schemas/studentPayment.schema');
 const User = require('../../schemas/user.schema');
 
@@ -55,6 +56,8 @@ module.exports = async (req, res) => {
     });
 
     if (data.IsoCode === '00') {
+      await connectToDatabase();
+
       const user = await User.findOne({ _id: req.user.id }).select({ __v: 0 });
 
       if (user) {

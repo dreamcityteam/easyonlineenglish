@@ -1,11 +1,14 @@
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
 const { getResponse, send } = require('../../tools/functions');
+const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 
 module.exports = async (req, res) => {
   const response = getResponse(res);
 
   try {
+    await connectToDatabase();
+
     const student = await User.findOneAndUpdate({ _id: req.user.id }, { isTutorial: false }, { new: true });
 
     // Check if the student course was successfully updated

@@ -1,7 +1,8 @@
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
 const { getResponse, send } = require('../../tools/functions');
-const StudentCourse = require('../../schemas/studentCourse.schema');
 const { getCourseProgress } = require('./function');
+const connectToDatabase = require('../../db');
+const StudentCourse = require('../../schemas/studentCourse.schema');
 const CourseWord = require('../../schemas/courseWord.schema');
 
 module.exports = async (req, res) => {
@@ -14,6 +15,8 @@ module.exports = async (req, res) => {
       unlockedWords,
       completedWords,
     } = req.body;
+
+    await connectToDatabase();
 
     // Find the student course by ID
     const studentCourseProgress = await StudentCourse.findById(idStudentCourse);
