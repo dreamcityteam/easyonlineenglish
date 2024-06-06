@@ -1,11 +1,14 @@
 const { HTTP_STATUS_CODES, INITIAL_COURSE } = require('../../tools/constant');
 const { getResponse, send } = require('../../tools/functions');
+const connectToDatabase = require('../../db');
 const Course = require('../../schemas/course.schema');
 
 module.exports = async (req, res) => {
   const response = getResponse(res);
 
   try {
+    await connectToDatabase();
+
     const course = await Course.findOne({ title: INITIAL_COURSE.TITLE }).select({ __v: 0 });
 
     if (course) {

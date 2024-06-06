@@ -1,5 +1,6 @@
 const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
 const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/constant');
+const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 
 const register = async (req, res) => {
@@ -42,6 +43,8 @@ const register = async (req, res) => {
   }
 
   try {
+    await connectToDatabase();
+
     const newUser = new User({
       username: username.toLowerCase(),
       name: name.toLowerCase(),

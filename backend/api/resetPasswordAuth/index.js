@@ -1,11 +1,14 @@
 const { getResponse, send } = require('../../tools/functions');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const connectToDatabase = require('../../db');
 const UserToken = require('../../schemas/userToken.schema');
 
 module.exports = async (req, res) => {
   const response = getResponse(res);
 
   try {
+    await connectToDatabase();
+
     const userToken = await UserToken.findOne({
       idUser: req.user.id,
       type: 'PASSWORD',

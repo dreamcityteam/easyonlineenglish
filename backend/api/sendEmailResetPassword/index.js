@@ -1,5 +1,6 @@
 const { getResponse, send, sendEmail, getToken } = require('../../tools/functions');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 const UserToken = require('../../schemas/userToken.schema');
 
@@ -10,6 +11,8 @@ module.exports = async (req, res) => {
   const response = getResponse(res);
 
   try {
+    await connectToDatabase();
+
     const { email = '' } = req.body;
     const { EMAIL_USER = '' } = process.env;
     const user = await User.findOne({ email }).select({ __v: 0 });

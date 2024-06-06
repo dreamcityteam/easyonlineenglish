@@ -8,25 +8,7 @@ const routers = require('./routers');
 const mongoose = require('mongoose');
 const middlewareToken = require('./middleware/token');
 const initialDatabase = require('./initialDatabase');
-
-const {
-  DB_USERNAME,
-  DB_PASSWORD,
-  DB_CLUSTER,
-  DB_NAME,
-  DB_PARAMS,
-} = process.env;
-
-const DB_URI = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_CLUSTER}/${DB_NAME}?${DB_PARAMS}`;
-
-mongoose.connect(DB_URI)
-  .then(() => {
-    console.log('Connected to MongoDB');
-    initialDatabase();
-  })
-  .catch(error => {
-    console.error('Error connecting to MongoDB:', error.message);
-  });
+const connectToDatabase = require('./db');
 
 const app = express();
 const BUILD_PATH = './build';
@@ -54,4 +36,7 @@ app.get('*', (req, res) => {
 // Start Server
 app.listen(PORT, () => {
   console.log('Server is running on port', PORT);
+  connectToDatabase().then(() => {
+    initialDatabase();
+  });
 });

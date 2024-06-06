@@ -1,5 +1,6 @@
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
 const { getResponse, send } = require('../../tools/functions');
+const connectToDatabase = require('../../db');
 const Course = require('../../schemas/course.schema');
 const StudentCourse = require('../../schemas/studentCourse.schema');
 
@@ -8,6 +9,8 @@ module.exports = async ({ user }, res) => {
   const userId = user.id;
 
   try {
+    await connectToDatabase();
+
     let courses = await Course.find().lean().select({ __v: 0 });
 
     if (courses.length === 0) {

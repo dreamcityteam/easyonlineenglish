@@ -1,5 +1,6 @@
 const { getResponse,  send, hash } = require('../../tools/functions');
 const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/constant');
+const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 const UserToken = require('../../schemas/userToken.schema');
 
@@ -19,7 +20,8 @@ module.exports = async (req, res) => {
   }
 
   try {
-    // Find user by ID
+    await connectToDatabase();
+
     const user = await User.findById(req.user.id);
 
     if (!user) {
