@@ -5,7 +5,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const routers = require('./routers');
-const mongoose = require('mongoose');
 const middlewareToken = require('./middleware/token');
 const initialDatabase = require('./initialDatabase');
 const connectToDatabase = require('./db');
@@ -29,7 +28,7 @@ app.use((_req, res, next) => {
 app.use(express.static(path.join(__dirname, BUILD_PATH)));
 
 // Server React SPA
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
   res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
 });
 

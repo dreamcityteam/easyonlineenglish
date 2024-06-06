@@ -1,17 +1,10 @@
 const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
+const { getIsPayment } = require('./functions');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
 const User = require('../../schemas/user.schema');
-const StudentPayment = require('../../schemas/studentPayment.schema');
 
-const getIsPayment = async (id) => {
-  const payment = await StudentPayment.findOne({ idUser: id }).sort({ _id: -1 });
-  const isPayment = payment ? new Date(payment.dateEnd) > new Date() : false;
-
-  return isPayment;
-}
-
-const auth = async (req, res) => {
+module.exports = async (req, res) => {
   const { username = '', password = '' } = req.body;
   const response = getResponse(res);
 
@@ -55,5 +48,3 @@ const auth = async (req, res) => {
 
   send(response);
 };
-
-module.exports = auth;

@@ -105,9 +105,28 @@ const formatPhoneNumber = (phoneNumber = '') =>
     .replace(/\D/g, '')
     .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
 
+const getMonthsDiff = (dateFrom, dateTo) => {
+  const from = new Date(dateFrom);
+  const to = new Date(dateTo);
+
+  const fromYear = from.getFullYear();
+  const fromMonth = from.getMonth();
+  const toYear = to.getFullYear();
+  const toMonth = to.getMonth();
+
+  let months = (toYear - fromYear) * 12 + (toMonth - fromMonth);
+
+  if (to.getDate() < from.getDate()) {
+    months--;
+  }
+
+  return months;
+}
+
 module.exports = {
   getData,
   getMessage,
   getDurationInMonth,
-  formatPhoneNumber
+  formatPhoneNumber,
+  getMonthsDiff
 }

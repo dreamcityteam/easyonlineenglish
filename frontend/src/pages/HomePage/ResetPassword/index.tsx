@@ -30,6 +30,7 @@ const ResetPassword: React.FC = (): JSX.Element => {
   return (
     <section className={style.ResetPassword}>
       <Form
+        canCleanInput
         title="Contraseña"
         api="send-email-reset-password"
         buttonText="Enviar"

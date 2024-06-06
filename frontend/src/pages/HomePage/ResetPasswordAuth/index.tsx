@@ -51,10 +51,8 @@ const ResetPasswordAuth: React.FC = (): JSX.Element => {
     <section className={style.ResetPassword}>
       {isToken ? (
         <div>
-          <header>
-            <h1>Restablecer contraseña</h1>
-          </header>
           <Form
+            title="Contraseña"
             api="reset-password"
             token={token}
             buttonText="Enviar"

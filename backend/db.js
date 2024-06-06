@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 
-const {
-  DB_USERNAME,
-  DB_PASSWORD,
-  DB_CLUSTER,
-  DB_NAME,
-  DB_PARAMS,
-} = process.env;
-
-const DB_URI = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_CLUSTER}/${DB_NAME}?${DB_PARAMS}`;
+const { MONGODB_URI_PRODUCTION } = process.env;
 
 let isConnected;
 
@@ -18,7 +10,7 @@ const connectToDatabase = async () => {
   }
 
   try {
-    await mongoose.connect(DB_URI, {
+    await mongoose.connect(MONGODB_URI_PRODUCTION, {
       minPoolSize: 1,
       maxPoolSize: 1,
     });
