@@ -3,18 +3,19 @@ import { State } from '../../../global/state/type';
 import context from '../../../global/state/context';
 import style from './style.module.sass';
 import { formatPhoneNumber } from '../../../tools/function';
-import { inputs } from './data';
+import { PLAN, inputs } from './data';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import Form from '../../../components/Form';
 import Modal from '../../../components/Modal';
 import { SET_USER } from '../../../global/state/actionTypes';
+import './main.css';
 
 const Profile: React.FC = (): JSX.Element => {
   const [{ user }] = useContext<[State, any]>(context);
   const [_, dispatch] = useContext<[State, any]>(context);
   const [isMondal, setIsMondal] = useState<boolean>(false);
 
-  const onOpenMondal= (): void => {
+  const onOpenMondal = (): void => {
     setIsMondal(true);
   }
 
@@ -31,7 +32,7 @@ const Profile: React.FC = (): JSX.Element => {
       }
     };
 
-   if (statusCode === HTTP_STATUS_CODES.OK) {
+    if (statusCode === HTTP_STATUS_CODES.OK) {
       dispatch({ type: SET_USER, payload: data });
       setIsMondal(false);
     } else if (statusCode === HTTP_STATUS_CODES.UNAUTHORIZED) {
@@ -44,22 +45,36 @@ const Profile: React.FC = (): JSX.Element => {
   }
 
   return (
-    <section className={style.profile}>
-      <div className={style.profile__container}>
-        <div className={style.profile__avatar}>
-          <span>
-            {user?.name && user?.lastname ? user.name[0] + user.lastname[0] : ''}
-          </span>
-        </div>
-        <div className={style.profile__info_container}>
-          <ul className={style.profile__info}>
-            <li>{user?.name}</li>
-            <li><strong>Apellido: </strong>{user?.lastname}</li>
-            <li><strong>Email: </strong>{user?.email}</li>
-            <li><strong>Teléfono: </strong>{formatPhoneNumber(user?.phone) || 'N/A'}</li>
-            <li><strong>Contraseña: </strong> **********</li>
+    <section>
+      <div className="profile-page">
+        <div className="content">
+          <div className="content__cover">
+            <div className="content__avatar"></div>
+            <div className="content__bull"><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div className="content__title">
+            <h1>
+              {user?.name} {user?.lastname}
+            </h1>
+            <span>Estudiante - Easy Online English</span>
+          </div>
+          <div className="content__description">
+          </div>
+          <ul className="content__list">
+            <li><span>Email</span>{user?.email}</li>
+            <li><span>Telefono</span>{formatPhoneNumber(user?.phone)}</li>
+            <li><span>Membresía</span>{user?.payment.plan ? PLAN[user.payment.plan]: 'N/A'}</li>
           </ul>
-          <span onClick={onOpenMondal} className={style.profile__button}> Editar</span>
+          <div className="content__button">
+            <span className="button" onClick={onOpenMondal}>
+              <p className="button__text">Editar perfil</p>
+            </span>
+          </div>
+        </div>
+        <div className="bg">
+          <div><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
         </div>
       </div>
       <Modal
@@ -73,7 +88,7 @@ const Profile: React.FC = (): JSX.Element => {
           onData={onData}
         />
       </Modal>
-    </section>
+    </section >
   );
 };
 

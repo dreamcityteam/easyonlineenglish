@@ -98,7 +98,7 @@ const PaymentForms: React.FC = () => {
 
     if (statusCode === HTTP_STATUS_CODES.OK) {
       redirect('/courses');
-      dispatch({ type: SET_USER, payload: { ...user, isPayment: true } });
+      dispatch({ type: SET_USER, payload: { ...user, payment: { isPayment: true, plan: paymentMethod } } });
     }
 
     if (data.message) {

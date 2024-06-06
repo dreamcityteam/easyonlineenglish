@@ -1,12 +1,15 @@
 const StudentPayment = require('../../schemas/studentPayment.schema');
 
-const getIsPayment = async (id) => {
+const getPayment = async (id) => {
   const payment = await StudentPayment.findOne({ idUser: id }).sort({ _id: -1 });
   const isPayment = payment ? new Date(payment.dateEnd) > new Date() : false;
 
-  return isPayment;
+  return {
+    plan: payment ? payment.plan : '',
+    isPayment
+  };
 }
 
 module.exports = {
-  getIsPayment
+  getPayment
 };

@@ -42,7 +42,7 @@ const Home: React.FC = () => {
   const [buttonUrl, setButtonUrl] = useState<string>('');
 
   useEffect(() => {
-    if (user === null || user.isPayment) {
+    if (user === null || user.payment.isPayment) {
       setButtonUrl('/courses');
     } else {
       setButtonUrl('/plan');
