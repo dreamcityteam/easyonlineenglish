@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Lesson } from '../../../../global/state/type';
-import SVGArrowLeft from '../../../../../public/svg/arrowDropleftCircle.svg';
-import SVGArrowRight from '../../../../../public/svg/arrowDroprightCircle.svg';
+import SVGMenu from '../../../../../public/svg/menu.svg';
 import SVGCheck from '../../../../../public/svg/check.svg';
 import SVGCircle from '../../../../../public/svg/circle.svg';
 import SVGCircleAlert from '../../../../../public/svg/circleAlert.svg';
@@ -144,8 +143,8 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
         }}
       />
       <div className={style.button__container}>
-        <div className={style.aside__button} onClick={toggleSidebar}>
-          <img alt="Aside button" src={canOpenSideBar ? SVGArrowLeft : SVGArrowRight} />
+        <div className={`${style.aside__button} ${canOpenSideBar ? style.aside__button_static : ''}`} onClick={toggleSidebar}>
+          <img alt="Aside button" src={SVGMenu} />
         </div>
       </div>
       <div className={style.aside__title}>

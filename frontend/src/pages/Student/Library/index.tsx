@@ -15,6 +15,7 @@ const Library: React.FC = (): JSX.Element => {
   const [content, setContent] = useState<LibraryContent[]>([]);
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [{ libraryCache }, dispatch] = useContext(context);
+  const [speech, setSpeech] = useState<{ [key: string]: boolean; }>({});
 
   useEffect(() => {
     saveLibraryData();
@@ -35,17 +36,24 @@ const Library: React.FC = (): JSX.Element => {
       service: { method: 'get', endpoint: 'library' },
       modal: { dispatch, text: 'Cargando libreria' },
       success: (data): void => {
+        console.log(data)
         setData(data);
-        setContent(data[tabIndex].content);
+        setContent(addPronunciationField(data[tabIndex].content));
         saveLibraryCacheData(data);
       }
     });
   }
 
+  const addPronunciationField = (content: Item[]): Item[] =>
+    content.map((item: Item) => ({ ...item, pronunciation: item.audioUrl }))
+
   const handlerOnTab = (index: number): void => {
     setContent(data[index].content);
     setTabIndex(index);
   }
+
+  const onCheck = (isCorrect: boolean, englishWord: string): void =>
+    setSpeech((currentState) => ({ ...currentState, [englishWord]: isCorrect }));
 
   return (
     <>
@@ -80,12 +88,21 @@ const Library: React.FC = (): JSX.Element => {
                   spanishTranslation: { value: 'Español' },
                   audioUrl: {
                     value: 'Audio',
-                    render: (value: string, item: Item): JSX.Element =>
+                    render: (value: string): JSX.Element =>
                       <Sound src={value} style={style} />
+                  },
+                  pronunciation: {
+                    value: 'Pronunciación',
+                    render: (value: string, item: Item): JSX.Element =>
+                      <Speech
+                        audioUrl={value}
+                        onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
+                        word={item.englishWord}
+                      />
                   },
                   imageUrl: {
                     value: 'Referencia',
-                    render: (value: string): JSX.Element => (
+                    render: (value: string, item: Item): JSX.Element => (
                       <div className={style.table__image_container}>
                         <img
                           alt="vocabulary image"
@@ -93,6 +110,14 @@ const Library: React.FC = (): JSX.Element => {
                           loading="lazy"
                           src={value}
                         />
+                        {typeof speech[item.englishWord] !== 'undefined' && (
+                          <span
+                            className={style.table__feedback}
+                            style={{ background: speech[item.englishWord] ? '#4caf50' : '#f44336' }}
+                          >
+                            {speech[item.englishWord] ? 'Correcto' : 'Incorrecto'}
+                          </span>
+                        )}
                       </div>
                     )
                   },

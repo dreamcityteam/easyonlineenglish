@@ -72,7 +72,6 @@ const PaymentForms: React.FC = () => {
   };
 
   const processPayment = async (): Promise<void> => {
-    let field = { key: '', messageError: '' };
     const EXPIRY_PREFIX = '20';
 
     if (isEmptyField()) return;

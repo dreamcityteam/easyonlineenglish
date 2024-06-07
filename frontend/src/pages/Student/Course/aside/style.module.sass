@@ -26,13 +26,17 @@
     display: flex
     height: 53px
     justify-content: center
-    margin: 5px -30px
-    position: absolute
+    margin: 0px -66px
+    position: fixed
     width: 57px
 
     img
       border-radius: 50%
       @include background-gradient()
+
+    &_static
+      position: absolute
+      margin: 5px -3px
 
   &__words
     color: #4e4e4e
@@ -100,10 +104,11 @@
   height: 0
 
 .hide
-  animation: slideInAside 0.5s forwards
+  height: 0
+  width: 0
 
 .display
-  animation: slideOutAside 0.5s forwards
+  width: 300px
 
 .button__container
   display: flex
@@ -113,20 +118,6 @@
   overflow-y: scroll
   height: 300px
   padding: 0
-
-@keyframes slideInAside
-  from
-    width: 300px
-  to
-    height: 0
-    width: 0
-
-@keyframes slideOutAside
-  from
-    height: 0
-    width: 0
-  to
-    width: 300px
 
 .tutorial__title
   font-weight: 400
