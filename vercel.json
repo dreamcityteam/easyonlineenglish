@@ -13,8 +13,9 @@
     }
   ],
   "functions": {
-    "backend/api/*.js": {
-      "maxDuration": 300
+    "backend/index.js": {
+      "runtime": "nodejs16.x",
+      "maxDuration": 60
     }
   }
 }
