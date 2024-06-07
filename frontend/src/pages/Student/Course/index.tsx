@@ -282,12 +282,12 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   };
 
   const saveCacheSentenceIndex = (): void => {
-    if (course) {
+    if (course && word) {
       saveCourseCacheData({
         ...course,
         index: {
           ...course.index,
-          sentence: sentenceIndex === 4 ? sentenceIndex : sentenceIndex + 1
+          sentence: sentenceIndex === word.sentences.length - 1 ? sentenceIndex : sentenceIndex + 1
         }
       });
     }
@@ -299,9 +299,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     setCanDisabledAudio(isPlay);
   };
 
-  const cleanFeedback = (): void => {
+  const cleanFeedback = (): void =>
     setFeedback({ message: '', canShow: false });
-  };
 
   const getWordProgress = (): string => {
     const totalSentencesCount: number = word?.sentences?.length || 0;

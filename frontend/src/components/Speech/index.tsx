@@ -23,14 +23,22 @@ const Speech: React.FC<Props> = ({
   const [recognition, setRecognition] = useState<any>(null);
 
   const startListening = (): void => {
-    const audio: HTMLAudioElement = new Audio(audioUrl);
-    const pronunciationAudio: HTMLAudioElement = new Audio('https://easyonlineenglish.com/wp-content/uploads/2016/12/pronunciation.mp3');
+    const pronunciationAudio: HTMLAudioElement = new Audio(audioUrl);
+    const whistleAudio: HTMLAudioElement = new Audio('https://easyonlineenglish.com/wp-content/uploads/2016/12/pronunciation.mp3');
 
-    audio.play();
+    pronunciationAudio.play();
     setCanPlay(true);
     onPlaySpeech && onPlaySpeech(true);
 
-    audio.onended = (): void => {
+    pronunciationAudio.onended = () => {
+      whistleAudio.play();
+    }
+
+    whistleAudio.onended = () => {
+      pronunciation();
+    }
+
+    const pronunciation = (): void => {
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       const recognition = new SpeechRecognition();
 
@@ -42,7 +50,6 @@ const Speech: React.FC<Props> = ({
       recognition.continuous = true;
 
       recognition.onstart = (): void => {
-        pronunciationAudio.play();
         setOutput('Ahora Pronunciar');
       }
 
