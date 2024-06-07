@@ -3,6 +3,7 @@
 interface CssExports {
   'aside': string;
   'aside__button': string;
+  'aside__button_static': string;
   'aside__element': string;
   'aside__lession': string;
   'aside__lession_title': string;
@@ -15,8 +16,6 @@ interface CssExports {
   'display': string;
   'hide': string;
   'hide__default': string;
-  'slideInAside': string;
-  'slideOutAside': string;
   'tutorial__title': string;
   'word__display': string;
 }

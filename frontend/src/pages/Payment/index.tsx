@@ -72,15 +72,7 @@ const PaymentForms: React.FC = () => {
   };
 
   const processPayment = async (): Promise<void> => {
-    let field = { key: '', messageError: '' };
     const EXPIRY_PREFIX = '20';
-    console.log({
-      plan: paymentMethod,
-      csv: state.cvc.value,
-      expiration: `${EXPIRY_PREFIX}${state.expiry.value}`,
-      number: state.number.value,
-      name: state.name.value
-    })
 
     if (isEmptyField()) return;
 
