@@ -28,7 +28,7 @@ const Library: React.FC = (): JSX.Element => {
   const saveLibraryData = async () => {
     if (libraryCache.length) {
       setData(libraryCache);
-      setContent(libraryCache[tabIndex].content);
+      setContent(addPronunciationField(libraryCache[tabIndex].content));
       return;
     }
 
@@ -36,7 +36,6 @@ const Library: React.FC = (): JSX.Element => {
       service: { method: 'get', endpoint: 'library' },
       modal: { dispatch, text: 'Cargando libreria' },
       success: (data): void => {
-        console.log(data)
         setData(data);
         setContent(addPronunciationField(data[tabIndex].content));
         saveLibraryCacheData(data);
@@ -48,7 +47,7 @@ const Library: React.FC = (): JSX.Element => {
     content.map((item: Item) => ({ ...item, pronunciation: item.audioUrl }))
 
   const handlerOnTab = (index: number): void => {
-    setContent(data[index].content);
+    setContent(addPronunciationField(data[index].content));
     setTabIndex(index);
   }
 
