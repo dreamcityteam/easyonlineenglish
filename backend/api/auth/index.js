@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
       return send(response);
     }
 
-    const field = username.toLowerCase();
+    const field = username.trim().toLowerCase();
     const user = await User.findOne({ $or: [{ email: field }, { username: field }] }).select({ __v: 0 });
 
     if (!user) {

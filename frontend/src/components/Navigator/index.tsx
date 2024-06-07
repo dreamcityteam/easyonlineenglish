@@ -23,9 +23,26 @@ const Navigator: React.FC = (): JSX.Element => {
     } else {
       tab = studentPendingPayment;
     }
-
     setTabs(tab);
   }, [user]);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // @ts-ignore
+      if (!event.target.classList.contains(style.navigator__links) || !event.target.classList.contains(style.navigator__user)) {
+        window.setTimeout(() => onOpenNavMobile(), 100);
+      }
+    };
+
+    const removeEvent = () => document.removeEventListener('mousedown', handleClickOutside);
+
+    canOpen
+      ? document.addEventListener('mousedown', handleClickOutside)
+      : removeEvent();
+
+    return removeEvent;
+  }, [canOpen]);
 
   const onOpenNavMobile = (): void => {
     const newState: boolean = !canOpen;
@@ -39,9 +56,9 @@ const Navigator: React.FC = (): JSX.Element => {
   }
 
   const getTargetClassName = (path: string): string => (
-    location.pathname === path || 
-    (path === '/courses') && location.pathname.includes('course') ||
-    (path === '/plan') && location.pathname.includes('payment') 
+    location.pathname === path ||
+      (path === '/courses') && location.pathname.includes('course') ||
+      (path === '/plan') && location.pathname.includes('payment')
       ? style.navigator__target
       : ''
   );
