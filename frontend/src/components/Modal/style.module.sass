@@ -2,7 +2,7 @@
 
 .modal
   align-items: center
-  background: #ffffff
+  background-color: rgba(0, 0, 0, 0.6)
   color: black
   display: flex
   height: 100%
@@ -13,31 +13,8 @@
   width: 100%
   z-index: 9999
 
-  &__container
-    padding: 20px
-    z-index: 4
-
-  &__title
-    font-size: 50px
-
-  &__paragraph
-    font-size: 1rem
-
-  &__header
-    position: relative
-
-  &__close
-    border-radius: 5px
-    cursor: pointer
-    font-family: cursive
-    font-weight: bold
-    padding: 5px 7px
-    position: absolute
-    right: 0
-    top: -50px
-
   &__fadeIn
-    animation: fadeInOut 2s forwards alternate
+    animation: fadeInOut .5s forwards alternate
 
   @include mobile
     &__close
@@ -45,7 +22,7 @@
 
   @keyframes fadeInOut
     0%
-      opacity: 0
+      opacity: .5
 
     100%
       opacity: 1

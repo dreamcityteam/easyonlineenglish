@@ -1,5 +1,5 @@
 import { Inputs } from './type';
-import { REGEXP } from '../../../tools/constant';
+import { REGEXP } from '../../tools/constant';
 
 const inputs: Inputs = {
   name: {

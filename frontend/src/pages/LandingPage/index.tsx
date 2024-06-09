@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
-import GoogleDriveImage from '../../../components/Image';
-import context from '../../../global/state/context';
+import GoogleDriveImage from '../../components/Image';
+import context from '../../global/state/context';
 
 interface Prop {
   className?: string;

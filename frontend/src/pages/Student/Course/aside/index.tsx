@@ -133,7 +133,8 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
             display: 'none',
           },
           overlay: {
-            height: '100%',
+            height: 'calc(103px + 100%)',
+            zIndex: 4,
           },
           options: {
             primaryColor: '#0c97d6',

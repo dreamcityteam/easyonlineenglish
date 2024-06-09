@@ -1,4 +1,4 @@
-import { Field } from "../../../components/Form/type";
+import { Field } from '../../components/Form/type';
 
 type Inputs = {
   name: Field;

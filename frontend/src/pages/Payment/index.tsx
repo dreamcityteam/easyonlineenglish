@@ -3,16 +3,20 @@ import Cards from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import style from './style.module.sass';
 import context from '../../global/state/context';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { send } from '../../tools/function';
 import { SET_USER } from '../../global/state/actionTypes';
 import Loading from '../../components/Form/Loading';
 import { HTTP_STATUS_CODES } from '../../tools/constant';
 import { Field } from './type';
+import Modal from '../../components/Modal';
+import SVGSuccess from '../../../public/svg/success.svg';
+import Close from '../../components/Modal/Close';
 
 const PaymentForms: React.FC = () => {
   const redirect = useNavigate();
   const { paymentMethod } = useParams<string>();
+  const [canOpenModal, setCanOpenModal] = useState<boolean>(false);
   const [paymentTitle, setPaymentTitle] = useState<string>();
   const [{ user }, dispatch] = useContext(context);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -26,49 +30,58 @@ const PaymentForms: React.FC = () => {
 
   useEffect(() => {
     if (paymentMethod === '1') setPaymentTitle('MEMBRESÍA POR 1 MES');
-    else if (paymentMethod === '2') setPaymentTitle('MEMBRESÍA POR 1 AÑO');
-    else if (paymentMethod === '3') setPaymentTitle('MEMBRESÍA POR 3 MES');
+    else if (paymentMethod === '2')
+      setPaymentTitle('MEMBRESÍA POR 1 AÑO');
+    else if (paymentMethod === '3')
+      setPaymentTitle('MEMBRESÍA POR 3 MES');
     else redirect('/plan');
   }, []);
 
   const isEmptyField = (): boolean => {
     let isEmpty: boolean = false;
 
-    Object.keys(state).forEach(key => {
+    Object.keys(state).forEach((key) => {
       const field = state[key];
 
-      const messageError: string = field && !field.value && key !== 'focus' ? 'Complete este campo.' : '';
+      const messageError: string =
+        field && !field.value && key !== 'focus'
+          ? 'Complete este campo.'
+          : '';
 
       if (messageError) {
-        isEmpty = true
+        isEmpty = true;
       }
 
-      setState((state: any) => ({ ...state, [key]: { ...state[key], messageError } }));
+      setState((state: any) => ({
+        ...state,
+        [key]: { ...state[key], messageError },
+      }));
     });
 
     return isEmpty;
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    let value = e.target.value;
+  const handleInputChange = ({
+    target: { name, value },
+  }: any): void => {
+    let newValue: string = value;
 
-    if (e.target.name === 'number') {
-      value = getNumber(value);
-    } else if (e.target.name === 'expiry') {
-      value = getNumber(value);
+    if (name === 'number') {
+      newValue = getNumber(value);
+    } else if (name === 'expiry') {
+      newValue = getNumber(value);
     }
 
     setState({
       ...state,
-      [e.target.name]: { ...state[e.target.name], value }
+      [name]: { ...state[name], value: newValue },
     });
   };
 
-  const handleFocusChange = (e: React.FocusEvent<HTMLInputElement>): void => {
-    setState({
-      ...state,
-      focus: { ...state[e.target.name], value: e.target.value }
-    });
+  const handleFocusChange = ({
+    target: { name, value },
+  }: any): void => {
+    setState({ ...state, focus: { ...state[name], value } });
   };
 
   const processPayment = async (): Promise<void> => {
@@ -78,23 +91,38 @@ const PaymentForms: React.FC = () => {
 
     setIsLoading(true);
 
-    const { response: { data = {}, statusCode } }: any = await send({
-      api: 'azul-payment', data: {
+    const {
+      response: { data = {}, statusCode },
+    }: any = await send({
+      api: 'azul-payment',
+      data: {
         plan: paymentMethod,
         csv: state.cvc.value,
         expiration: `${EXPIRY_PREFIX}${state.expiry.value}`,
         number: state.number.value,
-        name: state.name.value
-      }
+        name: state.name.value,
+      },
     }).post();
 
     if (statusCode === HTTP_STATUS_CODES.OK) {
-      redirect('/courses');
-      dispatch({ type: SET_USER, payload: { ...user, payment: { isPayment: true, plan: paymentMethod } } });
+      setCanOpenModal(true);
+      dispatch({
+        type: SET_USER,
+        payload: {
+          ...user,
+          payment: { isPayment: true, plan: paymentMethod },
+        },
+      });
     }
 
     if (data.message) {
-      setState((state: any) => ({ ...state, [data.field]: { ...state[data.field], messageError: data.message } }));
+      setState((state: any) => ({
+        ...state,
+        [data.field]: {
+          ...state[data.field],
+          messageError: data.message,
+        },
+      }));
     }
 
     setIsLoading(false);
@@ -106,16 +134,19 @@ const PaymentForms: React.FC = () => {
     </span>
   );
 
-  const formatInput = (type: 'number' | 'expiry', value: string): string => {
+  const formatInput = (
+    type: 'number' | 'expiry',
+    value: string
+  ): string => {
     const format = {
       number: { regExp: /.{1,4}/g, sing: ' ' },
-      expiry: { regExp: /.{1,2}/g, sing: '/' }
-    }
+      expiry: { regExp: /.{1,2}/g, sing: '/' },
+    };
     const cleaned = value.replace(/\D/g, '');
     const groups = cleaned.match(format[type].regExp);
 
     return groups ? groups.join(format[type].sing) : value;
-  }
+  };
 
   const getNumber = (value: string): string =>
     value.replace(/\D/g, '');
@@ -206,7 +237,9 @@ const PaymentForms: React.FC = () => {
             </div>
           </div>
           <div className={style.payment__input_button}>
-            {isLoading ? <Loading /> : (
+            {isLoading ? (
+              <Loading />
+            ) : (
               <button
                 onClick={processPayment}
                 type="button"
@@ -218,6 +251,24 @@ const PaymentForms: React.FC = () => {
           </div>
         </form>
       </div>
+      <Modal canShow={canOpenModal}>
+        <div className={style.payment__modal}>
+          <Close onClose={() => setCanOpenModal(false) }/>
+          <header className={style.payment__modalIcon}>
+            <img src={SVGSuccess} />
+            <h2>éxito</h2>
+          </header>
+          <div className={style.payment__modalText}>
+            <p>
+              Tu pago ha sido procesado correctamente. Hemos enviado
+              una factura a tu correo electrónico.
+            </p>
+          </div>
+          <Link to="/courses" className={style.payment__modalButton}>
+            Comenzar los cursos
+          </Link>
+        </div>
+      </Modal>
     </section>
   );
 };

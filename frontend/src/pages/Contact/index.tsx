@@ -1,11 +1,11 @@
 import React from 'react';
-import Form from '../../../components/Form';
+import Form from '../../components/Form';
 import { inputs } from './data';
 import style from './style.module.sass';
-import { HTTP_STATUS_CODES } from '../../../tools/constant';
-import SVGPhone from '../../../../public/svg/phone.svg';
-import SVGInfo from '../../../../public/svg/info.svg';
-import SVGLocation from '../../../../public/svg/location.svg';
+import { HTTP_STATUS_CODES } from '../../tools/constant';
+import SVGPhone from '../../../public/svg/phone.svg';
+import SVGInfo from '../../../public/svg/info.svg';
+import SVGLocation from '../../../public/svg/location.svg';
 
 const Contact: React.FC = () => {
   const onData = (payload: any, updateState: (key: string, field: any) => void): void => {

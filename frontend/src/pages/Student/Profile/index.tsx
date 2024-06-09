@@ -9,6 +9,7 @@ import Form from '../../../components/Form';
 import Modal from '../../../components/Modal';
 import { SET_USER } from '../../../global/state/actionTypes';
 import './main.css';
+import Close from '../../../components/Modal/Close';
 
 const Profile: React.FC = (): JSX.Element => {
   const [{ user }] = useContext<[State, any]>(context);
@@ -64,7 +65,7 @@ const Profile: React.FC = (): JSX.Element => {
           <ul className="content__list">
             <li><span>Email</span>{user?.email}</li>
             <li><span>Telefono</span>{formatPhoneNumber(user?.phone)}</li>
-            <li><span>Membresía</span>{user?.payment.plan ? PLAN[user.payment.plan]: 'N/A'}</li>
+            <li><span>Membresía</span>{user?.payment.plan ? PLAN[user.payment.plan] : 'N/A'}</li>
           </ul>
           <div className="content__button">
             <span className="button" onClick={onOpenMondal}>
@@ -81,12 +82,15 @@ const Profile: React.FC = (): JSX.Element => {
         onClose={onCloseonMondal}
         canShow={isMondal}
       >
-        <Form
-          api="student-update"
-          buttonText="Guardar"
-          inputs={inputs(user)}
-          onData={onData}
-        />
+        <div className="modal">
+          <Close onClose={() => setIsMondal(false) } />
+          <Form
+            api="student-update"
+            buttonText="Guardar"
+            inputs={inputs(user)}
+            onData={onData}
+          />
+        </div>
       </Modal>
     </section >
   );

@@ -4,7 +4,7 @@ const axios = require('axios');
 const path = require('path');
 const { getResponse, send, sendEmail } = require('../../tools/functions');
 const { HTTP_STATUS_CODES } = require('../../tools/constant');
-const { getData, getMessage, getDurationInMonth, formatPhoneNumber, getMonthsDiff } = require('./function');
+const { getData, getHtmlMessage, getDurationInMonth, formatPhoneNumber, getMonthsDiff } = require('./function');
 const { PAYMENT_METHOD } = require('./const');
 const connectToDatabase = require('../../db');
 const StudentPayment = require('../../schemas/studentPayment.schema');
@@ -61,35 +61,39 @@ module.exports = async (req, res) => {
       const user = await User.findOne({ _id: req.user.id }).select({ __v: 0 });
 
       if (user) {
+        const payment = await StudentPayment.findOne({ idUser: req.user.id }).sort({ _id: -1 });
+        const lastPayment = payment ? getMonthsDiff(payment.dateStart, payment.dateEnd) : 0;
+
+        const newPayment = new StudentPayment({
+          idUser: req.user.id,
+          name,
+          plan,
+          dateEnd: getDurationInMonth(lastPayment + PAYMENT.DURATION_IN_MONTHS),
+          RRN: data.RRN,
+          CustomOrderId: data.CustomOrderId,
+          AzulOrderId: data.AzulOrderId,
+          Ticket: data.Ticket,
+          amount: PAYMENT.AMOUNT
+        });
+
+        await newPayment.save();
+
         const emailConfig = {
           from: process.env.EMAIL_USER,
           to: user.email,
           subject: 'easyonlineenglish - FACTURA',
-          html: getMessage({
+          html: getHtmlMessage({
             name: `${user.name} ${user.lastname}`,
             phone: formatPhoneNumber(user.phone),
             description: PAYMENT.DESCRIPTION,
             price: PAYMENT.AMOUNT,
             total: PAYMENT.AMOUNT,
+            dateStart: newPayment.dateStart,
+            dateEnd: newPayment.dateEnd,
           }),
         };
 
         if (await sendEmail(emailConfig)) {
-          const payment = await StudentPayment.findOne({ idUser: req.user.id }).sort({ _id: -1 });
-          const lastPayment = payment ? getMonthsDiff(payment.dateStart, payment.dateEnd) : 0;
-
-          await (new StudentPayment({
-            idUser: req.user.id,
-            name,
-            plan,
-            dateEnd: getDurationInMonth(lastPayment + PAYMENT.DURATION_IN_MONTHS),
-            RRN: data.RRN,
-            CustomOrderId: data.CustomOrderId,
-            AzulOrderId: data.AzulOrderId,
-            Ticket: data.Ticket,
-            amount: PAYMENT.AMOUNT
-          }).save());
-
           response.data.message = 'Aprovado.';
           response.statusCode = HTTP_STATUS_CODES.OK;
         }

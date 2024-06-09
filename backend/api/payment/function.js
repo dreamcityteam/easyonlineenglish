@@ -29,8 +29,7 @@ const getData = ({ number, expiration, csv, amount }) => ({
 });
 
 
-const formatDate = () => {
-  const date = new Date();
+const formatDate = (date) => {
   const months = [
     'ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO',
     'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'
@@ -43,12 +42,26 @@ const formatDate = () => {
   return `${day} DE ${month} DEL ${year}`;
 }
 
-const getMessage = ({ name, phone, description, price, total }) => `
+const getHtmlMessage = ({
+  name,
+  phone,
+  description,
+  price,
+  total,
+  dateStart,
+  dateEnd
+}) => {
+  const LOGO_URL = 'https://easyonlineenglish.com/wp-content/uploads/2023/12/Logo-Demo-12.png';
+
+  const formatRow = (textAlign) => 
+    `style="text-align: ${textAlign}; border-bottom: solid #598da6 2px; padding: 20px 0;"`;
+
+  return `
   <div style="box-sizing: border-box; padding: 20px; font-family: arial; width: 100%; color: black; display: flex;">
-    <div style="width: 1000px;">
+    <div style="width: 800px;">
       <header style="align-items: center; border-bottom: solid #598da6 2px; display: flex; width: 100%;">
         <div style="width: 300px;">
-        <img src="https://easyonlineenglish.com/wp-content/uploads/2023/12/Logo-Demo-12.png" alt="logo" style="width: 100%;">
+          <img src="${LOGO_URL}" alt="logo" style="width: 100%;">
         </div>
         <div style="width: 700px; text-align: right;">
           <h2 style="color: #06609e; font-size: 60px;">FACTURA</h2>
@@ -68,29 +81,34 @@ const getMessage = ({ name, phone, description, price, total }) => `
         </div>
         <div style="width: 100%; text-align: right;">
           <div>
-            <span>${formatDate()}</span>
+            <span>${formatDate(dateStart)}</span>
           </div>
         </div>
       </div>
       <table style="border-collapse: collapse; margin-top: 50px; width: 100%;">
         <thead>
           <tr>
-            <th style="text-align: left; border-bottom: solid #598da6 2px; padding: 20px 0;">Descripción</th>
-            <th style="text-align: center; border-bottom: solid #598da6 2px; padding: 20px 0;">Precio</th>
-            <th style="text-align: right; border-bottom: solid #598da6 2px; padding: 20px 0;">Total</th>
+            <th ${formatRow('left')}>Descripción</th>
+            <th ${formatRow('center')}>Fecha de pago</th>
+            <th ${formatRow('center')}>Fecha de vencimiento</th>
+            <th ${formatRow('center')}>Precio</th>
+            <th ${formatRow('right')}>Total</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="text-align: left; border-bottom: solid #598da6 2px; padding: 20px 0;">${description}</td>
-            <td style="text-align: center; border-bottom: solid #598da6 2px; padding: 20px 0;">${price}</td>
-            <td style="text-align: right; border-bottom: solid #598da6 2px; padding: 20px 0;">${total}</td>
+            <td ${formatRow('left')}>${description}</td>
+            <td ${formatRow('center')}>${dateStart}</td>
+            <td ${formatRow('center')}>${dateEnd}</td>
+            <td ${formatRow('center')}>${price}</td>
+            <td ${formatRow('right')}>${total}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 `;
+};
 
 const getDurationInMonth = (durationInMonth) => {
   const currentDate = new Date();
@@ -125,7 +143,7 @@ const getMonthsDiff = (dateFrom, dateTo) => {
 
 module.exports = {
   getData,
-  getMessage,
+  getHtmlMessage,
   getDurationInMonth,
   formatPhoneNumber,
   getMonthsDiff
