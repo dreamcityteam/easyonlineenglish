@@ -464,9 +464,12 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           </div>
           <Modal
             canShow={canShowModal}
-            title="¡Felicidades!"
             isFadeIn
           >
+            <header>
+              <h2> ¡Felicidades! </h2>
+            </header>
+
             <div className={style.course__modal}>
               {isDemo ? (
                 <p>¡Felicidades por completar el curso demo! Si estás listo para seguir adelante, ¡dale click al botón "Planes" y prepárate para más aprendizaje! Estoy aquí para ayudarte en tu viaje. ¡Adelante!</p>

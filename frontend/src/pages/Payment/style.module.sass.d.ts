@@ -11,6 +11,10 @@ interface CssExports {
   'payment__input_button': string;
   'payment__inputs': string;
   'payment__inputs_container': string;
+  'payment__modal': string;
+  'payment__modalButton': string;
+  'payment__modalIcon': string;
+  'payment__modalText': string;
   'payment__title': string;
 }
 export const cssExports: CssExports;
