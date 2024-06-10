@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import ReactGA from 'react-ga';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import Form from '../../../components/Form';
 import { inputs } from './data';
