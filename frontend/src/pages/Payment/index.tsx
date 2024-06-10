@@ -113,6 +113,11 @@ const PaymentForms: React.FC = () => {
           payment: { isPayment: true, plan: paymentMethod },
         },
       });
+      // @ts-ignore
+      window.googleAnalytics('event', 'payment', {
+        'event_category': 'payment',
+        'event_label': 'Pago'
+      });
     } else if (data.message) {
       setState((state: any) => ({
         ...state,
@@ -251,7 +256,7 @@ const PaymentForms: React.FC = () => {
       </div>
       <Modal canShow={canOpenModal}>
         <div className={style.payment__modal}>
-          <Close onClose={() => setCanOpenModal(false) }/>
+          <Close onClose={() => setCanOpenModal(false)} />
           <header className={style.payment__modalIcon}>
             <img src={SVGSuccess} />
             <h2>éxito</h2>

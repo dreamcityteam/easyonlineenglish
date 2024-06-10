@@ -23,10 +23,10 @@ const Login: React.FC = () => {
       dispatch({ type: CLEAN_CACHE });
       dispatch({ type: SET_USER, payload: data });
 
-      ReactGA.event({
-        category: `${data.name} ${data.lastname}`,
-        action: 'LOG_IN',
-        label: 'Iniciar sesión',
+      // @ts-ignore
+      window.googleAnalytics('event', 'login', {
+        'event_category': 'Login',
+        'event_label': 'Iniciar sección'
       });
     } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
       setText('Tenemos problemas para iniciar sesión. Por favor, inténtalo de nuevo más tarde.');
