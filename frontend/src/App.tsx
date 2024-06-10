@@ -17,7 +17,7 @@ const App: React.FC = (): JSX.Element => {
   const [isUserDataComplete, setIsUserDataComplete] = useState<boolean>(false);
 
   useEffect(() => {
-    initGoogleAnalytics();
+    // initGoogleAnalytics();
     setUser();
   }, []);
 
