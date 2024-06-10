@@ -69,10 +69,17 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         endpoint: isDemo ? 'student-course-demo' : `student-course/${idCourse}`
       },
       success: ({ words, ...data }): void => {
-        const course = { ...data, lessons: formatLessons(words) }
+        const course = { ...data, lessons: formatLessons(words) };
+        const eventGoogle =  isDemo ? 'course-demo' : 'course';
 
         setCourseData(course);
         saveCourseCacheData(course);
+
+        // @ts-ignore
+        window.googleAnalytics('event', eventGoogle, {
+          'event_category': eventGoogle,
+          'event_label': `Curso - ${course.title}`
+        });
       }
     });
   };

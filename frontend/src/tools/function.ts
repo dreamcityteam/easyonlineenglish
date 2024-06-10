@@ -158,6 +158,26 @@ const isUser = (): boolean => {
   return !!user;
 }
 
+const initGoogleAnalytics = (): void => {
+  // @ts-ignore
+  window.dataLayer = window.dataLayer || [];
+
+  const gtag = () => {
+    // @ts-ignore
+    dataLayer.push(arguments);
+    // @ts-ignore
+  }
+
+  // @ts-ignore
+  gtag('js', new Date());
+
+  // @ts-ignore
+  gtag('config', 'G-7K5EX1R6FM');
+
+  // @ts-ignore
+  window.googleAnalytics = gtag;
+};
+
 export {
   send,
   store,
@@ -165,5 +185,6 @@ export {
   isModeDevelopment,
   getData,
   cookie,
-  isUser
+  isUser,
+  initGoogleAnalytics
 };
