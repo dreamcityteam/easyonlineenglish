@@ -24,10 +24,10 @@ const Login: React.FC = () => {
       dispatch({ type: SET_USER, payload: data });
 
       // @ts-ignore
-      // window.googleAnalytics('event', 'login', {
-      //   'event_category': 'Login',
-      //   'event_label': 'Iniciar sección'
-      // });
+      window.googleAnalytics('event', 'login', {
+        'event_category': 'Login',
+        'event_label': 'Iniciar sección'
+      });
     } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
       setText('Tenemos problemas para iniciar sesión. Por favor, inténtalo de nuevo más tarde.');
     }

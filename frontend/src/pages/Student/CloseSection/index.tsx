@@ -24,10 +24,10 @@ const CloseSection: React.FC = (): null => {
     });
 
     // @ts-ignore
-    // window.googleAnalytics('event', 'sing_out', {
-    //   'event_category': 'sing_out',
-    //   'event_label': 'Cerrar sección'
-    // });
+    window.googleAnalytics('event', 'sing_out', {
+      'event_category': 'sing_out',
+      'event_label': 'Cerrar sección'
+    });
   }
 
   return null;
