@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import ReactGA from 'react-ga';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import Form from '../../../components/Form';
 import { inputs } from './data';
@@ -21,6 +22,12 @@ const Login: React.FC = () => {
       navigate(data.isPayment ? '/courses' : '/plan');
       dispatch({ type: CLEAN_CACHE });
       dispatch({ type: SET_USER, payload: data });
+
+      ReactGA.event({
+        category: `${data.name} ${data.lastname}`,
+        action: 'LOG_IN',
+        label: 'Iniciar sesión',
+      });
     } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
       setText('Tenemos problemas para iniciar sesión. Por favor, inténtalo de nuevo más tarde.');
     }

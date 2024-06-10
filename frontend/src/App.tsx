@@ -14,13 +14,13 @@ import Footer from './components/Footer';
 import Loading from './components/Loading';
 
 ReactGA.initialize('G-7K5EX1R6FM');
-ReactGA.pageview(window.location.pathname + window.location.search);
 
 const App: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [isUserDataComplete, setIsUserDataComplete] = useState<boolean>(false);
 
   useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
     setUser();
   }, []);
 
