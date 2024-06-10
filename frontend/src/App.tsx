@@ -13,7 +13,7 @@ import Navigator from './components/Navigator';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
 
-ReactGA.initialize('G-7K5EX1R6FM');
+ReactGA.initialize('G-464CENS3PK');
 
 const App: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
