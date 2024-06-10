@@ -28,18 +28,17 @@ const getData = ({ number, expiration, csv, amount }) => ({
   ForceNo3DS: '1'
 });
 
-
 const formatDate = (date) => {
   const months = [
-    'ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO',
-    'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
   ];
 
   const day = date.getDate();
   const month = months[date.getMonth()];
   const year = date.getFullYear();
 
-  return `${day} DE ${month} DEL ${year}`;
+  return `${day} de ${month} del ${year}`;
 }
 
 const getHtmlMessage = ({
@@ -61,31 +60,34 @@ const getHtmlMessage = ({
     <div style="width: 800px;">
       <header style="align-items: center; border-bottom: solid #598da6 2px; display: flex; width: 100%;">
         <div style="width: 300px;">
-          <img src="${LOGO_URL}" alt="logo" style="width: 100%;">
+          <img src="${LOGO_URL}" alt="logo" style="width: 80%;">
         </div>
         <div style="width: 700px; text-align: right;">
-          <h2 style="color: #06609e; font-size: 60px;">FACTURA</h2>
+          <h2 style="color: #06609e; font-size: 40px;">FACTURA</h2>
         </div>
       </header>
       <div style="display: flex; padding-bottom: 20px; justify-content: space-between; margin-top: 20px; width: 100%; justify-content: space-between;">
-        <div style="width: 100%; line-height:1.5;">
+        <div style="width: 100%;">
           <div>
             <strong>Datos del cliente</strong>
           </div>
-          <div style="text-transform: capitalize;">
-            <span>${name}</span>
+          <div style="text-transform: capitalize; margin-top: 10px">
+            <span><strong>Nombre: </strong> ${name}</span>
           </div>
           <div>
-            <span>${phone}</span>
+            <span><strong>Teléfono: </strong> ${phone}</span>
           </div>
         </div>
-        <div style="width: 100%; text-align: right;">
+        <div style="line-height: 1.3; width: 270px;">
           <div>
-            <span>${formatDate(dateStart)}</span>
+            <span><strong>RNC: </strong>1-31-68522-6</span>
+          </div>
+          <div>
+             <span><strong>Fecha: </strong>${formatDate(dateStart)}</span>
           </div>
         </div>
       </div>
-      <table style="border-collapse: collapse; margin-top: 50px; width: 100%;">
+      <table style="border-collapse: collapse; width: 100%;">
         <thead>
           <tr>
             <th ${formatRow('left')}>Descripción</th>
@@ -98,13 +100,18 @@ const getHtmlMessage = ({
         <tbody>
           <tr>
             <td ${formatRow('left')}>${description}</td>
-            <td ${formatRow('center')}>${dateStart}</td>
-            <td ${formatRow('center')}>${dateEnd}</td>
+            <td ${formatRow('center')}>${formatDate(dateStart)}</td>
+            <td ${formatRow('center')}>${formatDate(dateEnd)}</td>
             <td ${formatRow('center')}>${price}</td>
             <td ${formatRow('right')}>${total}</td>
           </tr>
         </tbody>
       </table>
+      <div style="margin: 20px 0; font-size: 12px;">
+        <div style="margin-top: 5px;">EASY ONLINE ENGLISH, <strong>S.R.L</strong></div>
+        <div style="margin-top: 5px;">+1 (849) 410-9664</div>    
+        <div style="margin-top: 5px;">customerservice@easyonlineenglish.com</div>
+      </div>
     </div>
   </div>
 `;

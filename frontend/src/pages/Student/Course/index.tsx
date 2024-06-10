@@ -78,16 +78,17 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   };
 
   const formatLessons = (words: Word[]): Lesson[] => {
+    type Lessons = { title: string; words: Word[]; };
     const getLessonData = (title: string) => ({ title: `Lección ${title}`, words: [] });
-    const lessons = [getLessonData(LESSIONS_COUNT[0])];
-    let currentLesson = lessons[0];
+    const lessons: Lessons[] = [getLessonData(LESSIONS_COUNT[0])];
+    let currentLesson: Lessons = lessons[0];
 
     words.forEach((word: Word, index: number): void => {
-      // @ts-ignore
       currentLesson.words.push(word);
 
       if ((index + 1) % 25 === 0) {
-        const len = lessons.length;
+        const len: number = lessons.length;
+
         lessons.push(getLessonData(LESSIONS_COUNT[len]));
         currentLesson = lessons[len];
       }

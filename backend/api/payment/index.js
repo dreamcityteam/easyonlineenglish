@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
 
   response.data = {
     field: 'number',
-    message: 'Approvado'
+    message: 'Error al intentar hacer la transacción, inténtalo más tarde.'
   };
 
   try {
@@ -93,7 +93,7 @@ module.exports = async (req, res) => {
           }),
         };
 
-        if (await sendEmail(emailConfig)) {
+        if (newPayment && await sendEmail(emailConfig)) {
           response.data.message = 'Aprovado.';
           response.statusCode = HTTP_STATUS_CODES.OK;
         }
