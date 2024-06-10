@@ -114,10 +114,10 @@ const PaymentForms: React.FC = () => {
         },
       });
       // @ts-ignore
-      window.googleAnalytics('event', 'payment', {
-        'event_category': 'payment',
-        'event_label': 'Pago'
-      });
+      // window.googleAnalytics('event', 'payment', {
+      //   'event_category': 'payment',
+      //   'event_label': 'Pago'
+      // });
     } else if (data.message) {
       setState((state: any) => ({
         ...state,
