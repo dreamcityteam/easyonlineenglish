@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import RouterHomePage from './routers/HomePage';
 import context from './global/state/context';
 import initialState from './global/state/state';
@@ -11,6 +12,9 @@ import { ROLE } from './tools/constant';
 import Navigator from './components/Navigator';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
+
+ReactGA.initialize('G-7K5EX1R6FM');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const App: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);

@@ -113,9 +113,7 @@ const PaymentForms: React.FC = () => {
           payment: { isPayment: true, plan: paymentMethod },
         },
       });
-    }
-
-    if (data.message) {
+    } else if (data.message) {
       setState((state: any) => ({
         ...state,
         [data.field]: {
