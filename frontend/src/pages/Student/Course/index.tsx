@@ -76,10 +76,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         saveCourseCacheData(course);
 
         // @ts-ignore
-        // window.googleAnalytics('event', eventGoogle, {
-        //   'event_category': eventGoogle,
-        //   'event_label': `Curso - ${course.title}`
-        // });
+        window.googleAnalytics('event', eventGoogle, {
+          'event_category': eventGoogle,
+          'event_label': `Curso - ${course.title}`
+        });
       }
     });
   };
