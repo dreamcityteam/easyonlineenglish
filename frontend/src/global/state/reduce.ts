@@ -9,6 +9,7 @@ import {
   CLEAN_CACHE,
   SET_LIBRARY,
   SET_TUTORIAL,
+  SET_GOOGLE_ANALITICS,
 } from './actionTypes';
 import { Option, State } from './type';
 
@@ -81,6 +82,12 @@ const reducer = (state: State, { payload, type }: Option): State => ({
     ...state,
     libraryCache: library,
   }),
+
+  [SET_GOOGLE_ANALITICS]: ({ value = [] }: any): State => ({
+    ...state,
+    googleAnalytics: value,
+  }),
+
 
   [SET_COURSE_CACHE]: ({
     idCourse = '',

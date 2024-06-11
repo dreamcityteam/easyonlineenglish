@@ -157,21 +157,42 @@
     position: absolute
     top: 45%
 
-  &__modalButton
-    background-color: #2196f3
-    border-radius: 2rem
-    color: #fff
-    padding: 15px 50px
-    position: relative
-    text-decoration: none
-    text-transform: capitalize
-    top: 20px
-    z-index: 4
-
   &__modal
     font-size: 20px
     line-height: 1.5
     max-width: 500px
+
+  &__modalMessage
+    position: relative
+    padding: 20px
+    background-color: white
+    max-width: 500px
+    max-height: 500px
+    z-index: 4
+
+    & > div:first-child
+      right: -50px
+      top: -70px
+      z-index: 4
+
+  &__modalMessageButton
+    background-color: #2196f3
+    color: white
+    cursor: pointer
+    display: block
+    left: 0
+    padding: 20px
+    position: absolute
+    text-align: center
+    text-decoration: none
+    width: 100%
+    z-index: 4
+
+  &__modalTitle
+    text-align: center
+
+  &__modalText
+    text-align: center
 
   @include mobile
     &__arrowLeft,

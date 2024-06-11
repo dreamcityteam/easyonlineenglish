@@ -8,7 +8,7 @@ import style from './style.module.sass';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 
 const Login: React.FC = () => {
-  const [_, dispatch] = useContext(context);
+  const [{ googleAnalytics }, dispatch] = useContext(context);
   const [text, setText] = useState<string>('');
   const navigate: NavigateFunction = useNavigate();
 
@@ -21,9 +21,7 @@ const Login: React.FC = () => {
       navigate(data.isPayment ? '/courses' : '/plan');
       dispatch({ type: CLEAN_CACHE });
       dispatch({ type: SET_USER, payload: data });
-
-      // @ts-ignore
-      window.googleAnalytics('event', 'login', {
+      googleAnalytics('event', 'login', {
         'event_category': 'Login',
         'event_label': 'Iniciar sección'
       });

@@ -18,7 +18,7 @@ const PaymentForms: React.FC = () => {
   const { paymentMethod } = useParams<string>();
   const [canOpenModal, setCanOpenModal] = useState<boolean>(false);
   const [paymentTitle, setPaymentTitle] = useState<string>();
-  const [{ user }, dispatch] = useContext(context);
+  const [{ user, googleAnalytics }, dispatch] = useContext(context);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [state, setState] = useState<any>({
     number: { value: '', messageError: '' },
@@ -113,8 +113,7 @@ const PaymentForms: React.FC = () => {
           payment: { isPayment: true, plan: paymentMethod },
         },
       });
-      // @ts-ignore
-      window.googleAnalytics('event', 'payment', {
+      googleAnalytics('event', `payment_${paymentMethod}`, {
         'event_category': 'payment',
         'event_label': 'Pago'
       });

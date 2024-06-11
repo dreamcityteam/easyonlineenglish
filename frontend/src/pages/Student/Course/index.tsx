@@ -17,6 +17,7 @@ import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
 import ErrorConnection from '../../../components/ErrorConnection';
 import { LESSIONS_COUNT } from './data';
+import Close from '../../../components/Modal/Close';
 
 interface Props {
   isDemo?: boolean;
@@ -24,7 +25,7 @@ interface Props {
 
 const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const { idCourse } = useParams<string>();
-  const [{ courseCache }, dispatch] = useContext(context);
+  const [{ courseCache, googleAnalytics }, dispatch] = useContext(context);
   const [feedback, setFeedback] = useState({ canShow: false, message: '' });
   const [isPlaySpeech, setPlaySpeech] = useState<boolean>(false);
   const [lessionTitle, setLessionTitle] = useState<string>('');
@@ -43,6 +44,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     word: false,
     sentence: false
   });
+  const [countPronunciation, setCountPronunciation] = useState<number>(1);
+  const [closeMessage, setCloseMessage] = useState<boolean>(false);
 
   useEffect(() => {
     saveCourseData();
@@ -70,13 +73,12 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       },
       success: ({ words, ...data }): void => {
         const course = { ...data, lessons: formatLessons(words) };
-        const eventGoogle =  isDemo ? 'course-demo' : 'course';
+        const eventGoogle = isDemo ? 'course-demo' : 'course';
 
         setCourseData(course);
         saveCourseCacheData(course);
 
-        // @ts-ignore
-        window.googleAnalytics('event', eventGoogle, {
+        googleAnalytics('event', eventGoogle, {
           'event_category': eventGoogle,
           'event_label': `Curso - ${course.title}`
         });
@@ -151,6 +153,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     }
 
     disabledSlowAudio();
+    setCountPronunciation(0);
   };
 
   const getWordSentenceCompleted = (word: Word): Word => {
@@ -269,25 +272,43 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       setSentence(word?.sentences[index]);
       cleanFeedback();
     }
+
+    setCountPronunciation(0);
   };
 
   const onSpeechFeedback = (isCorrect: boolean): void => {
+    const isSkip: boolean = countPronunciation === 5;
+
     setFeedback({
-      message: isCorrect ? '¡Correcto!' : '¡Intente de nuevo!',
+      message: isCorrect || isSkip ? '¡Correcto!' : '¡Intente de nuevo!',
       canShow: true,
     });
 
-    if (isCorrect && !word?.sentences[sentenceIndex]?.isCompleted) {
-      saveCacheSentenceIndex();
-      setWord((currentState: any) => {
-        const newState = currentState;
-
-        newState.sentences[sentenceIndex].isCompleted = true;
-
-        return newState;
-      });
+    if (
+      isSkip ||
+      (isCorrect && !word?.sentences[sentenceIndex]?.isCompleted)
+    ) {
+      return skipWord();
     }
+
+    if (countPronunciation === 3) {
+      setCloseMessage(true);
+    }
+
+    setCountPronunciation(countPronunciation + 1);
   };
+
+  const skipWord = (): void => {
+    setCountPronunciation(0);
+    saveCacheSentenceIndex();
+    setWord((currentState: any) => {
+      const newState = currentState;
+
+      newState.sentences[sentenceIndex].isCompleted = true;
+
+      return newState;
+    });
+  }
 
   const saveCacheSentenceIndex = (): void => {
     if (course && word) {
@@ -474,27 +495,52 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             canShow={canShowModal}
             isFadeIn
           >
-            <header>
-              <h2> ¡Felicidades! </h2>
-            </header>
-
-            <div className={style.course__modal}>
-              {isDemo ? (
-                <p>¡Felicidades por completar el curso demo! Si estás listo para seguir adelante, ¡dale click al botón "Planes" y prepárate para más aprendizaje! Estoy aquí para ayudarte en tu viaje. ¡Adelante!</p>
-              ) : (
-                <p>¡Felicidades por completar el curso demo! Eso es un gran logro y demuestra tu compromiso con aprender y crecer.</p>
-              )}
-
-              <Link
-                to={isDemo ? '/plan' : '/courses'}
-                className={style.course__modalButton}
-              >
-                {isDemo ? 'planes' : 'Cursos'}
-              </Link>
+            <div className={style.course__modalMessage}>
+              <Close onClose={() => setCanShowModal(false)} />
+              <header>
+                <h2 className={style.course__modalTitle}> ¡Finalizaste el curso! </h2>
+              </header>
+              <div className={style.course__modal}>
+                {isDemo ? (
+                  <p>¡Felicidades por completar el curso demo! Si estás listo para seguir adelante, ¡dale click al botón "Planes" y prepárate para más aprendizaje! Estoy aquí para ayudarte en tu viaje. ¡Adelante!</p>
+                ) : (
+                  <p className={style.course__modalText}>¡Felicidades por completar el curso! <br/> Eso es un gran logro y demuestra tu compromiso con aprender y crecer.</p>
+                )}
+                <Link
+                  to={isDemo ? '/plan' : '/courses'}
+                  className={style.course__modalMessageButton}
+                >
+                  {isDemo ? 'planes' : 'Cursos'}
+                </Link>
+              </div>
+              <Confetti />
             </div>
-            <Confetti />
           </Modal>
-        </section>
+          <Modal
+            canShow={closeMessage}
+            isFadeIn
+          >
+            <div className={style.course__modalMessage}>
+              <Close onClose={() => setCloseMessage(false)} />
+              <header>
+                <h2 className={style.course__modalTitle}>
+                  No capto tus palabras
+                </h2>
+              </header>
+              <div>
+                <p>
+                  Por favor, intenta pronunciar más despacio.
+                </p>
+              </div>
+              <span
+                onClick={() => setCloseMessage(false)}
+                className={style.course__modalMessageButton}
+              >
+                ¡Entiendo!
+              </span>
+            </div>
+          </Modal>
+        </section >
       ) : (<ErrorConnection />)}
     </>
   );

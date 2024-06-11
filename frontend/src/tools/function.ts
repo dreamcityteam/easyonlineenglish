@@ -158,14 +158,13 @@ const isUser = (): boolean => {
   return !!user;
 }
 
-const initGoogleAnalytics = (): void => {
+const initGoogleAnalytics = (): any => {
   // @ts-ignore
   window.dataLayer = window.dataLayer || [];
 
-  const gtag = () => {
+  function gtag () {
     // @ts-ignore
     dataLayer.push(arguments);
-    // @ts-ignore
   }
 
   // @ts-ignore
@@ -174,8 +173,7 @@ const initGoogleAnalytics = (): void => {
   // @ts-ignore
   gtag('config', 'G-7K5EX1R6FM');
 
-  // @ts-ignore
-  window.googleAnalytics = gtag;
+  return gtag;
 };
 
 export {

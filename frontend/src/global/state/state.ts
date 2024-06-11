@@ -6,7 +6,8 @@ const initialState: State = {
   currentPathCourse: null,
   courseCache: {},
   coursesCache: {},
-  libraryCache: []
+  libraryCache: [],
+  googleAnalytics: () => {},
 }
 
 export default initialState;
