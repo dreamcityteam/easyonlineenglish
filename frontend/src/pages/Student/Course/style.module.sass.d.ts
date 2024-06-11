@@ -16,7 +16,10 @@ interface CssExports {
   'course__lession_container': string;
   'course__message': string;
   'course__modal': string;
-  'course__modalButton': string;
+  'course__modalMessage': string;
+  'course__modalMessageButton': string;
+  'course__modalText': string;
+  'course__modalTitle': string;
   'course__progress': string;
   'course__progress_container': string;
   'course__pronunciation': string;

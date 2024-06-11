@@ -4,7 +4,7 @@ import RouterHomePage from './routers/HomePage';
 import context from './global/state/context';
 import initialState from './global/state/state';
 import reducer from './global/state/reduce';
-import { SET_USER } from './global/state/actionTypes';
+import { SET_GOOGLE_ANALITICS, SET_USER } from './global/state/actionTypes';
 import RouterStudent from './routers/Student';
 import { getData, initGoogleAnalytics } from './tools/function';
 import { ROLE } from './tools/constant';
@@ -17,7 +17,10 @@ const App: React.FC = (): JSX.Element => {
   const [isUserDataComplete, setIsUserDataComplete] = useState<boolean>(false);
 
   useEffect(() => {
-    initGoogleAnalytics();
+    dispatch({ type: SET_GOOGLE_ANALITICS, payload: { value: initGoogleAnalytics() }});
+  }, [window.location.pathname]);
+
+  useEffect(() => {
     setUser();
   }, []);
 

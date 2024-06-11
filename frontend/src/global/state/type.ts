@@ -3,6 +3,7 @@ import {
   CLEAR_LOAD,
   SET_COURSES_CACHE,
   SET_COURSE_CACHE,
+  SET_GOOGLE_ANALITICS,
   SET_LOAD,
   SET_USER,
 } from './actionTypes';
@@ -99,6 +100,7 @@ type State = {
   courseCache: CourseCache;
   coursesCache: CoursesCache;
   libraryCache: any;
+  googleAnalytics: () => void;
 }
 
 type Action =
@@ -107,7 +109,8 @@ type Action =
   | typeof SET_LOAD
   | typeof CLEAN_CACHE
   | typeof SET_COURSES_CACHE
-  | typeof SET_COURSE_CACHE;
+  | typeof SET_COURSE_CACHE
+  | typeof SET_GOOGLE_ANALITICS;
 
 type Option = {
   payload?: any;

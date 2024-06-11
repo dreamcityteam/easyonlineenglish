@@ -4,7 +4,6 @@ import { getData } from '../../../tools/function';
 import { SET_COURSES_CACHE } from '../../../global/state/actionTypes';
 import { Courses as TCourses } from '../../../global/state/type';
 import context from '../../../global/state/context';
-import GoogleDriveImage from '../../../components/Image';
 import style from './style.module.sass';
 import ErrorConnection from '../../../components/ErrorConnection';
 
@@ -22,7 +21,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   }, []);
 
   const saveCoursesCacheData = (courses: TCourses[]): void =>
-    dispatch({ type: SET_COURSES_CACHE, payload: { key: idCourseCache, value: courses } });
+    dispatch({ type: SET_COURSES_CACHE, payload: { key: idCourseCache, value: courses } })
 
   const saveCourseData = async (): Promise<void> => {
     const cache: TCourses[] = coursesCache[idCourseCache];
@@ -59,7 +58,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   return (
     <>
-      {courses.length ? (
+      {coursesCache[idCourseCache] ? (
         <section className={style.courses}>
           <header className={style.courses__header}>
             <h1>Cursos</h1>
