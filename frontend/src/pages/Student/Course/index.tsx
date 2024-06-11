@@ -364,7 +364,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   return (
     <>
-      {course ? (
+      {courseCache ? (
         <section className={style.course}>
           {course && (
             <Aside

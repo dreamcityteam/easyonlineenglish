@@ -95,17 +95,22 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
           {
             target: `.${style.aside__button}`,
             content: <h2 className={style.tutorial__title}>Aquí puedes desplegar el menú de navegación del curso.</h2>,
-            disableBeacon: true
+            disableBeacon: true,
+            disableScrolling: true,
           },
           {
             target: `.${courseStyle.course__englishWord}`,
             content: <h2 className={style.tutorial__title}>Aquí podrás ver la palabra en inglés. Si haces clic en la palabra, podrás escuchar su pronunciación a dos velocidades distintas.</h2>,
-            disableBeacon: true
+            disableBeacon: true,
+            disableScrolling: true,
+
           },
           {
             target: `.${courseStyle.course__spanishTranslation}`,
             content: <h2 className={style.tutorial__title}>Aquí podrás leer la traducción al español de la palabra en inglés.</h2>,
-            disableBeacon: true
+            disableBeacon: true,
+            disableScrolling: true,
+
           },
           {
             target: `.${courseStyle.course__content_text} .${courseStyle.course__text_grandient}`,

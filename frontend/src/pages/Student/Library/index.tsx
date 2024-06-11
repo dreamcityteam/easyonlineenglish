@@ -56,7 +56,7 @@ const Library: React.FC = (): JSX.Element => {
 
   return (
     <>
-      {data.length ? (
+      {libraryCache.length ? (
         <section className={style.vocabularies}>
           <header className={style.vocabularies__header}>
             <h1>Librería</h1>
