@@ -29,10 +29,7 @@ module.exports = async (req, res) => {
     const field = username.trim().toLowerCase();
     const user = await User.findOne({ $or: [{ email: field }, { username: field }] }).select({ __v: 0 });
 
-    if (!user) {
-      response.message = 'User not found';
-      response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
-    } else if (await hash.compare({ password, hash: user.password })) {
+    if (user && (await hash.compare({ password, hash: user.password }))) {
       setCookie({ res, value: getToken({ id: user._id }) });
       const { password, ...userData } = user.toObject();
 
@@ -40,6 +37,9 @@ module.exports = async (req, res) => {
       response.message = 'Success!';
       response.data = userData;
       response.data.payment = await getPayment(userData._id);
+    } else {
+      response.message = 'User not found';
+      response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
     }
   } catch (error) {
     response.message = `Error saving user! ${error}`;
