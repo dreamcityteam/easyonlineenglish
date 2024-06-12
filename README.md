@@ -30,144 +30,19 @@
 #### Clone the Repository:
 1. Open the `terminal`, and execute the next command: 
 ```bash 
- git clone https://github.com/XBrewyn/easy-online-english
+ git clone [https://github.com/XBrewyn/easy-online-english](https://github.com/dreamcityteam/easyonlineenglish.git)
  cd easy-online-english
 ```
 
 #### Install dependencies:
 ```bash 
-  npm i
+  cd frontend && npm install && cd .. && cd backend && npm install
 ```
 
-#### Get credentials:
-1. Contact the developer to obtain the required `credentials`.
+#### Setup .env:
+1. Contact the developer to obtain the required `.env` file.
+2. Place the `.env` file in the `backend` directory.
 
 #### Run the Application:
-```bash 
-  npm start:dev
-```
-
-## Folder Structure
-  ```
-   EASY-ONLINE-ENGLISH
-   │
-   │
-   ├── src
-   │   ├──components
-   |   |  ├──Confetti
-   |   |  |  └──index.tsx
-   |   |  |
-   |   |  ├──Footer
-   |   |  |  ├──index.tsx
-   |   |  |  ├──style.module.sass
-   |   |  |  └──style.module.sass.d.ts 
-   |   |  |
-   |   |  ├──Form
-   |   |  |  ├──helper.ts
-   |   |  |  ├──index.tsx
-   |   |  |  ├──style.module.sass.d.ts
-   |   |  |  ├──style.module.sass.d.ts
-   |   |  |  └──type.ts
-   |   |  |
-   |   |  ├──Header
-   |   |  |  └──index.tsxs
-   |   |  |
-   |   |  ├──Image
-   |   |  |  └──index.tsx
-   |   |  |
-   |   |  ├──Loading
-   |   |  |  └──index.tsx
-   |   |  |
-   |   |  ├──Modal
-   |   |  |  ├──index.tsx
-   |   |  |  ├──style.module.sass.d.ts
-   |   |  |  └──style.module.sass
-   |   |  |
-   |   |  ├──Navigator
-   |   |  |  ├──data.tsx
-   |   |  |  ├──index.tsx
-   |   |  |  ├──style.module.sass
-   |   |  |  ├──style.module.sass.d.ts
-   |   |  |  └──type.ts
-   |   |  |
-   |   |  ├──Navigator
-   |   |  |  ├──data.tsx
-   |   |  |  ├──index.tsx
-   |   |  |  ├──style.module.sass
-   |   |  |  ├──style.module.sass.d.ts
-   |   |  |  └──type.ts
-   |   |  |
-   |   |  ├──Sound
-   |   |  |  └──index.tsx
-   |   |  |   
-   |   |  ├──Speech
-   |   |  |  ├──index.tsx
-   |   |  |  ├──style.module.sass
-   |   |  |  └──style.module.sass.d.ts
-   |   |  |   
-   |   |  └──Table
-   |   |     └──index.tsx
-   |   |
-   │   ├──global
-   |   |  ├──state
-   |   |  |  ├──actionTypes.ts
-   |   |  |  ├──context.ts
-   |   |  |  ├──index.ts
-   |   |  |  └──types.ts
-   |   |  └──lessons.ts
-   |   |
-   │   ├──pages
-   |   |  ├──Admin
-   |   |  ├──HomePage
-   |   |  └──Student
-   |   | 
-   │   ├──public
-   |   |  |  ├──mixin
-   |   |  |  └──index.module.sass  
-   |   |  ├──svg
-   |   |  |  ├──arrowLeft.svg
-   |   |  |  ├──arrowLeftLong.svg
-   |   |  |  ├──arrowRight.svg
-   |   |  |  ├──arrowRightLong.svg
-   |   |  |  ├──padlockLocked.svg
-   |   |  |  ├──padlockUnlocked.svg
-   |   |  |  ├──playAudio.svg
-   |   |  |  └──stopAudio.svg
-   |   |  |
-   |   |  ├──favicon.ico
-   |   |  └──index.html
-   |   |
-   |   |
-   │   ├──routers
-   |   |   ├──HomePage
-   |   |   |  ├──data.ts
-   |   |   |  └──index.tsx
-   |   |   |
-   |   |   └──Student
-   |   |      ├──data.ts
-   |   |      └──index.tsx
-   |   |
-   │   ├──tools
-   |   |  ├──constant.ts
-   |   |  ├──function.ts
-   |   |  └──type.ts
-   |   |
-   |   |
-   │   ├──App.tsx
-   │   ├──App.module.sass
-   │   ├──App.sass.d.ts
-   │   ├──global.d.ts
-   │   ├──index.tsx
-   │   └──normalize.css
-   │
-   ├──utils
-   |  └──speech
-   |
-   ├──README.md
-   ├──package.json
-   ├──tsconfig.json
-   ├──Procfile
-   ├──tsconfig.json
-   ├──wepback.prod.js
-   └──wepback.dev.js
-   ```
+1. ```bash cd frontend && npm build ```
+2. ``` cd backend && npm run start:linux ```
