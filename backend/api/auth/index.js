@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
 
       if (!user) {
         response.message = 'User not found';
+        response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
       } else {
         response.data = user.toObject();
         response.statusCode = HTTP_STATUS_CODES.OK;

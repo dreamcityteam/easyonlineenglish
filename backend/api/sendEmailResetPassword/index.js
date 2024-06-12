@@ -3,6 +3,7 @@ const { HTTP_STATUS_CODES } = require('../../tools/constant');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 const UserToken = require('../../schemas/userToken.schema');
+const { getEmailTemplate } = require('./function');
 
 const getLink = (req, token) =>
   `${req.protocol}://${req.get('host')}/reset-password-auth/${token}`;
@@ -26,14 +27,19 @@ module.exports = async (req, res) => {
       await UserToken.findOneAndUpdate(
         { idUser: user._id },
         { $set: { token } },
-      );   
+      );
     }
 
     const emailConfig = {
       from: EMAIL_USER,
       to: email,
       subject: 'easyonlineenglish - reset password',
-      html: `<a href="${getLink(req, token)}"> Link </a>`,
+      html: getEmailTemplate({
+        token: getLink(req, token),
+        username: user.username,
+        supportEmail: EMAIL_USER,
+        telefono: '+1 (849) 410-9664'
+      })
     };
 
     if (await sendEmail(emailConfig)) {
