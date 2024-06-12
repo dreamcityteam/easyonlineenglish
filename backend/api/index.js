@@ -4,14 +4,18 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
-const routers = require('./routers');
-const middlewareToken = require('./middleware/token');
-const initialDatabase = require('./initialDatabase');
-const connectToDatabase = require('./db');
+const routers = require('../routers');
+const middlewareToken = require('../middleware/token');
+const initialDatabase = require('../initialDatabase');
+const connectToDatabase = require('../db');
+
+connectToDatabase().then(() => {
+  initialDatabase();
+});
 
 const app = express();
-const BUILD_PATH = './build';
-const { PORT = 3000 } = process.env;
+const BUILD_PATH = '../build';
+const { PORT = 3000, NODE_ENV } = process.env;
 
 app.use(helmet());
 app.use(cookieParser());
@@ -27,15 +31,14 @@ app.use((_req, res, next) => {
 
 app.use(express.static(path.join(__dirname, BUILD_PATH)));
 
-// Server React SPA
 app.get('*', (_, res) => {
   res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log('Server is running on port', PORT);
-  connectToDatabase().then(() => {
-    initialDatabase();
-  });
-});
+if (NODE_ENV && NODE_ENV.includes('DEVELOPMENT')) {
+  app.listen(PORT, () => {
+    console.log('Server is running on port', PORT);
+  });  
+} else {
+  module.exports = app;
+}
