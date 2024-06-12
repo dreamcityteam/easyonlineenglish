@@ -29,7 +29,7 @@
   &__user
     display: flex
 
-  &__link_container
+  &__tab
     margin-top: 15px
 
   &__link
@@ -68,7 +68,7 @@
     color: #535353
     display: flex
     font-size: 14px
-    margin-top: 15px
+    text-decoration: none
 
   &__user_name
     overflow: hidden
@@ -78,11 +78,17 @@
     white-space: nowrap
     width: 100px
 
+  &__tabMobile
+    display: none
+
   @include mobile
     padding: 20px
 
     &__hamburger
       display: flex
+    
+    &__tabMobile
+      display: block
 
     &__links
       background: #ffffff

@@ -5,11 +5,12 @@ interface CssExports {
   'navigator__hamburger': string;
   'navigator__line': string;
   'navigator__link': string;
-  'navigator__link_container': string;
   'navigator__links': string;
   'navigator__logo': string;
   'navigator__open': string;
   'navigator__picture': string;
+  'navigator__tab': string;
+  'navigator__tabMobile': string;
   'navigator__target': string;
   'navigator__user': string;
   'navigator__user_name': string;

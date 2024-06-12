@@ -15,16 +15,8 @@ const ResetPassword: React.FC = (): JSX.Element => {
       }
     };
 
-    if (message.includes('existe')) {
-      field.validation.serverErrorMessage = message;
-      updateState('email', field);
-    } else if (statusCode === HTTP_STATUS_CODES.OK) {
-      field.validation.successMessage = 'Se ha enviado un correo electrónico de verificación.';
-      updateState('email', field);
-    } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
-      field.validation.serverErrorMessage = 'Se produjo un error al intentar mas tarde.';
-      updateState('email', field);
-    }
+    field.validation[statusCode === HTTP_STATUS_CODES.OK ? 'successMessage' : 'serverErrorMessage'] = message;
+    updateState('email', field);
   }
 
   return (

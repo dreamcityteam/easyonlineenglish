@@ -1,11 +1,12 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { getInitialState } from './helper';
 import { Inputs, State, FieldForm } from './type';
-import style from './style.module.sass';
 import { send } from '../../tools/function';
 import Loading from './Loading';
 import { Response } from '../../tools/type';
 import Input from './Input';
+import { HTTP_STATUS_CODES } from '../../tools/constant';
+import style from './style.module.sass';
 
 interface Props {
   api: string;
@@ -64,7 +65,7 @@ const Form: React.FC<Props> = ({
       const data: Response = await send({ api, data: getPayload(), token }).post();
 
       onData(data, updateState);
-      canCleanInput && cleanInput();
+      data.response.statusCode === HTTP_STATUS_CODES.OK && canCleanInput && cleanInput();
       setIsLoading(false);
     }
   }, [canSend]);

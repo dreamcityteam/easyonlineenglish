@@ -63,9 +63,12 @@ const Navigator: React.FC = (): JSX.Element => {
       : ''
   );
 
-  const Links = (): JSX.Element[] =>
-    tabs.map(({ path, value }: Tab, index: number): JSX.Element => (
-      <li key={index} className={style.navigator__link_container}>
+  const Tabs = (): JSX.Element[] =>
+    tabs.map(({ path, value, showMobile }: Tab, index: number): JSX.Element => (
+      <li
+        className={`${style.navigator__tab} ${showMobile ? style.navigator__tabMobile : ''} `}
+        key={index}
+      >
         <Link
           className={`${style.navigator__link} ${getTargetClassName(path)}`}
           to={path}
@@ -84,16 +87,18 @@ const Navigator: React.FC = (): JSX.Element => {
           </Link>
         </div>
         <ul className={style.navigator__links}>
-          <Links />
+          <Tabs />
           {user && (
-            <li className={style.navigator__user}>
-              <img
-                className={style.navigator__picture}
-                src={user.photo}
-              />
-              <span className={style.navigator__user_name}>
-                {`${user.name} ${user.lastname}`}
-              </span>
+            <li>
+              <Link to="/profile" className={style.navigator__user}>
+                <img
+                  className={style.navigator__picture}
+                  src={user.photo}
+                />
+                <span className={style.navigator__user_name}>
+                  {`${user.name} ${user.lastname}`}
+                </span>
+              </Link>
             </li>
           )}
         </ul>
