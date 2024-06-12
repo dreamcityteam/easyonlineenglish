@@ -5,7 +5,7 @@ import SVGCheck from '../../../../../public/svg/check.svg';
 import SVGCircle from '../../../../../public/svg/circle.svg';
 import SVGCircleAlert from '../../../../../public/svg/circleAlert.svg';
 import style from './style.module.sass';
-import courseStyle from '../../Course/style.module.sass';
+import courseStyle from '../style.module.sass';
 import speechStyle from '../../../../components/Speech/style.module.sass';
 import Joyride from 'react-joyride';
 import { cookie, send } from '../../../../tools/function';

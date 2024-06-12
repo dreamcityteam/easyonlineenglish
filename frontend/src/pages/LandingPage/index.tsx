@@ -221,8 +221,7 @@ const Home: React.FC = () => {
             <div>
               <div className={style.reverse}>
                 <p className={style.student__text}>
-                  Este curso de inglés me ha ayudado a desarrollar habilidades lingüísticas esenciales y
-                  me ha hecho sentir que puedo adaptarme sin importar dónde me encuentre.
+                  Gracias a este curso de inglés, he abierto las puertas a un mundo de posibilidades. He desarrollado habilidades lingüísticas esenciales que me han permitido comunicarme con personas de todo el mundo y adaptarme a cualquier entorno.
                 </p>
                 <Figure
                   className={style.student__figure}
@@ -244,9 +243,7 @@ const Home: React.FC = () => {
 
               <div className={style.reverse}>
                 <p className={style.student__text}>
-                  Un título de inglés en línea ahorra tiempo, y realmente hay muchos gastos generales cuando
-                  necesitas ir presencial a una escuela. Si lo haces online, puedes hacerlo desde casa.
-                  Yo pude completar el curso mientras trabajaba a tiempo completo en mi trabajo actual.
+                  La decisión de tomar un curso de inglés en línea fue una de las mejores que he tomado en mi vida profesional. A diferencia de las clases presenciales, que requieren desplazamientos y ajustarse a horarios fijos, la modalidad en línea me brindó la flexibilidad y la comodidad que necesitaba para compaginar mis estudios con mi trabajo a tiempo completo.
                 </p>
                 <Figure
                   className={style.student__figure}
@@ -270,9 +267,7 @@ const Home: React.FC = () => {
             <div>
               <div className={style.reverse}>
                 <p className={style.student__text}>
-                  Disfruté mucho al tomar el curso. Los cuestionarios me proporcionaron una experiencia
-                  práctica y muy útil. Aprender en Easy Online English me ha dado la confianza y la capacidad
-                  de sobresalir en mi carrera. Me encanta esta sensación.
+                  Mi experiencia en Easy Online English ha sido transformadora. El curso no solo me brindó las herramientas y el conocimiento para mejorar mi nivel de inglés, sino que también me dio la confianza y las habilidades necesarias para sobresalir en mi carrera profesional.
                 </p>
                 <Figure
                   className={style.student__figure}
@@ -294,9 +289,7 @@ const Home: React.FC = () => {
 
               <div className={style.reverse}>
                 <p className={style.student__text}>
-                  "Apliqué directamente los conceptos y habilidades que aprendí en el curso a un nuevo y
-                  emocionante proyecto en el trabajo. Es muy motivador en el momento cuando puedes ver los
-                  resultados hechos realidad.
+                  Tuve la oportunidad de aplicar directamente los conceptos y habilidades aprendidos a un nuevo proyecto en mi trabajo. Esta experiencia práctica fue increíblemente motivadora y me permitió ver el impacto real del aprendizaje del idioma en mi desarrollo profesional.
                 </p>
                 <div>
                   <Figure

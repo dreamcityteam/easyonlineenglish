@@ -4,7 +4,7 @@ import style from './style.module.sass';
 import { ASSETS_URL } from '../../tools/constant';
 
 const Footer: React.FC = (): JSX.Element => {
-  const creditCards: string[] = ['mastercard.png', 'paypal.png', 'visa.jpg', 'amex.png'];
+  const creditCards: string[] = ['mastercard.png', 'paypal.png', 'visa.jpg'];
   const terms: string[][] = [
     ['Términos y condiciones', 'conditions'],
     ['Política de Privacidad', 'privacy'],

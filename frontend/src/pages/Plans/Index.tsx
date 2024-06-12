@@ -5,9 +5,9 @@ import FamilyPlan from './FamilyPlan';
 
 const Plans: React.FC = (): JSX.Element => {
   const characteristics = [
-    'Habilidad de pronunciación (ilimitada)',
-    'Biblioteca (incluyendo verbos)',
-    'Visuales para todas las palabras + sonidos'
+    'Proceso de aprendizaje simplificado que cualquiera puede realizar.',
+    'Pronunciación.',
+    'Biblioteca para encontrar palabras comunes, todos los verbos conjugados, números, días y meses.'
   ];
 
   const cards = [
