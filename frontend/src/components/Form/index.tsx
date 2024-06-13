@@ -42,14 +42,30 @@ const Form: React.FC<Props> = ({
       const field: FieldForm = state[key];
 
       if (field.validation?.isOpcional === true && !field.value) {
-        field.validation = { ...field.validation, emptyErrorMessage: '', isNotValid: false };
+        field.validation = {
+          ...field.validation,
+          emptyErrorMessage: '',
+          isNotValid: false
+        };
       } else if (!field.value) {
         const emptyErrorMessage = field.validation?.emptyErrorMessage || 'Por favor, complete este campo.';
-        field.validation = { ...field.validation, emptyErrorMessage, isNotValid: true };
+
+        field.validation = {
+          ...field.validation,
+          emptyErrorMessage,
+          isNotValid: true
+        };
+
         isValid = false;
       } else if (field.validation) {
         const isNotValid = !!(field.validation.regExp && !field.validation.regExp.test(field.value));
-        field.validation = { ...field.validation, isNotValid, emptyErrorMessage: '' };
+
+        field.validation = {
+          ...field.validation,
+          isNotValid,
+          emptyErrorMessage: ''
+        };
+
         if (isNotValid) isValid = false;
       }
 
@@ -105,10 +121,14 @@ const Form: React.FC<Props> = ({
 
   const handleKeyPress = (event: any): void => {
     if (event.key === 'Enter') {
+      event.preventDefault();
       onSend();
     }
 
-    if ((event.key === 'e' || event.key === 'E' || event.key === '.') && event.target.type === 'number') {
+    if (
+      (event.key === 'e' || event.key === 'E' || event.key === '.') &&
+      event.target.type === 'number'
+    ) {
       event.preventDefault();
     }
   };

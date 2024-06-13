@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open --hot",
-    "build": "webpack --mode=production --config webpack.prod.js"
+    "del-build:linux": "rm -rf ../backend/build",
+    "del-build:win": "rmdir /s /q ..\\backend\\build",
+    "build": "webpack --mode=production --config webpack.prod.js",
+    "build:win": "npm run del-build:win && npm run build",
+    "build:linux": "npm run del-build:linux && npm run build"
   },
   "keywords": [],
   "author": "Brewyn Espinal",
@@ -16,7 +20,6 @@
     "@types/react": "^18.2.60",
     "@types/react-dom": "^18.2.19",
     "@types/react-speech-recognition": "^3.9.5",
-    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.10.0",
     "file-loader": "^6.2.0",

@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pathPublic = (fileName) =>
@@ -15,7 +14,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, '../backend/build'),
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[contenthash].js',
+    // filename: '[name].[chunkhash].js',
     publicPath: '/',
   },
 
@@ -45,7 +45,8 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
+              // name: '[name].[ext]',
+              name: '[name].[hash].[ext]',
               outputPath: 'images',
             },
           },
@@ -74,7 +75,6 @@ module.exports = {
         { from: pathPublic('favicon.ico'), to: '' },
       ],
     }),
-    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),

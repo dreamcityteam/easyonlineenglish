@@ -7,7 +7,7 @@ const getPayment = async (id) => {
   return {
     plan: payment ? payment.plan : '',
     isPayment
-  };
+  }
 }
 
 module.exports = {

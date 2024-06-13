@@ -5,7 +5,9 @@ const ErrorConnection: React.FC = (): JSX.Element => (
   <section className={style.errorConnection}>
     <div>
       <header>
-        <h1 className={style.errorConnection__title}>¡Ohhh!</h1>
+        <h2 className={style.errorConnection__title}>
+          ¡Ohhh!
+        </h2>
       </header>
       <div>
         <p className={style.errorConnection__text}>Parece que tienes una</p>
