@@ -1,47 +1,81 @@
-const getData = ({ number, expiration, csv, amount }) => ({
-  Channel: 'EC',
-  Store: '39038540035',
-  CardNumber: number,
-  Expiration: expiration,
-  CVC: csv,
-  PosInputMode: 'E-Commerce',
-  TrxType: 'Sale',
-  Amount: amount,
-  Itbis: '000',
-  CurrencyPosCode: '$',
-  Payments: '1',
-  Plan: '0',
-  OriginalDate: '',
-  OriginalTrxTicketNr: '',
-  AuthorizationCode: '',
-  ResponseCode: '',
-  AcquirerRefData: '1',
-  RRN: null,
-  AzulOrderId: null,
-  CustomerServicePhone: '',
-  OrderNumber: '456432165',
-  ECommerceUrl: 'www.easyonlineenglish.com',
-  CustomOrderId: 'trx123',
-  DataVaultToken: '',
-  SaveToDataVault: '0',
-  AltMerchantName: '',
-  ForceNo3DS: '1'
-});
+const User = require('../schemas/user.schema');
+const StudentPayment = require('../schemas/studentPayment.schema');
+const connectToDatabase = require('../db');
+const { getDurationInMonth, sendEmail, getMonthsDiff } = require('./functions')
+const { PAYMENT_METHOD } = require('./const');
 
-const formatDate = (date) => {
-  const months = [
-    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
-  ];
+const payment = async ({
+  idUser,
+  payment: {
+    name,
+    plan,
+    azulRRN = null,
+    azulCustomOrderId = null,
+    azulOrderId = null,
+    azulTicket = null,  
+    type  
+  }
+}) => {
+  let isPayment = false;
+  const PAYMENT = PAYMENT_METHOD[plan];
 
-  const day = date.getDate();
-  const month = months[date.getMonth()];
-  const year = date.getFullYear();
+  if (!PAYMENT) {
+    return isPayment;
+  }
 
-  return `${day} de ${month} del ${year}`;
+  try {
+    await connectToDatabase();
+
+    const user = await User.findOne({ _id: idUser }).select({ __v: 0 });
+
+    if (user && PAYMENT) {
+      const payment = await StudentPayment.findOne({ idUser }).sort({ _id: -1 });
+      const lastPayment = payment ? getMonthsDiff(payment.dateStart, payment.dateEnd) : 0;
+
+      const newPayment = new StudentPayment({
+        idUser,
+        name: type === 'PAYPAL' ? user.name : name,
+        plan,
+        dateEnd: getDurationInMonth(lastPayment + PAYMENT.DURATION_IN_MONTHS),
+        azulRRN,
+        azulCustomOrderId,
+        azulOrderId,
+        azulTicket,
+        amount: PAYMENT.AMOUNT,
+        type
+      });
+
+      await newPayment.save();
+
+      const emailConfig = {
+        from: process.env.EMAIL_USER,
+        to: user.email,
+        subject: 'easyonlineenglish - FACTURA',
+        html: getBillTemplate({
+          name: `${user.name} ${user.lastname}`,
+          phone: user.phone,
+          description: PAYMENT.DESCRIPTION,
+          price: PAYMENT.AMOUNT,
+          total: PAYMENT.AMOUNT,
+          dateStart: newPayment.dateStart,
+          dateEnd: newPayment.dateEnd,
+        }),
+      };
+
+      if (newPayment) {
+        await sendEmail(emailConfig);
+
+        isPayment = true;
+      }
+    }
+  } catch(error) {
+    console.error(error)
+  }
+
+  return isPayment;
 }
 
-const getHtmlMessage = ({
+const getBillTemplate = ({
   name,
   phone,
   description,
@@ -54,6 +88,19 @@ const getHtmlMessage = ({
 
   const formatRow = (textAlign) => 
     `style="text-align: ${textAlign}; border-bottom: solid #598da6 2px; padding: 20px 0;"`;
+
+  const formatDate = (date) => {
+    const months = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+  
+    return `${day} de ${month} del ${year}`;
+  }
 
   return `
   <div style="box-sizing: border-box; padding: 20px; font-family: arial; width: 100%; color: black; display: flex;">
@@ -117,41 +164,6 @@ const getHtmlMessage = ({
 `;
 };
 
-const getDurationInMonth = (durationInMonth) => {
-  const currentDate = new Date();
-
-  currentDate.setMonth(currentDate.getMonth() + durationInMonth);
-
-  return new Date(currentDate);
-}
-
-const formatPhoneNumber = (phoneNumber = '') =>
-  phoneNumber
-    .replace(/\D/g, '')
-    .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
-
-const getMonthsDiff = (dateFrom, dateTo) => {
-  const from = new Date(dateFrom);
-  const to = new Date(dateTo);
-
-  const fromYear = from.getFullYear();
-  const fromMonth = from.getMonth();
-  const toYear = to.getFullYear();
-  const toMonth = to.getMonth();
-
-  let months = (toYear - fromYear) * 12 + (toMonth - fromMonth);
-
-  if (to.getDate() < from.getDate()) {
-    months--;
-  }
-
-  return months;
-}
-
 module.exports = {
-  getData,
-  getHtmlMessage,
-  getDurationInMonth,
-  formatPhoneNumber,
-  getMonthsDiff
+  payment
 }

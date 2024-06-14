@@ -24,21 +24,26 @@ const userSchema = new Schema({
     type: Date,
     required: true
   },
-  RRN: {
+  azulRRN: {
     type: String,
-    required: true,
+    default: null
   },
-  CustomOrderId: {
+  azulCustomOrderId: {
     type: String,
-    required: true,
+    default: null
   },
-  AzulOrderId: {
+  azulOrderId: {
     type: String,
-    required: true,
+    default: null
   },
-  Ticket: {
+  azulTicket: {
     type: String,
-    required: true,
+    default: null
+  },
+  type: {
+    type: String,
+    enum: ['PAYPAL', 'AZUL'],
+    required: true
   },
   amount: {
     type: Number,

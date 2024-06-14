@@ -12,14 +12,15 @@ import { Field } from './type';
 import Modal from '../../components/Modal';
 import SVGSuccess from '../../../public/svg/success.svg';
 import Close from '../../components/Modal/Close';
+import PayPal from './PayPal';
 
 const PaymentForms: React.FC = () => {
-  const redirect = useNavigate();
   const { paymentMethod } = useParams<string>();
   const [canOpenModal, setCanOpenModal] = useState<boolean>(false);
   const [paymentTitle, setPaymentTitle] = useState<string>();
   const [{ user, googleAnalytics }, dispatch] = useContext(context);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const redirect = useNavigate();
   const [state, setState] = useState<any>({
     number: { value: '', messageError: '' },
     name: { value: '', messageError: '' },
@@ -159,6 +160,17 @@ const PaymentForms: React.FC = () => {
     }
   };
 
+  const onCompletePayPal = () => {
+    setCanOpenModal(true);
+    dispatch({
+      type: SET_USER,
+      payload: {
+        ...user,
+        payment: { isPayment: true, plan: paymentMethod },
+      },
+    });
+  }
+
   return (
     <section className={style.payment}>
       <div className={style.payment__container}>
@@ -250,6 +262,10 @@ const PaymentForms: React.FC = () => {
                 Pagar
               </button>
             )}
+            <PayPal
+              onComplete={onCompletePayPal}
+              plan={paymentMethod || ''}
+            />
           </div>
         </form>
       </div>

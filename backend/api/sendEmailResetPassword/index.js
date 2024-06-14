@@ -1,5 +1,5 @@
 const { getResponse, send, sendEmail, getToken } = require('../../tools/functions');
-const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const { HTTP_STATUS_CODES } = require('../../tools/const');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 const UserToken = require('../../schemas/userToken.schema');

@@ -35,6 +35,7 @@
     "webpack-dev-server": "^5.0.2"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^8.5.0",
     "css-modules-typescript-loader": "^4.0.1",
     "react": "^18.2.0",
     "react-credit-cards-2": "^1.0.2",

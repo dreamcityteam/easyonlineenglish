@@ -1,5 +1,6 @@
 const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
-const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/constant');
+const { formatPhoneNumber } = require('./functions');
+const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/const');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 
@@ -50,7 +51,7 @@ module.exports = async (req, res) => {
       name: name.toLowerCase(),
       lastname: lastname.toLowerCase(),
       email: email.toLowerCase(),
-      phone,
+      phone: formatPhoneNumber(phone),
       password: await hash.create(password),
     });
 

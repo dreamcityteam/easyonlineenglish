@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const { HTTP_STATUS_CODES } = require('../../tools/const');
 const { getResponse, send } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');

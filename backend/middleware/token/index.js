@@ -1,5 +1,5 @@
 const { getResponse, send, auth } = require('../../tools/functions');
-const { ENDPOINT } = require('../../tools/constant');
+const { ENDPOINT } = require('../../tools/const');
 const { getTokenFromHeader, verifyToken } = require('./functions');
 
 module.exports = (req, res, next) => {
@@ -32,6 +32,7 @@ module.exports = (req, res, next) => {
       isEndpoint(ENDPOINT.STUDENT_UPDATE) ||
       isEndpoint(ENDPOINT.AZUL_PAYMENT) ||
       isEndpoint(ENDPOINT.STUDENT_TUTORIAL) ||
+      isEndpoint(ENDPOINT.PAYPAL) ||
       /^\/api\/v1\/student-course\/\w/.test(URL)
     )
   ) {

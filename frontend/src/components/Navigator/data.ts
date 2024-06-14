@@ -22,8 +22,8 @@ const homepage: Tab[] = [
   { path: '/', value: 'inicio' },
   { path: '/courses', value: 'cursos' },
   { path: '/contact', value: 'contacto' },
-  { path: '/login', value: 'iniciar sesión' },
   { path: '/plan', value: 'Planes' },
+  { path: '/login', value: 'iniciar sesión' },
 ];
 
 export { studentPendingPayment, studentPayment, homepage };

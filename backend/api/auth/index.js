@@ -1,7 +1,7 @@
 const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const { getPayment } = require('./functions');
-const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const { HTTP_STATUS_CODES } = require('../../tools/const');
 const User = require('../../schemas/user.schema');
 
 module.exports = async (req, res) => {

@@ -14,8 +14,7 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, '../backend/build'),
-    filename: '[name].[contenthash].js',
-    // filename: '[name].[chunkhash].js',
+    filename: '[name].[chunkhash].js',
     publicPath: '/',
   },
 
@@ -45,7 +44,6 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              // name: '[name].[ext]',
               name: '[name].[hash].[ext]',
               outputPath: 'images',
             },

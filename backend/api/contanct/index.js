@@ -1,5 +1,5 @@
 const { getResponse, send, sendEmail } = require('../../tools/functions');
-const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const { HTTP_STATUS_CODES } = require('../../tools/const');
 
 module.exports = async (req, res) => {
   const { name, email, subject, message } = req.body;

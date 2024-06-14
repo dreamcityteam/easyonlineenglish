@@ -12,10 +12,11 @@ const studentUpdate = require('../api/studentUpdate');
 const sendEmailResetPassword = require('../api/sendEmailResetPassword');
 const resetPasswordAuth = require('../api/resetPasswordAuth');
 const resetPassword = require('../api/resetPassword');
-const azulPayment = require('../api/payment');
+const azulPayment = require('../api/azul');
 const studentTutorial = require('../api/studentTutorial');
+const paypal = require('../api/paypal');
 
-const { ENDPOINT } = require('../tools/constant');
+const { ENDPOINT } = require('../tools/const');
 
 module.exports = [
   {
@@ -97,5 +98,10 @@ module.exports = [
     path: ENDPOINT.STUDENT_TUTORIAL,
     method: 'patch',
     func: studentTutorial,
+  },
+  {
+    path: ENDPOINT.PAYPAL,
+    method: 'post',
+    func: paypal,
   },
 ];

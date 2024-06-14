@@ -1,7 +1,8 @@
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { HTTP_STATUS_CODES } = require('./constant');
+const { HTTP_STATUS_CODES } = require('./const');
+
 const {
   TOKEN_NAME,
   ACCESS_KEY_TOKEN,
@@ -98,6 +99,32 @@ const auth = (res, req) => {
   }
 };
 
+const getDurationInMonth = (durationInMonth) => {
+  const currentDate = new Date();
+
+  currentDate.setMonth(currentDate.getMonth() + durationInMonth);
+
+  return new Date(currentDate);
+}
+
+const getMonthsDiff = (dateFrom, dateTo) => {
+  const from = new Date(dateFrom);
+  const to = new Date(dateTo);
+
+  const fromYear = from.getFullYear();
+  const fromMonth = from.getMonth();
+  const toYear = to.getFullYear();
+  const toMonth = to.getMonth();
+
+  let months = (toYear - fromYear) * 12 + (toMonth - fromMonth);
+
+  if (to.getDate() < from.getDate()) {
+    months--;
+  }
+
+  return months;
+}
+
 module.exports = {
   send,
   setCookie,
@@ -106,4 +133,6 @@ module.exports = {
   hash,
   sendEmail,
   auth,
+  getDurationInMonth,
+  getMonthsDiff
 };

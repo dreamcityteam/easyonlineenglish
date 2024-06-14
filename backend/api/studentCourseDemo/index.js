@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODES, INITIAL_COURSE } = require('../../tools/constant');
+const { HTTP_STATUS_CODES, INITIAL_COURSE } = require('../../tools/const');
 const { getResponse, send } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const Course = require('../../schemas/course.schema');

@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { send, getResponse } = require('../../tools/functions');
-const { HTTP_STATUS_CODES } = require('../../tools/constant');
+const { HTTP_STATUS_CODES } = require('../../tools/const');
 
 const verifyToken = ({ req, res, next, authenticator }, token) => {
   const response = getResponse(res, 'Invalid token.');

@@ -502,7 +502,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               </header>
               <div className={style.course__modal}>
                 {isDemo ? (
-                  <p>¡Felicidades por completar el curso demo! Si estás listo para seguir adelante, ¡dale click al botón "Planes" y prepárate para más aprendizaje! Estoy aquí para ayudarte en tu viaje. ¡Adelante!</p>
+                  <p>¡Enhorabuena por completar el curso demo! Si estás preparado para continuar tu aprendizaje, te invitamos a explorar nuestros planes y descubrir nuevas oportunidades de desarrollo profesional. ¡Avanza hacia tus metas!</p>
                 ) : (
                   <p className={style.course__modalText}>¡Felicidades por completar el curso! <br/> Eso es un gran logro y demuestra tu compromiso con aprender y crecer.</p>
                 )}

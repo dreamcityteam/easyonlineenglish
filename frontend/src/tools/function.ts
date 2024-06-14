@@ -5,7 +5,6 @@ import { Request, RequestOptions, Send, Store, Response, Data } from './type';
 import context from '../global/state/context';
 
 const send = ({ api, data, token }: Request): Send => {
-  const { protocol, host } = window.location;
   const options: RequestOptions = {
     headers: {
       'Content-Type': 'application/json',
@@ -17,7 +16,7 @@ const send = ({ api, data, token }: Request): Send => {
 
   const request = async (options: RequestOptions): Promise<Response> => {
     try {
-      const response = await fetch(`${protocol}//${host}/api/v1/${api}`, options);
+      const response = await fetch(`/api/v1/${api}`, options);
       const responseData: Response = await response.json();
 
       return responseData;
