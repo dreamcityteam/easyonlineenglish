@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODES } = require('../../tools/const');
+const { HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
 const { getResponse, send } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const Course = require('../../schemas/course.schema');
@@ -23,7 +23,7 @@ module.exports = async ({ user }, res) => {
 
       response.data = courses;
       response.statusCode = HTTP_STATUS_CODES.OK;
-      response.message = 'Courses successfully';
+      response.message = MESSAGE.SUCCESSFUL;
     }
   } catch (error) {
     console.error('Error fetching courses:', error);

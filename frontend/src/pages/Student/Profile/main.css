@@ -186,7 +186,7 @@
   position: relative;
 }
 
-.modal > div:nth-child(1) {
+.modal>div:nth-child(1) {
   right: -40px;
   top: -20px;
 }
@@ -380,10 +380,19 @@
   animation-duration: 34s;
 }
 
+@media (max-width: 480px) {
+  div:has(.modal-table) {
+    align-items: unset;
+  }
+}
 
 @media (max-width: 990px) {
   .modal {
-    margin-top: 158px;
+    width: 76%;
+  }
+
+  .modal:has(table) {
+    width: 100%;
   }
 
   .profile-page {

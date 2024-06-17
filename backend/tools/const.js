@@ -66,11 +66,16 @@ const INITIAL_COURSE = {
   PICTURE: 'https://easyonlineenglish.com/wp-content/uploads/2024/06/Square1.jpg'
 }
 
+const MESSAGE = {
+  SUCCESSFUL: 'Successful!'
+}
+
 module.exports = {
   HTTP_STATUS_CODES,
   ROLE,
   REGEXP,
   ENDPOINT,
   INITIAL_COURSE,
-  PAYMENT_METHOD
+  PAYMENT_METHOD,
+  MESSAGE
 }

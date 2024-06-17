@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODES, INITIAL_COURSE } = require('../../tools/const');
+const { HTTP_STATUS_CODES, INITIAL_COURSE, MESSAGE } = require('../../tools/const');
 const { getResponse, send } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const Course = require('../../schemas/course.schema');
@@ -30,7 +30,7 @@ module.exports = async (_req, res) => {
       };
 
       response.statusCode = HTTP_STATUS_CODES.OK;
-      response.message = 'Courses fetched successfully';
+      response.message = MESSAGE.SUCCESSFUL;
       response.data = dataResponse;
     } else {
       response.message = 'There are no courses available';

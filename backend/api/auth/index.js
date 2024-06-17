@@ -1,7 +1,7 @@
 const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const { getPayment } = require('./functions');
-const { HTTP_STATUS_CODES } = require('../../tools/const');
+const { HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
 const User = require('../../schemas/user.schema');
 
 module.exports = async (req, res) => {
@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
       } else {
         response.data = user.toObject();
         response.statusCode = HTTP_STATUS_CODES.OK;
-        response.message = 'Success!';
+        response.message = MESSAGE.SUCCESSFUL;
         response.data.payment = await getPayment(req.user.id);
       }
 
@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
       const { password, ...userData } = user.toObject();
 
       response.statusCode = HTTP_STATUS_CODES.OK;
-      response.message = 'Success!';
+      response.message = MESSAGE.SUCCESSFUL;
       response.data = userData;
       response.data.payment = await getPayment(userData._id);
     } else {

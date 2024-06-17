@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODES } = require('../../tools/const');
+const { HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
 const { getResponse, send } = require('../../tools/functions');
 const { getCourseProgress } = require('./function');
 const connectToDatabase = require('../../db');
@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
 
     // Check if the student course was successfully updated
     if (studentCourse) {
-      response.message = 'Student course updated successfully.';
+      response.message = MESSAGE.SUCCESSFUL;
       response.statusCode = HTTP_STATUS_CODES.OK;
       response.data = { progress };
     } else {

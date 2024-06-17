@@ -1,5 +1,5 @@
 const { getResponse,  send, hash } = require('../../tools/functions');
-const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/const');
+const { REGEXP, HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 
@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
     );
 
     response.statusCode = HTTP_STATUS_CODES.OK;
-    response.message = 'User updated successfully.';
+    response.message = MESSAGE.SUCCESSFUL;
     response.data = updatedUser;
   } catch (error) {
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;

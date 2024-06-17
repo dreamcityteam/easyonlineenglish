@@ -1,6 +1,6 @@
 const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
 const { formatPhoneNumber } = require('./functions');
-const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/const');
+const { REGEXP, HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 
@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
     const user = await newUser.save();
     setCookie({ res, value: getToken({ id: user._id }) });
     response.statusCode = HTTP_STATUS_CODES.OK;
-    response.message = 'Registration successful!';
+    response.message = MESSAGE.SUCCESSFUL;
     response.data = user;
   } catch (error) {
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;

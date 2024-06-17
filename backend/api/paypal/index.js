@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODES, PAYMENT_METHOD } = require('../../tools/const');
+const { HTTP_STATUS_CODES, PAYMENT_METHOD, MESSAGE } = require('../../tools/const');
 const { getResponse, send } = require('../../tools/functions');
 const { createOrder, captureOrder } = require('./function');
 const { payment } = require('../../tools/payment');
@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
       if (isPayment) {
         response.statusCode = HTTP_STATUS_CODES.OK;
         response.data = jsonResponse;
-        response.message = 'Success!';
+        response.message = MESSAGE.SUCCESSFUL;
 
         return send(response);
       }

@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODES } = require('../../tools/const');
+const { HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
 const { getResponse, send, auth } = require('../../tools/functions');
 
 module.exports = async (req, res) => {
@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 
   authenticator.remove();
   response.statusCode = HTTP_STATUS_CODES.OK;
-  response.message = 'Logout successfully!';
+  response.message = MESSAGE.SUCCESSFUL;
   response.data = null;
 
   send(response);

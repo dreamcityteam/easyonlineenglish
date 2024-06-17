@@ -3,9 +3,9 @@ const https = require('https');
 const axios = require('axios');
 const path = require('path');
 const { getResponse, send } = require('../../tools/functions');
-const { HTTP_STATUS_CODES } = require('../../tools/const');
+const { HTTP_STATUS_CODES, PAYMENT_METHOD, MESSAGE } = require('../../tools/const');
 const { getData } = require('./function');
-const { PAYMENT_METHOD } = require('../../tools/const');
+const {  } = require('../../tools/const');
 const { payment } = require('../../tools/payment');
 
 module.exports = async (req, res) => {
@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
       });
 
       if (isPayment) {
-        response.data.message = 'Aprovado.';
+        response.data.message = MESSAGE.SUCCESS;
         response.statusCode = HTTP_STATUS_CODES.OK;
       }
 

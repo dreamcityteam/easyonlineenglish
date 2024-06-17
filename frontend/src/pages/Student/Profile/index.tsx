@@ -35,7 +35,7 @@ const Profile: React.FC = (): JSX.Element => {
       dateStart: formatDate(dateStart),
       dateEnd: formatDate(dateEnd),
       amount,
-      type: type === 'AZUL' ? 'Tarjetas de crédito' : 'paypal',
+      type: type === 'AZUL' ? 'Tarjetas de crédito' : 'Paypal',
     }));
 
     return result;
@@ -49,10 +49,6 @@ const Profile: React.FC = (): JSX.Element => {
     ];
 
     return `${date.getDate()} de ${months[date.getMonth()]} del ${date.getFullYear()}`;
-  }
-
-  const onOpenMondal = (): void => {
-    setIsEditStudent(true);
   }
 
   const onData = (payload: any, updateState: (key: string, field: any) => void): void => {
@@ -126,8 +122,8 @@ const Profile: React.FC = (): JSX.Element => {
               data={invoiceStory}
               custom={{
                 plan: { value: 'Descripción' },
-                dateEnd: { value: 'Fecha de vencimiento' },
-                dateStart: { value: 'Fecha de pago' },
+                dateEnd: { value: 'Vencimiento' },
+                dateStart: { value: 'Pago' },
                 type: { value: 'Tipo de pago' },
                 amount: { value: 'Monto' }
               }}

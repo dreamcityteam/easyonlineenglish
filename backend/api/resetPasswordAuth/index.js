@@ -1,5 +1,5 @@
 const { getResponse, send } = require('../../tools/functions');
-const { HTTP_STATUS_CODES } = require('../../tools/const');
+const { HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
 const connectToDatabase = require('../../db');
 const UserToken = require('../../schemas/userToken.schema');
 
@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     }).select({ __v: 0 });
 
     if (userToken) {
-      response.message = 'successfully';
+      response.message = MESSAGE.SUCCESSFUL;
       response.statusCode = HTTP_STATUS_CODES.OK;
     } else {
       response.message = 'Invalid token.';

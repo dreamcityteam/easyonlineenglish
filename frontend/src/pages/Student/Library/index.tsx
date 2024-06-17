@@ -7,7 +7,6 @@ import context from '../../../global/state/context';
 import { LibraryCache, LibraryContent } from '../../../global/state/type';
 import Speech from '../../../components/Speech';
 import { Item } from './type';
-import ErrorConnection from '../../../components/ErrorConnection';
 import Sound from '../../../components/Sound';
 
 const Library: React.FC = (): JSX.Element => {

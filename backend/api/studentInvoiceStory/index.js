@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODES } = require('../../tools/const');
+const { HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
 const { getResponse, send } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const StudentPayment = require('../../schemas/studentPayment.schema');
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
       .sort({ _id: -1 });
 
     response.statusCode = HTTP_STATUS_CODES.OK;
-    response.message = 'Registration successful!';
+    response.message = MESSAGE.SUCCESSFUL;
     response.data = studentPayment;
   } catch (error) {
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './main.css';
+import defaultStyle from './style.module.sass';
 
 interface Props {
   style: { [key: string]: any };
@@ -29,9 +29,9 @@ const Table: React.FC<Props> = ({ data, custom = {}, action, style }) => {
   }
 
   return (
-    <table className={style.table}>
-      <thead className={style.table__thead}>
-        <tr className={style.table__theadTr}>
+    <table className={`${defaultStyle.table} ${style.table || ''}`}>
+      <thead className={`${defaultStyle.table__thead} ${style.table__thead || ''}`}>
+        <tr className={`${defaultStyle.table__tr} ${style.table__theadTr || ''}`}>
           {columns.map((column: string, index: number) => {
             const customColumn = custom[column];
 
@@ -41,7 +41,7 @@ const Table: React.FC<Props> = ({ data, custom = {}, action, style }) => {
               <th
                 scope="col"
                 key={index}
-                className={style.table__theadTh}
+                className={`${defaultStyle.table__th} ${style.table__tbodyTh || ''}`}
               >
                 {customColumn?.value || column}
               </th>
@@ -52,7 +52,7 @@ const Table: React.FC<Props> = ({ data, custom = {}, action, style }) => {
       </thead>
       <tbody className={style.tbody}>
         {data.map((item: any, rowIndex: number) => (
-          <tr key={rowIndex} className={style.table__tbodyTr}>
+          <tr key={rowIndex} className={`${style.table__tbodyTr} ${defaultStyle.table__tr || ''}`}>
             {columns.map((column, colIndex: number) => {
               const customRow = custom[column];
               const render = customRow?.render ? customRow.render(item[column], item) : item[column];
@@ -63,14 +63,14 @@ const Table: React.FC<Props> = ({ data, custom = {}, action, style }) => {
                 <td
                   data-label={customRow?.value || column}
                   key={colIndex}
-                  className={style.table__tbodyTd}
+                  className={`${defaultStyle.table__td} ${style.table__tbodyTd || ''}`}
                 >
                   {render}
                 </td>
               )
             })}
             {action && (
-              <td className={style.table__tbodyTd}>
+              <td className={`${defaultStyle.table__td} ${style.table__tbodyTd || ''}`}>
                 {action.add && <button className={style.table__actionAdd} onClick={() => handlerOnAction(item, action.add)}>Agregar</button>}
                 {action.edit && <button className={style.table__actionEdit} onClick={() => handlerOnAction(item, action.edit)}>Editar</button>}
               </td>

@@ -17,7 +17,10 @@ const app = express();
 const BUILD_PATH = '../build';
 const { PORT = 3000, NODE_ENV } = process.env;
 
-app.use(helmet());
+app.use(helmet({
+  crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
+}));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,7 +41,7 @@ app.get('*', (_, res) => {
 if (NODE_ENV && NODE_ENV.includes('DEVELOPMENT')) {
   app.listen(PORT, () => {
     console.log('Server is running on port', PORT);
-  });  
+  });
 } else {
   module.exports = app;
 }
