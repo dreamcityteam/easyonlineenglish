@@ -32,6 +32,26 @@ const TUTORIAL: 'TUTORIAL' = 'TUTORIAL';
 const DEFAULT_PHOTO: string = 'https://secure.gravatar.com/avatar/3b314b13ca2c8ed3a56da2620bb25ff4?s=150&d=mm&r=g';
 const ASSETS_URL: string = 'https://easyonlineenglish.com/wp-content/uploads/';
 
+const PAYMENT_METHOD: any = {
+  1: {
+    DURATION_IN_MONTHS: 1,
+    AMOUNT: 13,
+    DESCRIPTION: 'MEMBRESÍA POR 1 MES'
+  },
+
+  2: {
+    DURATION_IN_MONTHS: 12,
+    AMOUNT: 130,
+    DESCRIPTION: 'MEMBRESÍA POR 1 AÑO'
+  },
+
+  3: {
+    DURATION_IN_MONTHS: 3,
+    AMOUNT: 35,
+    DESCRIPTION: 'MEMBRESÍA POR 3 MES'
+  }
+}
+
 export {
   REGEXP,
   ROLE,
@@ -40,5 +60,6 @@ export {
   DEFAULT_PHOTO,
   TUTORIAL,
   ASSETS_URL,
-  MESSAGE
+  MESSAGE,
+  PAYMENT_METHOD
 }

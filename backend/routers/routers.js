@@ -15,6 +15,7 @@ const resetPassword = require('../api/resetPassword');
 const azulPayment = require('../api/azul');
 const studentTutorial = require('../api/studentTutorial');
 const paypal = require('../api/paypal');
+const studentInvoiceStory = require('../api/studentInvoiceStory');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -103,5 +104,10 @@ module.exports = [
     path: ENDPOINT.PAYPAL,
     method: 'post',
     func: paypal,
+  },
+  {
+    path: ENDPOINT.STUDENT_INVOICE_STORY,
+    method: 'get',
+    func: studentInvoiceStory,
   },
 ];

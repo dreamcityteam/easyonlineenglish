@@ -1,27 +1,58 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { State } from '../../../global/state/type';
 import context from '../../../global/state/context';
-import style from './style.module.sass';
-import { formatPhoneNumber } from '../../../tools/function';
+import { formatPhoneNumber, send } from '../../../tools/function';
 import { PLAN, inputs } from './data';
-import { HTTP_STATUS_CODES } from '../../../tools/constant';
+import { HTTP_STATUS_CODES, PAYMENT_METHOD } from '../../../tools/constant';
 import Form from '../../../components/Form';
 import Modal from '../../../components/Modal';
 import { SET_USER } from '../../../global/state/actionTypes';
 import './main.css';
 import Close from '../../../components/Modal/Close';
+import style from './style.module.sass';
+import Table from '../../../components/Table';
 
 const Profile: React.FC = (): JSX.Element => {
   const [{ user }] = useContext<[State, any]>(context);
   const [_, dispatch] = useContext<[State, any]>(context);
-  const [isMondal, setIsMondal] = useState<boolean>(false);
+  const [isEditStudent, setIsEditStudent] = useState<boolean>(false);
+  const [isStudentInvoiceStory, setIsStudentInvoiceStory] = useState<boolean>(false);
+  const [invoiceStory, setInvoiceStory] = useState([]);
 
-  const onOpenMondal = (): void => {
-    setIsMondal(true);
+  useEffect(() => {
+    setStudentInvoiceStory();
+  }, []);
+
+  const setStudentInvoiceStory = async () => {
+    const { response: { data = [] } } = await send({ api: 'student-invoice-story' }).get();
+
+    setInvoiceStory(formatStudentInvoiceStory(data));
   }
 
-  const onCloseonMondal = () => {
-    setIsMondal(false);
+  const formatStudentInvoiceStory = (data: any[]): any => {
+    const result = data.map(({ plan, dateStart, dateEnd, amount, type }) => ({
+      plan: PAYMENT_METHOD[plan].DESCRIPTION,
+      dateStart: formatDate(dateStart),
+      dateEnd: formatDate(dateEnd),
+      amount,
+      type: type === 'AZUL' ? 'Tarjetas de crédito' : 'paypal',
+    }));
+
+    return result;
+  }
+
+  const formatDate = (value: string) => {
+    const date: Date = new Date(value);
+    const months: string[] = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+
+    return `${date.getDate()} de ${months[date.getMonth()]} del ${date.getFullYear()}`;
+  }
+
+  const onOpenMondal = (): void => {
+    setIsEditStudent(true);
   }
 
   const onData = (payload: any, updateState: (key: string, field: any) => void): void => {
@@ -35,7 +66,7 @@ const Profile: React.FC = (): JSX.Element => {
 
     if (statusCode === HTTP_STATUS_CODES.OK) {
       dispatch({ type: SET_USER, payload: data });
-      setIsMondal(false);
+      setIsEditStudent(false);
     } else if (statusCode === HTTP_STATUS_CODES.UNAUTHORIZED) {
       field.validation.serverErrorMessage = 'La contraseña no es correcta.';
       updateState('oldPassword', field);
@@ -68,8 +99,11 @@ const Profile: React.FC = (): JSX.Element => {
             <li><span>Membresía</span>{user?.payment.plan ? PLAN[user.payment.plan] : 'N/A'}</li>
           </ul>
           <div className="content__button">
-            <span className="button" onClick={onOpenMondal}>
-              <p className="button__text">Editar perfil</p>
+            <span className="button" onClick={() => setIsEditStudent(true)}>
+              <p className="button__text">Historial de pago</p>
+            </span>
+            <span className="button" onClick={() => setIsStudentInvoiceStory(true)}>
+              <p className="button__text">Editar estudiante</p>
             </span>
           </div>
         </div>
@@ -79,11 +113,33 @@ const Profile: React.FC = (): JSX.Element => {
         </div>
       </div>
       <Modal
-        onClose={onCloseonMondal}
-        canShow={isMondal}
+        canShow={isEditStudent}
       >
         <div className="modal">
-          <Close onClose={() => setIsMondal(false) } />
+          <div className="modal-table">
+            <Close onClose={() => setIsEditStudent(false)} />
+            <header className="modal-table-title">
+              <h2>Historial de pago</h2>
+            </header>
+            <Table
+              style={style}
+              data={invoiceStory}
+              custom={{
+                plan: { value: 'Descripción' },
+                dateEnd: { value: 'Fecha de vencimiento' },
+                dateStart: { value: 'Fecha de pago' },
+                type: { value: 'Tipo de pago' },
+                amount: { value: 'Monto' }
+              }}
+            />
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        canShow={isStudentInvoiceStory}
+      >
+        <div className="modal">
+          <Close onClose={() => setIsStudentInvoiceStory(false)} />
           <Form
             api="student-update"
             buttonText="Guardar"

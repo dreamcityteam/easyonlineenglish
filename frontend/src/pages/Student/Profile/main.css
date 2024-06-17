@@ -4,6 +4,16 @@
   padding-top: 5rem;
 }
 
+.modal-table {
+  background-color: white;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.modal-table-title {
+  text-align: center;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -185,7 +195,7 @@
   color: #494949;
   display: block;
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 0.1rem;
 }
 
@@ -193,11 +203,14 @@
   margin: 3rem 0 2rem;
   text-align: center;
   order: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .button {
   display: inline-block;
-  padding: 1.2rem 1.8rem;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   background: #06609e;
@@ -206,6 +219,12 @@
   font-size: 1rem;
   color: #fff;
   cursor: pointer;
+  min-width: 200px;
+  margin-bottom: 10px;
+}
+
+.button:last-child {
+  background-color: #F44336;
 }
 
 .button:hover {
@@ -361,7 +380,12 @@
   animation-duration: 34s;
 }
 
+
 @media (max-width: 990px) {
+  .modal {
+    margin-top: 158px;
+  }
+
   .profile-page {
     padding-top: 0;
   }

@@ -29,17 +29,7 @@ app.use((_req, res, next) => {
   next();
 });
 
-// Static assets configuration
-const staticOptions = {
-  maxAge: 0, // Disable caching for static assets
-};
-app.use(express.static(path.join(__dirname, BUILD_PATH), staticOptions));
-
-// Disable caching for index.html
-app.get('/', (_req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  next();
-});
+app.use(express.static(path.join(__dirname, BUILD_PATH)));
 
 app.get('*', (_, res) => {
   res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));

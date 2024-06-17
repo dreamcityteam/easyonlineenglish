@@ -280,7 +280,9 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     const isSkip: boolean = countPronunciation === 5;
 
     setFeedback({
-      message: isCorrect || isSkip ? '¡Correcto!' : '¡Intente de nuevo!',
+      message: (isCorrect || isSkip) 
+        ?  isSkip ? 'Debes practicar más con esta palabra' : '¡Correcto!' 
+        : '¡Intente de nuevo!',
       canShow: true,
     });
 
@@ -364,184 +366,182 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   return (
     <>
-      {courseCache ? (
-        <section className={style.course}>
-          {course && (
-            <Aside
-              isTutorial={isDemo}
-              lessons={lessons}
-              currentWord={course.index}
-              completedWords={course.completedWords}
-              onClick={onWord}
-              title={course.title}
-            />
-          )}
-          <div className={style.course__container}>
-            <div>
-              <div className={style.course__lession_container}>
-                <span
-                  className={`${style.course__text_grandient} ${style.course__text_lession}`}
-                >
-                  {lessionTitle}
-                </span>
-              </div>
-              <div className={style.course__englishWord_container}>
-                <span
-                  onClick={() => handlerOnPlayWord('word')}
-                  className={`${style.course__text_grandient} ${style.course__englishWord}`}
-                >
-                  "{word?.englishWord}"
-                </span>
-              </div>
-              <div className={style.course__spanishTranslation_container}>
-                <span
-                  className={`${style.course__text_grandient} ${style.course__spanishTranslation}`}
-                >
-                  {word?.spanishTranslation}
-                </span>
-              </div>
-            </div>
-            <div className={style.course__progress_container}>
-              <div className={style.course__progress}>
-                <div
-                  className={style.course__bar}
-                  style={{ width: getWordProgress() }}
-                ></div>
-                <span>{getWordProgress()} completado</span>
-                <span>
-                  {getCompletedSentencesCount()} de{' '}
-                  {word?.sentences.length}
-                </span>
-              </div>
-              {isSavingProgress && (
-                <div className={style.course__save_progress_container}>
-                  <span className={style.course__save_progress}>
-                    Guadando progreso....
-                  </span>
-                </div>
-              )}
-            </div>
-            <div className={style.course__content_container}>
-              <div className={style.course__content}>
-                <div className={style.course__content_text}>
-                  <div>
-                    <span
-                      onClick={() => handlerOnPlayWord('sentence')}
-                      className={style.course__text_grandient}
-                    >
-                      {sentence?.englishWord}
-                    </span>
-                  </div>
-                  <span
-                    className={style.course__text_language}
-                  >
-                    Inglés
-                  </span>
-                </div>
-                <div className={style.course__feedback}>
-                  <img
-                    alt="Sentence"
-                    className={style.course__image}
-                    loading="lazy"
-                    src={sentence?.imageUrl}
-                  />
-                  {feedback.canShow && (
-                    <span
-                      style={{ background: (feedback.message === '¡Correcto!') ? '#4caf50' : '#f44336' }}
-                      className={style.course__message}>
-                      {feedback.message}
-                    </span>
-                  )}
-                </div>
-                <div className={style.course__content_text}>
-                  <div>
-                    <span className={style.course__text_grandient}>
-                      {sentence?.spanishTranslation}
-                    </span>
-                  </div>
-                  <span className={style.course__text_language}>
-                    Español
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className={style.course__pronunciation}>
-              {sentenceIndex > 0 && (
-                <img
-                  alt="Previous arrow"
-                  className={style.course__arrowLeft}
-                  onClick={onPrev}
-                  src={SVGArrowLeft}
-                />
-              )}
-              <Speech
-                word={sentence?.englishWord || ''}
-                onCheck={onSpeechFeedback}
-                audioUrl={sentence?.audioUrl || ''}
-                onPlaySpeech={onPlaySpeech}
-                canNext={pronunciation}
-              />
-              {isSavingProgress || sentence?.isCompleted && (
-                <img
-                  alt="Next arrow"
-                  className={style.course__arrowRight}
-                  onClick={onNext}
-                  src={SVGArrowRight}
-                />
-              )}
-            </div>
-          </div>
-          <Modal
-            canShow={canShowModal}
-            isFadeIn
-          >
-            <div className={style.course__modalMessage}>
-              <Close onClose={() => setCanShowModal(false)} />
-              <header>
-                <h2 className={style.course__modalTitle}> ¡Finalizaste el curso! </h2>
-              </header>
-              <div className={style.course__modal}>
-                {isDemo ? (
-                  <p>¡Enhorabuena por completar el curso demo! Si estás preparado para continuar tu aprendizaje, te invitamos a explorar nuestros planes y descubrir nuevas oportunidades de desarrollo profesional. ¡Avanza hacia tus metas!</p>
-                ) : (
-                  <p className={style.course__modalText}>¡Felicidades por completar el curso! <br/> Eso es un gran logro y demuestra tu compromiso con aprender y crecer.</p>
-                )}
-                <Link
-                  to={isDemo ? '/plan' : '/courses'}
-                  className={style.course__modalMessageButton}
-                >
-                  {isDemo ? 'planes' : 'Cursos'}
-                </Link>
-              </div>
-              <Confetti />
-            </div>
-          </Modal>
-          <Modal
-            canShow={closeMessage}
-            isFadeIn
-          >
-            <div className={style.course__modalMessage}>
-              <Close onClose={() => setCloseMessage(false)} />
-              <header>
-                <h2 className={style.course__modalTitle}>
-                  No capto tus palabras
-                </h2>
-              </header>
-              <div>
-                <p>
-                  Por favor, intenta pronunciar más despacio.
-                </p>
-              </div>
+      <section className={style.course}>
+        {course && (
+          <Aside
+            isTutorial={isDemo}
+            lessons={lessons}
+            currentWord={course.index}
+            completedWords={course.completedWords}
+            onClick={onWord}
+            title={course.title}
+          />
+        )}
+        <div className={style.course__container}>
+          <div>
+            <div className={style.course__lession_container}>
               <span
-                onClick={() => setCloseMessage(false)}
-                className={style.course__modalMessageButton}
+                className={`${style.course__text_grandient} ${style.course__text_lession}`}
               >
-                ¡Entiendo!
+                {lessionTitle}
               </span>
             </div>
-          </Modal>
-        </section >
-      ) : (<ErrorConnection />)}
+            <div className={style.course__englishWord_container}>
+              <span
+                onClick={() => handlerOnPlayWord('word')}
+                className={`${style.course__text_grandient} ${style.course__englishWord}`}
+              >
+                "{word?.englishWord}"
+              </span>
+            </div>
+            <div className={style.course__spanishTranslation_container}>
+              <span
+                className={`${style.course__text_grandient} ${style.course__spanishTranslation}`}
+              >
+                {word?.spanishTranslation}
+              </span>
+            </div>
+          </div>
+          <div className={style.course__progress_container}>
+            <div className={style.course__progress}>
+              <div
+                className={style.course__bar}
+                style={{ width: getWordProgress() }}
+              ></div>
+              <span>{getWordProgress()} completado</span>
+              <span>
+                {getCompletedSentencesCount()} de{' '}
+                {word?.sentences.length}
+              </span>
+            </div>
+            {isSavingProgress && (
+              <div className={style.course__save_progress_container}>
+                <span className={style.course__save_progress}>
+                  Guadando progreso....
+                </span>
+              </div>
+            )}
+          </div>
+          <div className={style.course__content_container}>
+            <div className={style.course__content}>
+              <div className={style.course__content_text}>
+                <div>
+                  <span
+                    onClick={() => handlerOnPlayWord('sentence')}
+                    className={style.course__text_grandient}
+                  >
+                    {sentence?.englishWord}
+                  </span>
+                </div>
+                <span
+                  className={style.course__text_language}
+                >
+                  Inglés
+                </span>
+              </div>
+              <div className={style.course__feedback}>
+                <img
+                  alt="Sentence"
+                  className={style.course__image}
+                  loading="lazy"
+                  src={sentence?.imageUrl}
+                />
+                {feedback.canShow && (
+                  <span
+                    style={{ background: (feedback.message === '¡Correcto!') ? '#4caf50' : '#f44336' }}
+                    className={style.course__message}>
+                    {feedback.message}
+                  </span>
+                )}
+              </div>
+              <div className={style.course__content_text}>
+                <div>
+                  <span className={style.course__text_grandient}>
+                    {sentence?.spanishTranslation}
+                  </span>
+                </div>
+                <span className={style.course__text_language}>
+                  Español
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className={style.course__pronunciation}>
+            {sentenceIndex > 0 && (
+              <img
+                alt="Previous arrow"
+                className={style.course__arrowLeft}
+                onClick={onPrev}
+                src={SVGArrowLeft}
+              />
+            )}
+            <Speech
+              word={sentence?.englishWord || ''}
+              onCheck={onSpeechFeedback}
+              audioUrl={sentence?.audioUrl || ''}
+              onPlaySpeech={onPlaySpeech}
+              canNext={pronunciation}
+            />
+            {isSavingProgress || sentence?.isCompleted && (
+              <img
+                alt="Next arrow"
+                className={style.course__arrowRight}
+                onClick={onNext}
+                src={SVGArrowRight}
+              />
+            )}
+          </div>
+        </div>
+        <Modal
+          canShow={canShowModal}
+          isFadeIn
+        >
+          <div className={style.course__modalMessage}>
+            <Close onClose={() => setCanShowModal(false)} />
+            <header>
+              <h2 className={style.course__modalTitle}> ¡Finalizaste el curso! </h2>
+            </header>
+            <div className={style.course__modal}>
+              {isDemo ? (
+                <p>¡Enhorabuena por completar el curso demo! Si estás preparado para continuar tu aprendizaje, te invitamos a explorar nuestros planes y descubrir nuevas oportunidades de desarrollo profesional. ¡Avanza hacia tus metas!</p>
+              ) : (
+                <p className={style.course__modalText}>¡Felicidades por completar el curso! <br /> Eso es un gran logro y demuestra tu compromiso con aprender y crecer.</p>
+              )}
+              <Link
+                to={isDemo ? '/plan' : '/courses'}
+                className={style.course__modalMessageButton}
+              >
+                {isDemo ? 'planes' : 'Cursos'}
+              </Link>
+            </div>
+            <Confetti />
+          </div>
+        </Modal>
+        <Modal
+          canShow={closeMessage}
+          isFadeIn
+        >
+          <div className={style.course__modalMessage}>
+            <Close onClose={() => setCloseMessage(false)} />
+            <header>
+              <h2 className={style.course__modalTitle}>
+                No capto tus palabras
+              </h2>
+            </header>
+            <div>
+              <p>
+                Por favor, intenta pronunciar más despacio.
+              </p>
+            </div>
+            <span
+              onClick={() => setCloseMessage(false)}
+              className={style.course__modalMessageButton}
+            >
+              ¡Entiendo!
+            </span>
+          </div>
+        </Modal>
+      </section >
     </>
   );
 };

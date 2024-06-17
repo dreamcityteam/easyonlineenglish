@@ -1,4 +1,5 @@
 import React from 'react';
+import './main.css';
 
 interface Props {
   style: { [key: string]: any };
@@ -37,7 +38,11 @@ const Table: React.FC<Props> = ({ data, custom = {}, action, style }) => {
             if (customColumn?.avoid == true) return null;
 
             return (
-              <th key={index} className={style.table__theadTh}>
+              <th
+                scope="col"
+                key={index}
+                className={style.table__theadTh}
+              >
                 {customColumn?.value || column}
               </th>
             )
@@ -55,7 +60,11 @@ const Table: React.FC<Props> = ({ data, custom = {}, action, style }) => {
               if (customRow?.avoid == true) return null;
 
               return (
-                <td key={colIndex} className={style.table__tbodyTd}>
+                <td
+                  data-label={customRow?.value || column}
+                  key={colIndex}
+                  className={style.table__tbodyTd}
+                >
                   {render}
                 </td>
               )

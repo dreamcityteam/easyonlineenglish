@@ -33,6 +33,7 @@ module.exports = (req, res, next) => {
       isEndpoint(ENDPOINT.AZUL_PAYMENT) ||
       isEndpoint(ENDPOINT.STUDENT_TUTORIAL) ||
       isEndpoint(ENDPOINT.PAYPAL) ||
+      isEndpoint(ENDPOINT.STUDENT_INVOICE_STORY) ||
       /^\/api\/v1\/student-course\/\w/.test(URL)
     )
   ) {

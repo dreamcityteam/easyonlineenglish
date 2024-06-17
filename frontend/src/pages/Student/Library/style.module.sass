@@ -5,10 +5,10 @@
   color: black
 
   &__table
+    padding: 0 10px
     width: 100%
 
   &__container
-    border: #e9e9e9 solid 1px
     display: flex
     width: 100%
 
@@ -34,6 +34,9 @@
     cursor: pointer
     text-transform: capitalize
     transition: background-color 0.3s ease
+
+    &:first-child
+      border-top: 1px solid #e9e9e9
 
   &__tabFocus
     background-color: $main__color
@@ -70,10 +73,6 @@
   &__theadTh
     text-align: center
 
-  &__tbodyTr
-    &:nth-child(even)
-      background-color: #f7f7f7
-
   &__tbodyTd
     text-align: center
     text-transform: capitalize
@@ -92,7 +91,22 @@
     &__tbodyTd
       font-size: 1rem
 
+    &__tbodyTd
+      text-align: right
+
+    &__image
+      margin-right: -40px
+
+    p
+      text-align: center
+
+    span
+      margin-left: 40px
+
 .sound
   &__icon
     cursor: pointer
     width: 50px
+
+  @include mobile
+    margin-right: 55px

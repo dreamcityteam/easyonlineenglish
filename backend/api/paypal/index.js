@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
   const { plan, orderID } = req.body;
   const PAYMENT = PAYMENT_METHOD[plan];
   let action;
-  console.log(req.body)
+
   try {
     if (plan && !orderID) {
       action = await createOrder(plan);

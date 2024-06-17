@@ -7,15 +7,14 @@ interface Prop {
   children?: JSX.Element | null | JSX.Element[];
   isFadeIn?: boolean;
   backgroundColor?: string;
-  onClose?: () => void;
 };
 
-const Modal: React.FC<Prop> = ({ canShow, children, backgroundColor, isFadeIn, onClose }) => (
+const Modal: React.FC<Prop> = ({ canShow, children, backgroundColor, isFadeIn }) => (
   <>
     {canShow && (
       <div
         style={{ backgroundColor }}
-        className={`${style.modal} ${isFadeIn && style.modal__fadeIn}`}
+        className={`${style.modal} ${isFadeIn ? style.modal__fadeIn : '' }`}
       >
         {children}
       </div>

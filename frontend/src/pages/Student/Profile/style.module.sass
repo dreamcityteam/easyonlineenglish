@@ -1,0 +1,26 @@
+@import '../../../../public/mixin/index.module'
+@import '../../../../public/mixin/vars.module'
+
+.table
+  font-family: arial, sans-serif
+  border-collapse: collapse
+  width: 100%
+
+  &__theadTh
+    text-align: center
+
+  &__tbodyTr
+    &:nth-child(even)
+      background-color: #f7f7f7
+
+  &__tbodyTd
+    text-align: center
+
+  &__theadTh,
+  &__tbodyTd
+    padding: 20px
+
+  @include mobile
+    &__theadTh,
+    &__tbodyTd
+      font-size: 1rem
