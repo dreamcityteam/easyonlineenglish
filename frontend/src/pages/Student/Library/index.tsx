@@ -95,6 +95,7 @@ const Library: React.FC = (): JSX.Element => {
                       audioUrl={value}
                       onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
                       word={item.englishWord}
+                      canShowMessage={false}
                     />
                 },
                 imageUrl: {

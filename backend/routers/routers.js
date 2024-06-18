@@ -16,6 +16,7 @@ const azulPayment = require('../api/azul');
 const studentTutorial = require('../api/studentTutorial');
 const paypal = require('../api/paypal');
 const studentInvoiceStory = require('../api/studentInvoiceStory');
+const studentDeleteAccount = require('../api/studentDeleteAccount');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -109,5 +110,10 @@ module.exports = [
     path: ENDPOINT.STUDENT_INVOICE_STORY,
     method: 'get',
     func: studentInvoiceStory,
+  },
+  {
+    path: ENDPOINT.STUDENT_DELETE_ACCOUNT,
+    method: 'patch',
+    func: studentDeleteAccount,
   },
 ];

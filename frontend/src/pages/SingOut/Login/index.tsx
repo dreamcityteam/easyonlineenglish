@@ -12,15 +12,20 @@ const Login: React.FC = () => {
   const [text, setText] = useState<string>('');
   const navigate: NavigateFunction = useNavigate();
 
-  const onData = ({ response: { statusCode, data } }: any): void => {
+  const onData = ({ response: { statusCode, data, message } }: any): void => {
     setText('');
 
-    if (statusCode === HTTP_STATUS_CODES.NOT_FOUND) {
+    if (message === 'User deleted') {
+      setText('Esta cuenta ha sido eliminada.');
+
+    } else if (statusCode === HTTP_STATUS_CODES.NOT_FOUND) {
       setText('La dirección de correo electrónico o la contraseña son incorrectas.');
+
     } else if (statusCode === HTTP_STATUS_CODES.OK) {
       navigate(data.isPayment ? '/courses' : '/plan');
       dispatch({ type: CLEAN_CACHE });
       dispatch({ type: SET_USER, payload: data });
+
       googleAnalytics('event', 'login', {
         'event_category': 'Login',
         'event_label': 'Iniciar sección'

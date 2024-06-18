@@ -17,6 +17,11 @@ module.exports = async (req, res) => {
       if (!user) {
         response.message = 'User not found';
         response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
+      } else if (user.deleted) {
+        response.statusCode = HTTP_STATUS_CODES.OK;
+        response.message = 'User deleted';
+
+        return send(response);
       } else {
         response.data = user.toObject();
         response.statusCode = HTTP_STATUS_CODES.OK;
@@ -31,6 +36,13 @@ module.exports = async (req, res) => {
     const user = await User.findOne({ $or: [{ email: field }, { username: field }] }).select({ __v: 0 });
 
     if (user && (await hash.compare({ password, hash: user.password }))) {
+      if (user.deleted) {
+        response.statusCode = HTTP_STATUS_CODES.OK;
+        response.message = 'User deleted';
+
+        return send(response);
+      }
+
       setCookie({ res, value: getToken({ id: user._id }) });
       const { password, ...userData } = user.toObject();
 
@@ -43,7 +55,7 @@ module.exports = async (req, res) => {
       response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
     }
   } catch (error) {
-    response.message = `Error saving user! ${error}`;
+    response.message = `Error ${error}`;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
   }
 

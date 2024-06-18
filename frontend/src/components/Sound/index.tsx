@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SVGStopAudio from '../../../public/svg/stopAudio.svg';
 import SVGMPlay from '../../../public/svg/playAudio.svg';
+import styleDefault from './style.module.sass';
 
 interface Props {
   src: string;
@@ -41,20 +42,19 @@ const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
 
   return (
     <div
-      className={style.sound}
-      style={style}
+      className={`${style.sound} ${styleDefault.sound}`}
     >
       {canPlay ? (
         <img
           alt="Stop pronunciation"
-          className={style.sound__icon}
+          className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
           src={SVGStopAudio}
           onClick={handleTogglePlay}
         />
       ) : (
         <img
           alt="Play pronunciation"
-          className={style.sound__icon}
+          className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
           src={SVGMPlay}
           onClick={handleTogglePlay}
         />

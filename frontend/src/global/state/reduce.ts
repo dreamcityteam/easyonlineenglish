@@ -10,6 +10,7 @@ import {
   SET_LIBRARY,
   SET_TUTORIAL,
   SET_GOOGLE_ANALITICS,
+  DELETE_ACCOUNT
 } from './actionTypes';
 import { Option, State } from './type';
 
@@ -88,6 +89,10 @@ const reducer = (state: State, { payload, type }: Option): State => ({
     googleAnalytics: value,
   }),
 
+  [DELETE_ACCOUNT]: (): State => ({
+    ...state,
+    user: null,
+  }),
 
   [SET_COURSE_CACHE]: ({
     idCourse = '',

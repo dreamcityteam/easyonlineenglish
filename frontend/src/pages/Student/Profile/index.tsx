@@ -6,11 +6,12 @@ import { PLAN, inputs } from './data';
 import { HTTP_STATUS_CODES, PAYMENT_METHOD } from '../../../tools/constant';
 import Form from '../../../components/Form';
 import Modal from '../../../components/Modal';
-import { SET_USER } from '../../../global/state/actionTypes';
+import { DELETE_ACCOUNT, SET_USER } from '../../../global/state/actionTypes';
 import './main.css';
 import Close from '../../../components/Modal/Close';
 import style from './style.module.sass';
 import Table from '../../../components/Table';
+import { useNavigate } from 'react-router-dom';
 
 const Profile: React.FC = (): JSX.Element => {
   const [{ user }] = useContext<[State, any]>(context);
@@ -18,6 +19,8 @@ const Profile: React.FC = (): JSX.Element => {
   const [isEditStudent, setIsEditStudent] = useState<boolean>(false);
   const [isStudentInvoiceStory, setIsStudentInvoiceStory] = useState<boolean>(false);
   const [invoiceStory, setInvoiceStory] = useState([]);
+  const [isDeleteStudent, setIsDeleteStudent] = useState<boolean>(false);
+  const redirect = useNavigate();
 
   useEffect(() => {
     setStudentInvoiceStory();
@@ -27,6 +30,15 @@ const Profile: React.FC = (): JSX.Element => {
     const { response: { data = [] } } = await send({ api: 'student-invoice-story' }).get();
 
     setInvoiceStory(formatStudentInvoiceStory(data));
+  }
+
+  const onDeleteAcount = async () => {
+    const { response: { statusCode } } = await send({ api: 'student-delete-account' }).patch();
+
+    if (statusCode === HTTP_STATUS_CODES.OK) {
+      redirect('/login');
+      dispatch({ type: DELETE_ACCOUNT });
+    }
   }
 
   const formatStudentInvoiceStory = (data: any[]): any => {
@@ -78,8 +90,6 @@ const Profile: React.FC = (): JSX.Element => {
         <div className="content">
           <div className="content__cover">
             <div className="content__avatar"></div>
-            <div className="content__bull"><span></span><span></span><span></span><span></span><span></span>
-            </div>
           </div>
           <div className="content__title">
             <h1>
@@ -101,6 +111,9 @@ const Profile: React.FC = (): JSX.Element => {
             <span className="button" onClick={() => setIsStudentInvoiceStory(true)}>
               <p className="button__text">Editar estudiante</p>
             </span>
+            <span className="button" onClick={() => setIsDeleteStudent(true)}>
+              <p className="button__text">Borrar cuenta</p>
+            </span>
           </div>
         </div>
         <div className="bg">
@@ -108,6 +121,22 @@ const Profile: React.FC = (): JSX.Element => {
           </div>
         </div>
       </div>
+      <Modal
+        canShow={isDeleteStudent}
+      >
+        <div className="modal">
+          <div className="modal-delete-user">
+            <Close onClose={() => setIsDeleteStudent(false)} />
+            <header className="modal-table-title">
+              <p>¿Estás seguro de que quieres borrar esta cuenta?</p>
+            </header>
+            <div className="modal-delete-user-button">
+              <button onClick={onDeleteAcount}>Si</button>
+              <button onClick={() => setIsDeleteStudent(false)}>No</button>
+            </div>
+          </div>
+        </div>
+      </Modal>
       <Modal
         canShow={isEditStudent}
       >

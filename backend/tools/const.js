@@ -39,7 +39,8 @@ const ENDPOINT = {
   AZUL_PAYMENT: '/azul-payment',
   STUDENT_TUTORIAL: '/tutorial',
   PAYPAL: '/paypal',
-  STUDENT_INVOICE_STORY: '/student-invoice-story'
+  STUDENT_INVOICE_STORY: '/student-invoice-story',
+  STUDENT_DELETE_ACCOUNT: '/student-delete-account'
 }
 
 const PAYMENT_METHOD = {

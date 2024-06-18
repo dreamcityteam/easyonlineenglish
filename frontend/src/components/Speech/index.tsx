@@ -8,7 +8,8 @@ interface Props {
   audioUrl: string;
   onCheck: (isCorrect: boolean) => void;
   onPlaySpeech?: (isCorrect: boolean) => void;
-  canNext?: { [key: string]: string[]; }
+  canNext?: { [key: string]: string[]; },
+  canShowMessage?: boolean;
 };
 
 const Speech: React.FC<Props> = ({
@@ -16,7 +17,8 @@ const Speech: React.FC<Props> = ({
   onCheck,
   audioUrl,
   onPlaySpeech,
-  canNext = {}
+  canNext = {},
+  canShowMessage = true
 }): JSX.Element => {
   const [output, setOutput] = useState<string>('');
   const [canPlay, setCanPlay] = useState<boolean>(false);
@@ -113,7 +115,7 @@ const Speech: React.FC<Props> = ({
           src={SVGMicrophone}
         />
       )}
-      <p className={style.speech__feedback}>{output || 'Escuchar pronunciación'}</p>
+      {canShowMessage && <p className={style.speech__feedback}>{output || 'Escuchar pronunciación'}</p>}
     </div>
   );
 }

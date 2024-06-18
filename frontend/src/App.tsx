@@ -29,7 +29,7 @@ const App: React.FC = (): JSX.Element => {
       service: { method: 'post', endpoint: 'auth' },
       modal: { dispatch, text: 'Iniciando sesión' },
       success: (data): void => {
-        dispatch({ type: SET_USER, payload: data });
+        data && dispatch({ type: SET_USER, payload: data });
       }
     });
 
