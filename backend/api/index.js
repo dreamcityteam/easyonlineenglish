@@ -8,6 +8,7 @@ const routers = require('../routers');
 const middlewareToken = require('../middleware/token');
 const initialDatabase = require('../initialDatabase');
 const connectToDatabase = require('../db');
+const { isDev } = require('../tools/functions');
 
 connectToDatabase().then(() => {
   initialDatabase();
@@ -15,7 +16,7 @@ connectToDatabase().then(() => {
 
 const app = express();
 const BUILD_PATH = '../build';
-const { PORT = 3000, NODE_ENV } = process.env;
+const { PORT = 3000 } = process.env;
 
 app.use(helmet({
   crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
@@ -38,10 +39,8 @@ app.get('*', (_, res) => {
   res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
 });
 
-if (NODE_ENV && NODE_ENV.includes('DEVELOPMENT')) {
-  app.listen(PORT, () => {
-    console.log('Server is running on port', PORT);
-  });
+if (isDev()) {
+  app.listen(PORT, () => console.log('Server is running on port', PORT));
 } else {
   module.exports = app;
 }

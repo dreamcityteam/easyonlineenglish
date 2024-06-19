@@ -15,7 +15,6 @@ import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
-import ErrorConnection from '../../../components/ErrorConnection';
 import { LESSIONS_COUNT } from './data';
 import Close from '../../../components/Modal/Close';
 

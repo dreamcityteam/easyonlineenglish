@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const pathPublic = (fileName) =>
   path.resolve(__dirname, 'public', fileName);
@@ -82,5 +83,6 @@ module.exports = {
       hash: true,
       favicon: './public/favicon.ico',
     }),
+    new Dotenv(),
   ],
 };

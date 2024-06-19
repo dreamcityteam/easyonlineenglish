@@ -161,7 +161,7 @@ const initGoogleAnalytics = (): any => {
   // @ts-ignore
   window.dataLayer = window.dataLayer || [];
 
-  function gtag () {
+  function gtag() {
     // @ts-ignore
     dataLayer.push(arguments);
   }
@@ -183,5 +183,5 @@ export {
   getData,
   cookie,
   isUser,
-  initGoogleAnalytics
+  initGoogleAnalytics,
 };

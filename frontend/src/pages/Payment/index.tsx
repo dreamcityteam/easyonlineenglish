@@ -182,10 +182,12 @@ const PaymentForms: React.FC = () => {
             cvc={state.cvc.value}
           />
         </div>
+
         <form className={style.payment__form}>
           <header>
             <h1 className={style.payment__title}>{paymentTitle}</h1>
           </header>
+          {/*
           <div className={style.payment__inputs}>
             <div className={style.payment__inputs_container}>
               <input
@@ -262,11 +264,11 @@ const PaymentForms: React.FC = () => {
                 Pagar
               </button>
             )}
-            <PayPal
-              onComplete={onCompletePayPal}
-              plan={paymentMethod || ''}
-            />
-          </div>
+          </div> */}
+          <PayPal
+            onComplete={onCompletePayPal}
+            plan={paymentMethod || ''}
+          />
         </form>
       </div>
       <Modal canShow={canOpenModal}>

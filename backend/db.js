@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
+const { isDev } = require('./tools/functions');
 
-const { MONGODB_URI_PRODUCTION } = process.env;
+const {
+  MONGODB_URI_PRODUCTION,
+  MONGODB_URI_DEVELOPMENT
+} = process.env;
 
 let isConnected;
 
@@ -10,7 +14,11 @@ const connectToDatabase = async () => {
   }
 
   try {
-    await mongoose.connect(MONGODB_URI_PRODUCTION, {
+    const MONGODB_URI = isDev()
+      ? MONGODB_URI_DEVELOPMENT
+      : MONGODB_URI_PRODUCTION;
+
+    await mongoose.connect(MONGODB_URI, {
       minPoolSize: 1,
       maxPoolSize: 1,
     });

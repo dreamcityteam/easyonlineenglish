@@ -125,6 +125,9 @@ const getMonthsDiff = (dateFrom, dateTo) => {
   return months;
 }
 
+const isDev = () =>
+  process.env.NODE_ENV && process.env.NODE_ENV.includes('DEVELOPMENT');
+
 module.exports = {
   send,
   setCookie,
@@ -134,5 +137,6 @@ module.exports = {
   sendEmail,
   auth,
   getDurationInMonth,
-  getMonthsDiff
+  getMonthsDiff,
+  isDev
 };
