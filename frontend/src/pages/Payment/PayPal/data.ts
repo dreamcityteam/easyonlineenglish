@@ -1,12 +1,10 @@
-const isDev =  false;
-
 const INITIAL_OPTION: {
   clientId: string;
   'enable-funding': string;
   'disable-funding': string;
   'data-sdk-integration-source': string;
 } = {
-  clientId: (isDev ? process.env.PAYPAL_CLIENT_ID_DEV : process.env.PAYPAL_CLIENT_ID) || '',
+  clientId: process.env.PAYPAL_CLIENT_ID || '',
   'enable-funding': 'paylater',
   'disable-funding': 'card',
   'data-sdk-integration-source': 'integrationbuilder_sc',
