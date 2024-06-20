@@ -10,14 +10,15 @@ import {
   SET_LIBRARY,
   SET_TUTORIAL,
   SET_GOOGLE_ANALITICS,
-  DELETE_ACCOUNT
+  DELETE_ACCOUNT,
+  UPDATE_STUDENT_PHOTO
 } from './actionTypes';
 import { Option, State } from './type';
 
 const reducer = (state: State, { payload, type }: Option): State => ({
   [SET_USER]: ({
     _id = '', username = '', email = '', lastname = '',
-    name = '', phone = null, photo = '', role,
+    name = '', phone = '', photo = '', role,
     payment = { isPayment: false, plan: '' }, isTutorial = true
   }: any): State => ({
     ...state,
@@ -46,6 +47,11 @@ const reducer = (state: State, { payload, type }: Option): State => ({
   [SIGN_OUT]: (): State => ({
     ...state,
     user: null
+  }),
+
+  [UPDATE_STUDENT_PHOTO]: ({ photo }: { photo: string; }): State => ({
+    ...state,
+    user: state.user ? { ...state.user, photo } : null
   }),
 
   [CLEAR_LOAD]: (): State => ({

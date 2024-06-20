@@ -17,6 +17,7 @@ const studentTutorial = require('../api/studentTutorial');
 const paypal = require('../api/paypal');
 const studentInvoiceStory = require('../api/studentInvoiceStory');
 const studentDeleteAccount = require('../api/studentDeleteAccount');
+const studentProfileImage = require('../api/studentProfileImage');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -116,4 +117,9 @@ module.exports = [
     method: 'patch',
     func: studentDeleteAccount,
   },
+  {
+    path: ENDPOINT.STUDENT_PROFILE_IMAGE,
+    method: 'post',
+    func: studentProfileImage,
+  },  
 ];

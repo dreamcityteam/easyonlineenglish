@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { State } from '../../../global/state/type';
 import context from '../../../global/state/context';
 import { formatPhoneNumber, send } from '../../../tools/function';
@@ -6,12 +7,11 @@ import { PLAN, inputs } from './data';
 import { HTTP_STATUS_CODES, PAYMENT_METHOD } from '../../../tools/constant';
 import Form from '../../../components/Form';
 import Modal from '../../../components/Modal';
-import { DELETE_ACCOUNT, SET_USER } from '../../../global/state/actionTypes';
-import './main.css';
+import { DELETE_ACCOUNT, SET_USER, UPDATE_STUDENT_PHOTO } from '../../../global/state/actionTypes';
 import Close from '../../../components/Modal/Close';
 import style from './style.module.sass';
 import Table from '../../../components/Table';
-import { useNavigate } from 'react-router-dom';
+import './main.css';
 
 const Profile: React.FC = (): JSX.Element => {
   const [{ user }] = useContext<[State, any]>(context);
@@ -20,6 +20,7 @@ const Profile: React.FC = (): JSX.Element => {
   const [isStudentInvoiceStory, setIsStudentInvoiceStory] = useState<boolean>(false);
   const [invoiceStory, setInvoiceStory] = useState([]);
   const [isDeleteStudent, setIsDeleteStudent] = useState<boolean>(false);
+  const fileInputRef = useRef(null);
   const redirect = useNavigate();
 
   useEffect(() => {
@@ -84,12 +85,56 @@ const Profile: React.FC = (): JSX.Element => {
     }
   }
 
+  const handleFileChange = (e: any) => {
+    handlerUploadPhoto(e.target.files[0]);
+  }
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      // @ts-ignore
+      fileInputRef.current.click();
+    }
+  }
+
+  const handlerUploadPhoto = async (file: any) => {
+    if (file) {
+      const formData: FormData = new FormData();
+
+      formData.append('photo', file);
+
+      try {
+        const response = await fetch('/api/v1/student-profile-image', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const { response: { data, statusCode } } = await response.json();
+
+        if (statusCode === HTTP_STATUS_CODES.OK) {
+          dispatch({ type: UPDATE_STUDENT_PHOTO, payload: { photo: data } });
+        } else {
+          alert('Error al intentar subir la imagen.');
+        }
+      } catch (error) {
+        console.error('Error uploading the image', error);
+      }
+    }
+  }
+
   return (
     <section>
       <div className="profile-page">
         <div className="content">
           <div className="content__cover">
-            <div className="content__avatar"></div>
+            <div
+              className="content__avatar"
+              style={{ background: `white url("${user?.photo}") center center no-repeat` }}
+              onClick={handleButtonClick}
+            ></div>
+            <form className="content__file">
+              <input type="file" onChange={handleFileChange} ref={fileInputRef}
+              />
+            </form>
           </div>
           <div className="content__title">
             <h1>
@@ -105,15 +150,25 @@ const Profile: React.FC = (): JSX.Element => {
             <li><span>Membresía</span>{user?.payment.plan ? PLAN[user.payment.plan] : 'N/A'}</li>
           </ul>
           <div className="content__button">
-            <span className="button" onClick={() => setIsEditStudent(true)}>
+            <button
+              className="button"
+              onClick={() => setIsEditStudent(true)}
+              disabled={!invoiceStory.length}
+            >
               <p className="button__text">Historial de pago</p>
-            </span>
-            <span className="button" onClick={() => setIsStudentInvoiceStory(true)}>
+            </button>
+            <button
+              className="button"
+              onClick={() => setIsStudentInvoiceStory(true)}
+            >
               <p className="button__text">Editar estudiante</p>
-            </span>
-            <span className="button" onClick={() => setIsDeleteStudent(true)}>
+            </button>
+            <button
+              className="button"
+              onClick={() => setIsDeleteStudent(true)}
+            >
               <p className="button__text">Borrar cuenta</p>
-            </span>
+            </button>
           </div>
         </div>
         <div className="bg">

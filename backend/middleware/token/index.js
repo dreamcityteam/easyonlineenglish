@@ -35,6 +35,7 @@ module.exports = (req, res, next) => {
       isEndpoint(ENDPOINT.PAYPAL) ||
       isEndpoint(ENDPOINT.STUDENT_INVOICE_STORY) ||
       isEndpoint(ENDPOINT.STUDENT_DELETE_ACCOUNT) ||
+      isEndpoint(ENDPOINT.STUDENT_PROFILE_IMAGE) ||
       /^\/api\/v1\/student-course\/\w/.test(URL)
     )
   ) {

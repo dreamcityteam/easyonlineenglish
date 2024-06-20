@@ -11,7 +11,12 @@ module.exports = async (req, res) => {
 
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
-      { $set: { deleted: true } },
+      {
+        $set: { deleted: true },
+        $currentDate: {
+          updatedAt: true
+        }
+      },
       { new: true }
     );
 

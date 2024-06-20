@@ -40,7 +40,8 @@ const ENDPOINT = {
   STUDENT_TUTORIAL: '/tutorial',
   PAYPAL: '/paypal',
   STUDENT_INVOICE_STORY: '/student-invoice-story',
-  STUDENT_DELETE_ACCOUNT: '/student-delete-account'
+  STUDENT_DELETE_ACCOUNT: '/student-delete-account',
+  STUDENT_PROFILE_IMAGE: '/student-profile-image',
 }
 
 const PAYMENT_METHOD = {

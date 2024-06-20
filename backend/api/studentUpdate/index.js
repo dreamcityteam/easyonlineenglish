@@ -68,7 +68,9 @@ module.exports = async (req, res) => {
           lastname: lastname.toLowerCase(),
           phone,
           ...(password && oldPassword ? { password: await hash.create(password) } : {}),
-          updatedAt: new Date(),
+        },
+        $currentDate: {
+          updatedAt: true
         }
       },
       { new: true }

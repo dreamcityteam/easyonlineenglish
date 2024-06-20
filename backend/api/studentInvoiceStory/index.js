@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 
     const studentPayment = await StudentPayment
       .find({ idUser: req.user.id })
-      .select({ 
+      .select({
         __v: 0,
         _id: 0,
         azulCustomOrderId: 0,

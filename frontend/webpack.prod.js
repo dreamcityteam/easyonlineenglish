@@ -7,6 +7,7 @@ const Dotenv = require('dotenv-webpack');
 const pathPublic = (fileName) =>
   path.resolve(__dirname, 'public', fileName);
 
+/* cache version 
 module.exports = {
   mode: 'production',
   devtool: 'cheap-module-source-map',
@@ -76,6 +77,70 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'public', 'index.html'),
+      hash: true,
+      favicon: './public/favicon.ico',
+    }),
+    new Dotenv(),
+  ],
+};
+*/
+
+module.exports = {
+  mode: 'production',
+  devtool: 'cheap-module-source-map',
+
+  entry: path.resolve(__dirname, 'src', 'index.tsx'),
+
+  output: {
+    path: path.resolve(__dirname, '../backend/build'),
+    filename: 'bundle.js',
+    publicPath: '/',
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(s[c|a]ss)$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-modules-typescript-loader' },
+          { loader: 'css-loader', options: { modules: true } },
+          { loader: 'sass-loader' },
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: 'file-loader',
+      },
+    ],
+  },
+
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.scss', '.sass', '.css']
+  },
+
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: pathPublic('robots.txt'), to: '' },
+        { from: pathPublic('manifest.json'), to: '' },
+        { from: pathPublic('logo192.png'), to: '' },
+        { from: pathPublic('logo512.png'), to: '' },
+        { from: pathPublic('favicon.ico'), to: '' },
+      ],
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',

@@ -34,17 +34,17 @@
 }
 
 .content__avatar {
-  width: 12rem;
-  height: 12rem;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  z-index: 2;
-  transform: translate(-50%, 50%);
-  background: white url("https://secure.gravatar.com/avatar/3b314b13ca2c8ed3a56da2620bb25ff4?s=150&d=mm&r=g") center center no-repeat;
   background-size: cover;
   border-radius: 50%;
+  bottom: 0;
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  height: 12rem;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 50%);
+  width: 12rem;
+  z-index: 2;
 }
 
 .content__avatar::before {
@@ -103,6 +103,10 @@
   margin-left: -32px;
 }
 
+.content__file {
+  display: none;
+}
+
 .modal {
   position: relative;
 }
@@ -129,17 +133,18 @@
 }
 
 .button {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
   background: #06609e;
   border-radius: 2rem;
+  border: none;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  font-size: 1rem;
   color: #fff;
   cursor: pointer;
-  min-width: 167px;
+  display: inline-block;
+  font-size: 1rem;
   margin-bottom: 10px;
+  min-width: 167px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .button:last-child {

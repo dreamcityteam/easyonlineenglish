@@ -30,7 +30,6 @@ module.exports = async (req, res) => {
       plan &&
       jsonResponse.purchase_units[0].payments.captures[0].status === 'COMPLETED'
     ) {
-
       const isPayment = await payment({
         idUser: req.user.id,
         payment: {
@@ -39,7 +38,7 @@ module.exports = async (req, res) => {
           type: 'PAYPAL'
         }
       });
-    
+
       if (isPayment) {
         response.statusCode = HTTP_STATUS_CODES.OK;
         response.data = jsonResponse;
