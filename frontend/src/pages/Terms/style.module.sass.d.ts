@@ -2,8 +2,11 @@
 // Please do not change this file!
 interface CssExports {
   'terms': string;
+  'terms__all': string;
   'terms__center': string;
   'terms__container': string;
+  'terms__form': string;
+  'terms__listAbc': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

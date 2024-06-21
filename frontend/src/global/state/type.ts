@@ -22,6 +22,7 @@ type User = {
     plan: string;
   };
   isTutorial: boolean;
+  isTerms: boolean;
 }
 
 type Course = {

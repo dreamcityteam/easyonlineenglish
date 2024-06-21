@@ -19,14 +19,19 @@ const generateAccessToken = async () => {
   const {
     PAYPAL_CLIENT_ID,
     PAYPAL_CLIENT_SECRET,
+    PAYPAL_CLIENT_ID_DEV,
+    PAYPAL_CLIENT_SECRET_DEV
   } = process.env;
 
+  const CLIENT_ID = PAYPAL_CLIENT_ID;
+  const CLIENT_SECRET = PAYPAL_CLIENT_SECRET;
+
   try {
-    if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
+    if (!CLIENT_ID || !CLIENT_SECRET) {
       throw new Error('MISSING_API_CREDENTIALS');
     }
 
-    const auth = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64');
+    const auth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
     const fetch = (await import('node-fetch')).default;
 
     const response = await fetch(`${PAYPAL_API}/v1/oauth2/token`, {

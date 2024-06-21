@@ -154,7 +154,7 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
         </div>
       </div>
       <div className={style.aside__title}>
-        <h4>{title}</h4>
+        <h1>{title}</h1>
       </div>
       <ul className={style.aside__lessions}>
         {lessons.map((lesson: Lesson, indexLesson: number) => (

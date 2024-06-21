@@ -51,6 +51,10 @@ const userSchema = new Schema({
   isTutorial: {
     type: Boolean,
     default: true,
+  },
+  isTerms: {
+    type: Boolean,
+    default: false,
   }
 });
 

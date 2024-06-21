@@ -13,6 +13,7 @@ import Modal from '../../components/Modal';
 import SVGSuccess from '../../../public/svg/success.svg';
 import Close from '../../components/Modal/Close';
 import PayPal from './PayPal';
+import AllTerms from '../Terms/All';
 
 const PaymentForms: React.FC = () => {
   const { paymentMethod } = useParams<string>();
@@ -172,22 +173,24 @@ const PaymentForms: React.FC = () => {
   }
 
   return (
-    <section className={style.payment}>
-      <div className={style.payment__container}>
-        <div className={style.payment__card}>
-          <Cards
-            number={state.number.value}
-            name={state.name.value}
-            expiry={state.expiry.value}
-            cvc={state.cvc.value}
-          />
-        </div>
+    <>
+      {user?.isTerms ? (
+        <section className={style.payment}>
+          <div className={style.payment__container}>
+            <div className={style.payment__card}>
+              <Cards
+                number={state.number.value}
+                name={state.name.value}
+                expiry={state.expiry.value}
+                cvc={state.cvc.value}
+              />
+            </div>
 
-        <form className={style.payment__form}>
-          <header>
-            <h1 className={style.payment__title}>{paymentTitle}</h1>
-          </header>
-          {/*
+            <form className={style.payment__form}>
+              <header>
+                <h1 className={style.payment__title}>{paymentTitle}</h1>
+              </header>
+              {/*
           <div className={style.payment__inputs}>
             <div className={style.payment__inputs_container}>
               <input
@@ -265,31 +268,33 @@ const PaymentForms: React.FC = () => {
               </button>
             )}
           </div> */}
-          <PayPal
-            onComplete={onCompletePayPal}
-            plan={paymentMethod || ''}
-          />
-        </form>
-      </div>
-      <Modal canShow={canOpenModal}>
-        <div className={style.payment__modal}>
-          <Close onClose={() => setCanOpenModal(false)} />
-          <header className={style.payment__modalIcon}>
-            <img src={SVGSuccess} />
-            <h2>éxito</h2>
-          </header>
-          <div className={style.payment__modalText}>
-            <p>
-              Tu pago ha sido procesado correctamente. Hemos enviado
-              una factura a tu correo electrónico.
-            </p>
+              <PayPal
+                onComplete={onCompletePayPal}
+                plan={paymentMethod || ''}
+              />
+            </form>
           </div>
-          <Link to="/courses" className={style.payment__modalButton}>
-            Comenzar los cursos
-          </Link>
-        </div>
-      </Modal>
-    </section>
+          <Modal canShow={canOpenModal}>
+            <div className={style.payment__modal}>
+              <Close onClose={() => setCanOpenModal(false)} />
+              <header className={style.payment__modalIcon}>
+                <img src={SVGSuccess} />
+                <h2>éxito</h2>
+              </header>
+              <div className={style.payment__modalText}>
+                <p>
+                  Tu pago ha sido procesado correctamente. Hemos enviado
+                  una factura a tu correo electrónico.
+                </p>
+              </div>
+              <Link to="/courses" className={style.payment__modalButton}>
+                Comenzar los cursos
+              </Link>
+            </div>
+          </Modal>
+        </section>
+      ) : <AllTerms />}
+    </>
   );
 };
 

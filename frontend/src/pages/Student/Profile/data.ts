@@ -42,7 +42,7 @@ const inputs = ({ name, lastname, phone }: any): Inputs => ({
     label: 'Teléfono',
     type: 'number',
     placeholder: 'Escriba su teléfono.',
-    value: phone,
+    value: phone.replace(/\W/g, ''),
     validation: {
       message: 'Por favor, introduzca un número de teléfono.',
       regExp: REGEXP.PHONE_NUMBER,

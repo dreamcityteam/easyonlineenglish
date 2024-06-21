@@ -11,14 +11,15 @@ import {
   SET_TUTORIAL,
   SET_GOOGLE_ANALITICS,
   DELETE_ACCOUNT,
-  UPDATE_STUDENT_PHOTO
+  UPDATE_STUDENT_PHOTO,
+  UPDATE_STUDENT_TERMS
 } from './actionTypes';
 import { Option, State } from './type';
 
 const reducer = (state: State, { payload, type }: Option): State => ({
   [SET_USER]: ({
     _id = '', username = '', email = '', lastname = '',
-    name = '', phone = '', photo = '', role,
+    name = '', phone = '', photo = '', role, isTerms = false,
     payment = { isPayment: false, plan: '' }, isTutorial = true
   }: any): State => ({
     ...state,
@@ -32,7 +33,8 @@ const reducer = (state: State, { payload, type }: Option): State => ({
       photo: photo || DEFAULT_PHOTO,
       role,
       payment,
-      isTutorial
+      isTutorial,
+      isTerms
     }
   }),
 
@@ -52,6 +54,11 @@ const reducer = (state: State, { payload, type }: Option): State => ({
   [UPDATE_STUDENT_PHOTO]: ({ photo }: { photo: string; }): State => ({
     ...state,
     user: state.user ? { ...state.user, photo } : null
+  }),
+
+  [UPDATE_STUDENT_TERMS]: ({ isTerms }: { isTerms: boolean; }): State => ({
+    ...state,
+    user: state.user ? { ...state.user, isTerms } : null
   }),
 
   [CLEAR_LOAD]: (): State => ({

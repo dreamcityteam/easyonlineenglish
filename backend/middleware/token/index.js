@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
   const response = getResponse(res, 'Invalid token.');
   const authenticator = auth(res, req);
   const URL = req.originalUrl;
-  const isEndpoint = (endpoint) => URL === `/api/v1${endpoint}`;
+  const isEndpoint = (endpoint) => URL === `/api/v1/${endpoint}`;
   const verifyTokenOpcion = { req, res, next, authenticator };
   const tokenFromCookie = authenticator.get();
   const tokenFromHeader = getTokenFromHeader(req);
@@ -36,6 +36,7 @@ module.exports = (req, res, next) => {
       isEndpoint(ENDPOINT.STUDENT_INVOICE_STORY) ||
       isEndpoint(ENDPOINT.STUDENT_DELETE_ACCOUNT) ||
       isEndpoint(ENDPOINT.STUDENT_PROFILE_IMAGE) ||
+      isEndpoint(ENDPOINT.UPDATE_STUDENT_TERMS) ||
       /^\/api\/v1\/student-course\/\w/.test(URL)
     )
   ) {
