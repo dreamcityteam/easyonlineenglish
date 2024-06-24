@@ -8,6 +8,7 @@ interface CssExports {
   'familyPlan__list': string;
   'familyPlan__price': string;
   'familyPlan__title': string;
+  'familyPlan__titleContainer': string;
   'familyPlan__user': string;
 }
 export const cssExports: CssExports;

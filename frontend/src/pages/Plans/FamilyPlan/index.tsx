@@ -10,8 +10,9 @@ interface Props {
 const FamilyPlan: React.FC<Props> = ({ price }): JSX.Element => (
   <div className={style.familyPlan}>
     <div className={style.familyPlan__container}>
-      <div>
-        <span className={style.familyPlan__title}>Plan fimiliar</span>
+      <div className={style.familyPlan__titleContainer}>
+        <span className={style.familyPlan__title}>Plan Familiar</span>
+        <span>6 meses</span>
       </div>
       <div className={style.familyPlan__user}>
         <img
