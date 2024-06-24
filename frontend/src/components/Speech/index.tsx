@@ -33,6 +33,10 @@ const Speech: React.FC<Props> = ({
     onPlaySpeech && onPlaySpeech(true);
 
     pronunciationAudio.onended = () => {
+      whistleAudio.play();
+    }
+
+    whistleAudio.onended = () => {
       pronunciation();
     }
 
@@ -48,7 +52,6 @@ const Speech: React.FC<Props> = ({
       recognition.continuous = true;
 
       recognition.onstart = (): void => {
-        whistleAudio.play();
         setOutput('Ahora Pronunciar');
       }
 
