@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     }
 
     const userToken = await UserToken.findOne({ idUser: user._id }).select({ __v: 0 });
-    const token = getToken({ id: user._id, expiresIn: '2m' });
+    const token = getToken({ id: user._id, type: 'password', expiresIn: '2m' });
 
     if (!userToken) {
       const userToken = new UserToken({ idUser: user._id, token });

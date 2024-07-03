@@ -14,10 +14,12 @@ const Loading: React.FC<LoadingProps> = ({
   <Modal canShow={canShow} backgroundColor='#ffffff'>
     <div>
       <div style={{ padding: '20px' }}>
-        <img src={logoSVG} alt="logo" />
+        <img src={logoSVG} alt="logo" width={90}/>
       </div>
       <div>
-        <span>{text} ...</span>
+        <span style={{ fontWeight: 'bold' }}>
+          {text} ...
+        </span>
       </div>
     </div>
   </Modal>

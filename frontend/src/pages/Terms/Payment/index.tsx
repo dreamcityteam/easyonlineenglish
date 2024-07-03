@@ -15,7 +15,7 @@ const Payment: React.FC<Props> = ({ removeH1 }): JSX.Element => {
     <section className={style.terms}>
       <div className={style.terms__container}>
         <Tag>
-          Términos y Condiciones de Compra del Producto
+          Términos y Condiciones de Compra del Producto 
         </Tag>
         <p>
           Los términos y condiciones que se detallan a continuación son aplicables a la compra de cursos y productos en línea de Easy Online English cuando estas se realicen directamente a través de Easy Online English SRL.

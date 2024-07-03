@@ -11,11 +11,9 @@ import Page404 from '../../pages/Page404';
 import ResetPassword from '../../pages/SingOut/ResetPassword';
 import ResetPasswordAuth from '../../pages/SingOut/ResetPasswordAuth';
 import Privacy from '../../pages/Terms/Privacy';
-import Agreement from '../../pages/Terms/Agreement';
 import FinalUser from '../../pages/Terms/FinalUser';
 import Payment from '../../pages/Terms/Payment';
 import Conditions from '../../pages/Terms/Conditions';
-import Service from '../../pages/Terms/Service';
 import Plans from '../../pages/Plans/Index';
 
 /*
@@ -49,12 +47,10 @@ const RouterHomePage: React.FC = () => (
     <Route path="libraries" element={<Library />} />
     <Route path="reset-password" element={<ResetPassword />} />
     <Route path="reset-password-auth/:token" element={<ResetPasswordAuth />} />
-    <Route path="term-agreement" element={<Agreement />} />
     <Route path="term-user" element={<FinalUser />} />
     <Route path="term-payment" element={<Payment />} />
     <Route path="term-privacy" element={<Privacy />} />
     <Route path="term-conditions" element={<Conditions />} />
-    <Route path="term-service" element={<Service />} />
     <Route path="plan" element={<Plans />} />
     <Route path="*" element={<Page404 />} />
   </Routes>

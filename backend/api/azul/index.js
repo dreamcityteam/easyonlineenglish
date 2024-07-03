@@ -14,7 +14,9 @@ module.exports = async (req, res) => {
     path.resolve(__dirname, 'certificate', 'pfx_easyonlineenglish.local.pfx')
   );
   const { csv, expiration, number, plan, name } = req.body;
+
   const PAYMENT = PAYMENT_METHOD[plan];
+  // 'https://pagos.azul.com.do/WebServices/JSON/default.aspx'
   const API = 'https://pruebas.azul.com.do/WebServices/JSON/default.aspx';
 
   response.data = {
@@ -48,10 +50,12 @@ module.exports = async (req, res) => {
         }),
         headers: {
           'Content-Type': 'application/json',
-          'Auth1': 'splitit',
-          'Auth2': 'splitit'
+          'Auth1': '3dsecure',
+          'Auth2': '3dsecure'
         }
       });
+
+    console.log(data)
 
     if (data.IsoCode === '00') {
       const isPayment = await payment({
@@ -85,7 +89,9 @@ module.exports = async (req, res) => {
       response.data.field = 'cvc';
     } else {
       response.message = data.ErrorDescription;
+    
     }
+    response.data.form = data?.ThreeDSMethod?.MethodForm || '';
   } catch (error) {
     response.message = error.message;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;

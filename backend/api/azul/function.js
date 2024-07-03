@@ -25,7 +25,7 @@ const getData = ({ number, expiration, csv, amount }) => ({
   DataVaultToken: '',
   SaveToDataVault: '0',
   AltMerchantName: '',
-  ForceNo3DS: '1'
+  ForceNo3DS: '0'
 });
 
 module.exports = {

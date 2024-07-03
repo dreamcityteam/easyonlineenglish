@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'navigator': string;
+  'navigator__container': string;
   'navigator__hamburger': string;
   'navigator__line': string;
   'navigator__link': string;

@@ -81,34 +81,36 @@ const Navigator: React.FC = (): JSX.Element => {
   return (
     <>
       <nav className={style.navigator} ref={nav}>
-        <div className={style.navigator__logo}>
-          <Link className={style.navigator__link} to="/">
-            <img src={SVGLogo} alt="logo" />
-          </Link>
-        </div>
-        <ul className={style.navigator__links}>
-          <Tabs />
-          {user && (
-            <li>
-              <Link to="/profile" className={style.navigator__user}>
-                <img
-                  className={style.navigator__picture}
-                  src={user.photo}
-                />
-                <span className={style.navigator__user_name}>
-                  {`${user.name} ${user.lastname}`}
-                </span>
-              </Link>
-            </li>
-          )}
-        </ul>
-        <div
-          className={style.navigator__hamburger}
-          onClick={onOpenNavMobile}
-        >
-          <div className={style.navigator__line}></div>
-          <div className={style.navigator__line}></div>
-          <div className={style.navigator__line}></div>
+        <div className={style.navigator__container}>
+          <div className={style.navigator__logo}>
+            <Link className={style.navigator__link} to="/">
+              <img src='https://framerusercontent.com/images/3su9ljSZ67mItsZL7f4ci1tIH8o.png?scale-down-to=512' alt="logo" />
+            </Link>
+          </div>
+          <ul className={style.navigator__links}>
+            <Tabs />
+            {user && (
+              <li>
+                <Link to="/profile" className={style.navigator__user}>
+                  <img
+                    className={style.navigator__picture}
+                    src={user.photo}
+                  />
+                  <span className={style.navigator__user_name}>
+                    {`${user.name} ${user.lastname}`}
+                  </span>
+                </Link>
+              </li>
+            )}
+          </ul>
+          <div
+            className={style.navigator__hamburger}
+            onClick={onOpenNavMobile}
+          >
+            <div className={style.navigator__line}></div>
+            <div className={style.navigator__line}></div>
+            <div className={style.navigator__line}></div>
+          </div>
         </div>
       </nav>
     </>

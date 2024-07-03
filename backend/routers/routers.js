@@ -19,6 +19,7 @@ const studentInvoiceStory = require('../api/studentInvoiceStory');
 const studentDeleteAccount = require('../api/studentDeleteAccount');
 const studentProfileImage = require('../api/studentProfileImage');
 const updateStudentTerms = require('../api/updateStudentTerms');
+const suscribete = require('../api/suscribete');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -127,5 +128,10 @@ module.exports = [
     path: ENDPOINT.UPDATE_STUDENT_TERMS,
     method: 'patch',
     func: updateStudentTerms,
+  },
+  {
+    path: ENDPOINT.SUSCRIBETE,
+    method: 'post',
+    func: suscribete,
   },
 ];

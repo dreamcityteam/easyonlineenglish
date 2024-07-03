@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
   try {
     await connectToDatabase();
 
-    if (req.user) {
+    if (req.user && req.user.type === 'auth') {
       const user = await User.findById(req.user.id, { password: 0, __v: 0 });
 
       if (!user) {

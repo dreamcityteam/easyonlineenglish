@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
       token: req.token,
     }).select({ __v: 0 });
 
-    if (userToken) {
+    if (userToken && req.user.type === 'password') {
       response.message = MESSAGE.SUCCESSFUL;
       response.statusCode = HTTP_STATUS_CODES.OK;
     } else {

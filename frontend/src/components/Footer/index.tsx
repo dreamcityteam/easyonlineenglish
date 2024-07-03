@@ -8,10 +8,8 @@ const Footer: React.FC = (): JSX.Element => {
   const terms: string[][] = [
     ['Términos y condiciones', 'conditions'],
     ['Política de Privacidad', 'privacy'],
-    ['Acuerdos', 'agreement'],
-    ['Usuario final', 'user'],
+    ['Acuerdo de Licencia de Usuario Final Global', 'user'],
     ['Compra del Producto', 'payment'],
-    ['Servicio', 'service']
   ];
   const location = useLocation();
   const isHomePage = location.pathname === '/';

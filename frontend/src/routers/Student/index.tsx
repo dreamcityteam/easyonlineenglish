@@ -11,9 +11,7 @@ import Page404 from '../../pages/Page404';
 import Privacy from '../../pages/Terms/Privacy';
 import TermPayment from '../../pages/Terms/Payment';
 import FinalUser from '../../pages/Terms/FinalUser';
-import Agreement from '../../pages/Terms/Agreement';
 import Conditions from '../../pages/Terms/Conditions';
-import Service from '../../pages/Terms/Service';
 import Plans from '../../pages/Plans/Index';
 import Payment from '../../pages/Payment';
 
@@ -44,12 +42,10 @@ const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
     <Route path="profile" element={<Profile />} />
     <Route path="libraries" element={<Library />} />
     <Route path="close" element={<CloseSection />} />
-    <Route path="term-agreement" element={<Agreement />} />
     <Route path="term-user" element={<FinalUser />} />
     <Route path="term-payment" element={<TermPayment />} />
     <Route path="term-privacy" element={<Privacy />} />
     <Route path="term-conditions" element={<Conditions />} />
-    <Route path="term-service" element={<Service />} />
     <Route path="payment/:paymentMethod" element={<Payment />} />
     <Route path="plan" element={<Plans />} />
     <Route path="*" element={<Page404 />} />

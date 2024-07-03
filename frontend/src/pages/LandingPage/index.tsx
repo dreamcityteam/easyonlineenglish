@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
 import GoogleDriveImage from '../../components/Image';
 import context from '../../global/state/context';
+import { send } from '../../tools/function';
+import { HTTP_STATUS_CODES, REGEXP } from '../../tools/constant';
 
 interface Prop {
   className?: string;
@@ -38,331 +40,255 @@ const Figure: React.FC<Prop> = ({ img, subTitle, title, className }) => (
 );
 
 const Home: React.FC = () => {
-  const [{ user }] = useContext(context);
-  const [buttonUrl, setButtonUrl] = useState<string>('');
+  const imageRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+  const [email, setEmail] = useState('');
+  const [subscribe, setSubscribe] = useState<any>({
+    message: '',
+    isSubscribe: false,
+  });
 
   useEffect(() => {
-    if (user === null || user.payment.isPayment) {
-      setButtonUrl('/courses');
-    } else {
-      setButtonUrl('/plan');
+    const handleScroll = () => {
+      imageRefs.forEach((ref: React.MutableRefObject<any>, index: number) => {
+        if (ref.current) {
+          const fixWindowHeight = index === 3 ? 300 : 200;
+          const element = ref.current;
+          const rect = element.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+          if (rect.top <= (windowHeight - fixWindowHeight) && rect.bottom >= 0) {
+            element.classList.add(index === 3 ? style.img__animation : style.img__visible);
+          }
+        }
+      });
     }
-  }, [user]);
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
+  const hanlderOnSuscribete = async () => {
+    if (!email) {
+      setSubscribe({
+        message: 'Por favor, complete este campo.',
+        isSubscribe: false
+      });
+    } else if (REGEXP.EMAIL.test(email)) {
+      const { response: { statusCode } } = await send({ api: 'suscribete', data: { email } }).post();
+
+      if (statusCode === HTTP_STATUS_CODES.OK) {
+        setSubscribe({
+          message: 'Enviado.',
+          isSubscribe: true
+        });
+      } else {
+        setSubscribe({
+          message: 'Error, intente mas tarde.',
+          isSubscribe: false
+        });
+      }
+    } else {
+      setSubscribe({
+        message: 'El correo es inválido.',
+        isSubscribe: false 
+      });
+    }
+  }
+
+  const onChange = ({ target: { value } }: any) => {
+    setEmail(value);
+  }
 
   return (
-    <section>
-      <article className={style.home}>
-        <div className={style.home__container}>
-          <header>
-            <h1 className={style.home__title}>
-              ¡Aprende Inglés
-              <span className={style.block}>como segunda</span>
-              lengua!
-            </h1>
-            <h2 className={style.home__subtitle}>3 Razones simples:</h2>
-          </header>
-
-          <ul className={style.home__items}>
-            <li className={style.home__item}>Avance de la Carrera</li>
-            <li className={style.home__item}>Simplicidad</li>
-            <li className={style.home__item}>Conveniencia</li>
-          </ul>
-          <Link
-            to={buttonUrl}
-            className={style.home__button}
-          >
-            Empieza Ahora
-          </Link>
-        </div>
-      </article>
-
-      <article className={style.info}>
-        <div className={style.info__container}>
-          <div className={`${style.info__content} ${style.reverse}`}>
+    <section className={style.home}>
+      <article className={style.home__article1}>
+        <div className={style.home__wrapper}>
+          <div className={style.home__content}>
             <div>
               <header>
-                <h3 className={style.info__title}>¿Hora de rendirse?</h3>
-                <h2 className={style.info__subtitle}>
-                  <span className={style.block}>¡Nosotros</span>
-                  decimos No!
-                </h2>
+                <h2>¡Aprende inglés y gana más!</h2>
               </header>
-              <p className={style.info__text}>
-                El Inglés es difícil de aprender cuando te enfocas primero en la gramática y se espera
-                de ti que entiendas las palabras que no entiendes usando palabras que tampoco entiendes.
-                ¡No sorprende porque no funciona!
-              </p>
+              <ul>
+                <li>El proceso de aprendizaje más sencillo del mundo</li>
+                <li>Aprendizaje fácil paso a paso</li>
+                <li>Pronunciación perfecta y correcta</li>
+                <li>Frases y oraciones fáciles de recordar</li>
+                <li>Mejora el aprendizaje a través de ayudas audiovisuales</li>
+              </ul>
+              <div className={style.home__buttons}>
+                <Link to="/courses">¡Empezar ahora!</Link>
+              </div>
             </div>
-
-            <div>
-              <GoogleDriveImage
-                id="1H8tULyjHIz5_kexNU8XYfnaIiKouxyS4"
-                alt="Niño con gafas leyendo"
-                className={style.info__image}
+            <div className={style.home__circle}>
+              <img
+                className={style.home__image}
+                src="https://framerusercontent.com/images/pMFE0XKXXVETRMpSqtw9CtPiDE.png?scale-down-to=512"
+                alt="Imagen representando el aprendizaje del inglés"
+              />
+              <img
+                className={style.home__image}
+                src="https://framerusercontent.com/images/b3kdXWf2vXaCYq8qBCAOsl4qwcA.png?scale-down-to=1024"
+                alt="Imagen representando el aprendizaje del inglés"
+              />
+              <img
+                className={style.home__image}
+                src="https://framerusercontent.com/images/I4gxLVRC32KmwsGsqa1yzYNcJpQ.png?scale-down-to=1024&lossless=1"
+                alt="Imagen representando el aprendizaje del inglés"
               />
             </div>
           </div>
         </div>
+      </article>
 
-        <div>
-          <header>
-            <h2 className={style.info__title}>
-              Nuestro Método
-            </h2>
+      <article className={style.home__article2}>
+        <div className={style.home__wrapper}>
+          <header className={style.home__header}>
+            <h2>El curso de en inglés online más fácil del mundo</h2>
+            <p>
+              Nos enorgullece ofrecer un enfoque simple que combina la teoría con la práctica, utilizando métodos modernos y fomentando la interacción en el idioma.
+              Los estudiantes adquieren un flujo natural del inglés sin la frustración de la gramática confusa.
+            </p>
           </header>
-
-          <div className={style.info__container}>
-            <div className={`${style.info__content} ${style.reverse}`}>
-              <div>
-                <ul className={style.info__items}>
-                  <li className={style.info__item}>
-                    Comience con lo que sabe hacer y vaya ampliando gradualmente,
-                    con comprensión en cada paso, para aumentar su vocabulario.
-                  </li>
-                  <li className={style.info__item}>Aprenda la pronunciación adecuada.</li>
-                  <li className={style.info__item}>Obtenga ejemplos de uso diario.</li>
-                </ul>
-              </div>
-              <div>
-                <GoogleDriveImage
-                  id="106tXQ_Phft4dfPYO6gxy34HSmaCFL-da"
-                  alt="Hombre con burbuja de discurso"
-                  className={style.info__image}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className={style.info__container}>
-          <div className={style.info__content}>
-            <div>
-              <GoogleDriveImage
-                id="1LrtKzyg9H8uImn3agM0AwY2Qvajf5yRc"
-                alt="Mujer aprendiendo inglés"
-                className={style.info__image}
-              />
-            </div>
-            <div>
-              <ul className={style.info__items}>
-                <li className={style.info__item}>Aprenda a usar oraciones comunes.</li>
-                <li className={style.info__item}>Obtenga imágenes que muestran las palabras.</li>
-                <li className={style.info__item}>Empiece a leer para aprender la gramática.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className={style.info__container}>
-          <div className={`${style.info__content} ${style.reverse}`}>
-            <div>
-              <ul className={style.info__items}>
-                <li className={style.info__item}>Acceso 24/7.</li>
-                <li className={style.info__item}>
-                  Una biblioteca completa de temas adicionales como el alfabeto, días de la semana, los meses,
-                  verbos conjugados y mucho más, todo traducido y pronunciado, en tus dedos.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <GoogleDriveImage
-                id="1R9c6R9G5H_Yq3EHr_JngaXiW4hO9-IoY"
-                alt="Servicio 24/7"
-                className={style.info__image}
-              />
-            </div>
-          </div>
-        </div>
-      </article>
-
-
-      <article className={style.ceo}>
-        <div className={style.ceo__container}>
-          <div className={`${style.ceo__content} ${style.reverse}`}>
-            <Figure
-              className={style.ceo__figure}
-              img={{
-                src: '14qTHKJDSZRGvi00qSv1WCUcJml5KibJw',
-                alt: 'Ron Norton, Fundador y CEO',
-                className: style.ceo__image
-              }}
-              title={{
-                className: style.ceo__name,
-                value: 'Ron Norton — Fundador & CEO.'
-              }}
-              subTitle={{
-                className: style.ceo__experience,
-                value: 'Más de 40 años de experiencia en la enseñanza'
-              }}
-            />
-
-            <header>
-              <h2 className={style.ceo__title}>
-                Aprenda de los <span className={style.block}>profesionales.</span>
-              </h2>
-              <p className={style.ceo__text}>
-                Rápidamente ganará confianza en su inglés y mejorará su vocabulario,
-                comprensión al escuchar, y habilidades para hablar.
-              </p>
+          <div>
+            <header className={style.home__header2}>
+              <h2>Nuestra nueva metodología se basa en:</h2>
+              <h3>Aprendizaje Continuo en Lugar de Confusión Continua</h3>
             </header>
+            <ul className={style.home__lists}>
+              <li>
+                <img src="https://framerusercontent.com/images/qE8ucK6enubb0INEh2patqPbQ0.png" ref={imageRefs[0]} />
+                <span>Escucha la pronunciación adecuada de un hablante nativo tantas veces como sea necesario.</span>
+              </li>
+              <li>
+                <img src="https://framerusercontent.com/images/WYNKk7P5APEg2QjJehuVErtA.png" ref={imageRefs[1]} />
+                <span>Refuerza la comprensión con nuestros recursos visuales.</span>
+              </li>
+              <li>
+                <img src="https://framerusercontent.com/images/qE8ucK6enubb0INEh2patqPbQ0.png" ref={imageRefs[2]} />
+                <span>Practica la pronunciación y gana confianza.</span>
+              </li>
+            </ul>
           </div>
         </div>
       </article>
 
-      <article className={style.student}>
-        <header>
-          <h2 className={style.student__title}>
-            Lo que dicen nuestros estudiantes.
-          </h2>
-        </header>
+      <article className={style.home__article20}>
+        <div className={style.home__content}>
+          <div>
+            <span>Debería ser fácil!</span>
+            <span>Aprendiendo inglés</span>
+            <p>
+              Aprender inglés puede ser desafiante cuando se basa únicamente en el estudio de la gramática y también cuando se espera
+              que los estudiantes comprendan nuevo vocabulario usando términos que aún no han dominado. Esta metodología tradicional
+              indudablemente presenta serias dificultades para un aprendizaje efectivo. ¡Hemos encontrado una solución a través de un
+              proceso fácil, paso a paso, que hace que sea fácil para ti aprender con Easy Online English!
+            </p>
+            <Link to="/courses">
+              ¡Empieza ahora!
+            </Link>
+          </div>
+          <div >
+            <img ref={imageRefs[3]} src="https://framerusercontent.com/images/sCf2ABHSWj7jfjsPTP6TIcLwI1M.png" />
+          </div>
+        </div>
+      </article>
 
-        <div className={style.student__container}>
-          <div className={style.student__content}>
-            <div>
-              <div className={style.reverse}>
-                <p className={style.student__text}>
-                  Gracias a este curso de inglés, he abierto las puertas a un mundo de posibilidades. He desarrollado habilidades lingüísticas esenciales que me han permitido comunicarme con personas de todo el mundo y adaptarme a cualquier entorno.
-                </p>
-                <Figure
-                  className={style.student__figure}
-                  img={{
-                    src: '1K2b9N4S2g1mfzuEZwb2tj11ulE1ZfJmf',
-                    alt: 'Kelvin Henríquez',
-                    className: style.student__image
-                  }}
-                  title={{
-                    className: style.student__name,
-                    value: 'Kelvin Henríquez'
-                  }}
-                  subTitle={{
-                    className: style.student__country,
-                    value: 'Desde Lima, Perú'
-                  }}
-                />
-              </div>
-
-              <div className={style.reverse}>
-                <p className={style.student__text}>
-                  La decisión de tomar un curso de inglés en línea fue una de las mejores que he tomado en mi vida profesional. A diferencia de las clases presenciales, que requieren desplazamientos y ajustarse a horarios fijos, la modalidad en línea me brindó la flexibilidad y la comodidad que necesitaba para compaginar mis estudios con mi trabajo a tiempo completo.
-                </p>
-                <Figure
-                  className={style.student__figure}
-                  img={{
-                    src: '1LMxe5rk0GE6wMk-JkvVnf7V_3Z428SEo',
-                    alt: 'Nelson Torres',
-                    className: style.student__image
-                  }}
-                  title={{
-                    className: style.student__name,
-                    value: 'Nelson Torres'
-                  }}
-                  subTitle={{
-                    className: style.student__country,
-                    value: 'Desde Puerto Rico'
-                  }}
-                />
-              </div>
-            </div>
-
-            <div>
-              <div className={style.reverse}>
-                <p className={style.student__text}>
-                  Mi experiencia en Easy Online English ha sido transformadora. El curso no solo me brindó las herramientas y el conocimiento para mejorar mi nivel de inglés, sino que también me dio la confianza y las habilidades necesarias para sobresalir en mi carrera profesional.
-                </p>
-                <Figure
-                  className={style.student__figure}
-                  img={{
-                    src: '1SPJBctDwbICQBmEiP8kGXtr0GI1Q_w5M',
-                    alt: 'María Swan',
-                    className: style.student__image
-                  }}
-                  title={{
-                    className: style.student__name,
-                    value: 'María Swan'
-                  }}
-                  subTitle={{
-                    className: style.student__country,
-                    value: 'Desde España'
-                  }}
-                />
-              </div>
-
-              <div className={style.reverse}>
-                <p className={style.student__text}>
-                  Tuve la oportunidad de aplicar directamente los conceptos y habilidades aprendidos a un nuevo proyecto en mi trabajo. Esta experiencia práctica fue increíblemente motivadora y me permitió ver el impacto real del aprendizaje del idioma en mi desarrollo profesional.
-                </p>
-                <div>
-                  <Figure
-                    className={style.student__figure}
-                    img={{
-                      src: '1WiT1Q_2Ftm-pmdEzREZVoIA1lsGewhw3',
-                      alt: 'Fred Sánchez',
-                      className: style.student__image
-                    }}
-                    title={{
-                      className: style.student__name,
-                      value: 'Fred Sánchez'
-                    }}
-                    subTitle={{
-                      className: style.student__country,
-                      value: 'Desde Rep. Dom.'
-                    }}
-                  />
+      <article className={style.home__article3}>
+        <div className={style.home__wrapper}>
+          <header className={style.home__header}>
+            <h2>¡Mira lo que dicen!</h2>
+          </header>
+          <div className={style.home__cards}>
+            <div className={style.home__card}>
+              <div>
+                <img src="https://framerusercontent.com/images/AqYDrXnc9nba3X6AihC98RgZKzk.png" alt="Foto de Eva Elle" />
+                <div className={style.home__name}>
+                  <h3>Eva Elle</h3>
+                  <span>@evaelle</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article className={style.join}>
-        <div className={style.join__container}>
-          <div className={style.join__content}>
-            <header>
-              <h2 className={style.join__title}>
-                ¡Únete a nuestros estudiantes felices!
-              </h2>
-              <p className={style.join__text}>
-                Da el siguiente paso hacia tus objetivos personales y profesionales estudia con nosotros.
-                Nuestro programa es flexible y personalizado, para que puedas aprender a tu propio ritmo y según tus necesidades.
-                ¡Inscríbete hoy y comienza tu camino hacia el éxito en inglés!
+              <p>
+                Jugando con @framer mientras construyo una página de aterrizaje para un proyecto paralelo.
+                ¡Soy terrible en animaciones, pero lo hacen tan fácil!
               </p>
-              <div className={style.join__bottom}>
-                <Link
-                  to={buttonUrl}
-                  className={style.join__button}
-                >
-                  Comienza Ahora
-                </Link>
+            </div>
+            <div className={style.home__card}>
+              <div>
+                <img src="https://framerusercontent.com/images/RsHZNf7AVvrb36YPDBI9Zmvs.png" alt="Foto de Guy Mccoy" />
+                <div className={style.home__name}>
+                  <h3>Guy Mccoy</h3>
+                  <span>@mccoy</span>
+                </div>
               </div>
-            </header>
-          </div>
-        </div>
-      </article>
-
-      <article className={style.start}>
-        <div className={style.start__container}>
-          <div className={style.start__content}>
-            <div className={style.start__top}>
-              <h2 className={style.start__title}>
-                ¿Cómo empiezo en EasyOnlineEnglish?
-              </h2>
-              <p className={style.start__text}>
-                Da el próximo paso hacia tus metas personales y profesionales, estudia con nosotros.
-                Nuestro programa es flexible y personalizado, para que puedas aprender a tu propio ritmo y según tus necesidades.
-                ¡Inscríbete hoy y empieza el camino hacia el éxito con el Inglés!
-
-                {user === null && (
-                  <>
-                    <Link to="plan" className={style.block}>Inscríbete Ahora</Link>
-                    <Link to="login" className={style.block}>¿Ya tienes tu cuenta con nosotros?</Link>
-                  </>
-                )}
+              <p>
+                ¡Gracias por construir una herramienta tan poderosa, especialmente para diseñadores!
+                ¡El sitio pasó de Figma a Framer en menos de una semana!
+              </p>
+            </div>
+            <div className={style.home__card}>
+              <div>
+                <img src="https://framerusercontent.com/images/QXASYLnZWZr7CbkkdgH7af8OEs.jpg" alt="Foto de Kayla Ray" />
+                <div className={style.home__name}>
+                  <h3>Kayla Ray</h3>
+                  <span>@kayray</span>
+                </div>
+              </div>
+              <p>
+                He construido sitios bastante útiles con Craft o WordPress en el pasado,
+                pero ver a @framer abordar cosas de CMS tan fácilmente es alucinante.
               </p>
             </div>
           </div>
         </div>
       </article>
+
+      <article className={style.home__article4}>
+        <div className={style.home__wrapper}>
+          <div>
+            <header>
+              <h2>¡Sé notado!</h2>
+              <h3>¿Quieres noticias y promociones sobre nuestros cursos de inglés?</h3>
+            </header>
+            <form>
+              <div>
+                <input type="email" placeholder="Tu correo electrónico" onChange={onChange} />
+                <span style={{ color: subscribe.isSubscribe ? '#4caf50' : '#f44336' }}>
+                  {subscribe.message}
+                </span>
+              </div>
+              <input type="button" value="Suscribirse" onClick={hanlderOnSuscribete} />
+            </form>
+          </div>
+          <div>
+            <img src="https://framerusercontent.com/images/BqPht4yrBttiODwV1PygQKNE8Bk.png" alt="notificación" />
+            <img src="https://framerusercontent.com/images/nqof4mX8mtjt6e5VgAnOD4U.png" alt="notificación sombra" />
+          </div>
+        </div>
+      </article>
+      {/*
+      <article>
+        <header>
+          <h2>Únete a nuestra gran comunidad de estudiantes</h2>
+        </header>
+        <div></div>
+      </article>
+      
+      <article>
+        <header>
+          <h1>¡Empieza ahora! Y gana más</h1>
+          <p>
+            Aprender inglés te dará mejores oportunidades laborales con salarios más altos.
+          </p>
+        </header>
+        <div>
+          <span>Comenzar</span>
+          <span>Aprender más</span>
+        </div>
+      </article>
+      */}
     </section>
   );
 }

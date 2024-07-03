@@ -1,276 +1,524 @@
 @import '../../../public/mixin/index.module'
 
-$color__text: #6a6a6a
-$color__white: #ffffff
-$container__background: #f4f4f4
-$container__width: 1000px
-$default__color: #000000
+$red-color: red
+$blue-color: #055b96
+$gray-color: #666
 
 .home
-  @include hero-section-styles('https://easyonlineenglish.com/wp-content/uploads/2024/06/landing-banner.jpg')
-  min-height: 680px
+  font-family: "Inter", "Inter Placeholder", sans-serif
 
-  &__container
-    color: #0e4fc6
-    margin-left: 20%
-    z-index: 1
+  &__article1
+    height: auto
 
-  &__title
-    font-size: 80px
+    .home__wrapper
+      display: flex
+      justify-content: center
 
-  &__subtitle
-    font-size: 30px
+      h2
+        color: $blue-color
+        font-size: 70px
+        font-weight: 900
+        margin-bottom: 20px
+        max-width: 643px
 
-  &__button
-    @include button(20px)
+      ul
+        font-size: 22px
+        margin: 0 28px
+        padding: 0
 
-  &__item
-    margin-top: 10px
+        li
+          font-weight: 600
+          margin-bottom: 20px
 
-  &__items
-    font-size: 20px
+    .home__content
+      align-items: center
+      display: flex
+      height: 562px
+      justify-content: space-between
+      width: 1483px
 
-  @include mobile
-    align-items: center
-    background-attachment: initial
+    .home__buttons
+      margin-top: 20px
+
+      > a
+        background-color: $red-color
+        border-radius: 8px
+        color: white
+        cursor: pointer
+        display: inline-block
+        font-weight: bold
+        text-decoration: none
+
+        &:first-child
+          font-size: 31px
+          padding: 11px 14px
+          text-align: center
+          width: 77%
+
+    .home__circle
+      display: flex
+      height: 100%
+      overflow: hidden
+      position: relative
+      max-width: 859px
+      width: 100%
+
+      &::before
+        background-color: $red-color
+        border-radius: 409px
+        bottom: -472px
+        content: ''
+        display: block
+        height: 818px
+        left: 50%
+        position: absolute
+        transform: translate(-50%)
+        width: 818px
+
+    .home__image
+      @include fadeInFromBottom(fadeInFromBottom1, -123px)
+      @include fadeInFromBottom(fadeInFromBottom2, -7px)
+      bottom: -600px
+      height: 456px
+      position: relative
+      z-index: 3
+
+      &:first-child
+        animation: fadeInFromBottom1 0.5s forwards
+        animation-delay: 0.4s
+        height: 445px
+        left: -13px
+        z-index: 2
+
+      &:nth-last-of-type(2)
+        animation: fadeInFromBottom2 0.5s forwards
+        animation-delay: 1.2s
+        height: 566px
+        left: -167px
+
+      &:last-child
+        animation: fadeInFromBottom1 0.5s forwards
+        animation-delay: 0.8s
+        height: 461px
+        left: -304px
+        z-index: 2
+
+  @media only screen and (max-width: 1560px)
+    .home__article1
+      .home__content
+        flex-direction: column
+        height: auto
+        width: 100%
+
+      .home__banner
+        width: 100%
+
+      .home__image
+        width: 100%
+
+  @media only screen and (max-width: 481px)
+    .home__article1
+      h2
+        font-size: 40px
+
+      .home__buttons
+        a
+          font-size: 20px
+
+      .home__banner
+        display: flex
+        flex-direction: column
+
+        span
+          &:last-child
+            margin: 0
+            margin-top: 10px
+
+      .home__content
+        div
+          padding: 20px
+
+      .home__wrapper
+        margin-top: 0
+
+      .home__circle
+        justify-content: center
+        height: 277px
+        width: 100%
+
+        &::before
+          height: 637px
+          width: 312px
+
+      .home__image
+        animation: none
+        height: 200px
+        bottom: 0
+
+        &:first-child
+          height: 187px
+          bottom: -74px
+          left: 58px
+
+        &:nth-last-of-type(2)
+          left: -16px
+          height: 261px
+          bottom: 0px
+
+        &:last-child
+          left: -79px
+          bottom: -57px
+          height: 204px
+
+  &__article2
+    background-color: #fafafa
     display: flex
     justify-content: center
-    min-height: 600px
+    padding-bottom: 50px
 
-    &::before
-      background: linear-gradient(90deg, #ffffff 0%, rgba(9, 132, 227, 0.0592612045) 50%)
+    .home__wrapper
+      width: 1100px
 
-    &__container
-      margin: 0
+    .home__header
+      color: black
+      margin-top: 60px
+      padding: 0 20px
 
-    &__title,
-    &__subtitle
-      font-size: 30px
+      h2
+        background-color: $red-color
+        border-radius: 8px
+        color: white
+        font-size: 39px
+        padding: 20px
+        text-align: center
 
-    &__item
-      font-size: 18px
+      p
+        font-size: 20px
+        text-align: center
+        line-height: 1.4
 
-.block
-  display: block
-
-.info__container,
-.info__content,
-.ceo__container,
-.ceo__content,
-.student__container,
-.student__content,
-.join__content,
-.join__container,
-.start__container,
-.start__content
-  align-items: center
-  display: flex
-  justify-content: center
-
-.info__content,
-.ceo__content,
-.student__content,
-.join__content,
-.start__content
-  padding: 50px 0
-  width: $container__width
-
-  @include mobile
-    flex-direction: column
-    width: 100%
-    padding: 20px
-
-.ceo__text,
-.info__text,
-.student__text,
-.join__text,
-.start__text
-  color: $color__text
-  font-size: 18px
-  font-weight: 400
-  line-height: 2
-
-.info
-  color: $color__text
-
-  &__items
-    color: $color__text
-
-  &__item
-    font-size: 18px
-    line-height: 2
-
-  &__title
-    font-size: 40px
-
-    &:nth-last-child(1)
+    .home__header2
       text-align: center
-
-  &__subtitle
-    color: #f44336
-    font-size: 60px
-
-  &__image
-    width: 500px
-
-  @include mobile
-    &__image
-      width: 260px
-
-    &__items
+      margin-bottom: 20px
       padding: 20px
 
-    &__title
-      font-size: 2em
+      h2
+        font-size: 37px
 
-    &__subtitle
-      font-size: 3em
+      h3
+        background-color: $blue-color
+        border-radius: 8px
+        color: white
+        font-size: 39px
+        padding: 20px
+        text-align: center
 
-.ceo
-  background-color: $container__background
+    .home__lists
+      list-style: none
+      color: black
 
-  &__title
-    font-size: 40px
+      li
+        align-items: center
+        display: flex
+        margin-bottom: 30px
 
-  &__image
-    width: 300px
+      span
+        font-size: 30px
+        padding: 20px
+        font-weight: bold
 
-  &__name,
-  &__experience,
-  &__text
-    font-weight: 400
+      img
+        opacity: 0
+        transition: opacity 2s ease
+        width: 150px
 
-  &__figure
-    line-height: 1.2
+      .img__visible
+        opacity: 1
 
-  &__name
-    font-weight: bold
-    font-size: 15px
+    @media only screen and (max-width: 481px)
+      .home__wrapper
+        width: 100%
 
-  &__experience
-    display: block
-    font-size: 12px
+        h2, span, h3, p
+          font-size: 15px
 
-  @include mobile
-    &__image
+      .home__header
+        padding: 0 20px
+
+      .home__lists
+        img
+          width: 80px
+
+      .home__header2
+        padding: 0 20px
+
+      .home__header3
+        margin-top: 40px
+
+      .home__content
+        margin-top: 20px
+
+        img
+          height: 200px
+
+  &__article20
+    align-items: center
+    display: flex
+    justify-content: space-evenly
+    margin-top: 50px
+
+    .home__content
+      display: flex
+
+      span
+        color: $blue-color
+        display: block
+        font-size: 50px
+        font-weight: 700
+
+        &:nth-child(2)
+          font-weight: 900
+
+      p
+        font-size: 23px
+        line-height: 1.5
+        width: 656px
+
+      a
+        background-color: $blue-color
+        border-radius: 8px
+        color: #fff
+        cursor: pointer
+        display: block
+        display: inline-block
+        font-size: 25px
+        font-weight: bold
+        padding: 20px
+        text-align: center
+        text-decoration: none
+        width: 300px
+
+      img
+        height: 500px
+        opacity: 0
+        padding: 20px
+
+      .img__animation
+        animation: imgAnimation 1.1s ease-in-out forwards
+
+        @keyframes imgAnimation
+          0%
+            transform: scale(0.2)
+
+          5%
+            transform: scale(0.4)
+
+          10%
+            transform: scale(0.6)
+
+          15%
+            transform: scale(0.8)
+
+          20%
+            transform: scale(1)
+
+          25%
+            opacity: 1
+            transform: scale(1.2)
+
+          50%
+            transform: scale(1)
+
+          75%
+            transform: scale(1.2)
+
+          100%
+            opacity: 1
+            transform: scale(1)
+
+    @media only screen and (max-width: 1560px)
+      div
+        align-items: center
+        flex-direction: column
+        padding: 20px
+
+    @media only screen and (max-width: 481px)
+      .home__content
+
+        div:first-child
+          padding: 20px
+
+        span
+          font-size: 32px
+
+        img
+          height: auto
+          width: 100%
+
+        p
+          width: 100%
+
+  &__article3
+    display: flex
+    justify-content: space-around
+    background-color: #e3e3e3
+
+    .home__wrapper
+      margin-bottom: 50px
+
+    .home__header
+      color: $red-color
+      padding: 20px
+      text-align: center
+      padding-top: 50px
+      font-size: 30px
+
+    .home__cards
+      display: flex
+
+    .home__card
+      background-color: #ffffff
+      border-radius: 23px
+      height: 310px
+      margin-left: 20px
+      padding: 20px
+      width: 300px
+
+      span, p
+        color: $gray-color
+
+      p
+        font-weight: 500
+        line-height: 1.5
+
+      .home__name
+        display: inline-block
+        margin-left: 20px
+
+        span
+          font-size: 14px
+          position: relative
+          top: -16px
+
+      img
+        height: 50px
+        border-radius: 50%
+
+    @media only screen and (max-width: 1560px)
+      .home__card
+        width: 100%
+
+        &:last-child
+          margin-right: 20px
+
+    @media only screen and (max-width: 481px)
+      .home__cards
+        flex-direction: column
+        align-items: center
+
+      .home__card
+        margin-bottom: 30px
+        width: 300px
+
+      .home__header
+        font-size: 20px
+
+  &__article4
+    display: flex
+    justify-content: center
+    align-content: center
+
+    .home__wrapper
+      align-items: center
+      display: flex
+      justify-content: center
+      margin-top: 30px
+      margin-bottom: 30px
+
+      div:last-child
+        display: flex
+        flex-direction: column
+        padding: 30px
+
+    img
       width: 200px
 
-    &__title
-      text-align: center
-      font-size: 2em
+    header
+      width: 400px
 
-    &__figure
-      text-align: center
+      h2
+        font-size: 30px
 
-.student
-  color: $default__color
+      h3
+        font-weight: 900
+        color: rgb(6, 92, 151)
+        font-size: 22px
 
-  &__text
-    padding: 20px
+    form
+      display: flex
 
-  &__figure
-    display: flex
-    left: 20px
-    margin: 0
-    position: relative
+      div
+        display: flex
+        flex-direction: column
 
-    figcaption
-      margin-left: 40px
+      span
+        font-size: 12px
+        margin-top: 10px
 
-  &__title
-    text-align: center
-    font-size: 40px
-
-  &__image
-    border-radius: 50%
-    width: 70px
-
-  &__name
-    display: block
-    font-size: 20px
-    font-weight: bold
-
-  &__country
-    font-size: 15px
-    font-weight: 400
-
-  @include mobile
-    &__title
-      text-align: center
-      font-size: 2em
-
-    &__name
-      display: block
+    input[type="email"]
+      appearance: none
+      background: rgb(235, 235, 235)
+      border-radius: 8px
+      border: none
+      color: rgb(0, 0, 0)
       font-size: 16px
-      font-weight: bold
-
-    &__country
-      font-size: 14px
-      font-weight: 400
-
-    figcaption
-      margin: 15px
-
-.join
-  background-color: $container__background
-  text-align: center
-
-  &__title
-    font-size: 45px
-    text-align: center
-
-  &__text
-    padding: 0
-
-  &__button
-    @include button()
-    border-radius: 0
-    top: 0px
-
-  &__bottom
-    padding: 20px
-
-  @include mobile
-    &__text
-      font-size: 14px
-
-    &__title
-      text-align: center
-      font-size: 2em
-
-    &__button
+      height: auto
+      outline: none
       padding: 15px
+      width: 300px
 
-.start
-  color: $default__color
+    input[type="button"]
+      appearance: none
+      background: rgb(6, 92, 151)
+      border-radius: 8px
+      border: none
+      color: rgb(255, 255, 255)
+      cursor: pointer
+      font-size: 16px
+      font-style: normal
+      font-weight: 500
+      height: 100%
+      letter-spacing: 0em
+      line-height: 1em
+      margin-left: 10px
+      outline: none
+      padding: 15px
+      width: 120px
+      z-index: 1
 
-  &__title
-    font-size: 2em
-    color: $default__color
+    @media only screen and (max-width: 481px)
+      .home__wrapper
+        flex-direction: column-reverse
 
-  &__text
-    padding: 20px
+        div:last-child
+          align-items: center
 
-  &__top
-    text-align: center
+        div:first-child
+          padding: 10px
 
-  &__bottom
-    padding: 20px
+          header
+            text-align: center
+            width: 100%
 
-  @include mobile
-    &__text
-      text-align: justify
+          h3
+            font-size: 1.17em
 
-.reverse
-  @include mobile
-    display: flex
-    flex-direction: column-reverse
+        form
+          flex-direction: column
 
-.info__text,
-.ceo__text,
-.student__text,
-.join__text,
-.start__text,
-.info__item
-  @include mobile
-    font-size: 14px
+          input
+            width: 100%
+
+          input[type="button"]
+            margin-top: 10px
+            margin-left: 0

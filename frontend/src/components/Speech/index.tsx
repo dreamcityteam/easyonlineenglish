@@ -64,20 +64,44 @@ const Speech: React.FC<Props> = ({
 
         onCheck(
           pronunciation === wordFormated ||
-          !!canNext[wordFormated] && canNext[wordFormated].includes(pronunciation) 
+          !!canNext[wordFormated] && canNext[wordFormated].includes(pronunciation)
         );
         setCanPlay(false);
         setOutput('Escuchar pronunciación');
         recognition.stop();
       }
 
-      recognition.onerror = (event: any): void => {       
+      recognition.onerror = (event: any): void => {
         setCanPlay(false);
 
-        if (event.error === 'not-allowed') {
-          setOutput('Active el microfono.');
-        } else {
-          console.log('Su navegador no soporta esta funcionalidad.');
+        switch (event.error) {
+          case 'no-speech':
+            setOutput('No se detectó ninguna voz. Por favor, intente de nuevo.');
+            break;
+          case 'aborted':
+            setOutput('La captura de voz se ha abortado.');
+            break;
+          case 'audio-capture':
+            setOutput('No se puede capturar el audio. Asegúrese de que el micrófono esté funcionando.');
+            break;
+          case 'network':
+            setOutput('Error de red. Verifique su conexión a internet.');
+            break;
+          case 'not-allowed':
+            setOutput('Active el micrófono.');
+            break;
+          case 'service-not-allowed':
+            setOutput('El servicio de reconocimiento de voz no está permitido.');
+            break;
+          case 'bad-grammar':
+            setOutput('Error en la gramática de la solicitud.');
+            break;
+          case 'language-not-supported':
+            setOutput('El idioma especificado no es compatible.');
+            break;
+          default:
+            setOutput('Su navegador no soporta esta funcionalidad.');
+            break;
         }
       }
 
@@ -91,7 +115,7 @@ const Speech: React.FC<Props> = ({
     }
   }
 
-  const formatWord = (word: string): string => 
+  const formatWord = (word: string): string =>
     word.toLowerCase().replace(/\.|\?|,/g, '');
 
   const onStop = (): void => {

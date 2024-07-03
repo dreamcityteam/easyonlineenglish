@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
   const tokenFromCookie = authenticator.get();
   const tokenFromHeader = getTokenFromHeader(req);
 
-  if (isEndpoint(ENDPOINT.CONTANCT)) {
+  if (isEndpoint(ENDPOINT.CONTANCT) || isEndpoint(ENDPOINT.SUSCRIBETE)) {
     return next();
   }
 

@@ -38,8 +38,8 @@ const setCookie = ({
   });
 };
 
-const getToken = ({ id, expiresIn = '30d' }) =>
-  jwt.sign({ id }, ACCESS_KEY_TOKEN, { expiresIn });
+const getToken = ({ id, type = 'auth', expiresIn = '30d' }) =>
+  jwt.sign({ id, type }, ACCESS_KEY_TOKEN, { expiresIn });
 
 const hash = {
   create: async (value) => {

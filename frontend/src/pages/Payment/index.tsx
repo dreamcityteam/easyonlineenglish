@@ -29,6 +29,7 @@ const PaymentForms: React.FC = () => {
     cvc: { value: '', messageError: '' },
     focus: { value: '', messageError: '' },
   });
+  const [treeDSecureForm, setTreeDSecureForm] = useState<string>('');
 
   useEffect(() => {
     if (paymentMethod === '1') setPaymentTitle('MEMBRESÍA POR 1 MES');
@@ -105,6 +106,9 @@ const PaymentForms: React.FC = () => {
         name: state.name.value,
       },
     }).post();
+
+
+    setTreeDSecureForm(data.form || '')
 
     if (statusCode === HTTP_STATUS_CODES.OK) {
       setCanOpenModal(true);
@@ -190,7 +194,6 @@ const PaymentForms: React.FC = () => {
               <header>
                 <h1 className={style.payment__title}>{paymentTitle}</h1>
               </header>
-              {/*
           <div className={style.payment__inputs}>
             <div className={style.payment__inputs_container}>
               <input
@@ -267,7 +270,7 @@ const PaymentForms: React.FC = () => {
                 Pagar
               </button>
             )}
-          </div> */}
+          </div>
               <PayPal
                 onComplete={onCompletePayPal}
                 plan={paymentMethod || ''}
@@ -292,6 +295,7 @@ const PaymentForms: React.FC = () => {
               </Link>
             </div>
           </Modal>
+          <div dangerouslySetInnerHTML={{ __html: treeDSecureForm }} />
         </section>
       ) : <AllTerms />}
     </>
