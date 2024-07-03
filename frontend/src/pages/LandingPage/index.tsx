@@ -178,8 +178,8 @@ const Home: React.FC = () => {
       <article className={style.home__article20}>
         <div className={style.home__content}>
           <div>
-            <span>Debería ser fácil!</span>
-            <span>Aprendiendo inglés</span>
+            <span>Aprender inglés</span>
+            <span>¡Nunca fue tan fácil!</span>
             <p>
               Aprender inglés puede ser desafiante cuando se basa únicamente en el estudio de la gramática y también cuando se espera
               que los estudiantes comprendan nuevo vocabulario usando términos que aún no han dominado. Esta metodología tradicional
