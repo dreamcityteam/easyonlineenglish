@@ -4,7 +4,6 @@ import { studentPayment, studentPendingPayment, homepage } from './data';
 import { Tab } from './type';
 import style from './style.module.sass'
 import context from '../../global/state/context';
-import SVGLogo from '../../../public/svg/logo.svg';
 
 const Navigator: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);

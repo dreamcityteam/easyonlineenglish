@@ -16,7 +16,7 @@ $gray-color: #666
 
       h2
         color: $blue-color
-        font-size: 70px
+        font-size: 58px
         font-weight: 900
         margin-bottom: 20px
         max-width: 643px
@@ -103,12 +103,11 @@ $gray-color: #666
         left: -304px
         z-index: 2
 
-  @media only screen and (max-width: 1560px)
+  @media only screen and (max-width: 1399px)
     .home__article1
       .home__content
         flex-direction: column
         height: auto
-        width: 100%
 
       .home__banner
         width: 100%
@@ -265,7 +264,7 @@ $gray-color: #666
     align-items: center
     display: flex
     justify-content: space-evenly
-    margin-top: 50px
+    margin: 50px 0
 
     .home__content
       display: flex
@@ -273,13 +272,13 @@ $gray-color: #666
       span
         color: $blue-color
         display: block
-        font-size: 50px
         font-weight: 700
 
         &:nth-child(1)
           font-size: 70px
 
         &:nth-child(2)
+          font-size: 50px
           font-weight: 900
 
       p
@@ -339,27 +338,37 @@ $gray-color: #666
             opacity: 1
             transform: scale(1)
 
-    @media only screen and (max-width: 1560px)
+    @media only screen and (max-width: 1399px)
       div
         align-items: center
         flex-direction: column
         padding: 20px
 
     @media only screen and (max-width: 481px)
-      .home__content
+      margin: 0
 
+      .home__content
         div:first-child
           padding: 20px
 
         span
-          font-size: 32px
+          &:nth-child(1)
+            font-size: 39px
+
+          &:nth-child(2)
+            font-size: 30px
+            font-weight: 900
 
         img
           height: auto
           width: 100%
 
         p
+          font-size: 15px
           width: 100%
+
+        a
+          font-size: 20px
 
   &__article3
     display: flex
@@ -407,7 +416,7 @@ $gray-color: #666
         height: 50px
         border-radius: 50%
 
-    @media only screen and (max-width: 1560px)
+    @media only screen and (max-width: 1399px)
       .home__card
         width: 100%
 
