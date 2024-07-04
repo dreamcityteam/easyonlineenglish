@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const routers = require('../routers');
 const middlewareToken = require('../middleware/token');
+const removeCache = require('../middleware/cache');
 const initialDatabase = require('../initialDatabase');
 const connectToDatabase = require('../db');
 const { isDev } = require('../tools/functions');
@@ -28,12 +29,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: false }));
 app.use(middlewareToken);
 app.use('/api/v1', routers);
 
-app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  next();
-});
+app.use(removeCache);
 
 app.use((_req, res, next) => {
   res.setHeader('Content-Security-Policy', "img-src 'self' data: *");

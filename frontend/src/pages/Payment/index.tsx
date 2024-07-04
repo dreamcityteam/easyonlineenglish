@@ -194,83 +194,85 @@ const PaymentForms: React.FC = () => {
               <header>
                 <h1 className={style.payment__title}>{paymentTitle}</h1>
               </header>
-          <div className={style.payment__inputs}>
-            <div className={style.payment__inputs_container}>
-              <input
-                type="text"
-                name="name"
-                maxLength={30}
-                onChange={handleInputChange}
-                onFocus={handleFocusChange}
-                placeholder="Nombre"
-                className={style.payment__input}
-                value={state.name.value}
-                onKeyDown={handleKeyPress}
-              />
-              {getErrorMessage(state.name)}
-            </div>
-          </div>
-          <div className={style.payment__inputs}>
-            <div className={style.payment__inputs_container}>
-              <input
-                type="text"
-                name="number"
-                maxLength={19}
-                onChange={handleInputChange}
-                onFocus={handleFocusChange}
-                placeholder="Número de la tarjeta"
-                className={style.payment__input}
-                value={formatInput('number', state.number.value)}
-                onKeyDown={handleKeyPress}
-              />
-              {getErrorMessage(state.number)}
-            </div>
-          </div>
-          <div className={style.payment__inputs}>
-            <div className={style.payment__inputs_container}>
-              <input
-                type="text"
-                name="expiry"
-                maxLength={5}
-                onChange={handleInputChange}
-                onFocus={handleFocusChange}
-                placeholder="Fecha de expiración"
-                className={style.payment__input}
-                value={formatInput('expiry', state.expiry.value)}
-                onKeyDown={handleKeyPress}
-              />
-              {getErrorMessage(state.expiry)}
-            </div>
-            <div>
-              <input
-                type="text"
-                name="cvc"
-                maxLength={3}
-                onChange={handleInputChange}
-                onFocus={handleFocusChange}
-                placeholder="CVC"
-                className={style.payment__input}
-                value={state.cvc.value}
-                onKeyDown={handleKeyPress}
-              />
-              <div className={style.payment__cvc}>
-                {getErrorMessage(state.cvc)}
+              {/*
+              <div className={style.payment__inputs}>
+                <div className={style.payment__inputs_container}>
+                  <input
+                    type="text"
+                    name="name"
+                    maxLength={30}
+                    onChange={handleInputChange}
+                    onFocus={handleFocusChange}
+                    placeholder="Nombre"
+                    className={style.payment__input}
+                    value={state.name.value}
+                    onKeyDown={handleKeyPress}
+                  />
+                  {getErrorMessage(state.name)}
+                </div>
               </div>
-            </div>
-          </div>
-          <div className={style.payment__input_button}>
-            {isLoading ? (
-              <Loading />
-            ) : (
-              <button
-                onClick={processPayment}
-                type="button"
-                className={style.payment__input_button}
-              >
-                Pagar
-              </button>
-            )}
-          </div>
+              <div className={style.payment__inputs}>
+                <div className={style.payment__inputs_container}>
+                  <input
+                    type="text"
+                    name="number"
+                    maxLength={19}
+                    onChange={handleInputChange}
+                    onFocus={handleFocusChange}
+                    placeholder="Número de la tarjeta"
+                    className={style.payment__input}
+                    value={formatInput('number', state.number.value)}
+                    onKeyDown={handleKeyPress}
+                  />
+                  {getErrorMessage(state.number)}
+                </div>
+              </div>
+              <div className={style.payment__inputs}>
+                <div className={style.payment__inputs_container}>
+                  <input
+                    type="text"
+                    name="expiry"
+                    maxLength={5}
+                    onChange={handleInputChange}
+                    onFocus={handleFocusChange}
+                    placeholder="Fecha de expiración"
+                    className={style.payment__input}
+                    value={formatInput('expiry', state.expiry.value)}
+                    onKeyDown={handleKeyPress}
+                  />
+                  {getErrorMessage(state.expiry)}
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="cvc"
+                    maxLength={3}
+                    onChange={handleInputChange}
+                    onFocus={handleFocusChange}
+                    placeholder="CVC"
+                    className={style.payment__input}
+                    value={state.cvc.value}
+                    onKeyDown={handleKeyPress}
+                  />
+                  <div className={style.payment__cvc}>
+                    {getErrorMessage(state.cvc)}
+                  </div>
+                </div>
+              </div>
+              <div className={style.payment__input_button}>
+                {isLoading ? (
+                  <Loading />
+                ) : (
+                  <button
+                    onClick={processPayment}
+                    type="button"
+                    className={style.payment__input_button}
+                  >
+                    Pagar
+                  </button>
+                )}
+              </div>
+              */}
               <PayPal
                 onComplete={onCompletePayPal}
                 plan={paymentMethod || ''}
@@ -296,6 +298,7 @@ const PaymentForms: React.FC = () => {
             </div>
           </Modal>
           <div dangerouslySetInnerHTML={{ __html: treeDSecureForm }} />
+
         </section>
       ) : <AllTerms />}
     </>
