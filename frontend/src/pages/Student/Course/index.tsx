@@ -279,9 +279,9 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     const isSkip: boolean = countPronunciation === 5;
 
     setFeedback({
-      message: (isCorrect || isSkip) 
-        ?  isSkip ? 'Debes practicar más con esta palabra' : '¡Correcto!' 
-        : '¡Intente de nuevo!',
+      message: (isCorrect || isSkip)
+        ? isSkip ? '¡Practicar más, lo lograrás!' : getFeedbackMessage().correct
+        : getFeedbackMessage().wrong,
       canShow: true,
     });
 
@@ -297,6 +297,37 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     }
 
     setCountPronunciation(countPronunciation + 1);
+  };
+
+  const getFeedbackMessage = () => {
+    const messagesCorrect: string[] = [
+      '¡Correcto!',
+      '¡Bien!',
+      '¡Vas bien!',
+      '¡Vas muy bien!',
+      '¡Sigue así!',
+      '¡Perfecto!',
+      '¡Bien hecho!',
+      '¡Te felicito!',
+      '¡Sigue avanzando!',
+      '¡Super bien!',
+      '¡Excelente!'
+    ];
+
+    const messagesWrong: string[] = [
+      '¡Vuelve a intentarlo!',
+      '¡Estuvo cerca! Pero lo puedes hacer mejor.',
+      '¡Buen intento! ¿Qué tal una vez más?',
+      '¡Bien! ¿Lo intentamos de nuevo?',
+      '¡Te invito a que lo intentes de nuevo!',
+    ];
+
+    const getMessage = (messages: string[]) => `${messages[Math.floor(Math.random() * messages.length)]}`;
+
+    return {
+      correct: getMessage(messagesCorrect),
+      wrong: getMessage(messagesWrong)
+    };
   };
 
   const skipWord = (): void => {
