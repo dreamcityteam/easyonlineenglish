@@ -45,6 +45,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   });
   const [countPronunciation, setCountPronunciation] = useState<number>(1);
   const [closeMessage, setCloseMessage] = useState<boolean>(false);
+  const [isCorrectPronuciation, setIsCorrectPronunciation] = useState<boolean>(false);
 
   useEffect(() => {
     saveCourseData();
@@ -278,6 +279,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const onSpeechFeedback = (isCorrect: boolean): void => {
     const isSkip: boolean = countPronunciation === 5;
 
+    setIsCorrectPronunciation(isCorrect);
+
     setFeedback({
       message: (isCorrect || isSkip)
         ? isSkip ? '¡Practicar más, lo lograrás!' : getFeedbackMessage().correct
@@ -478,7 +481,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 />
                 {feedback.canShow && (
                   <span
-                    style={{ background: (feedback.message === '¡Correcto!') ? '#4caf50' : '#f44336' }}
+                    style={{ background: isCorrectPronuciation ? '#4caf50' : '#f44336' }}
                     className={style.course__message}>
                     {feedback.message}
                   </span>
