@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { studentPayment, studentPendingPayment, homepage } from './data';
+import { studentPayment, studentPendingPayment, homepage, admin } from './data';
 import { Tab } from './type';
 import style from './style.module.sass'
 import context from '../../global/state/context';
+import { ROLE } from '../../tools/constant';
+import { isAdmin } from '../../tools/function';
 
 const Navigator: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);
@@ -17,6 +19,8 @@ const Navigator: React.FC = (): JSX.Element => {
 
     if (user === null) {
       tab = homepage;
+    } else if (isAdmin(user)) {
+      tab = admin;
     } else if (user.payment.isPayment) {
       tab = studentPayment;
     } else {
@@ -82,7 +86,7 @@ const Navigator: React.FC = (): JSX.Element => {
       <nav className={style.navigator} ref={nav}>
         <div className={style.navigator__container}>
           <div className={style.navigator__logo}>
-            <Link className={style.navigator__link} to="/">
+            <Link className={style.navigator__link} to={isAdmin(user) ? '/courses' : '/'}>
               <img src='https://framerusercontent.com/images/3su9ljSZ67mItsZL7f4ci1tIH8o.png?scale-down-to=512' alt="logo" />
             </Link>
           </div>

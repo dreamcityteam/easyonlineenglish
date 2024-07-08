@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { CLEAR_LOAD, SET_LOAD } from '../global/state/actionTypes';
-import { HTTP_STATUS_CODES } from './constant';
+import { HTTP_STATUS_CODES, ROLE } from './constant';
 import { Request, RequestOptions, Send, Store, Response, Data } from './type';
 import context from '../global/state/context';
+import { User } from '../global/state/type';
 
 const send = ({ api, data, token }: Request): Send => {
   const options: RequestOptions = {
@@ -175,6 +176,9 @@ const initGoogleAnalytics = (): any => {
   return gtag;
 };
 
+const isAdmin = (user: User): boolean =>
+  user?.role === ROLE.ADMIN;
+
 export {
   send,
   store,
@@ -184,4 +188,5 @@ export {
   cookie,
   isUser,
   initGoogleAnalytics,
+  isAdmin
 };

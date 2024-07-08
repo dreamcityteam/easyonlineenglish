@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import style from './style.module.sass';
-import { ASSETS_URL } from '../../tools/constant';
+import { ASSETS_URL, ROLE } from '../../tools/constant';
+import context from '../../global/state/context';
 
 const Footer: React.FC = (): JSX.Element => {
+  const [{ user }] = useContext(context);
   const creditCards: string[] = ['mastercard.png', 'paypal.png', 'visa.jpg'];
   const terms: string[][] = [
     ['Términos y condiciones', 'conditions'],
@@ -12,7 +14,7 @@ const Footer: React.FC = (): JSX.Element => {
     ['Compra del Producto', 'payment'],
   ];
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isHomePage: boolean = location.pathname === '/' && user?.role !== ROLE.ADMIN;
 
   return (
     <footer className={style.footer} {...isHomePage ? {

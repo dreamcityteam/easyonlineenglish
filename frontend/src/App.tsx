@@ -11,6 +11,7 @@ import { ROLE } from './tools/constant';
 import Navigator from './components/Navigator';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
+import Admin from './routers/Admin';
 
 const App: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -43,6 +44,7 @@ const App: React.FC = (): JSX.Element => {
           <Navigator />
           {state.user === null && isUserDataComplete && <RouterHomePage />}
           {state?.user?.role === ROLE.STUDENT && <RouterStudent isPayment={state.user.payment.isPayment} />}
+          {state?.user?.role === ROLE.ADMIN && <Admin />}
           <Footer />
         </Router>
       </context.Provider>

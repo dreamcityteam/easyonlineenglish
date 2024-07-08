@@ -17,7 +17,7 @@ const page404: React.FC = (): JSX.Element => {
   }, [user]);
 
   return (
-    <div className={style.page404}>
+    <section className={style.page404}>
       <div className={style.page404__container}>
         <div className={style.page404__content}>
           <h3 className={style.page404__subTitle}>¡Ups! Página no encontrada</h3>
@@ -25,7 +25,7 @@ const page404: React.FC = (): JSX.Element => {
         </div>
         <h2>Lo sentimos, pero la página que solicitaste no se ha encontrado.</h2>
       </div>
-    </div>
+    </section>
   )
 };
 

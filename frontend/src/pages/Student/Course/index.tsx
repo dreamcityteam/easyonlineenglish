@@ -9,7 +9,7 @@ import style from './style.module.sass';
 import Modal from '../../../components/Modal';
 import Confetti from '../../../components/Confetti';
 import { CourseProgress, OnWord } from './types';
-import { getData, send } from '../../../tools/function';
+import { getData, isAdmin, send } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
@@ -24,7 +24,7 @@ interface Props {
 
 const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const { idCourse } = useParams<string>();
-  const [{ courseCache, googleAnalytics }, dispatch] = useContext(context);
+  const [{ courseCache, googleAnalytics, user }, dispatch] = useContext(context);
   const [feedback, setFeedback] = useState({ canShow: false, message: '' });
   const [isPlaySpeech, setPlaySpeech] = useState<boolean>(false);
   const [lessionTitle, setLessionTitle] = useState<string>('');
@@ -142,7 +142,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       newWord = getWordSentenceCompleted(word);
     }
 
-    if (course?.unlockedWords[word._id] || canTakeNextWord) {
+    if (
+      course?.unlockedWords[word._id] ||
+      canTakeNextWord ||
+      isAdmin(user)
+    ) {
       setWord(newWord);
       setSentence(newWord.sentences[sentenceIndex]);
       setLessionTitle(lessons[indexLesson].title);
@@ -235,7 +239,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         progress: course.progress
       };
 
-      if (!isDemo) {
+      if (!isDemo && !isAdmin(user)) {
         const {
           response: { statusCode, data }
         }: Response = await saveProgress(courseProgress);
@@ -515,7 +519,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               onPlaySpeech={onPlaySpeech}
               canNext={pronunciation}
             />
-            {isSavingProgress || sentence?.isCompleted && (
+            {isSavingProgress || sentence?.isCompleted || isAdmin(user) && (
               <img
                 alt="Next arrow"
                 className={style.course__arrowRight}

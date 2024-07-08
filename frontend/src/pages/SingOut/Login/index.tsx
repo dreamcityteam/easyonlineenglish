@@ -5,14 +5,15 @@ import { inputs } from './data';
 import context from '../../../global/state/context';
 import { CLEAN_CACHE, SET_USER } from '../../../global/state/actionTypes';
 import style from './style.module.sass';
-import { HTTP_STATUS_CODES } from '../../../tools/constant';
+import { HTTP_STATUS_CODES, ROLE } from '../../../tools/constant';
+import { isAdmin } from '../../../tools/function';
 
 const Login: React.FC = () => {
   const [{ googleAnalytics }, dispatch] = useContext(context);
   const [text, setText] = useState<string>('');
   const navigate: NavigateFunction = useNavigate();
 
-  const onData = ({ response: { statusCode, data, message } }: any): void => {
+  const onData = ({ response: { statusCode, data: user, message } }: any): void => {
     setText('');
 
     if (message === 'User deleted') {
@@ -22,14 +23,18 @@ const Login: React.FC = () => {
       setText('La dirección de correo electrónico o la contraseña son incorrectas.');
 
     } else if (statusCode === HTTP_STATUS_CODES.OK) {
-      navigate(data.payment.isPayment ? '/courses' : '/plan');
-      dispatch({ type: CLEAN_CACHE });
-      dispatch({ type: SET_USER, payload: data });
+      let redirectUrl = user.payment.isPayment || isAdmin(user) ? '/courses' : '/plan';
 
-      googleAnalytics('event', 'login', {
-        'event_category': 'Login',
-        'event_label': 'Iniciar sección'
-      });
+      navigate(redirectUrl);
+      dispatch({ type: CLEAN_CACHE });
+      dispatch({ type: SET_USER, payload: user });
+
+      if (!isAdmin(user)) {
+        googleAnalytics('event', 'login', {
+          'event_category': 'Login',
+          'event_label': 'Iniciar sección'
+        });
+      }
     } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
       setText('Tenemos problemas para iniciar sesión. Por favor, inténtalo de nuevo más tarde.');
     }

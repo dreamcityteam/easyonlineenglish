@@ -16,7 +16,7 @@ const studentPendingPayment: Tab[] = [
   { path: '/profile', value: 'perfil', showMobile: true },
   { path: '/plan', value: 'planes' },
   { path: '/close', value: 'cerrar sesión' },
-]
+];
 
 const homepage: Tab[] = [
   { path: '/', value: 'inicio' },
@@ -26,4 +26,9 @@ const homepage: Tab[] = [
   { path: '/login', value: 'iniciar sesión' },
 ];
 
-export { studentPendingPayment, studentPayment, homepage };
+const admin: Tab[] = [
+  { path: '/courses', value: 'courses' },
+  { path: '/close', value: 'cerrar sesión' },
+];
+
+export { studentPendingPayment, studentPayment, homepage, admin };
