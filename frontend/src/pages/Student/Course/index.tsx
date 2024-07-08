@@ -519,7 +519,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               onPlaySpeech={onPlaySpeech}
               canNext={pronunciation}
             />
-            {isSavingProgress || sentence?.isCompleted || isAdmin(user) && (
+            {isSavingProgress || sentence?.isCompleted && (
               <img
                 alt="Next arrow"
                 className={style.course__arrowRight}
