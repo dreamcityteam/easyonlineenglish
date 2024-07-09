@@ -5,7 +5,6 @@ const path = require('path');
 const { getResponse, send } = require('../../tools/functions');
 const { HTTP_STATUS_CODES, PAYMENT_METHOD, MESSAGE } = require('../../tools/const');
 const { getData } = require('./function');
-const {  } = require('../../tools/const');
 const { payment } = require('../../tools/payment');
 
 module.exports = async (req, res) => {

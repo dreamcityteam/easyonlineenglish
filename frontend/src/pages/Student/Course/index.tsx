@@ -401,6 +401,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     setCanSlowAudio((state) => ({ ...state, [type]: !canSlowAudio[type] }));
   };
 
+  const onSave = () => {
+    console.log(word);
+  }
+
   return (
     <>
       <section className={style.course}>
@@ -519,14 +523,14 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               onPlaySpeech={onPlaySpeech}
               canNext={pronunciation}
             />
-            {isSavingProgress || sentence?.isCompleted && (
+            { isSavingProgress || sentence?.isCompleted || isAdmin(user) ? (
               <img
                 alt="Next arrow"
                 className={style.course__arrowRight}
                 onClick={onNext}
                 src={SVGArrowRight}
               />
-            )}
+            ): null}
           </div>
         </div>
         <Modal

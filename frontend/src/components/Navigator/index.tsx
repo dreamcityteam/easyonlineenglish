@@ -4,7 +4,6 @@ import { studentPayment, studentPendingPayment, homepage, admin } from './data';
 import { Tab } from './type';
 import style from './style.module.sass'
 import context from '../../global/state/context';
-import { ROLE } from '../../tools/constant';
 import { isAdmin } from '../../tools/function';
 
 const Navigator: React.FC = (): JSX.Element => {
