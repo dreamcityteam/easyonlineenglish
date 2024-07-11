@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open --hot",
-    "del-build:linux": "rm -rf ../backend/build",
-    "del-build:win": "rmdir /s /q ..\\backend\\build",
-    "build": "webpack --mode=production --config webpack.prod.js",
-    "build:win": "npm run del-build:win && npm run build"
+    "build": "webpack --mode=production --config webpack.prod.js"
   },
   "keywords": [],
   "author": "Brewyn Espinal",

@@ -29,13 +29,13 @@ const Footer: React.FC = (): JSX.Element => {
             Calle Dr. Alejo Martínez, Plaza Colonial, local comercial número 30, Sector El Batey, Sosúa, Puerto Plata, República Dominicana.
           </li>
           <li className={style.footer__term}>
-            {terms.map(([name, link]) => (
-              <span><Link to={`term-${link}`}>{name}</Link></span>
+            {terms.map(([name, link], index: number): JSX.Element => (
+              <span key={index}><Link to={`term-${link}`}>{name}</Link></span>
             ))}
           </li>
           <li className={style.footer__item}>
-            {creditCards.map((creditCard: string): JSX.Element => (
-              <img src={`${ASSETS_URL}2016/12/${creditCard}`} />
+            {creditCards.map((creditCard: string, index: number): JSX.Element => (
+              <img key={index} src={`${ASSETS_URL}2016/12/${creditCard}`} />
             ))}
           </li>
         </ul>

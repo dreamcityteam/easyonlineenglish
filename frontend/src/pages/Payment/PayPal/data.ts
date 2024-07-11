@@ -1,10 +1,12 @@
+import { isDev } from '../../../tools/function';
+
 const INITIAL_OPTION: {
-  clientId: string;
+  clientId: any;
   'enable-funding': string;
   'disable-funding': string;
   'data-sdk-integration-source': string;
 } = {
-  clientId: process.env.PAYPAL_CLIENT_ID || '',
+  clientId: isDev() ? process.env.PAYPAL_CLIENT_ID_DEV : process.env.PAYPAL_CLIENT_ID_DEV,
   'enable-funding': 'paylater',
   'disable-funding': 'card',
   'data-sdk-integration-source': 'integrationbuilder_sc',

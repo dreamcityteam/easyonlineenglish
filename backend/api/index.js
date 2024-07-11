@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+const cors = require('cors');
 const routers = require('../routers');
 const middlewareToken = require('../middleware/token');
 const removeCache = require('../middleware/cache');
@@ -23,12 +24,18 @@ app.use(helmet({
   crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
 }));
 
+if (isDev()) {
+  app.use(cors({
+    origin: 'http://localhost:8080',
+    credentials: true
+  }));
+}
+
 app.use(cookieParser());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: false }));
 app.use(middlewareToken);
 app.use('/api/v1', routers);
-
 app.use(removeCache);
 
 app.use((_req, res, next) => {
@@ -36,13 +43,13 @@ app.use((_req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, BUILD_PATH)));
-
-app.get('*', (_, res) => {
-  res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
-});
-
 if (isDev()) {
+  app.use(express.static(path.join(__dirname, BUILD_PATH)));
+
+  app.get('*', (_, res) => {
+    res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
+  });
+
   app.listen(PORT, () => console.log('Server is running on port', PORT));
 } else {
   module.exports = app;

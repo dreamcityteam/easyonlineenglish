@@ -11,13 +11,15 @@ const send = ({ api, data, token }: Request): Send => {
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {})
     },
+    credentials: isDev() ? 'include' : 'same-origin',
     method: 'GET',
     ...(data ? { body: JSON.stringify(data) } : {}),
   };
 
   const request = async (options: RequestOptions): Promise<Response> => {
     try {
-      const response = await fetch(`/api/v1/${api}`, options);
+      const href: string = isDev() ? 'http://localhost:3000' : '';
+      const response = await fetch(`${href}/api/v1/${api}`, options);
       const responseData: Response = await response.json();
 
       return responseData;
@@ -61,8 +63,10 @@ const send = ({ api, data, token }: Request): Send => {
   };
 };
 
-const isModeDevelopment = (): boolean =>
-  process.env.NODE_ENV === 'development';
+const isDev = (): boolean =>
+  process.env.NODE_ENV
+    ? process.env.NODE_ENV.includes('development')
+    : false;
 
 const store: Store = {
   get: (value: string): string | null | { [key: string]: any; } =>
@@ -183,7 +187,7 @@ export {
   send,
   store,
   formatPhoneNumber,
-  isModeDevelopment,
+  isDev,
   getData,
   cookie,
   isUser,

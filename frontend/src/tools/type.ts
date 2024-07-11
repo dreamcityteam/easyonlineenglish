@@ -23,6 +23,7 @@ type StatusCode = {
 
 type RequestOptions = {
   method: string;
+  credentials: 'same-origin' | 'include', 
   headers: {
     'Content-Type': string;
     Authorization?: string;

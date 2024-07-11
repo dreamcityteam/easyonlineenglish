@@ -17,14 +17,14 @@ const handleResponse = async (response) => {
 
 const generateAccessToken = async () => {
   const {
-    PAYPAL_CLIENT_ID,
-    PAYPAL_CLIENT_SECRET,
-    PAYPAL_CLIENT_ID_DEV,
-    PAYPAL_CLIENT_SECRET_DEV
+    PAYPAL_CLIENT_ID = '',
+    PAYPAL_CLIENT_SECRET = '',
+    PAYPAL_CLIENT_ID_DEV = '',
+    PAYPAL_CLIENT_SECRET_DEV = ''
   } = process.env;
 
-  const CLIENT_ID = PAYPAL_CLIENT_ID;
-  const CLIENT_SECRET = PAYPAL_CLIENT_SECRET;
+  const CLIENT_ID = (isDev() ? PAYPAL_CLIENT_ID_DEV : PAYPAL_CLIENT_ID).trim();
+  const CLIENT_SECRET = (isDev() ? PAYPAL_CLIENT_SECRET_DEV : PAYPAL_CLIENT_SECRET).trim();
 
   try {
     if (!CLIENT_ID || !CLIENT_SECRET) {

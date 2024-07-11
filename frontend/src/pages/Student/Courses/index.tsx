@@ -62,13 +62,13 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           <h1>Cursos</h1>
         </header>
         <div className={style.courses__items}>
-          {courses.map(({ _id, picture, title, description, progress = 0 }: TCourses): JSX.Element => {
+          {courses.map(({ _id, picture, title, description, progress = 0 }: TCourses, index: number): JSX.Element => {
             let _progress: number = courseCache[_id] ? courseCache[_id].progress : progress;
 
             _progress = isDemo ? getDemoCourseProgress(_id) : _progress;
 
             return (
-              <article className={style.courses__container}>
+              <article className={style.courses__container} key={index}>
                 <img
                   className={style.courses__picture}
                   alt={title}
@@ -82,7 +82,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                         d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                       />
                       <path className={style.courses__progress_circle}
-                        stroke-dasharray={`${_progress}, 100`}
+                        strokeDasharray={`${_progress}, 100`}
                         d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                       />
                       <text x="18" y="20.35" className={style.courses__progress_percentage}>

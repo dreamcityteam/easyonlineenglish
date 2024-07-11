@@ -4,7 +4,7 @@ import style from './style.module.sass';
 import FamilyPlan from './FamilyPlan';
 
 const Plans: React.FC = (): JSX.Element => {
-  const characteristics = [
+  const characteristics: string[] = [
     'Proceso de aprendizaje simplificado que cualquiera puede realizar.',
     'Pronunciación.',
     'Biblioteca para encontrar palabras comunes, todos los verbos conjugados, números, días y meses.'
