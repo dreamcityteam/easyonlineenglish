@@ -4,24 +4,25 @@ const ConfettiAnimation: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas: HTMLCanvasElement | null = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
     if (!ctx) return;
 
-    const W = window.innerWidth;
-    const H = window.innerHeight;
-    canvas.width = W;
-    canvas.height = H;
+    const width: number = window.innerWidth;
+    const height: number = window.innerHeight;
+
+    canvas.width = width;
+    canvas.height = height;
 
     const particles: any[] = [];
     const numParticles = 200;
 
     for (let i = 0; i < numParticles; i++) {
       particles.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
+        x: Math.random() * width,
+        y: Math.random() * height,
         radius: Math.random() * 5 + 2,
         color: `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`,
         velocity: {
@@ -32,7 +33,7 @@ const ConfettiAnimation: React.FC = () => {
     }
 
     const draw = () => {
-      ctx.clearRect(0, 0, W, H);
+      ctx.clearRect(0, 0, width, height);
       particles.forEach(particle => {
         ctx.beginPath();
         ctx.fillStyle = particle.color;
@@ -41,10 +42,10 @@ const ConfettiAnimation: React.FC = () => {
         particle.x += particle.velocity.x;
         particle.y += particle.velocity.y;
 
-        if (particle.x > W || particle.x < 0) {
+        if (particle.x > width || particle.x < 0) {
           particle.velocity.x *= -1;
         }
-        if (particle.y > H || particle.y < 0) {
+        if (particle.y > height || particle.y < 0) {
           particle.velocity.y *= -1;
         }
       });

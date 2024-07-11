@@ -8,7 +8,7 @@ import SVGInfo from '../../../public/svg/info.svg';
 import SVGLocation from '../../../public/svg/location.svg';
 
 const Contact: React.FC = () => {
-  const onData = (payload: any, updateState: (key: string, field: any) => void): void => {
+  const onData = ({ response: { statusCode } }: any, updateState: (key: string, field: any) => void): void => {
     const field = {
       validation: {
         isNotValid: true,
@@ -17,10 +17,10 @@ const Contact: React.FC = () => {
       }
     };
 
-    if (payload.response.statusCode === HTTP_STATUS_CODES.OK) {
+    if (statusCode === HTTP_STATUS_CODES.OK) {
       field.validation.successMessage = 'Mensaje enviado.';
       updateState('message', field);
-    } else if (payload.response.statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
+    } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
       field.validation.serverErrorMessage = 'Su mensaje no pudo ser enviado.';
       updateState('message', field);
     }

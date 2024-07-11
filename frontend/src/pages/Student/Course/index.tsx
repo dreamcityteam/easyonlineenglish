@@ -401,10 +401,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     setCanSlowAudio((state) => ({ ...state, [type]: !canSlowAudio[type] }));
   };
 
-  const onSave = () => {
-    console.log(word);
-  }
-
   return (
     <>
       <section className={style.course}>

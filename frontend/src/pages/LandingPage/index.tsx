@@ -1,42 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
-import GoogleDriveImage from '../../components/Image';
 import { getPath, send } from '../../tools/function';
 import { HTTP_STATUS_CODES, REGEXP } from '../../tools/constant';
-
-interface Prop {
-  className?: string;
-  img: {
-    src: string;
-    alt: string;
-    className: string;
-  };
-
-  title: {
-    className: string;
-    value: string;
-  };
-
-  subTitle: {
-    className: string;
-    value: string;
-  };
-};
-
-const Figure: React.FC<Prop> = ({ img, subTitle, title, className }) => (
-  <figure {...className ? { className } : null}>
-    <GoogleDriveImage
-      id={img.src}
-      alt={img.alt}
-      className={img.className}
-    />
-    <figcaption>
-      <span className={title.className}>{title.value}</span>
-      <span className={subTitle.className}>{subTitle.value}</span>
-    </figcaption>
-  </figure>
-);
 
 const Home: React.FC = () => {
   const imageRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];

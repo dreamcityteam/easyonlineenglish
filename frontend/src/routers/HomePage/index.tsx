@@ -16,26 +16,6 @@ import Payment from '../../pages/Terms/Payment';
 import Conditions from '../../pages/Terms/Conditions';
 import Plans from '../../pages/Plans/Index';
 
-/*
- In the future, we're going to use these lines of code to implement code splitting.
-
-  const Contact: React.LazyExoticComponent<React.FC<{}>> = (
-    React.lazy(() => import('../../pages/HomePage/Contact'))
-  );
-  const Home: React.LazyExoticComponent<React.FC<{}>> = (
-    React.lazy(() => import('../../pages/HomePage/Home'))
-  );
-  const Login: React.LazyExoticComponent<React.FC<{}>> = (
-    React.lazy(() => import('../../pages/HomePage/Login'))
-  );
-  const Navigator: React.LazyExoticComponent<React.FC<{}>> = (
-    React.lazy(() => import('../../components/Navigator'))
-  );
-  const Register: React.LazyExoticComponent<React.FC<{}>> = (
-    React.lazy(() => import('../../pages/HomePage/Register'))
-  );
-*/
-
 const RouterHomePage: React.FC = () => (
   <Routes>
     <Route index element={<Home />} />

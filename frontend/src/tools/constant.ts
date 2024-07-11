@@ -6,11 +6,11 @@ const REGEXP: { [key: string]: RegExp; } = {
   PHONE_NUMBER: /^\+?\d{1,3}[- ]?\(?\d{1,3}\)?[- ]?\d{3,5}[- ]?\d{4}$/,
   NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
   LAST_NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
-  PASSWORD: /^.{8,}$/
+  PASSWORD: /^.{8,}$/,
 }
 
 const MESSAGE: { [key: string]: string; } = {
-  PASSWORD: 'Su contraseña debería tener al menos 8 caracteres.'
+  PASSWORD: 'Su contraseña debería tener al menos 8 caracteres.',
 }
 
 const ROLE: Role = {
@@ -32,7 +32,13 @@ const TUTORIAL: 'TUTORIAL' = 'TUTORIAL';
 const DEFAULT_PHOTO: string = 'https://secure.gravatar.com/avatar/3b314b13ca2c8ed3a56da2620bb25ff4?s=150&d=mm&r=g';
 const ASSETS_URL: string = 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/';
 
-const PAYMENT_METHOD: any = {
+const PAYMENT_METHOD: {
+  [key: number]: {
+    DURATION_IN_MONTHS: number;
+    AMOUNT: number;
+    DESCRIPTION: string;
+  }
+} = {
   1: {
     DURATION_IN_MONTHS: 1,
     AMOUNT: 13,

@@ -15,20 +15,6 @@ import Conditions from '../../pages/Terms/Conditions';
 import Plans from '../../pages/Plans/Index';
 import Payment from '../../pages/Payment';
 
-/*
- In the future, we're going to use these lines of code to implement code splitting.
-
-  const Profile: React.LazyExoticComponent<React.FC<{}>> = (
-    React.lazy(() => import('../../pages/Student/Profile'))
-  );
-  const Courses: React.LazyExoticComponent<React.FC<{}>> = (
-    React.lazy(() => import('../../pages/Student/Courses'))
-  );
-  const Course: React.LazyExoticComponent<React.FC<{}>> = (
-    React.lazy(() => import('../../pages/Student/Course'))
-  );
-*/
-
 const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
   <Routes>
     <Route index element={<Home />} />
