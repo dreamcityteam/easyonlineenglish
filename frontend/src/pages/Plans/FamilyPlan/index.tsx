@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
-import { ASSETS_URL } from '../../../tools/constant';
+import { getPath } from '../../../tools/function';
 
 interface Props {
   price: string;
@@ -17,7 +17,7 @@ const FamilyPlan: React.FC<Props> = ({ price }): JSX.Element => (
       <div className={style.familyPlan__user}>
         <img
           className={style.familyPlan__img}
-          src={`${ASSETS_URL}2016/12/user5.png`}
+          src={getPath('2016/12/user5.png')}
         />
         <ul className={style.familyPlan__list}>
           <li>Hasta 5 usuarios</li>

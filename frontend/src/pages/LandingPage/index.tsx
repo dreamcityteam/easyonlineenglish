@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
 import GoogleDriveImage from '../../components/Image';
-import context from '../../global/state/context';
-import { send } from '../../tools/function';
+import { getPath, send } from '../../tools/function';
 import { HTTP_STATUS_CODES, REGEXP } from '../../tools/constant';
 
 interface Prop {
@@ -125,17 +124,17 @@ const Home: React.FC = () => {
             <div className={style.home__circle}>
               <img
                 className={style.home__image}
-                src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/pMFE0XKXXVETRMpSqtw9CtPiDE.avif"
+                src={getPath('pMFE0XKXXVETRMpSqtw9CtPiDE.avif')}
                 alt="Imagen representando el aprendizaje del inglés"
               />
               <img
                 className={style.home__image}
-                src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/b3kdXWf2vXaCYq8qBCAOsl4qwcA.avif"
+                src={getPath('b3kdXWf2vXaCYq8qBCAOsl4qwcA.avif')}
                 alt="Imagen representando el aprendizaje del inglés"
               />
               <img
                 className={style.home__image}
-                src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/I4gxLVRC32KmwsGsqa1yzYNcJpQ.webp"
+                src={getPath('I4gxLVRC32KmwsGsqa1yzYNcJpQ.webp')}
                 alt="Imagen representando el aprendizaje del inglés"
               />
             </div>
@@ -159,15 +158,15 @@ const Home: React.FC = () => {
             </header>
             <ul className={style.home__lists}>
               <li>
-                <img src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/qE8ucK6enubb0INEh2patqPbQ0.avif" ref={imageRefs[0]} />
+                <img src={getPath('qE8ucK6enubb0INEh2patqPbQ0.avif')} ref={imageRefs[0]} />
                 <span>Escucha la pronunciación adecuada de un hablante nativo tantas veces como sea necesario.</span>
               </li>
               <li>
-                <img src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/WYNKk7P5APEg2QjJehuVErtA.avif" ref={imageRefs[1]} />
+                <img src={getPath('WYNKk7P5APEg2QjJehuVErtA.avif')} ref={imageRefs[1]} />
                 <span>Refuerza la comprensión con nuestros recursos visuales.</span>
               </li>
               <li>
-                <img src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/qE8ucK6enubb0INEh2patqPbQ0.avif" ref={imageRefs[2]} />
+                <img src={getPath('rRnLeStRklfSvZQb73ndQBdNQ.avif')} ref={imageRefs[2]} />
                 <span>Practica la pronunciación y gana confianza.</span>
               </li>
             </ul>
@@ -191,7 +190,7 @@ const Home: React.FC = () => {
             </Link>
           </div>
           <div >
-            <img ref={imageRefs[3]} src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/sCf2ABHSWj7jfjsPTP6TIcLwI1M.avif" />
+            <img ref={imageRefs[3]} src={getPath('sCf2ABHSWj7jfjsPTP6TIcLwI1M.avif')} />
           </div>
         </div>
       </article>
@@ -204,7 +203,7 @@ const Home: React.FC = () => {
           <div className={style.home__cards}>
             <div className={style.home__card}>
               <div>
-                <img src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/AqYDrXnc9nba3X6AihC98RgZKzk.avif" alt="Foto de Eva Elle" />
+                <img src={getPath('AqYDrXnc9nba3X6AihC98RgZKzk.avif')} alt="Foto de Eva Elle" />
                 <div className={style.home__name}>
                   <h3>Eva Elle</h3>
                   <span>@evaelle</span>
@@ -217,7 +216,7 @@ const Home: React.FC = () => {
             </div>
             <div className={style.home__card}>
               <div>
-                <img src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/RsHZNf7AVvrb36YPDBI9Zmvs.avif" alt="Foto de Guy Mccoy" />
+                <img src={getPath('RsHZNf7AVvrb36YPDBI9Zmvs.avif')} alt="Foto de Guy Mccoy" />
                 <div className={style.home__name}>
                   <h3>Guy Mccoy</h3>
                   <span>@mccoy</span>
@@ -230,7 +229,7 @@ const Home: React.FC = () => {
             </div>
             <div className={style.home__card}>
               <div>
-                <img src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/QXASYLnZWZr7CbkkdgH7af8OEs.avif" alt="Foto de Kayla Ray" />
+                <img src={getPath('QXASYLnZWZr7CbkkdgH7af8OEs.avif')} alt="Foto de Kayla Ray" />
                 <div className={style.home__name}>
                   <h3>Kayla Ray</h3>
                   <span>@kayray</span>
@@ -263,8 +262,8 @@ const Home: React.FC = () => {
             </form>
           </div>
           <div>
-            <img src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/BqPht4yrBttiODwV1PygQKNE8Bk.avif" alt="notificación" />
-            <img src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/nqof4mX8mtjt6e5VgAnOD4U.avif" alt="notificación sombra" />
+            <img src={getPath('BqPht4yrBttiODwV1PygQKNE8Bk.avif')} alt="notificación" />
+            <img src={getPath('nqof4mX8mtjt6e5VgAnOD4U.avif')} alt="notificación sombra" />
           </div>
         </div>
       </article>

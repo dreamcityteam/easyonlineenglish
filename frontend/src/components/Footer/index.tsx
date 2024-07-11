@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import style from './style.module.sass';
-import { ASSETS_URL, ROLE } from '../../tools/constant';
+import { ROLE } from '../../tools/constant';
 import context from '../../global/state/context';
+import { getPath } from '../../tools/function';
 
 const Footer: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);
@@ -35,7 +36,7 @@ const Footer: React.FC = (): JSX.Element => {
           </li>
           <li className={style.footer__item}>
             {creditCards.map((creditCard: string, index: number): JSX.Element => (
-              <img key={index} src={`${ASSETS_URL}2016/12/${creditCard}`} />
+              <img key={index} src={getPath(`2016/12/${creditCard}`)} />
             ))}
           </li>
         </ul>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SVGStopAudio from '../../../public/svg/stopAudioWhite.svg';
 import style from './style.module.sass';
 import SVGMicrophone from '../../../public/svg/microphone.svg';
-import { ASSETS_URL } from '../../tools/constant';
+import { getPath } from '../../tools/function';
 
 interface Props {
   word: string;
@@ -27,7 +27,7 @@ const Speech: React.FC<Props> = ({
 
   const startListening = (): void => {
     const pronunciationAudio: HTMLAudioElement = new Audio(audioUrl);
-    const whistleAudio: HTMLAudioElement = new Audio(`${ASSETS_URL}/2016/12/pronunciation.mp3`);
+    const whistleAudio: HTMLAudioElement = new Audio(getPath('2016/12/pronunciation.mp3'));
 
     pronunciationAudio.play();
     setCanPlay(true);
