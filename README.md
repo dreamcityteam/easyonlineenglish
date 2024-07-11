@@ -11,8 +11,9 @@
  A robust and user-friendly React application.
 
 ## Tecnologies
-- [Typescript](https://www.typescriptlang.org/)
 - [Node.js](https://nodejs.org/en)
+- [Express](https://expressjs.com/en/guide/routing.html)
+- [Typescript](https://www.typescriptlang.org/)
 - [Sass](https://sass-lang.com/)
 - [React](https://reactjs.org/) 
 - [Webpack](https://webpack.js.org/)
@@ -35,14 +36,15 @@
 ```
 
 #### Install dependencies:
+1. Open the terminal at the root of the project and execute the following command:
 ```bash 
   cd frontend && npm install && cd .. && cd backend && npm install
 ```
 
 #### Setup .env:
 1. Contact the developer to obtain the required `.env` file.
-2. Place the `.env` file in the `backend` directory.
+2. Add the `.env` file to both the backend and frontend directories.
 
-#### Run the Application:
-1. ```bash cd frontend && npm build ```
-2. ``` cd backend && npm run start:linux ```
+#### Run the Application in mode development:
+1. Open the terminal at the root of the project and execute the following command:
+```cd frontend && npm start ```
