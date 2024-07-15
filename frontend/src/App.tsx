@@ -43,10 +43,8 @@ const App: React.FC = (): JSX.Element => {
         <Router>
           <Navigator />
           {state.user === null && isUserDataComplete && <RouterHomePage />}
-          {isStudent(state?.user) || isFree(state?.user) 
-            ? <RouterStudent user={state.user} />
-            : null
-          }
+          {state?.user?.role === ROLE.STUDENT && <RouterStudent isPayment={state.user.payment.isPayment} />}
+
           {state?.user?.role === ROLE.ADMIN && <Admin />}
           <Footer />
         </Router>
