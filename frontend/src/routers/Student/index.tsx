@@ -14,17 +14,23 @@ import FinalUser from '../../pages/Terms/FinalUser';
 import Conditions from '../../pages/Terms/Conditions';
 import Plans from '../../pages/Plans/Index';
 import Payment from '../../pages/Payment';
+import { User } from '../../global/state/type';
+import { isFree, isStudent } from '../../tools/function';
 
-const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
+const RouterStudent: React.FC<{ user: User | null; }> = ({ user }) => (
   <Routes>
     <Route index element={<Home />} />
     <Route path="contact" element={<Contact />} />
-    {isPayment && (
-      <>
-        <Route path="courses" element={<Courses />} />
-        <Route path="course/:idCourse" element={<Course />} />
-      </>
-    )}
+    {
+      user && (isStudent(user) && user.payment.isPayment) || isFree(user)
+      ? (
+        <>
+          <Route path="courses" element={<Courses />} />
+          <Route path="course/:idCourse" element={<Course />} />
+        </>
+      )
+      : null
+    }
     <Route path="profile" element={<Profile />} />
     <Route path="libraries" element={<Library />} />
     <Route path="close" element={<CloseSection />} />

@@ -4,7 +4,7 @@ import { studentPayment, studentPendingPayment, homepage, admin } from './data';
 import { Tab } from './type';
 import style from './style.module.sass'
 import context from '../../global/state/context';
-import { isAdmin } from '../../tools/function';
+import { getPath, isAdmin, isFree } from '../../tools/function';
 
 const Navigator: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);
@@ -20,14 +20,13 @@ const Navigator: React.FC = (): JSX.Element => {
       tab = homepage;
     } else if (isAdmin(user)) {
       tab = admin;
-    } else if (user.payment.isPayment) {
+    } else if (user.payment.isPayment || isFree(user)) {
       tab = studentPayment;
     } else {
       tab = studentPendingPayment;
     }
     setTabs(tab);
   }, [user]);
-
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -86,7 +85,7 @@ const Navigator: React.FC = (): JSX.Element => {
         <div className={style.navigator__container}>
           <div className={style.navigator__logo}>
             <Link className={style.navigator__link} to={isAdmin(user) ? '/courses' : '/'}>
-              <img src='https://framerusercontent.com/images/3su9ljSZ67mItsZL7f4ci1tIH8o.png?scale-down-to=512' alt="logo" />
+              <img src={getPath('yFfnAtLmL6cIQy904JSqWiDxeTI.avif')} alt="logo" />
             </Link>
           </div>
           <ul className={style.navigator__links}>

@@ -9,12 +9,16 @@ interface CssExports {
   'home__article20': string;
   'home__article3': string;
   'home__article4': string;
+  'home__article5': string;
   'home__banner': string;
+  'home__block': string;
   'home__buttons': string;
   'home__card': string;
   'home__cards': string;
   'home__circle': string;
   'home__content': string;
+  'home__discord': string;
+  'home__discordContent': string;
   'home__header': string;
   'home__header2': string;
   'home__header3': string;

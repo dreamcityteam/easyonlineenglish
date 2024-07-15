@@ -180,8 +180,14 @@ const initGoogleAnalytics = (): any => {
   return gtag;
 };
 
-const isAdmin = (user: User): boolean =>
+const isAdmin = (user: User | null): boolean =>
   user?.role === ROLE.ADMIN;
+
+const isFree = (user: User | null): boolean =>
+  user?.role === ROLE.FREE;
+
+const isStudent = (user: User | null): boolean =>
+  user?.role === ROLE.FREE;
 
 const getPath = (filename: string): string =>
   `${ASSETS_URL}${filename}`;
@@ -196,5 +202,7 @@ export {
   isUser,
   initGoogleAnalytics,
   isAdmin,
-  getPath
+  getPath,
+  isFree,
+  isStudent
 };

@@ -5,7 +5,10 @@ $blue-color: #055b96
 $gray-color: #666
 
 .home
-  font-family: "Inter", "Inter Placeholder", sans-serif
+  font-family: Inter-black
+
+  &__block
+    display: block
 
   &__article1
     height: auto
@@ -15,8 +18,9 @@ $gray-color: #666
       justify-content: center
 
       h2
+        font-family: 'Inter-ExtraBold'
         color: $blue-color
-        font-size: 58px
+        font-size: 65px
         font-weight: 900
         margin-bottom: 20px
         max-width: 643px
@@ -43,12 +47,14 @@ $gray-color: #666
 
       > a
         background-color: $red-color
-        border-radius: 8px
+        border-radius: 15px
         color: white
         cursor: pointer
         display: inline-block
         font-weight: bold
+        max-width: 300px
         text-decoration: none
+        width: 100%
 
         &:first-child
           font-size: 31px
@@ -58,9 +64,9 @@ $gray-color: #666
     .home__circle
       display: flex
       height: 100%
+      max-width: 859px
       overflow: hidden
       position: relative
-      max-width: 859px
       width: 100%
 
       &::before
@@ -118,8 +124,13 @@ $gray-color: #666
 
   @media only screen and (max-width: 481px)
     .home__article1
+
+      li
+        font-size: 15px
+
       h2
-        font-size: 40px
+        font-family: 'Inter-ExtraBold'
+        font-size: 30px
 
       .home__buttons
         a
@@ -136,7 +147,7 @@ $gray-color: #666
 
       .home__content
         div
-          padding: 20px
+          padding: 0
 
       .home__wrapper
         margin-top: 0
@@ -157,17 +168,17 @@ $gray-color: #666
 
         &:first-child
           height: 187px
-          bottom: -74px
+          bottom: -90px
           left: 58px
 
         &:nth-last-of-type(2)
           left: -16px
           height: 261px
-          bottom: 0px
+          bottom: -17px
 
         &:last-child
           left: -79px
-          bottom: -57px
+          bottom: -75px
           height: 204px
 
   &__article2
@@ -185,8 +196,9 @@ $gray-color: #666
       padding: 0 20px
 
       h2
+        font-family: 'Inter-ExtraBold'
         background-color: $red-color
-        border-radius: 8px
+        border-radius: 20px
         color: white
         font-size: 39px
         padding: 20px
@@ -203,11 +215,13 @@ $gray-color: #666
       padding: 20px
 
       h2
+        font-family: 'Inter-ExtraBold'
         font-size: 37px
 
       h3
+        font-family: 'Inter-ExtraBold'
         background-color: $blue-color
-        border-radius: 8px
+        border-radius: 20px
         color: white
         font-size: 39px
         padding: 20px
@@ -264,22 +278,57 @@ $gray-color: #666
   &__article20
     align-items: center
     display: flex
+    flex-direction: column
     justify-content: space-evenly
     margin: 50px 0
+
+    h2
+      font-family: 'Inter-ExtraBold'
+      margin-top: 80px
+      background-color: red
+      border-radius: 20px
+      color: white
+      font-size: 39px
+      padding: 20px
+      text-align: center
+
+    .home__discord
+      align-items: center
+      display: flex
+      justify-content: center
+
+      a
+        align-items: center
+        background-color: $blue-color
+        border-radius: 42px
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 5px 0px
+        color: white
+        cursor: pointer
+        display: flex
+        font-size: 40px
+        justify-content: center
+        margin-right: 20px
+        padding: 10px 20px
+        text-align: center
+        text-decoration: none
+
+      img
+        width: 70px
 
     .home__content
       display: flex
 
-      span
+      h2
+        background-color: transparent
         color: $blue-color
         display: block
+        display: inline
         font-weight: 700
+        margin: 0
+        padding: 0
 
         &:nth-child(1)
           font-size: 70px
-
-        &:nth-child(2)
-          font-size: 50px
           font-weight: 900
 
       p
@@ -289,7 +338,7 @@ $gray-color: #666
 
       a
         background-color: $blue-color
-        border-radius: 8px
+        border-radius: 15px
         color: #fff
         cursor: pointer
         display: block
@@ -345,10 +394,35 @@ $gray-color: #666
         flex-direction: column
         padding: 20px
 
+      .home__discordContent
+        img
+          margin-top: 20px
+          width: 100px
+
     @media only screen and (max-width: 481px)
       margin: 0
 
+      > div
+        &:nth-child(1)
+          padding: 0 !important
+
+      .home__discordContent
+        h2
+          margin-top: -80px
+          font-size: 15px !important
+
+        a
+          font-size: 15px !important
+          margin-right: 0
+
+        img
+          width: 60px
+          margin-top: 20px
+
       .home__content
+        h2
+          font-size: 40px !important
+
         div:first-child
           padding: 20px
 
@@ -369,7 +443,11 @@ $gray-color: #666
           width: 100%
 
         a
-          font-size: 20px
+          padding: 14px 0
+          font-size: 15px
+
+        .home__block
+          display: inline
 
   &__article3
     display: flex
@@ -381,10 +459,14 @@ $gray-color: #666
 
     .home__header
       color: $red-color
+      font-size: 30px
+      padding-top: 50px
       padding: 20px
       text-align: center
-      padding-top: 50px
-      font-size: 30px
+
+      h2
+        font-family: 'Inter-ExtraBold'
+        font-weight: 900
 
     .home__cards
       display: flex
@@ -395,6 +477,7 @@ $gray-color: #666
       height: 310px
       margin-left: 20px
       padding: 20px
+      height: auto
       width: 300px
 
       span, p
@@ -454,18 +537,23 @@ $gray-color: #666
         padding: 30px
 
     img
-      width: 200px
+      width: 300px
+
+      &:last-child
+        opacity: 0.2
 
     header
-      width: 400px
+      width: 600px
 
       h2
-        font-size: 30px
+        font-family: 'Inter-ExtraBold'
+        color: $blue-color
+        font-size: 54px
+        margin-bottom: 0
 
-      h3
-        font-weight: 900
-        color: rgb(6, 92, 151)
-        font-size: 22px
+      p
+        color: black
+        font-size: 30px
 
     form
       display: flex
@@ -481,19 +569,19 @@ $gray-color: #666
     input[type="email"]
       appearance: none
       background: rgb(235, 235, 235)
-      border-radius: 8px
+      border-radius: 15px
       border: none
       color: rgb(0, 0, 0)
       font-size: 16px
       height: auto
       outline: none
       padding: 15px
-      width: 300px
+      width: 430px
 
     input[type="button"]
       appearance: none
-      background: rgb(6, 92, 151)
-      border-radius: 8px
+      background: black
+      border-radius: 15px
       border: none
       color: rgb(255, 255, 255)
       cursor: pointer
@@ -509,22 +597,37 @@ $gray-color: #666
       width: 120px
       z-index: 1
 
-    @media only screen and (max-width: 481px)
+    @media only screen and (max-width: 1399px)
       .home__wrapper
         flex-direction: column-reverse
 
         div:last-child
+          padding: 0
+
+    @media only screen and (max-width: 481px)
+      .home__wrapper
+        form
+          padding: 20px
+
+        img
+          width: 200px
+
+        div:last-child
           align-items: center
+          padding: 0
 
         div:first-child
-          padding: 10px
+          padding: 0 !important
 
           header
             text-align: center
             width: 100%
 
-          h3
-            font-size: 1.17em
+        h2
+          font-size: 30px
+
+        p
+          font-size: 20px
 
         form
           flex-direction: column
@@ -535,3 +638,44 @@ $gray-color: #666
           input[type="button"]
             margin-top: 10px
             margin-left: 0
+
+  &__article5
+    align-content: center
+    background-color: red
+    box-shadow: inset 0 .7961918735236395px 2.3885756205709185px -.75px #00000045, inset 0 2.414506143104518px 7.2435184293135535px -1.5px #00000042, inset 0 6.382653521484461px 19.147960564453385px -2.25px #0000003e, inset 0 20px 60px -3px #0000002e
+    display: flex
+    justify-content: center
+    padding: 40px 0
+
+    .home__content
+      color: white
+      text-align: center
+
+      h1
+        font-size: 39px
+
+      p
+        font-size: 27px
+
+    .home__buttons
+      display: flex
+      justify-content: center
+
+      a
+        background-color: rgb(255, 255, 255)
+        border-radius: 15px
+        color: rgb(214, 14, 14)
+        display: block
+        font-size: 18px
+        font-weight: 700
+        height: 50px
+        padding: 13px 40px
+        text-align: center
+        text-decoration: none
+        width: 206px
+
+    @media only screen and (max-width: 481px)
+      padding: 20px
+
+      h1, p
+        font-size: 20px !important

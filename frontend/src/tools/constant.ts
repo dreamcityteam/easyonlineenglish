@@ -16,6 +16,7 @@ const MESSAGE: { [key: string]: string; } = {
 const ROLE: Role = {
   ADMIN: 'ADMIN',
   STUDENT: 'STUDENT',
+  FREE: 'FREE',
 }
 
 const HTTP_STATUS_CODES: StatusCode = {

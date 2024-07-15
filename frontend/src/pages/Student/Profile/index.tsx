@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { State } from '../../../global/state/type';
 import context from '../../../global/state/context';
-import { formatPhoneNumber, send } from '../../../tools/function';
+import { formatPhoneNumber, isFree, isStudent, send } from '../../../tools/function';
 import { PLAN, inputs } from './data';
-import { HTTP_STATUS_CODES, PAYMENT_METHOD } from '../../../tools/constant';
+import { HTTP_STATUS_CODES, PAYMENT_METHOD, ROLE } from '../../../tools/constant';
 import Form from '../../../components/Form';
 import Modal from '../../../components/Modal';
 import { DELETE_ACCOUNT, SET_USER, UPDATE_STUDENT_PHOTO } from '../../../global/state/actionTypes';
@@ -27,13 +27,13 @@ const Profile: React.FC = (): JSX.Element => {
     setStudentInvoiceStory();
   }, []);
 
-  const setStudentInvoiceStory = async () => {
+  const setStudentInvoiceStory = async (): Promise<void> => {
     const { response: { data = [] } } = await send({ api: 'student-invoice-story' }).get();
 
     setInvoiceStory(formatStudentInvoiceStory(data));
   }
 
-  const onDeleteAcount = async () => {
+  const onDeleteAcount = async (): Promise<void> => {
     const { response: { statusCode } } = await send({ api: 'student-delete-account' }).patch();
 
     if (statusCode === HTTP_STATUS_CODES.OK) {
@@ -54,7 +54,7 @@ const Profile: React.FC = (): JSX.Element => {
     return result;
   }
 
-  const formatDate = (value: string) => {
+  const formatDate = (value: string): string => {
     const date: Date = new Date(value);
     const months: string[] = [
       'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
@@ -85,18 +85,18 @@ const Profile: React.FC = (): JSX.Element => {
     }
   }
 
-  const handleFileChange = (e: any) => {
+  const handleFileChange = (e: any): void => {
     handlerUploadPhoto(e.target.files[0]);
   }
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (): void => {
     if (fileInputRef.current) {
       // @ts-ignore
       fileInputRef.current.click();
     }
   }
 
-  const handlerUploadPhoto = async (file: any) => {
+  const handlerUploadPhoto = async (file: any): Promise<void> => {
     if (file) {
       const formData: FormData = new FormData();
 
@@ -119,6 +119,18 @@ const Profile: React.FC = (): JSX.Element => {
         console.error('Error uploading the image', error);
       }
     }
+  }
+
+  const getMembership = (): string => {
+    let membership: string = 'N/A';
+
+    if (user?.role === ROLE.FREE) {
+      membership = 'Gratis';
+    } else if (isStudent(user) && user?.payment.plan) {
+      membership = PLAN[user.payment.plan];
+    } 
+
+    return membership;
   }
 
   return (
@@ -147,13 +159,13 @@ const Profile: React.FC = (): JSX.Element => {
           <ul className="content__list">
             <li><span>Email</span>{user?.email}</li>
             <li><span>Telefono</span>{formatPhoneNumber(user?.phone)}</li>
-            <li><span>Membresía</span>{user?.payment.plan ? PLAN[user.payment.plan] : 'N/A'}</li>
+            <li><span>Membresía</span>{getMembership()}</li>
           </ul>
           <div className="content__button">
             <button
               className="button"
               onClick={() => setIsEditStudent(true)}
-              disabled={!invoiceStory.length}
+              disabled={!invoiceStory.length || isFree(user)}
             >
               <p className="button__text">Historial de pago</p>
             </button>

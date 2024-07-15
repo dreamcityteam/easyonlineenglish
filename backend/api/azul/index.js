@@ -6,6 +6,9 @@ const { getResponse, send } = require('../../tools/functions');
 const { HTTP_STATUS_CODES, PAYMENT_METHOD, MESSAGE } = require('../../tools/const');
 const { getData } = require('./function');
 const { payment } = require('../../tools/payment');
+const cheerio = require('cheerio');
+const FormData = require('form-data');
+
 
 module.exports = async (req, res) => {
   const response = getResponse(res);
@@ -53,8 +56,23 @@ module.exports = async (req, res) => {
           'Auth2': '3dsecure'
         }
       });
+  
+      const $ = cheerio.load(data.ThreeDSMethod.MethodForm);
+      const formData = new FormData();
 
-    console.log(data)
+      console.log(data.ThreeDSMethod.MethodForm)
+
+      // Extract the input values
+      const threeDSMethodData = $('input[name="threeDSMethodData"]').val();
+      const DSMethodData = $('input[name="3DSMethodData"]').val();
+      const formActionUrl = $('form#tdsMmethodForm').attr('action');
+
+      formData.append('threeDSMethodData', threeDSMethodData);
+      formData.append('3DSMethodData', DSMethodData);
+
+      const response = await axios.post(formActionUrl, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
 
     if (data.IsoCode === '00') {
       const isPayment = await payment({

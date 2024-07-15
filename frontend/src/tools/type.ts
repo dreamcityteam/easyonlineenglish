@@ -10,6 +10,7 @@ type Request = {
 type Role = {
   ADMIN: 'ADMIN';
   STUDENT: 'STUDENT';
+  FREE: 'FREE';
 }
 
 type StatusCode = {
