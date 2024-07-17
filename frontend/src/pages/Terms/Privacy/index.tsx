@@ -109,7 +109,7 @@ const PrivacyPolicy: React.FC<Props> = ({ removeH1 }): JSX.Element => {
         </p>
         <p>
           Easy Online English<br />
-          Calle Dr. Alejo Martínez, Plaza Colonial, local comercial número 30, Sector El Batey, Sosúa, Puerto Plata, República Dominicana.<br />
+          Cabarete, Puerto Plata, República Dominicana.<br />
           Correo electrónico: <a href="mailto:support@easyonlineenglish.com">support@easyonlineenglish.com</a><br />
           Teléfono: 849-410-9664
         </p>

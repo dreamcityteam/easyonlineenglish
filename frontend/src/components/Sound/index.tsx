@@ -6,9 +6,10 @@ import styleDefault from './style.module.sass';
 interface Props {
   src: string;
   style: { [key: string]: any };
+  width?: string;
 }
 
-const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
+const Sound: React.FC<Props> = ({ src, style = {}, width = 'auto' }): JSX.Element => {
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
 
@@ -50,6 +51,7 @@ const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
           className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
           src={SVGStopAudio}
           onClick={handleTogglePlay}
+          style={{ width }}
         />
       ) : (
         <img
@@ -57,6 +59,7 @@ const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
           className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
           src={SVGMPlay}
           onClick={handleTogglePlay}
+          style={{ width }}
         />
       )}
       <audio ref={audioRef} src={src}></audio>

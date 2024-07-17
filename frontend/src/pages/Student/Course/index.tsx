@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Course as TCourse, Lesson, Sentence, Word } from '../../../global/state/type';
 import Aside from './Aside';
 import Speech from '../../../components/Speech';
 import SVGArrowLeft from '../../../../public/svg/arrowLeft.svg';
 import SVGArrowRight from '../../../../public/svg/arrowRight.svg';
 import style from './style.module.sass';
-import Modal from '../../../components/Modal';
-import Confetti from '../../../components/Confetti';
 import { CourseProgress, OnWord } from './types';
 import { getData, isAdmin, send } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
@@ -16,7 +14,9 @@ import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
 import { LESSIONS_COUNT } from './data';
-import Close from '../../../components/Modal/Close';
+import ModalWrongPronunciation from './ModalWrongPronunciation';
+import ModalCongratulation from './ModalCongratulation';
+import ConjugationVerb from './ConjugationVerb';
 
 interface Props {
   isDemo?: boolean;
@@ -439,6 +439,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               </span>
             </div>
           </div>
+          <ConjugationVerb word={word} />
           <div className={style.course__progress_container}>
             <div className={style.course__progress}>
               <div
@@ -513,71 +514,29 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               />
             )}
             <Speech
-              word={sentence?.englishWord || ''}
-              onCheck={onSpeechFeedback}
               audioUrl={sentence?.audioUrl || ''}
-              onPlaySpeech={onPlaySpeech}
               canNext={pronunciation}
+              onCheck={onSpeechFeedback}
+              onPlaySpeech={onPlaySpeech}
+              word={sentence?.englishWord || ''}
             />
-            { isSavingProgress || sentence?.isCompleted || isAdmin(user) ? (
+            {isSavingProgress || sentence?.isCompleted || isAdmin(user) ? (
               <img
                 alt="Next arrow"
                 className={style.course__arrowRight}
                 onClick={onNext}
                 src={SVGArrowRight}
               />
-            ): null}
+            ) : null}
           </div>
         </div>
-        <Modal
-          canShow={canShowModal}
-          isFadeIn
-        >
-          <div className={style.course__modalMessage}>
-            <Close onClose={() => setCanShowModal(false)} />
-            <header>
-              <h2 className={style.course__modalTitle}> ¡Finalizaste el curso! </h2>
-            </header>
-            <div className={style.course__modal}>
-              {isDemo ? (
-                <p>¡Enhorabuena por completar el curso demo! Si estás preparado para continuar tu aprendizaje, te invitamos a explorar nuestros planes y descubrir nuevas oportunidades de desarrollo profesional. ¡Avanza hacia tus metas!</p>
-              ) : (
-                <p className={style.course__modalText}>¡Felicidades por completar el curso! <br /> Eso es un gran logro y demuestra tu compromiso con aprender y crecer.</p>
-              )}
-              <Link
-                to={isDemo ? '/plan' : '/courses'}
-                className={style.course__modalMessageButton}
-              >
-                {isDemo ? 'planes' : 'Cursos'}
-              </Link>
-            </div>
-            <Confetti />
-          </div>
-        </Modal>
-        <Modal
-          canShow={closeMessage}
-          isFadeIn
-        >
-          <div className={style.course__modalMessage}>
-            <Close onClose={() => setCloseMessage(false)} />
-            <header>
-              <h2 className={style.course__modalTitle}>
-                No capto tus palabras
-              </h2>
-            </header>
-            <div>
-              <p>
-                Por favor, intenta pronunciar más despacio.
-              </p>
-            </div>
-            <span
-              onClick={() => setCloseMessage(false)}
-              className={style.course__modalMessageButton}
-            >
-              ¡Entiendo!
-            </span>
-          </div>
-        </Modal>
+        <ModalCongratulation
+          isDemo={isDemo}
+          state={[canShowModal, setCanShowModal]}
+        />
+        <ModalWrongPronunciation
+          state={[closeMessage, setCloseMessage]}
+        />
       </section >
     </>
   );

@@ -27,7 +27,7 @@ const Footer: React.FC = (): JSX.Element => {
         <ul className={style.footer__items}>
           <li className={style.footer__address}>
             <strong>Dirección: </strong>
-            Calle Dr. Alejo Martínez, Plaza Colonial, local comercial número 30, Sector El Batey, Sosúa, Puerto Plata, República Dominicana.
+            Cabarete, Puerto Plata, República Dominicana.
           </li>
           <li className={style.footer__term}>
             {terms.map(([name, link], index: number): JSX.Element => (

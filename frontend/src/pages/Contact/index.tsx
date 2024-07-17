@@ -52,7 +52,7 @@ const Contact: React.FC = () => {
               <img src={SVGLocation} />
               <div>
                 <strong>Localización:</strong>
-                <span>Calle Dr. Alejo Martínez, Plaza Colonial, local comercial número 30, Sector El Batey, Sosúa, Puerto Plata, República Dominicana.</span>
+                <span>Cabarete, Puerto Plata, República Dominicana.</span>
               </div>
             </li>
           </ul>
