@@ -19,9 +19,18 @@ interface Props {
   lessons: Lesson[];
   currentWord: { lesson: number; word: number; }
   isTutorial: boolean;
+  lessonIndex: number;
 };
 
-const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, currentWord, isTutorial }): JSX.Element => {
+const Aside: React.FC<Props> = ({
+  onClick,
+  title,
+  completedWords,
+  lessons,
+  currentWord,
+  isTutorial,
+  lessonIndex
+}): JSX.Element => {
   const [canOpenSideBar, setcanOpenSideBar] = useState<boolean>(false);
   const [sideBarClassName, setSideBarClassName] = useState<string>(style.hide__default);
   const currentLessonRef = useRef<HTMLLIElement | any>(null);
@@ -166,6 +175,7 @@ const Aside: React.FC<Props> = ({ onClick, title, completedWords, lessons, curre
             <span
               ref={indexLesson === currentWord.lesson ? currentFocusLessonRef : null}
               className={style.aside__lession_title}
+              style={{ backgroundColor: lessonIndex === indexLesson ? '#f3f3f3' : ''}}
             >
               {lesson?.title}
             </span>

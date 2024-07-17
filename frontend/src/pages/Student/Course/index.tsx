@@ -412,6 +412,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             completedWords={course.completedWords}
             onClick={onWord}
             title={course.title}
+            lessonIndex={lessonIndex}
           />
         )}
         <div className={style.course__container}>
