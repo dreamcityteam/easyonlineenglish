@@ -10,7 +10,7 @@ const ConjugationVerb = ({ word }: { word: Word | undefined; }): JSX.Element | n
   const [open, setOpen] = useState(false);
 
   const Target = ({ verb = '' }: { verb: string | undefined; }): JSX.Element => (
-    <strong style={{ color: 'blue' }}>{verb}<span style={{ color: 'red', fontWeight: 'bold' }} >s</span></strong>
+    <span>{verb}<strong style={{ color: 'red' }} >s</strong></span>
   );
 
   const handlerOnOpen = (): void => {
@@ -34,7 +34,9 @@ const ConjugationVerb = ({ word }: { word: Word | undefined; }): JSX.Element | n
             border: 'none',
             padding: '10px',
             borderRadius: '8px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            marginTop: '10px'
           }}
         >CONJUGACION DEL VERBO</button>
         <Modal canShow={open} isFadeIn >
