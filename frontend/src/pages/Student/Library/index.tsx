@@ -86,7 +86,7 @@ const Library: React.FC = (): JSX.Element => {
                 audioUrl: {
                   value: 'Audio',
                   render: (value: string): JSX.Element =>
-                    <Sound src={value} style={style} />
+                    <Sound src={value} style={style} width="60px" />
                 },
                 pronunciation: {
                   value: 'Pronunciación',
