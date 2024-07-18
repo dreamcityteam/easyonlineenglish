@@ -6,7 +6,7 @@ import initialState from './global/state/state';
 import reducer from './global/state/reduce';
 import { SET_GOOGLE_ANALITICS, SET_USER } from './global/state/actionTypes';
 import RouterStudent from './routers/Student';
-import { getData, initGoogleAnalytics, isFree, isStudent } from './tools/function';
+import { getData, initGoogleAnalytics, isAdmin, isFree, isStudent } from './tools/function';
 import { ROLE } from './tools/constant';
 import Navigator from './components/Navigator';
 import Footer from './components/Footer';
@@ -43,9 +43,13 @@ const App: React.FC = (): JSX.Element => {
         <Router>
           <Navigator />
           {state.user === null && isUserDataComplete && <RouterHomePage />}
-          {state?.user?.role === ROLE.STUDENT && <RouterStudent isPayment={state.user.payment.isPayment} />}
-
-          {state?.user?.role === ROLE.ADMIN && <Admin />}
+          {
+            state?.user &&
+            (isStudent(state?.user) || isFree(state?.user)) 
+              ? <RouterStudent isPayment={state.user.payment.isPayment || isFree(state?.user)} />
+              : null
+          }
+          {isAdmin(state?.user) && <Admin />}
           <Footer />
         </Router>
       </context.Provider>

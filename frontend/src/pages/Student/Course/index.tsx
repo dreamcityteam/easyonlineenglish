@@ -16,7 +16,6 @@ import pronunciation from './pronunciation.json';
 import { LESSIONS_COUNT } from './data';
 import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
-import ConjugationVerb from './ConjugationVerb';
 
 interface Props {
   isDemo?: boolean;
@@ -440,7 +439,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               </span>
             </div>
           </div>
-          <ConjugationVerb word={word} />
           <div className={style.course__progress_container}>
             <div className={style.course__progress}>
               <div

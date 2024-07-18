@@ -187,7 +187,7 @@ const isFree = (user: User | null): boolean =>
   user?.role === ROLE.FREE;
 
 const isStudent = (user: User | null): boolean =>
-  user?.role === ROLE.FREE;
+  user?.role === ROLE.STUDENT;
 
 const getPath = (filename: string): string =>
   `${ASSETS_URL}${filename}`;
