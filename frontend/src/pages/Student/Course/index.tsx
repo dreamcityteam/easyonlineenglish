@@ -7,7 +7,7 @@ import SVGArrowLeft from '../../../../public/svg/arrowLeft.svg';
 import SVGArrowRight from '../../../../public/svg/arrowRight.svg';
 import style from './style.module.sass';
 import { CourseProgress, OnWord } from './types';
-import { getData, isAdmin, send } from '../../../tools/function';
+import { formatWord, getData, isAdmin, removeAccents, send } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
@@ -45,6 +45,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [countPronunciation, setCountPronunciation] = useState<number>(1);
   const [closeMessage, setCloseMessage] = useState<boolean>(false);
   const [isCorrectPronuciation, setIsCorrectPronunciation] = useState<boolean>(false);
+  const [pronunciationFeedback, setPronunciationFeedback] = useState<string>('');
 
   useEffect(() => {
     saveCourseData();
@@ -279,8 +280,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     setCountPronunciation(0);
   };
 
-  const onSpeechFeedback = (isCorrect: boolean): void => {
+  const onSpeechFeedback = (isCorrect: boolean, pronunciation: string): void => {
     const isSkip: boolean = countPronunciation === 5;
+
+    setPronunciationFeedback(pronunciation);
 
     setIsCorrectPronunciation(isCorrect);
 
@@ -400,6 +403,35 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     setCanSlowAudio((state) => ({ ...state, [type]: !canSlowAudio[type] }));
   };
 
+  const checkPronunciation = (
+    sentence: string = '',
+    pronunciation: string = ''
+  ): JSX.Element | string => {
+
+    if (!feedback.canShow) {
+      return sentence;
+    }
+
+    const formattedWords: string[] = removeAccents(formatWord(sentence)).split(' ');
+    const pronunciations: string[] = pronunciation.toLowerCase().split(' ');
+
+    return (
+      <>
+        {formattedWords.map((word: string, index: number): JSX.Element => {
+          const isFirstWord: boolean = index === 0;
+          const isMismatch: boolean = pronunciations.includes(word);
+
+          const style: any = {
+            borderBottom: isMismatch ? 'none' : '2px solid red',
+            textTransform: isFirstWord ? 'capitalize' : 'none'
+          };
+
+          return <span key={index} style={style}> {word} </span>;
+        })}
+      </>
+    );
+  };
+
   return (
     <>
       <section className={style.course}>
@@ -467,7 +499,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                     onClick={() => handlerOnPlayWord('sentence')}
                     className={style.course__text_grandient}
                   >
-                    {sentence?.englishWord}
+                    {checkPronunciation(sentence?.englishWord, pronunciationFeedback)}
                   </span>
                 </div>
                 <span

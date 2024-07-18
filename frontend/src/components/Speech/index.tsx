@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import SVGStopAudio from '../../../public/svg/stopAudioWhite.svg';
 import style from './style.module.sass';
 import SVGMicrophone from '../../../public/svg/microphone.svg';
-import { getPath } from '../../tools/function';
+import { formatWord, getPath, removeAccents } from '../../tools/function';
 
 interface Props {
   word: string;
   audioUrl: string;
-  onCheck: (isCorrect: boolean) => void;
+  onCheck: (isCorrect: boolean, pronunciation: string) => void;
   onPlaySpeech?: (isCorrect: boolean) => void;
   canNext?: { [key: string]: string[]; },
   canShowMessage?: boolean;
@@ -65,7 +65,8 @@ const Speech: React.FC<Props> = ({
 
         onCheck(
           pronunciation === wordFormated ||
-          !!canNext[wordFormated] && canNext[wordFormated].includes(pronunciation)
+          !!canNext[wordFormated] && canNext[wordFormated].includes(pronunciation),
+          pronunciation
         );
         setCanPlay(false);
         setOutput('Escuchar pronunciación');
@@ -116,15 +117,9 @@ const Speech: React.FC<Props> = ({
     }
   }
 
-  const formatWord = (word: string): string =>
-    word.toLowerCase().replace(/\.|\?|,/g, '');
-
   const onStop = (): void => {
     recognition && recognition.stop();
   }
-
-  const removeAccents = (str: string): string =>
-    str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   return (
     <div className={style.speech}>

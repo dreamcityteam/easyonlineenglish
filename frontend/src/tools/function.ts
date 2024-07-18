@@ -192,6 +192,14 @@ const isStudent = (user: User | null): boolean =>
 const getPath = (filename: string): string =>
   `${ASSETS_URL}${filename}`;
 
+
+const formatWord = (word: string): string =>
+  word.toLowerCase().replace(/\.|\?|,/g, '');
+
+const removeAccents = (str: string): string =>
+  str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+
 export {
   send,
   store,
@@ -204,5 +212,7 @@ export {
   isAdmin,
   getPath,
   isFree,
-  isStudent
+  isStudent,
+  formatWord,
+  removeAccents
 };
