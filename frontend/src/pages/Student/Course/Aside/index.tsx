@@ -8,7 +8,7 @@ import style from './style.module.sass';
 import courseStyle from '../style.module.sass';
 import speechStyle from '../../../../components/Speech/style.module.sass';
 import Joyride from 'react-joyride';
-import { cookie, send } from '../../../../tools/function';
+import { cookie, getPath, send } from '../../../../tools/function';
 import { TUTORIAL } from '../../../../tools/constant';
 import context from '../../../../global/state/context';
 
@@ -159,7 +159,7 @@ const Aside: React.FC<Props> = ({
       />
       <div className={style.button__container}>
         <div className={`${style.aside__button} ${canOpenSideBar ? style.aside__button_static : ''}`} onClick={toggleSidebar}>
-          <img alt="Aside button" src={SVGMenu} />
+          <img alt="Aside button" src={getPath('2023/11/menu.avif')} />
         </div>
       </div>
       <div className={style.aside__title}>

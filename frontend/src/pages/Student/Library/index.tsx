@@ -6,8 +6,9 @@ import { getData } from '../../../tools/function';
 import context from '../../../global/state/context';
 import { LibraryCache, LibraryContent } from '../../../global/state/type';
 import Speech from '../../../components/Speech';
-import { Item } from './type';
+import { EnglishVerbConjugation, Item } from './type';
 import Sound from '../../../components/Sound';
+import verbs from './verbs.json'
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -20,11 +21,10 @@ const Library: React.FC = (): JSX.Element => {
     saveLibraryData();
   }, []);
 
-  const saveLibraryCacheData = (library: LibraryCache) => {
+  const saveLibraryCacheData = (library: LibraryCache): void =>
     dispatch({ type: SET_LIBRARY, payload: { library } });
-  }
 
-  const saveLibraryData = async () => {
+  const saveLibraryData = async (): Promise<void> => {
     if (libraryCache.length) {
       setData(libraryCache);
       setContent(addPronunciationField(libraryCache[tabIndex].content));
@@ -35,15 +35,19 @@ const Library: React.FC = (): JSX.Element => {
       service: { method: 'get', endpoint: 'library' },
       modal: { dispatch, text: 'Cargando libreria' },
       success: (data): void => {
-        setData(data);
-        setContent(addPronunciationField(data[tabIndex].content));
-        saveLibraryCacheData(data);
+        const newData: any[] = [...data];
+
+        newData.unshift(verbs);
+
+        setData(newData);
+        setContent(addPronunciationField(newData[tabIndex].content));
+        saveLibraryCacheData(newData);
       }
     });
   }
 
   const addPronunciationField = (content: Item[]): Item[] =>
-    content.map((item: Item) => ({ ...item, pronunciation: item.audioUrl }))
+    content.map((item: Item) => ({ ...item, ...(item.audioUrl ? { pronunciation: item.audioUrl } : {}) }))
 
   const handlerOnTab = (index: number): void => {
     setContent(addPronunciationField(data[index].content));
@@ -52,6 +56,51 @@ const Library: React.FC = (): JSX.Element => {
 
   const onCheck = (isCorrect: boolean, englishWord: string): void =>
     setSpeech((currentState) => ({ ...currentState, [englishWord]: isCorrect }));
+
+  const handlerOnClickRow = (value: any): JSX.Element =>
+    <span
+      style={{ cursor: 'pointer' }}
+      onClick={() => { setContent(value.content); }}
+    >
+      {value.name}
+    </span>;
+
+  const englishVerbConjugation = ({
+    item,
+    lang = 'en',
+    text = ''
+  }: EnglishVerbConjugation): JSX.Element => {
+    const { verb = '' } = item;
+
+    const englishPronouns: string[] = ['I', 'You', 'We', 'They', 'You', 'She', 'He', 'It'];
+    const spanishPronouns: string[] = ['Yo', 'Tú', 'Él', 'Ella', 'Usted', 'Nosotros(as)', 'Ellos(as)', 'Ustedes'];
+    const singularPronouns: string[] = ['She', 'He', 'It'];
+
+    const isSpanish: boolean = lang === 'es';
+    const pronouns: string[] = isSpanish ? spanishPronouns : englishPronouns;
+    const translation: (string | string[])[] = isSpanish ? item.spanishTranslationConjugation || [] : [verb];
+    const style: any = {
+      marginBottom: '10px',
+      textTransform: 'initial',
+    };
+
+    const getTranslation = (translation: any, pronoun: string): string =>
+      translation.split(' ').length > 1 ? '' : pronoun;
+
+    return (
+      <div>
+        {pronouns.map((pronoun: string, index: number): JSX.Element => (
+          <div style={style} key={pronoun}>
+            {getTranslation(translation[index] || verb, pronoun)} {translation[index] || verb}
+            {singularPronouns.includes(pronoun) && !isSpanish && (
+              <strong style={{ color: 'blue', textDecoration: 'underline' }}>s</strong>
+            )}
+            {text ? <span> {text}</span> : ''}
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -66,7 +115,7 @@ const Library: React.FC = (): JSX.Element => {
                 <li
                   key={index}
                   onClick={() => handlerOnTab(index)}
-                  className={`${style.vocabularies__tab} ${tabIndex === index ? style['vocabularies__tabFocus'] : ''}`}
+                  className={`${style.vocabularies__tab} ${tabIndex === index ? style.vocabularies__tabFocus : ''}`}
                 >
                   <span className={style.vocabularies__section}>
                     {name}
@@ -118,6 +167,40 @@ const Library: React.FC = (): JSX.Element => {
                       )}
                     </div>
                   )
+                },
+                // VERB STRUCTURE
+                curse: {
+                  value: 'cursos',
+                  render: handlerOnClickRow
+                },
+                lession: {
+                  value: 'lecciones',
+                  render: handlerOnClickRow
+                },
+                verb: {
+                  value: 'verbo',
+                  render: (value: string): JSX.Element =>
+                    <strong style={{ color: 'blue' }}>{value}</strong>
+                },
+                englishWordConjugation: {
+                  value: 'Inglés',
+                  render: (_: string, item: Item): JSX.Element =>
+                    englishVerbConjugation({ item })
+                },
+                spanishTranslationConjugationExample: {
+                  value: 'Ejemplos en español',
+                  render: (value: string, item: Item): JSX.Element =>
+                    englishVerbConjugation({ text: value, item, lang: 'es' })
+                },
+                englishWordConjugationExample: {
+                  value: 'Ejemplos en Inglés',
+                  render: (value: string, item: Item): JSX.Element =>
+                    englishVerbConjugation({ text: value, item })
+                },
+                spanishTranslationConjugation: {
+                  value: 'Español',
+                  render: (_: string, item: Item): JSX.Element =>
+                    englishVerbConjugation({ item, lang: 'es' })
                 },
               }}
             />

@@ -7,7 +7,6 @@ import reducer from './global/state/reduce';
 import { SET_GOOGLE_ANALITICS, SET_USER } from './global/state/actionTypes';
 import RouterStudent from './routers/Student';
 import { getData, initGoogleAnalytics, isAdmin, isFree, isStudent } from './tools/function';
-import { ROLE } from './tools/constant';
 import Navigator from './components/Navigator';
 import Footer from './components/Footer';
 import Loading from './components/Loading';

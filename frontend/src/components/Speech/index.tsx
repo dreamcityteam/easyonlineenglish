@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import SVGStopAudio from '../../../public/svg/stopAudioWhite.svg';
 import style from './style.module.sass';
-import SVGMicrophone from '../../../public/svg/microphone.svg';
 import { formatWord, getPath, removeAccents } from '../../tools/function';
 
 interface Props {
@@ -128,14 +126,14 @@ const Speech: React.FC<Props> = ({
           alt="Stop pronunciation"
           className={style.speech__icon}
           onClick={onStop}
-          src={SVGStopAudio}
+          src={getPath('2023/11/pause.avif')}
         />
       ) : (
         <img
           alt="Play pronunciation"
           className={style.speech__icon}
           onClick={startListening}
-          src={SVGMicrophone}
+          src={getPath('2023/11/microphone.avif')}
         />
       )}
       {canShowMessage && <p className={style.speech__feedback}>{output || 'Escuchar pronunciación'}</p>}

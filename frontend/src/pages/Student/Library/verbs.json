@@ -1,0 +1,33 @@
+{
+  "name": "Verbos",
+  "content": [
+    {
+      "curse": {
+        "name": "ingles conversacional",
+        "content": [
+          {
+            "lession": {
+              "name": "lección 1",
+              "content": [
+                { 
+                  "verb": "want",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["quiero", "quieres", "quieren", "queremos", "quieren", "quiere", "quiere", "quiere"],
+                  "englishWordConjugationExample": "a sandwich",
+                  "spanishTranslationConjugationExample": "un sándwich"
+                },
+                { 
+                  "verb": "like",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Me gusta", "Te gusta", "A ellos(as) les gusta", "A nosotros(as) nos gusta", "A ustedes les gusta", "A ella le gusta", "A él le gusta", "Le gusta"],
+                  "englishWordConjugationExample": "chocolate",
+                  "spanishTranslationConjugationExample": "el chocolate"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
