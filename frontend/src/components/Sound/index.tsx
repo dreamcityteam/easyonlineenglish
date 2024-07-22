@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SVGStopAudio from '../../../public/svg/stopAudio.svg';
-import SVGMPlay from '../../../public/svg/playAudio.svg';
 import styleDefault from './style.module.sass';
+import { getPath } from '../../tools/function';
 
 interface Props {
   src: string;
@@ -49,7 +48,7 @@ const Sound: React.FC<Props> = ({ src, style = {}, width = 'auto' }): JSX.Elemen
         <img
           alt="Stop pronunciation"
           className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
-          src={SVGStopAudio}
+          src={getPath('2023/11/pause-audio.avif')}
           onClick={handleTogglePlay}
           style={{ width }}
         />
@@ -57,7 +56,7 @@ const Sound: React.FC<Props> = ({ src, style = {}, width = 'auto' }): JSX.Elemen
         <img
           alt="Play pronunciation"
           className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
-          src={SVGMPlay}
+          src={getPath('2023/11/play-audio.avif')}
           onClick={handleTogglePlay}
           style={{ width }}
         />
