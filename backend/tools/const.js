@@ -43,7 +43,8 @@ const ENDPOINT = {
   STUDENT_DELETE_ACCOUNT: 'student-delete-account',
   STUDENT_PROFILE_IMAGE: 'student-profile-image',
   UPDATE_STUDENT_TERMS: 'update-student-terms',
-  SUSCRIBETE: 'suscribete'
+  SUSCRIBETE: 'suscribete',
+  UPLOAD_FILE: 'upload-file'
 }
 
 const PAYMENT_METHOD = {

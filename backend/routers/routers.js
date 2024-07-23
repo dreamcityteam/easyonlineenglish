@@ -20,6 +20,7 @@ const studentDeleteAccount = require('../api/studentDeleteAccount');
 const studentProfileImage = require('../api/studentProfileImage');
 const updateStudentTerms = require('../api/updateStudentTerms');
 const suscribete = require('../api/suscribete');
+const uploadFile = require('../api/uploadFile');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -134,4 +135,9 @@ module.exports = [
     method: 'post',
     func: suscribete,
   },
+  {
+    path: ENDPOINT.UPLOAD_FILE,
+    method: 'post',
+    func: uploadFile
+  }
 ];

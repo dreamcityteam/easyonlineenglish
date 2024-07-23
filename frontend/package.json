@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@paypal/react-paypal-js": "^8.5.0",
+    "@vercel/blob": "^0.23.4",
     "buffer": "^6.0.3",
     "css-modules-typescript-loader": "^4.0.1",
     "dotenv-webpack": "^8.1.0",

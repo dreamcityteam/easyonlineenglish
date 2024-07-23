@@ -16,12 +16,173 @@
                   "englishWordConjugationExample": "a sandwich",
                   "spanishTranslationConjugationExample": "un sándwich"
                 },
-                { 
+                {
                   "verb": "like",
                   "englishWordConjugation": [],
                   "spanishTranslationConjugation": ["Me gusta", "Te gusta", "A ellos(as) les gusta", "A nosotros(as) nos gusta", "A ustedes les gusta", "A ella le gusta", "A él le gusta", "Le gusta"],
                   "englishWordConjugationExample": "chocolate",
                   "spanishTranslationConjugationExample": "el chocolate"
+                },
+                {
+                  "verb": "have",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo tengo", "Tú tienes", "Ellos(as) tienen", "Nosotros(as) tenemos", "Ustedes tienen"],
+                  "englishWordConjugationExample": "pizza",
+                  "spanishTranslationConjugationExample": "pizza",
+                  "avoidPronouns": ["She", "He", "It"]
+                },
+                {
+                  "verb": "made",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo hice", "Tú hiciste", "Ellos(as) hicieron", "Nosotros(as) hicimos", "Ustedes hicieron", "Ella hizo", "Él hizo", "Hizo"],
+                  "englishWordConjugationExample": "a sandwich",
+                  "spanishTranslationConjugationExample": "un sandwich",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "has",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["", "", "", "", "", "Ella era / Ella estaba", "Él era / Él estaba", "Era / Estaba"],
+                  "englishWordConjugationExample": "a Casino",
+                  "spanishTranslationConjugationExample": "un Casino",
+                  "avoidPronouns": ["I", "You", "We", "They"],
+                  "apostrophe": true
+                },
+                {
+                  "verb": "was",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["", "", "", "", "", "Ella tiene", "Él tiene", "Tiene"],
+                  "englishWordConjugationExample": "a Casino",
+                  "spanishTranslationConjugationExample": "un Casino",
+                  "avoidPronouns": ["I", "You", "We", "They"],
+                  "apostrophe": true
+                },
+                {
+                  "verb": "drink",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo bebo", "Tú  bebes", "Ellos(as) beben", "Nosotros(as) bebemos", "Ustedes beben", "Ella bebe", "Él bebe", "Bebe"],
+                  "englishWordConjugationExample": "soda",
+                  "spanishTranslationConjugationExample": "soda"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 2",
+              "content": [
+                {
+                  "verb": "are",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["", "Tú eres", "Ellos(as) son", "Nosotros(as) somos", "Ustedes son", "", "", ""],
+                  "englishWordConjugationExample": "aries",
+                  "spanishTranslationConjugationExample": "aries",
+                  "avoidPronouns": ["I", "She", "Was", "He", "It"],
+                  "apostrophe": true
+                },
+                {
+                  "verb": "said",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["dije", "dijiste", "dijeron", "dijimos", "dijeron", "dijo", "dijo", "dijo"],
+                  "englishWordConjugationExample": "no",
+                  "spanishTranslationConjugationExample": "no",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "Had",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["tuve", "tuviste", "tuvieron", "tuvimos", "tuvieron", "tuvo", "tuvo", "tuvo"],
+                  "englishWordConjugationExample": "a confusion",
+                  "spanishTranslationConjugationExample": "una confusión",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "Look",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["miro", "miras", "miran", "miramos", "miran", "mira", "mira", "mira"],
+                  "englishWordConjugationExample": "the panorama",
+                  "spanishTranslationConjugationExample": "el panorama"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 3",
+              "content": [
+                {
+                  "verb": "be",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["estaré", "estarás", "estarán", "estaremos", "estarán", "estará", "estará", "estará"],
+                  "englishWordConjugationExample": "at the casino",
+                  "spanishTranslationConjugationExample": "en el casino",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "go",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["voy", "vas", "van", "vamos", "van", "va", "va", "va"],
+                  "englishWordConjugationExample": "to the salon",
+                  "spanishTranslationConjugationExample": "al salón"
+                },
+                {
+                  "verb": "do",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["hago", "haces", "hacen", "hacemos", "hacen", "hace", "hace", "hace"],
+                  "englishWordConjugationExample": "yoga",
+                  "spanishTranslationConjugationExample": "yoga"
+                },
+                {
+                  "verb": "did",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["hice", "hiciste", "hicieron", "hicimos", "hicieron", "hizo", "hizo", "hizo"],
+                  "englishWordConjugationExample": "yoga",
+                  "spanishTranslationConjugationExample": "yoga",
+                  "apostrophe": true
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 4",
+              "content": [
+                {
+                  "verb": "see",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["veo", "ves", "ven", "vemos", "ven", "ve", "ve", "ve"],
+                  "englishWordConjugationExample": "the error",
+                  "spanishTranslationConjugationExample": "el error"
+                },
+                {
+                  "verb": "were",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["", "estabas", "estaban", "estabamos", "estaban", "", "", "", ""],
+                  "englishWordConjugationExample": "in Canada",
+                  "spanishTranslationConjugationExample": "en Canadá",
+                  "avoidPronouns": ["I", "She", "He", "It"]
+                },
+                {
+                  "verb": "get",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["consigo", "consigues", "consiguen", "conseguimos", "consiguen", "consigue", "consigue", "consigue"],
+                  "englishWordConjugationExample": "the pizza",
+                  "spanishTranslationConjugationExample": "la pizza"
+                },
+                {
+                  "verb": "get",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["obtengo", "obtienes", "obtienen", "obtenemos", "obtienen", "obtiene", "obtiene", "obtiene"],
+                  "englishWordConjugationExample": "the pizza",
+                  "spanishTranslationConjugationExample": "la pizza"
+                },
+                {
+                  "verb": "went",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["fuí", "fuiste", "fueron", "fuimos", "fueron", "fué", "fué", "fué"],
+                  "englishWordConjugationExample": "to the opera",
+                  "spanishTranslationConjugationExample": "a la ópera",
+                  "apostrophe": true
                 }
               ]
             }

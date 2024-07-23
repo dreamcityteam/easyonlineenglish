@@ -28,6 +28,7 @@ const homepage: Tab[] = [
 
 const admin: Tab[] = [
   { path: '/courses', value: 'courses' },
+  { path: '/upload', value: 'upload' },
   { path: '/close', value: 'cerrar sesión' },
 ];
 

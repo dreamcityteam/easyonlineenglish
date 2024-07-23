@@ -107,8 +107,7 @@ const PaymentForms: React.FC = () => {
       },
     }).post();
 
-
-    setTreeDSecureForm(data.form || '')
+    setTreeDSecureForm(data.form || '');
 
     if (statusCode === HTTP_STATUS_CODES.OK) {
       setCanOpenModal(true);

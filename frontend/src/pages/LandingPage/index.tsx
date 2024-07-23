@@ -3,6 +3,7 @@ import style from './style.module.sass';
 import { Link } from 'react-router-dom';
 import { getPath, send } from '../../tools/function';
 import { HTTP_STATUS_CODES, REGEXP } from '../../tools/constant';
+import Loading from '../../components/Form/Loading';
 
 const Home: React.FC = () => {
   const imageRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -11,6 +12,7 @@ const Home: React.FC = () => {
     message: '',
     isSubscribe: false,
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +44,8 @@ const Home: React.FC = () => {
         isSubscribe: false
       });
     } else if (REGEXP.EMAIL.test(email)) {
+      setIsLoading(true);
+
       const { response: { statusCode } } = await send({ api: 'suscribete', data: { email } }).post();
 
       if (statusCode === HTTP_STATUS_CODES.OK) {
@@ -49,12 +53,15 @@ const Home: React.FC = () => {
           message: 'Enviado.',
           isSubscribe: true
         });
+        setEmail('');
       } else {
         setSubscribe({
           message: 'Error, intente mas tarde.',
           isSubscribe: false
         });
       }
+
+      setIsLoading(false);
     } else {
       setSubscribe({
         message: 'El correo es inválido.',
@@ -233,12 +240,27 @@ const Home: React.FC = () => {
             </header>
             <form>
               <div>
-                <input type="email" placeholder="Tu correo electrónico" onChange={onChange} />
-                <span style={{ color: subscribe.isSubscribe ? '#4caf50' : '#f44336' }}>
+                <input
+                  onChange={onChange}
+                  placeholder="Tu correo electrónico"
+                  type="email"
+                  value={email}
+                />
+                <span
+                  style={{ color: subscribe.isSubscribe ? '#4caf50' : '#f44336' }}
+                >
                   {subscribe.message}
                 </span>
               </div>
-              <input type="button" value="Suscribirse" onClick={hanlderOnSuscribete} />
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <input
+                  onClick={hanlderOnSuscribete}
+                  type="button"
+                  value="Suscribirse"
+                />
+              )}
             </form>
           </div>
           <div>

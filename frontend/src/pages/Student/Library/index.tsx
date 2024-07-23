@@ -72,31 +72,59 @@ const Library: React.FC = (): JSX.Element => {
   }: EnglishVerbConjugation): JSX.Element => {
     const { verb = '' } = item;
 
-    const englishPronouns: string[] = ['I', 'You', 'We', 'They', 'You', 'She', 'He', 'It'];
-    const spanishPronouns: string[] = ['Yo', 'Tú', 'Él', 'Ella', 'Usted', 'Nosotros(as)', 'Ellos(as)', 'Ustedes'];
+    const englishPronouns: string[] = ['I', 'You', 'They', 'We', 'You', 'She', 'He', 'It'];
+    const spanishPronouns: string[] = ['Yo', 'Tú', 'Ellos(as)', 'Nosotros(as)', 'Ustedes', 'Ella', 'Él', ''];
     const singularPronouns: string[] = ['She', 'He', 'It'];
 
     const isSpanish: boolean = lang === 'es';
-    const pronouns: string[] = isSpanish ? spanishPronouns : englishPronouns;
-    const translation: (string | string[])[] = isSpanish ? item.spanishTranslationConjugation || [] : [verb];
+    const translation: string[] = isSpanish ? item.spanishTranslationConjugation || [] : [];
+    let pronouns: string[] = isSpanish ? spanishPronouns : englishPronouns;
+
     const style: any = {
       marginBottom: '10px',
       textTransform: 'initial',
+      border: '1.5px solid black',
+      padding: 'padding: 5px'
     };
 
     const getTranslation = (translation: any, pronoun: string): string =>
       translation.split(' ').length > 1 ? '' : pronoun;
 
+    const avoidPronouns = item.avoidPronouns || [];
+    const apostrophe = item.apostrophe || false
+
+    const getApostrophe = (): string => {
+      const key: string = item.verb || '';
+
+      return { go: 'es', do: 'es' }[key] || 's'
+    }
+
+    const getVerb = (): string => {
+      const key: string = item.verb || '';
+
+      return { be: 'will be' }[key] || key;
+    }
+
     return (
       <div>
         {pronouns.map((pronoun: string, index: number): JSX.Element => (
-          <div style={style} key={pronoun}>
-            {getTranslation(translation[index] || verb, pronoun)} {translation[index] || verb}
-            {singularPronouns.includes(pronoun) && !isSpanish && (
-              <strong style={{ color: 'blue', textDecoration: 'underline' }}>s</strong>
+          <React.Fragment key={index}>
+            {!avoidPronouns.includes(englishPronouns[index]) && (
+              <div style={style}>
+                {getTranslation(translation[index] || verb, pronoun)}
+                <span style={{ textTransform: pronoun ? 'initial' : 'capitalize' }}>
+                  {' '}{translation[index] || getVerb()}
+
+                </span>
+                {singularPronouns.includes(pronoun) && !isSpanish && !apostrophe && (
+                  <strong style={{ color: 'blue', textDecoration: 'underline' }}>
+                    {getApostrophe()}
+                  </strong>
+                )}
+                {text ? <span> {text}</span> : ''}
+              </div>
             )}
-            {text ? <span> {text}</span> : ''}
-          </div>
+          </React.Fragment>
         ))}
       </div>
     );
@@ -172,6 +200,12 @@ const Library: React.FC = (): JSX.Element => {
                 curse: {
                   value: 'cursos',
                   render: handlerOnClickRow
+                },
+                avoidPronouns: {
+                  avoid: true
+                },
+                apostrophe: {
+                  avoid: true
                 },
                 lession: {
                   value: 'lecciones',

@@ -42,12 +42,12 @@ const PayPal: React.FC<Props> = ({ plan, onComplete }): JSX.Element => {
   const onApprove = async (data: any, actions: any): Promise<any> => {
     const { response: { data: orderData, statusCode } } = await send({
       api: 'paypal',
-      data: { orderID: data.orderID, plan } 
+      data: { orderID: data.orderID, plan }
     }).post();
 
     if (
       statusCode === HTTP_STATUS_CODES.BAD_REQUEST ||
-      statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR 
+      statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR
     ) {
       setMessage('Lo siento, no se pudo procesar tu transacción');
     }
