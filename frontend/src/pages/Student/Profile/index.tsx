@@ -128,7 +128,7 @@ const Profile: React.FC = (): JSX.Element => {
       membership = 'Gratis';
     } else if (isStudent(user) && user?.payment.plan) {
       membership = PLAN[user.payment.plan];
-    } 
+    }
 
     return membership;
   }
@@ -162,13 +162,14 @@ const Profile: React.FC = (): JSX.Element => {
             <li><span>Membresía</span>{getMembership()}</li>
           </ul>
           <div className="content__button">
-            <button
-              className="button"
-              onClick={() => setIsEditStudent(true)}
-              disabled={!invoiceStory.length || isFree(user)}
-            >
-              <p className="button__text">Historial de pago</p>
-            </button>
+            {!invoiceStory.length || isFree(user) && (
+              <button
+                className="button"
+                onClick={() => setIsEditStudent(true)}
+              >
+                <p className="button__text">Historial de pago</p>
+              </button>
+            )}
             <button
               className="button"
               onClick={() => setIsStudentInvoiceStory(true)}

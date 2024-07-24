@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Lesson } from '../../../../global/state/type';
-import SVGMenu from '../../../../../public/svg/menu.svg';
 import SVGCheck from '../../../../../public/svg/check.svg';
 import SVGCircle from '../../../../../public/svg/circle.svg';
 import SVGCircleAlert from '../../../../../public/svg/circleAlert.svg';

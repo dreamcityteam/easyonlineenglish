@@ -17,7 +17,11 @@ const sentenceSchema = new Schema({
   audioUrl: {
     type: String,
     required: true
-  }
+  },
+  audioSlowUrl: {
+    type: String,
+    required: true
+  },
 });
 
 const courseWordSchema = new Schema({

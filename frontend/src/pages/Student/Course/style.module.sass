@@ -125,17 +125,24 @@
     position: absolute
     top: 0
     transition: all 1s ease
-    width: 100%
-    z-index: -1
+    display: flex
+    justify-content: space-between
+    align-items: center
+    z-index: 1
+    overflow: hidden
+
+    span
+      white-space: nowrap
+      color: white
+      padding: 0 10px
 
   &__arrowLeft,
   &__arrowRight
     cursor: pointer
     position: absolute
     margin-top: -50px
-    @include background-gradient()
     border-radius: 50%
-    width: 50px
+    width: 53px
 
   &__arrowRight
     margin-left: 350px
@@ -150,12 +157,12 @@
     padding: 20px
 
   &__message
-    border-radius: 9px
     color: white
-    margin-left: 20px
     padding: 10px 20px
     position: absolute
-    top: 45%
+    bottom: 0
+    border-top-left-radius: 9px
+    border-top-right-radius: 9px
 
   @include mobile
     &__arrowLeft,

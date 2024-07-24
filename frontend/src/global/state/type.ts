@@ -87,6 +87,7 @@ type Sentence = {
   imageUrl: string;
   audioUrl: string;
   isCompleted?: boolean;
+  audioSlowUrl: string;
 }
 
 type Loading = {

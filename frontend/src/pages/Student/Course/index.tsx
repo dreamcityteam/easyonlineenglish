@@ -372,12 +372,12 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const cleanFeedback = (): void =>
     setFeedback({ message: '', canShow: false });
 
-  const getWordProgress = (): string => {
+  const getWordProgress = (): number => {
     const totalSentencesCount: number = word?.sentences?.length || 0;
 
-    return `${totalSentencesCount === 0
+    return totalSentencesCount === 0
       ? 0
-      : Math.floor((getCompletedSentencesCount() / totalSentencesCount) * 100)}%`;
+      : Math.floor((getCompletedSentencesCount() / totalSentencesCount) * 100);
   };
 
   const getCompletedSentencesCount = (): number => {
@@ -391,16 +391,22 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     );
   };
 
-  const handlerOnPlayWord = (type: 'word' | 'sentence'): void => {
-    const url: string | undefined = type === 'word' ? word?.audioUrl : sentence?.audioUrl;
+  const handlerOnPlayAudio = (type: 'word' | 'sentence'): void => {
+    const isSentenceAudio: boolean = type === 'sentence';
+    const url: string | undefined = isSentenceAudio
+      ? (canSlowAudio[type] && sentence?.audioSlowUrl) || sentence?.audioUrl
+      : word?.audioUrl;
 
     if (!url || canDisabledAudio) return;
 
     const audio: HTMLAudioElement = new Audio(url);
 
-    audio.playbackRate = canSlowAudio[type] ? 0.8 : 1;
     audio.play();
-    setCanSlowAudio((state) => ({ ...state, [type]: !canSlowAudio[type] }));
+
+    setCanSlowAudio((prevState) => ({
+      ...prevState,
+      [type]: !canSlowAudio[type]
+    }));
   };
 
   const checkPronunciation = (
@@ -432,6 +438,23 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     );
   };
 
+  const BarStatus = ({ hiddenCount = false }): JSX.Element => {
+    const percentage: number = getWordProgress();
+    const style: any = {
+      display: hiddenCount && percentage < 100 ? 'none' : 'inline'
+    };
+
+    return (
+      <>
+        <span>{percentage}% completado</span>
+        <span style={style}>
+          {getCompletedSentencesCount()} de{' '}
+          {word?.sentences.length}
+        </span>
+      </>
+    );
+  }
+
   return (
     <>
       <section className={style.course}>
@@ -457,7 +480,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             </div>
             <div className={style.course__englishWord_container}>
               <span
-                onClick={() => handlerOnPlayWord('word')}
+                onClick={() => handlerOnPlayAudio('word')}
                 className={`${style.course__text_grandient} ${style.course__englishWord}`}
               >
                 "{word?.englishWord}"
@@ -475,13 +498,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             <div className={style.course__progress}>
               <div
                 className={style.course__bar}
-                style={{ width: getWordProgress() }}
-              ></div>
-              <span>{getWordProgress()} completado</span>
-              <span>
-                {getCompletedSentencesCount()} de{' '}
-                {word?.sentences.length}
-              </span>
+                style={{ width: `${getWordProgress()}%` }}
+              >
+                <BarStatus hiddenCount />
+              </div>
+              <BarStatus />
             </div>
             {isSavingProgress && (
               <div className={style.course__save_progress_container}>
@@ -496,7 +517,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               <div className={style.course__content_text}>
                 <div>
                   <span
-                    onClick={() => handlerOnPlayWord('sentence')}
+                    onClick={() => handlerOnPlayAudio('sentence')}
                     className={style.course__text_grandient}
                   >
                     {checkPronunciation(sentence?.englishWord, pronunciationFeedback)}
