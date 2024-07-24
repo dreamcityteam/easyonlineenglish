@@ -420,6 +420,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
     const formattedWords: string[] = removeAccents(formatWord(sentence)).split(' ');
     const pronunciations: string[] = pronunciation.toLowerCase().split(' ');
+    const spliteWords: string[] = sentence.split(' ');
 
     return (
       <>
@@ -432,7 +433,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             textTransform: isFirstWord ? 'capitalize' : 'none'
           };
 
-          return <span key={index} style={style}> {word} </span>;
+          return <span key={index} style={style}> {spliteWords[index]} </span>;
         })}
       </>
     );
