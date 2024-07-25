@@ -4,7 +4,7 @@ import { studentPayment, studentPendingPayment, homepage, admin } from './data';
 import { Tab } from './type';
 import style from './style.module.sass'
 import context from '../../global/state/context';
-import { getPath, isAdmin, isFree } from '../../tools/function';
+import { getPublicFilePath, isAdmin, isFree } from '../../tools/function';
 
 const Navigator: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);
@@ -85,7 +85,7 @@ const Navigator: React.FC = (): JSX.Element => {
         <div className={style.navigator__container}>
           <div className={style.navigator__logo}>
             <Link className={style.navigator__link} to={isAdmin(user) ? '/courses' : '/'}>
-              <img src={getPath('yFfnAtLmL6cIQy904JSqWiDxeTI.avif')} alt="logo" />
+              <img src={getPublicFilePath('icons/logo-hUzihbdc6SVraJNSw22mWbQWhY8aF7.avif')} alt="logo" />
             </Link>
           </div>
           <ul className={style.navigator__links}>
