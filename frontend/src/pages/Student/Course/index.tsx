@@ -3,11 +3,9 @@ import { useParams } from 'react-router-dom';
 import { Course as TCourse, Lesson, Sentence, Word } from '../../../global/state/type';
 import Aside from './Aside';
 import Speech from '../../../components/Speech';
-import SVGArrowLeft from '../../../../public/svg/arrowLeft.svg';
-import SVGArrowRight from '../../../../public/svg/arrowRight.svg';
 import style from './style.module.sass';
 import { CourseProgress, OnWord } from './types';
-import { formatWord, getData, isAdmin, removeAccents, send } from '../../../tools/function';
+import { formatWord, getData, getPublicFilePath, isAdmin, removeAccents, send } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
@@ -563,7 +561,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 alt="Previous arrow"
                 className={style.course__arrowLeft}
                 onClick={onPrev}
-                src={SVGArrowLeft}
+                src={getPublicFilePath('icons/arrrowRight-s2PRMjqbJ39l9BV4CMJcXOW7HNRPv5.avif')}
               />
             )}
             <Speech
@@ -578,7 +576,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 alt="Next arrow"
                 className={style.course__arrowRight}
                 onClick={onNext}
-                src={SVGArrowRight}
+                src={getPublicFilePath('icons/arrowLeft-V7ML2iDaMdMpVFT4euxlAlaWbYV5Eb.avif')}
               />
             ) : null}
           </div>

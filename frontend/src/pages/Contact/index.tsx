@@ -3,9 +3,7 @@ import Form from '../../components/Form';
 import { inputs } from './data';
 import style from './style.module.sass';
 import { HTTP_STATUS_CODES } from '../../tools/constant';
-import SVGPhone from '../../../public/svg/phone.svg';
-import SVGInfo from '../../../public/svg/info.svg';
-import SVGLocation from '../../../public/svg/location.svg';
+import { getPublicFilePath } from '../../tools/function';
 
 const Contact: React.FC = () => {
   const onData = ({ response: { statusCode } }: any, updateState: (key: string, field: any) => void): void => {
@@ -35,21 +33,21 @@ const Contact: React.FC = () => {
           </header>
           <ul className={style.form__contact}>
             <li>
-              <img src={SVGPhone} />
+              <img src={getPublicFilePath('icons/phone-SdeywUetntw1CxsoJbOPwI3oFumj2J.avif')} />
               <div>
                 <strong>Teléfono:</strong>
                 <span>+1 (849) 410-9664</span>
               </div>
             </li>
             <li>
-              <img src={SVGInfo} />
+              <img src={getPublicFilePath('icons/email-jNdh3RwRu4df5LmIYENJtnpGq0h3QG.avif')} />
               <div>
                 <strong>Correo:</strong>
                 <span>support@easyonlineenglish.com</span>
               </div>
             </li>
             <li>
-              <img src={SVGLocation} />
+              <img src={getPublicFilePath('icons/location-FZAyKeKVwsTA89nlrrPndy8HU0s9A2.avif')} />
               <div>
                 <strong>Localización:</strong>
                 <span>Cabarete, Puerto Plata, República Dominicana.</span>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
-import { getPath, send } from '../../tools/function';
+import { getPublicFilePath, send } from '../../tools/function';
 import { HTTP_STATUS_CODES, REGEXP } from '../../tools/constant';
 import Loading from '../../components/Form/Loading';
 
@@ -96,17 +96,17 @@ const Home: React.FC = () => {
             <div className={style.home__circle}>
               <img
                 className={style.home__image}
-                src={getPath('pMFE0XKXXVETRMpSqtw9CtPiDE.avif')}
+                src={getPublicFilePath('home/woman-AFNvRcHab3hQiffhtGDblK0rxadeHJ.avif')}
                 alt="Imagen representando el aprendizaje del inglés"
               />
               <img
                 className={style.home__image}
-                src={getPath('b3kdXWf2vXaCYq8qBCAOsl4qwcA.avif')}
+                src={getPublicFilePath('home/man-1-WhsFiCktY3J4elInslhpzIA0VORqTH.avif')}
                 alt="Imagen representando el aprendizaje del inglés"
               />
               <img
                 className={style.home__image}
-                src={getPath('I4gxLVRC32KmwsGsqa1yzYNcJpQ.webp')}
+                src={getPublicFilePath('home/man-2-w4vNtcfz5k8VPFzHKzrtNvurf33sqx.webp')}
                 alt="Imagen representando el aprendizaje del inglés"
               />
             </div>
@@ -130,15 +130,15 @@ const Home: React.FC = () => {
             </header>
             <ul className={style.home__lists}>
               <li>
-                <img src={getPath('qE8ucK6enubb0INEh2patqPbQ0.avif')} ref={imageRefs[0]} />
+                <img src={getPublicFilePath('icons/audio-2-1UFxGRILE0FOaSnCNJrG0DmQIOZT9O.avif')} ref={imageRefs[0]} />
                 <span>Escucha la pronunciación adecuada tantas veces como sea necesario.</span>
               </li>
               <li>
-                <img src={getPath('WYNKk7P5APEg2QjJehuVErtA.avif')} ref={imageRefs[1]} />
+                <img src={getPublicFilePath('icons/image-9g7S3PXvbE3uB2RzrXxY2MfMgWtJ8h.avif')} ref={imageRefs[1]} />
                 <span>Refuerza la comprensión con nuestros recursos visuales.</span>
               </li>
               <li>
-                <img src={getPath('rRnLeStRklfSvZQb73ndQBdNQ.avif')} ref={imageRefs[2]} />
+                <img src={getPublicFilePath('icons/microphone-2-IqM2aytgYodjuvvtHP5xlGNIwdybLZ.avif')} ref={imageRefs[2]} />
                 <span>Practica la pronunciación y gana confianza.</span>
               </li>
             </ul>
@@ -164,7 +164,7 @@ const Home: React.FC = () => {
               </Link>
             </div>
             <div >
-              <img ref={imageRefs[3]} src={getPath('sCf2ABHSWj7jfjsPTP6TIcLwI1M.avif')} />
+              <img ref={imageRefs[3]} src={getPublicFilePath('home/young-man-qztXULvNeCCNsamKfxa8vlj7BlnLFb.avif')} />
             </div>
           </div>
         </div>
@@ -174,7 +174,7 @@ const Home: React.FC = () => {
           </div>
           <div className={style.home__discord}>
             <Link to="https://discord.com/invite/QFaTXbkd">Únete ahora</Link>
-            <img src="https://framerusercontent.com/images/flTXIYdjwubkpivxjJdyzordw.png" alt="discord" />
+            <img src={getPublicFilePath('icons/discord-Koq46wPnY9ixkpmeL371aZzQ6TGv12.avif')} alt="discord" />
           </div>
         </div>
       </article>
@@ -187,7 +187,7 @@ const Home: React.FC = () => {
           <div className={style.home__cards}>
             <div className={style.home__card}>
               <div>
-                <img src={getPath('AqYDrXnc9nba3X6AihC98RgZKzk.avif')} alt="Foto de Eva Elle" />
+                <img src={getPublicFilePath('home/erick-garcia-hRVTipfjS5MHrd14Ek3LZeoSyVV8Pv.avif')} alt="Foto de Eva Elle" />
                 <div className={style.home__name}>
                   <h3>Erick García</h3>
                   <span>@erickg01</span>
@@ -200,7 +200,7 @@ const Home: React.FC = () => {
             </div>
             <div className={style.home__card}>
               <div>
-                <img src={getPath('RsHZNf7AVvrb36YPDBI9Zmvs.avif')} alt="Foto de Guy Mccoy" />
+                <img src={getPublicFilePath('home/juan-perez-TYwKmDVU525wUrugtSD4B1OEWNaisJ.avif')} alt="Foto de Guy Mccoy" />
                 <div className={style.home__name}>
                   <h3>Juan Pérez</h3>
                   <span>@juanperez</span>
@@ -213,7 +213,7 @@ const Home: React.FC = () => {
             </div>
             <div className={style.home__card}>
               <div>
-                <img src={getPath('QXASYLnZWZr7CbkkdgH7af8OEs.avif')} alt="Foto de Kayla Ray" />
+                <img src={getPublicFilePath('home/maria-rodriguez-06FnqIt9XSGh84kQCPWvTMsc0TGD5n.avif')} alt="Foto de Kayla Ray" />
                 <div className={style.home__name}>
                   <h3>María Rodríguez</h3>
                   <span>@maríarodri</span>
@@ -264,8 +264,8 @@ const Home: React.FC = () => {
             </form>
           </div>
           <div>
-            <img src={getPath('qXInvyMi1fVRUXa2SCRVTH7A3Tk.avif')} alt="notificación" />
-            <img src={getPath('nqof4mX8mtjt6e5VgAnOD4U.avif')} alt="notificación sombra" />
+            <img src={getPublicFilePath('icons/email-2-NOwmYZsjmCWwtVMn6E8oYUro4Wi7eJ.avif')} alt="notificación" />
+            <img src={getPublicFilePath('home/shadow-WFRhXonJVV6SR5Rx6bWQQPITHrFRBn.avif')} alt="notificación sombra" />
           </div>
         </div>
       </article>

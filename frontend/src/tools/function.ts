@@ -199,6 +199,8 @@ const formatWord = (word: string): string =>
 const removeAccents = (str: string): string =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
+const getPublicFilePath = (path: string): string =>
+  `https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/${path}`
 
 export {
   send,
@@ -214,5 +216,6 @@ export {
   isFree,
   isStudent,
   formatWord,
-  removeAccents
+  removeAccents,
+  getPublicFilePath
 };
