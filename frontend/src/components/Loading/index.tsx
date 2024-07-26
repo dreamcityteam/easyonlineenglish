@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '../Modal';
-import { getPublicFilePath } from '../../tools/function';
+import Image from '../Image';
 
 interface LoadingProps {
   text: string;
@@ -14,7 +14,10 @@ const Loading: React.FC<LoadingProps> = ({
   <Modal canShow={canShow} backgroundColor='#ffffff'>
     <div>
       <div style={{ padding: '20px' }}>
-        <img src={getPublicFilePath('icons/logo-t17qUFdvAUVyaTaWblCjVjQGAKyCMR.avif')} alt="logo" width={90}/>
+        <Image
+          path="icons/logo-loading-P5BjK5Qki2eDup3kG9XVBlTMXaRkyi.avif"
+          alt="Icon logo loading"
+        />
       </div>
       <div>
         <span style={{ fontWeight: 'bold' }}>

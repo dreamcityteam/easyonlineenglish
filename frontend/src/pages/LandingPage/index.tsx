@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
-import { getPublicFilePath, send } from '../../tools/function';
+import { send } from '../../tools/function';
 import { HTTP_STATUS_CODES, REGEXP } from '../../tools/constant';
 import Loading from '../../components/Form/Loading';
+import Image from '../../components/Image';
 
 const Home: React.FC = () => {
   const imageRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       imageRefs.forEach((ref: React.MutableRefObject<any>, index: number) => {
+
         if (ref.current) {
           const fixWindowHeight = index === 3 ? 300 : 200;
           const element = ref.current;
@@ -94,20 +96,20 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div className={style.home__circle}>
-              <img
+              <Image
+                alt="Worman watching a her computer"
                 className={style.home__image}
-                src={getPublicFilePath('home/woman-AFNvRcHab3hQiffhtGDblK0rxadeHJ.avif')}
-                alt="Imagen representando el aprendizaje del inglés"
+                path="home/woman-AFNvRcHab3hQiffhtGDblK0rxadeHJ.avif"
               />
-              <img
+              <Image
+                alt="Man looking at his phone"
                 className={style.home__image}
-                src={getPublicFilePath('home/man-1-WhsFiCktY3J4elInslhpzIA0VORqTH.avif')}
-                alt="Imagen representando el aprendizaje del inglés"
-              />
-              <img
+                path="home/man-1-WhsFiCktY3J4elInslhpzIA0VORqTH.avif"
+                />
+              <Image
+                alt="Man using a table"
                 className={style.home__image}
-                src={getPublicFilePath('home/man-2-w4vNtcfz5k8VPFzHKzrtNvurf33sqx.webp')}
-                alt="Imagen representando el aprendizaje del inglés"
+                path="home/man-2-Ru54AicGgCO86Hnhwv9E4xQi8lpeGt.avif"
               />
             </div>
           </div>
@@ -130,15 +132,27 @@ const Home: React.FC = () => {
             </header>
             <ul className={style.home__lists}>
               <li>
-                <img src={getPublicFilePath('icons/audio-2-1UFxGRILE0FOaSnCNJrG0DmQIOZT9O.avif')} ref={imageRefs[0]} />
+                <Image
+                  alt="Audio icon"
+                  path="icons/audio-2-1UFxGRILE0FOaSnCNJrG0DmQIOZT9O.avif"
+                  ref={imageRefs[0]}
+                />
                 <span>Escucha la pronunciación adecuada tantas veces como sea necesario.</span>
               </li>
               <li>
-                <img src={getPublicFilePath('icons/image-9g7S3PXvbE3uB2RzrXxY2MfMgWtJ8h.avif')} ref={imageRefs[1]} />
+                <Image
+                  alt="Image icon"
+                  path="icons/image-9g7S3PXvbE3uB2RzrXxY2MfMgWtJ8h.avif"
+                  ref={imageRefs[1]}
+                />
                 <span>Refuerza la comprensión con nuestros recursos visuales.</span>
               </li>
               <li>
-                <img src={getPublicFilePath('icons/microphone-2-IqM2aytgYodjuvvtHP5xlGNIwdybLZ.avif')} ref={imageRefs[2]} />
+                <Image
+                  alt="Microphone icon"
+                  path="icons/microphone-2-IqM2aytgYodjuvvtHP5xlGNIwdybLZ.avif"
+                  ref={imageRefs[2]}
+                />
                 <span>Practica la pronunciación y gana confianza.</span>
               </li>
             </ul>
@@ -163,8 +177,12 @@ const Home: React.FC = () => {
                 ¡Empieza ya!
               </Link>
             </div>
-            <div >
-              <img ref={imageRefs[3]} src={getPublicFilePath('home/young-man-qztXULvNeCCNsamKfxa8vlj7BlnLFb.avif')} />
+            <div>
+              <Image
+                alt="Young man"
+                path="home/young-man-qztXULvNeCCNsamKfxa8vlj7BlnLFb.avif"
+                ref={imageRefs[3]}
+              />
             </div>
           </div>
         </div>
@@ -174,7 +192,10 @@ const Home: React.FC = () => {
           </div>
           <div className={style.home__discord}>
             <Link to="https://discord.com/invite/QFaTXbkd">Únete ahora</Link>
-            <img src={getPublicFilePath('icons/discord-Koq46wPnY9ixkpmeL371aZzQ6TGv12.avif')} alt="discord" />
+            <Image
+              alt="Discord icon"
+              path="icons/discord-Koq46wPnY9ixkpmeL371aZzQ6TGv12.avif"
+            />
           </div>
         </div>
       </article>
@@ -187,7 +208,10 @@ const Home: React.FC = () => {
           <div className={style.home__cards}>
             <div className={style.home__card}>
               <div>
-                <img src={getPublicFilePath('home/erick-garcia-hRVTipfjS5MHrd14Ek3LZeoSyVV8Pv.avif')} alt="Foto de Eva Elle" />
+                <Image
+                  alt="Eva Elle's photo"
+                  path="home/erick-garcia-hRVTipfjS5MHrd14Ek3LZeoSyVV8Pv.avif"
+                />
                 <div className={style.home__name}>
                   <h3>Erick García</h3>
                   <span>@erickg01</span>
@@ -200,7 +224,10 @@ const Home: React.FC = () => {
             </div>
             <div className={style.home__card}>
               <div>
-                <img src={getPublicFilePath('home/juan-perez-TYwKmDVU525wUrugtSD4B1OEWNaisJ.avif')} alt="Foto de Guy Mccoy" />
+                <Image
+                  alt="Guy Mccoy's photo"
+                  path="home/juan-perez-TYwKmDVU525wUrugtSD4B1OEWNaisJ.avif"
+                />
                 <div className={style.home__name}>
                   <h3>Juan Pérez</h3>
                   <span>@juanperez</span>
@@ -213,7 +240,10 @@ const Home: React.FC = () => {
             </div>
             <div className={style.home__card}>
               <div>
-                <img src={getPublicFilePath('home/maria-rodriguez-06FnqIt9XSGh84kQCPWvTMsc0TGD5n.avif')} alt="Foto de Kayla Ray" />
+                <Image
+                  alt="Kayla Ray's photo"
+                  path="home/maria-rodriguez-06FnqIt9XSGh84kQCPWvTMsc0TGD5n.avif"
+                />
                 <div className={style.home__name}>
                   <h3>María Rodríguez</h3>
                   <span>@maríarodri</span>
@@ -264,8 +294,14 @@ const Home: React.FC = () => {
             </form>
           </div>
           <div>
-            <img src={getPublicFilePath('icons/email-2-NOwmYZsjmCWwtVMn6E8oYUro4Wi7eJ.avif')} alt="notificación" />
-            <img src={getPublicFilePath('home/shadow-WFRhXonJVV6SR5Rx6bWQQPITHrFRBn.avif')} alt="notificación sombra" />
+            <Image
+              alt="Email notification icon"
+              path="icons/email-2-NOwmYZsjmCWwtVMn6E8oYUro4Wi7eJ.avif"
+            />
+            <Image
+              alt="Email notification shadow icon"
+              path="home/shadow-WFRhXonJVV6SR5Rx6bWQQPITHrFRBn.avif"
+            />
           </div>
         </div>
       </article>

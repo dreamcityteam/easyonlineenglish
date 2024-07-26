@@ -5,7 +5,7 @@ import Aside from './Aside';
 import Speech from '../../../components/Speech';
 import style from './style.module.sass';
 import { CourseProgress, OnWord } from './types';
-import { formatWord, getData, getPublicFilePath, isAdmin, removeAccents, send } from '../../../tools/function';
+import { formatWord, getData, isAdmin, removeAccents, send } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
@@ -14,6 +14,7 @@ import pronunciation from './pronunciation.json';
 import { LESSIONS_COUNT } from './data';
 import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
+import Image from '../../../components/Image';
 
 interface Props {
   isDemo?: boolean;
@@ -557,11 +558,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           </div>
           <div className={style.course__pronunciation}>
             {sentenceIndex > 0 && (
-              <img
-                alt="Previous arrow"
+              <Image
+                alt="Icon previous arrow"
                 className={style.course__arrowLeft}
                 onClick={onPrev}
-                src={getPublicFilePath('icons/arrrowRight-s2PRMjqbJ39l9BV4CMJcXOW7HNRPv5.avif')}
+                path="icons/arrrowRight-s2PRMjqbJ39l9BV4CMJcXOW7HNRPv5.avif"
               />
             )}
             <Speech
@@ -572,11 +573,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               word={sentence?.englishWord || ''}
             />
             {isSavingProgress || sentence?.isCompleted || isAdmin(user) ? (
-              <img
-                alt="Next arrow"
+              <Image
+                alt="Icon next arrow"
                 className={style.course__arrowRight}
                 onClick={onNext}
-                src={getPublicFilePath('icons/arrowLeft-V7ML2iDaMdMpVFT4euxlAlaWbYV5Eb.avif')}
+                path="icons/arrowLeft-V7ML2iDaMdMpVFT4euxlAlaWbYV5Eb.avif"
               />
             ) : null}
           </div>

@@ -17,7 +17,7 @@ const App: React.FC = (): JSX.Element => {
   const [isUserDataComplete, setIsUserDataComplete] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch({ type: SET_GOOGLE_ANALITICS, payload: { value: initGoogleAnalytics() }});
+    dispatch({ type: SET_GOOGLE_ANALITICS, payload: { value: initGoogleAnalytics() } });
   }, [window.location.pathname]);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const App: React.FC = (): JSX.Element => {
           {state.user === null && isUserDataComplete && <RouterHomePage />}
           {
             state?.user &&
-            (isStudent(state?.user) || isFree(state?.user)) 
+              (isStudent(state?.user) || isFree(state?.user))
               ? <RouterStudent isPayment={state.user.payment.isPayment || isFree(state?.user)} />
               : null
           }

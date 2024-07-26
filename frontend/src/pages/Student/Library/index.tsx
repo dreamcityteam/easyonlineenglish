@@ -8,7 +8,8 @@ import { LibraryCache, LibraryContent } from '../../../global/state/type';
 import Speech from '../../../components/Speech';
 import { EnglishVerbConjugation, Item } from './type';
 import Sound from '../../../components/Sound';
-import verbs from './verbs.json'
+import verbs from './verbs.json';
+import Image from '../../../components/Image';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -163,7 +164,7 @@ const Library: React.FC = (): JSX.Element => {
                 audioUrl: {
                   value: 'Audio',
                   render: (value: string): JSX.Element =>
-                    <Sound src={value} style={style} width="80px" />
+                    <Sound src={value} style={style} />
                 },
                 pronunciation: {
                   value: 'Pronunciación',
@@ -180,7 +181,7 @@ const Library: React.FC = (): JSX.Element => {
                   render: (value: string, item: Item): JSX.Element => (
                     <div className={style.table__image_container}>
                       <img
-                        alt="vocabulary image"
+                        alt={`Vocabulary - ${item.englishWord}`}
                         className={style.table__image}
                         loading="lazy"
                         src={value}

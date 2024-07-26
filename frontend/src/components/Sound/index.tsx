@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styleDefault from './style.module.sass';
 import { getPath } from '../../tools/function';
+import Image from '../Image';
 
 interface Props {
   src: string;
   style: { [key: string]: any };
-  width?: string;
 }
 
-const Sound: React.FC<Props> = ({ src, style = {}, width = 'auto' }): JSX.Element => {
+const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
 
@@ -45,20 +45,18 @@ const Sound: React.FC<Props> = ({ src, style = {}, width = 'auto' }): JSX.Elemen
       className={`${style.sound} ${styleDefault.sound}`}
     >
       {canPlay ? (
-        <img
+        <Image
           alt="Stop pronunciation"
           className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
-          src={getPath('2023/11/pause-audio.avif')}
+          path="icons/pause-audio-GCNorppjLX90z5rrDmSxm2aYWCK8XK.avif"
           onClick={handleTogglePlay}
-          style={{ width }}
         />
       ) : (
-        <img
+        <Image
           alt="Play pronunciation"
           className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
-          src={getPath('2023/11/play-audio.avif')}
+          path="icons/play-audio-ZNHpsTvarg2rllIwC6PnU6W6Fqrm5f.avif"
           onClick={handleTogglePlay}
-          style={{ width }}
         />
       )}
       <audio ref={audioRef} src={src}></audio>
