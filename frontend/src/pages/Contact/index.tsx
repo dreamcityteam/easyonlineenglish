@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
             </li>
             <li>
               <Image
-                path="icons/email-jNdh3RwRu4df5LmIYENJtnpGq0h3QG.avif"
+                path="icons/location-FZAyKeKVwsTA89nlrrPndy8HU0s9A2.avif"
                 alt="Icon location"
               />
               <div>
