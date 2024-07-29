@@ -1,0 +1,156 @@
+@import '../../../../public/mixin/index.module'
+@import '../../../../public/mixin/vars.module'
+
+.home
+  font-family: Inter-black
+  height: auto
+
+  &__block
+    display: block
+
+  &__wrapper
+    display: flex
+    justify-content: center
+
+    h2
+      color: $blue-color
+      font-family: 'Inter-ExtraBold'
+      font-size: 65px
+      font-weight: 900
+      margin-bottom: 20px
+      max-width: 643px
+
+    ul
+      font-size: 22px
+      margin: 0 28px
+      padding: 0
+
+      li
+        font-weight: 600
+        margin-bottom: 20px
+
+  &__content
+    align-items: center
+    display: flex
+    height: 562px
+    justify-content: space-between
+    padding: 0 20px
+    width: 1568px
+
+  &__buttons
+    margin-top: 20px
+
+    > a
+      background-color: $red-color
+      border-radius: 15px
+      color: white
+      cursor: pointer
+      display: inline-block
+      font-weight: bold
+      max-width: 300px
+      text-decoration: none
+      width: 100%
+
+      &:first-child
+        font-size: 31px
+        padding: 11px 14px
+        text-align: center
+
+  &__circle
+    display: flex
+    height: 100%
+    max-width: 859px
+    overflow: hidden
+    position: relative
+    width: 100%
+
+    &::before
+      background-color: $red-color
+      border-radius: 409px
+      bottom: -472px
+      content: ''
+      display: block
+      height: 818px
+      left: 50%
+      position: absolute
+      transform: translate(-50%)
+      width: 818px
+
+  &__image
+    @include fadeInFromBottom(fadeInFromBottom1, -123px)
+    @include fadeInFromBottom(fadeInFromBottom2, -7px)
+    bottom: -600px
+    height: 456px
+    position: relative
+    z-index: 3
+
+    &:first-child
+      animation: fadeInFromBottom1 0.5s forwards
+      animation-delay: 0.4s
+      height: 445px
+      left: -13px
+      z-index: 2
+
+    &:nth-last-of-type(2)
+      animation: fadeInFromBottom2 0.5s forwards
+      animation-delay: 1.2s
+      height: 566px
+      left: -167px
+
+    &:last-child
+      animation: fadeInFromBottom1 0.5s forwards
+      animation-delay: 0.8s
+      height: 461px
+      left: -304px
+      z-index: 2
+
+  @media only screen and (max-width: 1399px)
+    &__content
+      flex-direction: column
+      height: auto
+      padding: 0 20px
+
+    &__image
+      width: 100%
+
+  @media only screen and (max-width: 481px)
+    &__wrapper
+      h2
+        font-family: 'Inter-ExtraBold'
+        font-size: 30px
+
+      li
+        font-size: 15px
+
+      .home__image
+        animation: none
+        bottom: 0
+        height: 200px
+
+        &:first-child
+          bottom: -90px
+          height: 187px
+          left: 58px
+
+        &:nth-last-of-type(2)
+          bottom: -17px
+          height: 261px
+          left: -16px
+
+        &:last-child
+          bottom: -75px
+          height: 204px
+          left: -79px
+
+    &__buttons
+      a
+        font-size: 20px
+
+    &__circle
+      height: 277px
+      justify-content: center
+      width: 100%
+
+      &::before
+        height: 637px
+        width: 312px

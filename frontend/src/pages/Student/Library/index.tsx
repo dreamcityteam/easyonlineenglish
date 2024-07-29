@@ -73,8 +73,8 @@ const Library: React.FC = (): JSX.Element => {
   }: EnglishVerbConjugation): JSX.Element => {
     const { verb = '' } = item;
 
-    const englishPronouns: string[] = ['I', 'You', 'They', 'We', 'You', 'She', 'He', 'It'];
-    const spanishPronouns: string[] = ['Yo', 'Tú', 'Ellos(as)', 'Nosotros(as)', 'Ustedes', 'Ella', 'Él', ''];
+    const englishPronouns: string[] = ['I', 'You', 'He', 'She', 'It', 'We', 'You', 'They'];
+    const spanishPronouns: string[] = ['Yo', 'Tú', 'Él', 'Ella', '', 'Nosotros(as)', 'Ustedes', 'Ellos(as)'];
     const singularPronouns: string[] = ['She', 'He', 'It'];
 
     const isSpanish: boolean = lang === 'es';
@@ -103,7 +103,7 @@ const Library: React.FC = (): JSX.Element => {
     const getVerb = (): string => {
       const key: string = item.verb || '';
 
-      return { be: 'will be' }[key] || key;
+      return { be: 'will be', do: 'will do' }[key] || key;
     }
 
     return (
@@ -113,7 +113,7 @@ const Library: React.FC = (): JSX.Element => {
             {!avoidPronouns.includes(englishPronouns[index]) && (
               <div style={style}>
                 {getTranslation(translation[index] || verb, pronoun)}
-                <span style={{ textTransform: pronoun ? 'initial' : 'capitalize' }}>
+                <span>
                   {' '}{translation[index] || getVerb()}
 
                 </span>

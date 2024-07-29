@@ -5,21 +5,45 @@ import { Request, RequestOptions, Send, Store, Response, Data } from './type';
 import context from '../global/state/context';
 import { User } from '../global/state/type';
 
+const uploadBlob = async ({ service, file }: { service: string; file: any; }): Promise<string> => {
+  if (!file) return '';
+
+  try {
+    const formData: FormData = new FormData();
+    const [fileName] = file.name.split('.');
+
+    formData.append('photo', file);
+
+    const { response: { data, statusCode } } = await fetch(
+      `${getDomainBasedOnEnvironment()}/api/v1/${service}?filename=${fileName}.avif`,
+      {
+        method: 'POST',
+        body: formData,
+        credentials: getFetchCredentialsBasedOnEnvironment(),
+      }
+    ).then(response => response.json());
+
+    return statusCode === HTTP_STATUS_CODES.OK ? data : '';
+  } catch(error) {
+    console.error('Error uploading file:', error);
+    return ''
+  }
+}
+
 const send = ({ api, data, token }: Request): Send => {
   const options: RequestOptions = {
     headers: {
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {})
     },
-    credentials: isDev() ? 'include' : 'same-origin',
+    credentials: getFetchCredentialsBasedOnEnvironment(),
     method: 'GET',
     ...(data ? { body: JSON.stringify(data) } : {}),
   };
 
   const request = async (options: RequestOptions): Promise<Response> => {
     try {
-      const href: string = isDev() ? 'http://localhost:3000' : '';
-      const response = await fetch(`${href}/api/v1/${api}`, options);
+      const response = await fetch(`${getDomainBasedOnEnvironment()}/api/v1/${api}`, options);
       const responseData: Response = await response.json();
 
       return responseData;
@@ -192,12 +216,17 @@ const isStudent = (user: User | null): boolean =>
 const getPath = (filename: string): string =>
   `${ASSETS_URL}${filename}`;
 
-
 const formatWord = (word: string): string =>
   word.toLowerCase().replace(/\.|\?|,/g, '');
 
 const removeAccents = (str: string): string =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+const getDomainBasedOnEnvironment  = (): string  =>
+  isDev() ? 'http://localhost:3000' : '';
+
+const getFetchCredentialsBasedOnEnvironment = (): 'include' | 'same-origin' =>
+  isDev() ? 'include' : 'same-origin';
 
 export {
   send,
@@ -214,4 +243,5 @@ export {
   isStudent,
   formatWord,
   removeAccents,
+  uploadBlob,
 };

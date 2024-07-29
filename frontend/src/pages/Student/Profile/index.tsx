@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { State } from '../../../global/state/type';
 import context from '../../../global/state/context';
-import { formatPhoneNumber, isFree, isStudent, send } from '../../../tools/function';
+import { formatPhoneNumber, isFree, isStudent, send, uploadBlob } from '../../../tools/function';
 import { PLAN, inputs } from './data';
 import { HTTP_STATUS_CODES, PAYMENT_METHOD, ROLE } from '../../../tools/constant';
 import Form from '../../../components/Form';
@@ -97,27 +97,15 @@ const Profile: React.FC = (): JSX.Element => {
   }
 
   const handlerUploadPhoto = async (file: any): Promise<void> => {
-    if (file) {
-      const formData: FormData = new FormData();
+    const url: string = await uploadBlob({
+      service: 'student-profile-image',
+      file
+    });
 
-      formData.append('photo', file);
-
-      try {
-        const response = await fetch('/api/v1/student-profile-image', {
-          method: 'POST',
-          body: formData,
-        });
-
-        const { response: { data, statusCode } } = await response.json();
-
-        if (statusCode === HTTP_STATUS_CODES.OK) {
-          dispatch({ type: UPDATE_STUDENT_PHOTO, payload: { photo: data } });
-        } else {
-          alert('Error al intentar subir la imagen.');
-        }
-      } catch (error) {
-        console.error('Error uploading the image', error);
-      }
+    if (url) {
+      dispatch({ type: UPDATE_STUDENT_PHOTO, payload: { photo: url } });
+    } else {
+      alert('Error al intentar subir la imagen.');
     }
   }
 

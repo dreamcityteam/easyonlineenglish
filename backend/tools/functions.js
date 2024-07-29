@@ -2,6 +2,8 @@ const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { HTTP_STATUS_CODES } = require('./const');
+const sharp = require('sharp');
+const { put } = require('@vercel/blob');
 
 const {
   TOKEN_NAME,
@@ -128,6 +130,22 @@ const getMonthsDiff = (dateFrom, dateTo) => {
 const isDev = () =>
   process.env.NODE_ENV && process.env.NODE_ENV.includes('DEVELOPMENT');
 
+const uploadBlodToVercel = async ({
+  filename,
+  file,
+  size: { height, width } = { height: 196, width: 192 }
+}) => {
+  const resizedImage = await sharp(file)
+    .resize(width, height)
+    .toBuffer();
+
+  const { url } = await put(filename, resizedImage, {
+    access: 'public',
+  });
+
+  return url;
+}
+
 module.exports = {
   send,
   setCookie,
@@ -138,5 +156,6 @@ module.exports = {
   auth,
   getDurationInMonth,
   getMonthsDiff,
-  isDev
+  isDev,
+  uploadBlodToVercel
 };

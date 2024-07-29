@@ -1,0 +1,182 @@
+@import '../../../../public/mixin/index.module'
+@import '../../../../public/mixin/vars.module'
+
+.home
+  align-items: center
+  display: flex
+  flex-direction: column
+  justify-content: space-evenly
+  margin: 50px 0
+
+  &__block
+    display: block
+
+  &__title
+    background-color: $red-color
+    border-radius: 20px
+    color: white
+    font-family: 'Inter-ExtraBold'
+    font-size: 39px
+    margin-top: 80px
+    padding: 20px
+    text-align: center
+
+  &__discordIcon
+    align-items: center
+    display: flex
+    justify-content: center
+
+    a
+      align-items: center
+      background-color: $blue-color
+      border-radius: 42px
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 5px 0px
+      color: white
+      cursor: pointer
+      display: flex
+      font-size: 40px
+      justify-content: center
+      margin-right: 20px
+      padding: 10px 20px
+      text-align: center
+      text-decoration: none
+
+    img
+      width: 70px
+
+  &__content
+    display: flex
+
+    h2
+      background-color: transparent
+      color: $blue-color
+      display: block
+      display: inline
+      font-weight: 700
+      margin: 0
+      padding: 0
+
+      &:nth-child(1)
+        font-size: 70px
+        font-weight: 900
+
+    p
+      font-size: 23px
+      line-height: 1.5
+      width: 656px
+
+    a
+      background-color: $blue-color
+      border-radius: 15px
+      color: #fff
+      cursor: pointer
+      display: block
+      display: inline-block
+      font-size: 25px
+      font-weight: bold
+      padding: 20px
+      text-align: center
+      text-decoration: none
+      width: 300px
+
+    img
+      height: 500px
+      opacity: 0
+      padding: 20px
+
+    .img__animation
+      animation: imgAnimation 1.1s ease-in-out forwards
+
+      @keyframes imgAnimation
+        0%
+          transform: scale(0.2)
+
+        5%
+          transform: scale(0.4)
+
+        10%
+          transform: scale(0.6)
+
+        15%
+          transform: scale(0.8)
+
+        20%
+          transform: scale(1)
+
+        25%
+          opacity: 1
+          transform: scale(1.2)
+
+        50%
+          transform: scale(1)
+
+        75%
+          transform: scale(1.2)
+
+        100%
+          opacity: 1
+          transform: scale(1)
+
+  @media only screen and (max-width: 1399px)
+    div
+      align-items: center
+      flex-direction: column
+      padding: 20px
+
+    .home__discord
+      h2
+        margin-top: 0
+
+      img
+        margin-top: 20px
+        width: 100px
+
+  @media only screen and (max-width: 481px)
+    margin: 0
+
+    > div
+      &:nth-child(1)
+        padding: 0 !important
+
+    .home__discord
+      h2
+        margin-top: -80px
+        font-size: 15px !important
+
+      a
+        font-size: 15px !important
+        margin-right: 0
+
+      img
+        width: 60px
+        margin-top: 20px
+
+    .home__content
+      h2
+        font-size: 40px !important
+
+      div:first-child
+        padding: 20px
+
+      span
+        &:nth-child(1)
+          font-size: 39px
+
+        &:nth-child(2)
+          font-size: 30px
+          font-weight: 900
+
+      img
+        height: auto
+        width: 100%
+
+      p
+        font-size: 15px
+        width: 100%
+
+      a
+        padding: 14px 0
+        font-size: 15px
+
+      .home__block
+        display: inline

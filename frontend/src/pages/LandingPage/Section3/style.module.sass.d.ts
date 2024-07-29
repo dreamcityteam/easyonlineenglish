@@ -2,9 +2,13 @@
 // Please do not change this file!
 interface CssExports {
   'home': string;
-  'home__article4': string;
   'home__block': string;
-  'home__wrapper': string;
+  'home__content': string;
+  'home__discord': string;
+  'home__discordIcon': string;
+  'home__title': string;
+  'imgAnimation': string;
+  'img__animation': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

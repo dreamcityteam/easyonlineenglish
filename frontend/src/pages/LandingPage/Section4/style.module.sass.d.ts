@@ -2,8 +2,8 @@
 // Please do not change this file!
 interface CssExports {
   'home': string;
-  'home__article4': string;
-  'home__block': string;
+  'home__cards': string;
+  'home__header': string;
   'home__wrapper': string;
 }
 export const cssExports: CssExports;

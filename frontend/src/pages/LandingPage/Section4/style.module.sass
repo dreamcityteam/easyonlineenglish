@@ -1,0 +1,29 @@
+@import '../../../../public/mixin/index.module'
+@import '../../../../public/mixin/vars.module'
+
+.home
+  display: flex
+  justify-content: space-around
+  background-color: #e3e3e3
+
+  &__wrapper
+    margin-bottom: 50px
+
+  &__header
+    color: $red-color
+    font-size: 30px
+    padding-top: 50px
+    padding: 20px
+    text-align: center
+
+    h2
+      font-family: 'Inter-ExtraBold'
+      font-weight: 900
+
+  &__cards
+    display: flex
+
+  @media only screen and (max-width: 481px)
+    &__cards
+      flex-direction: column
+      align-items: center

@@ -1,0 +1,64 @@
+import React, { useRef } from 'react';
+import Image from '../../../components/Image';
+import style from './style.module.sass';
+import { hookAnimation } from '../hook';
+import { Link } from 'react-router-dom';
+
+const Section3: React.FC = (): JSX.Element => {
+  const imageRefs = useRef(null);
+
+  hookAnimation({
+    classNameAnimation: style.img__animation,
+    ref: imageRefs,
+    windowHeight: 400
+  });
+
+  return (
+    <article className={style.home}>
+      <div>
+        <div className={style.home__content}>
+          <div>
+            <h2 className={style.home__title}>
+              ¡Aprender inglés<span className={style.home__block} />
+              debería ser fácil!
+            </h2>
+            <p>
+              Aprender inglés puede ser un desafío cuando se basa únicamente
+              en el estudio de la gramática y cuando se espera que los estudiantes comprendan
+              vocabulario nuevo utilizando términos que todavía no dominan. Esta metodología tradicional
+              indudablemente presenta serias dificultades para un aprendizaje efectivo.
+              ¡Hemos encontrado una solución a través de un proceso que
+              te guiará paso a paso a aprender el inglés de manera fácil!
+            </p>
+            <Link to="/courses">
+              ¡Empieza ya!
+            </Link>
+          </div>
+          <div>
+            <Image
+              alt="Young man"
+              path="home/young-man-qztXULvNeCCNsamKfxa8vlj7BlnLFb.avif"
+              ref={imageRefs}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={style.home__discord}>
+        <div>
+          <h2 className={style.home__title}>
+            ¡Únete a Nuestra Comunidad de Estudiantes!
+          </h2>
+        </div>
+        <div className={style.home__discordIcon}>
+          <Link to="https://discord.com/invite/QFaTXbkd">Únete ahora</Link>
+          <Image
+            alt="Discord icon"
+            path="icons/discord-Koq46wPnY9ixkpmeL371aZzQ6TGv12.avif"
+          />
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default Section3;

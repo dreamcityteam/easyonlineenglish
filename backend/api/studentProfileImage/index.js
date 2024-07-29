@@ -1,7 +1,7 @@
 const multer = require('multer');
-const sharp = require('sharp');
+const { del } = require('@vercel/blob');
 const { HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
-const { getResponse, send } = require('../../tools/functions');
+const { getResponse, send, uploadBlodToVercel } = require('../../tools/functions');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
 
@@ -15,23 +15,28 @@ module.exports = (req, res) => {
     if (err) {
       response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
       response.message = `Error uploading file! ${err}`;
+
       return send(response);
     }
 
     try {
       await connectToDatabase();
 
-      const resizedImage = await sharp(req.file.buffer)
-        .resize(192, 192)
-        .toBuffer();
+      const user = await User.findOne({ _id: req.user.id });
 
-      const base64Image = Buffer.from(resizedImage).toString('base64');
-      const photo = `data:image/jpeg;base64, ${base64Image}`;
+      if (user && user.photo) {
+        await del(user.photo);
+      }
+
+      const url = await uploadBlodToVercel({
+        file: req.file.buffer,
+        filename: `user-profile/${req.query.filename}`
+      });
 
       const updatedUser = await User.findByIdAndUpdate(
         req.user.id,
         {
-          $set: { photo },
+          $set: { photo: url },
           $currentDate: {
             updatedAt: true
           }
@@ -42,17 +47,18 @@ module.exports = (req, res) => {
       if (!updatedUser) {
         response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
         response.message = 'User not found!';
+
         return send(response);
       }
 
       response.statusCode = HTTP_STATUS_CODES.OK;
       response.message = MESSAGE.SUCCESSFUL;
-      response.data = photo;
-      send(response);
+      response.data = url;
     } catch (error) {
       response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
       response.message = `Error saving user! ${error}`;
-      send(response);
     }
+
+    send(response);
   });
 };

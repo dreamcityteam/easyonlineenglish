@@ -5,10 +5,10 @@ import { inputs } from './data';
 import context from '../../../global/state/context';
 import { CLEAN_CACHE, SET_USER } from '../../../global/state/actionTypes';
 import style from './style.module.sass';
-import { HTTP_STATUS_CODES, ROLE } from '../../../tools/constant';
-import { isAdmin } from '../../../tools/function';
+import { HTTP_STATUS_CODES } from '../../../tools/constant';
+import { isAdmin, isFree } from '../../../tools/function';
 
-const Login: React.FC = () => {
+const Login: React.FC = (): JSX.Element => {
   const [{ googleAnalytics }, dispatch] = useContext(context);
   const [text, setText] = useState<string>('');
   const navigate: NavigateFunction = useNavigate();
@@ -23,13 +23,14 @@ const Login: React.FC = () => {
       setText('La dirección de correo electrónico o la contraseña son incorrectas.');
 
     } else if (statusCode === HTTP_STATUS_CODES.OK) {
-      let redirectUrl = user.payment.isPayment || isAdmin(user) ? '/courses' : '/plan';
+      const isUserExemptFromPlan: boolean = isAdmin(user) || isFree(user);
+      let destinationUrl: string = user.payment.isPayment || isUserExemptFromPlan ? '/courses' : '/plan';
 
-      navigate(redirectUrl);
+      navigate(destinationUrl);
       dispatch({ type: CLEAN_CACHE });
       dispatch({ type: SET_USER, payload: user });
 
-      if (!isAdmin(user)) {
+      if (!isUserExemptFromPlan) {
         googleAnalytics('event', 'login', {
           'event_category': 'Login',
           'event_label': 'Iniciar sección'
