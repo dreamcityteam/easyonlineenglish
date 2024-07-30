@@ -7,9 +7,10 @@ import style from './style.module.sass';
 import courseStyle from '../style.module.sass';
 import speechStyle from '../../../../components/Speech/style.module.sass';
 import Joyride from 'react-joyride';
-import { cookie, getPath, send } from '../../../../tools/function';
+import { cookie, send } from '../../../../tools/function';
 import { TUTORIAL } from '../../../../tools/constant';
 import context from '../../../../global/state/context';
+import Image from '../../../../components/Image';
 
 interface Props {
   onClick: ({ word, wordIndex, indexLesson }: any) => void;
@@ -157,8 +158,14 @@ const Aside: React.FC<Props> = ({
         }}
       />
       <div className={style.button__container}>
-        <div className={`${style.aside__button} ${canOpenSideBar ? style.aside__button_static : ''}`} onClick={toggleSidebar}>
-          <img alt="Aside button" src={getPath('2023/11/menu.avif')} />
+        <div
+          className={`${style.aside__button} ${canOpenSideBar ? style.aside__button_static : ''}`}
+          onClick={toggleSidebar}
+        >
+          <Image
+            path="icons/menu-kSzFtbNmdC6Wmt8VUxbjoEfsENhcf4.avif"
+            alt="Aside button"
+          />
         </div>
       </div>
       <div className={style.aside__title}>

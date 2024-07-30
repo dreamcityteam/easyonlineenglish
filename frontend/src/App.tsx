@@ -36,17 +36,18 @@ const App: React.FC = (): JSX.Element => {
     setIsUserDataComplete(true);
   };
 
+  const canShowStudentSection = (): boolean =>
+    !!(state?.user && (isStudent(state?.user) || isFree(state?.user)));
+
   return (
     <>
       <context.Provider value={[state, dispatch]}>
         <Router>
           <Navigator />
           {state.user === null && isUserDataComplete && <RouterHomePage />}
-          {
-            state?.user &&
-              (isStudent(state?.user) || isFree(state?.user))
-              ? <RouterStudent isPayment={state.user.payment.isPayment || isFree(state?.user)} />
-              : null
+          {canShowStudentSection()
+            ? <RouterStudent isPayment={state.user?.payment.isPayment || isFree(state?.user)} />
+            : null
           }
           {isAdmin(state?.user) && <Admin />}
           <Footer />

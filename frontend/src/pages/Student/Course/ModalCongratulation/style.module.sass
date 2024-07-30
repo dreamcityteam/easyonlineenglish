@@ -1,3 +1,5 @@
+@import '../../../../../public/mixin/index.module'
+  
 .modal
   &__content
     font-size: 20px
@@ -28,3 +30,7 @@
     text-decoration: none
     width: 100%
     z-index: 4
+
+  @include mobile
+    &__image
+      width: 100%

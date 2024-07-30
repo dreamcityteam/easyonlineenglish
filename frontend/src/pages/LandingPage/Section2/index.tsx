@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 import Image from '../../../components/Image';
-import style from './style.module.sass';
 import { images } from './data';
 import { Image as ImageType } from './type';
-import { hookAnimation } from '../hook';
+import useScrollAnimation from '../../../hooks/ScrollAnimation';
+import style from './style.module.sass';
 
 const Section2: React.FC = (): JSX.Element => {
   const imageRefs = [useRef(null), useRef(null), useRef(null)];
 
-  hookAnimation({
+  useScrollAnimation({
     classNameAnimation: style.img__animation,
     ref: imageRefs,
   });
@@ -35,7 +35,10 @@ const Section2: React.FC = (): JSX.Element => {
           <ul className={style.home__lists}>
             {images.map(({ text, ...props }: ImageType, index: number): JSX.Element =>
               <li key={index}>
-                <Image {...props} ref={imageRefs[index]} />
+                <Image
+                  {...props}
+                  ref={imageRefs[index]}
+                />
                 <span> {text} </span>
               </li>
             )}

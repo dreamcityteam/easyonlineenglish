@@ -6,7 +6,7 @@ interface Animation {
   classNameAnimation: string;
 };
 
-const hookAnimation = ({
+const useScrollAnimation = ({
   ref,
   windowHeight = 300,
   classNameAnimation
@@ -40,6 +40,4 @@ const hookAnimation = ({
   }, []);
 };
 
-export {
-  hookAnimation
-};
+export default useScrollAnimation;

@@ -19,19 +19,19 @@ import Plans from '../../pages/Plans/Index';
 const RouterHomePage: React.FC = () => (
   <Routes>
     <Route index element={<Home />} />
-    <Route path="contact" element={<Contact />} />
-    <Route path="login" element={<Login />} />
-    <Route path="register/:paymentMethod" element={<Register />} />
-    <Route path="courses" element={<Courses isDemo />} />
-    <Route path="course/:idCourse" element={<Course isDemo />} />
-    <Route path="libraries" element={<Library />} />
-    <Route path="reset-password" element={<ResetPassword />} />
-    <Route path="reset-password-auth/:token" element={<ResetPasswordAuth />} />
-    <Route path="term-user" element={<FinalUser />} />
-    <Route path="term-payment" element={<Payment />} />
-    <Route path="term-privacy" element={<Privacy />} />
-    <Route path="term-conditions" element={<Conditions />} />
-    <Route path="plan" element={<Plans />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/register/:paymentMethod" element={<Register />} />
+    <Route path="/courses" element={<Courses isDemo />} />
+    <Route path="/course/:idCourse" element={<Course isDemo />} />
+    <Route path="/libraries" element={<Library />} />
+    <Route path="/reset-password" element={<ResetPassword />} />
+    <Route path="/reset-password-auth/:token" element={<ResetPasswordAuth />} />
+    <Route path="/term-user" element={<FinalUser />} />
+    <Route path="/term-payment" element={<Payment />} />
+    <Route path="/term-privacy" element={<Privacy />} />
+    <Route path="/term-conditions" element={<Conditions />} />
+    <Route path="/plan" element={<Plans />} />
     <Route path="*" element={<Page404 />} />
   </Routes>
 );

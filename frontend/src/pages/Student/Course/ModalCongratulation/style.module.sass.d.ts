@@ -4,6 +4,7 @@ interface CssExports {
   'modal__button': string;
   'modal__container': string;
   'modal__content': string;
+  'modal__image': string;
   'modal__text': string;
 }
 export const cssExports: CssExports;

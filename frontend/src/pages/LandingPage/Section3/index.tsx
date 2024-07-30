@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Image from '../../../components/Image';
 import style from './style.module.sass';
-import { hookAnimation } from '../hook';
-import { Link } from 'react-router-dom';
+import useScrollAnimation from '../../../hooks/ScrollAnimation';
 
 const Section3: React.FC = (): JSX.Element => {
   const imageRefs = useRef(null);
 
-  hookAnimation({
+  useScrollAnimation({
     classNameAnimation: style.img__animation,
     ref: imageRefs,
     windowHeight: 400

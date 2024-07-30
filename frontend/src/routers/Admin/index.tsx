@@ -6,12 +6,13 @@ import Courses from '../../pages/Student/Courses';
 import Course from '../../pages/Student/Course';
 import UploadFile from '../../pages/UploadFile';
 
-const Admin: React.FC = () => (
+const Admin: React.FC = (): JSX.Element => (
   <Routes>
-    <Route path="close" element={<CloseSection />} />
-    <Route path="courses" element={<Courses />} />
-    <Route path="course/:idCourse" element={<Course />} />
-    <Route path="upload" element={<UploadFile />} />
+    <Route path="/" element={<Courses />} />
+    <Route path="/close" element={<CloseSection />} />
+    <Route path="/courses" element={<Courses />} />
+    <Route path="/course/:idCourse" element={<Course />} />
+    <Route path="/upload" element={<UploadFile />} />
     <Route path="*" element={<Page404 />} />
   </Routes>
 );

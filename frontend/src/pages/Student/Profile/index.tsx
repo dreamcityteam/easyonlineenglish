@@ -137,9 +137,9 @@ const Profile: React.FC = (): JSX.Element => {
             </form>
           </div>
           <div className="content__title">
-            <h1>
+            <h2>
               {user?.name} {user?.lastname}
-            </h1>
+            </h2>
             <span>Estudiante - Easy Online English</span>
           </div>
           <div className="content__description">

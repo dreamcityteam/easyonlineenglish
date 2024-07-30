@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styleDefault from './style.module.sass';
-import { getPath } from '../../tools/function';
 import Image from '../Image';
 
 interface Props {
@@ -17,18 +16,18 @@ const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
       audioRef.current.addEventListener('ended', handleAudioEnded);
     }
 
-    return () => {
+    return (): void => {
       if (audioRef.current) {
         audioRef.current.removeEventListener('ended', handleAudioEnded);
       }
     };
   }, []);
 
-  const handleAudioEnded = () => {
+  const handleAudioEnded = (): void => {
     setCanPlay(false);
   };
 
-  const handleTogglePlay = () => {
+  const handleTogglePlay = (): void => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
         audioRef.current.play();
@@ -59,7 +58,10 @@ const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
           onClick={handleTogglePlay}
         />
       )}
-      <audio ref={audioRef} src={src}></audio>
+      <audio
+        ref={audioRef}
+        src={src}
+      />
     </div>
   );
 };

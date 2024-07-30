@@ -1,9 +1,7 @@
 @import '../../../public/mixin/index.module'
 @import '../../../public/mixin/vars.module'
 
-$container__width: 1000px
-
-.form
+.contact
   display: flex
   justify-content: center
   align-content: center
@@ -38,12 +36,16 @@ $container__width: 1000px
     padding: 20px
     flex-direction: column
 
-    header
-      color: $main__color
-      font-family: monospace
+  &__header
+    color: $main__color
+    font-family: monospace
+
+  @media only screen and (max-width: 820px)
+    transform: scale(0.8)
 
   @include mobile
     flex-direction: column
+    margin-top: -125px
 
     &__contact,
     &__container

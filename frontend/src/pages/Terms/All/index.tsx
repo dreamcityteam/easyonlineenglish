@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import style from '../style.module.sass';
-import useScrollToTop from '../../../components/ScrollUp';
+import useScrollToTop from '../../../hooks/ScrollUp';
 import Conditions from '../Conditions';
 import Privacy from '../Privacy';
 import FinalUser from '../FinalUser';

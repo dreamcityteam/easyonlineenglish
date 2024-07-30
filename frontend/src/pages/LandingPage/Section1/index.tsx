@@ -33,7 +33,11 @@ const Section1: React.FC = (): JSX.Element => (
         </div>
         <div className={style.home__circle}>
           {images.map((props: ImageType, index: number): JSX.Element =>
-            <Image key={index} {...props} className={style.home__image} />
+            <Image
+              {...props}
+              className={style.home__image}
+              key={index}
+            />
           )}
         </div>
       </div>

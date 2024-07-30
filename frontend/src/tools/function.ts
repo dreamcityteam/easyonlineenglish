@@ -213,7 +213,7 @@ const isFree = (user: User | null): boolean =>
 const isStudent = (user: User | null): boolean =>
   user?.role === ROLE.STUDENT;
 
-const getPath = (filename: string): string =>
+const gethPathWordpress = (filename: string): string =>
   `${ASSETS_URL}${filename}`;
 
 const formatWord = (word: string): string =>
@@ -228,6 +228,16 @@ const getDomainBasedOnEnvironment  = (): string  =>
 const getFetchCredentialsBasedOnEnvironment = (): 'include' | 'same-origin' =>
   isDev() ? 'include' : 'same-origin';
 
+const getClassName = (...props: string[]): string => {
+  let classes: string = '';
+
+  for (let index in props) {
+    classes += props[index] + (Number(index) < props.length - 1 ? ' ' : '');
+  }
+
+  return classes;
+}
+
 export {
   send,
   store,
@@ -238,10 +248,11 @@ export {
   isUser,
   initGoogleAnalytics,
   isAdmin,
-  getPath,
+  gethPathWordpress,
   isFree,
   isStudent,
   formatWord,
   removeAccents,
   uploadBlob,
+  getClassName
 };

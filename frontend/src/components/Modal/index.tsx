@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './style.module.sass';
-import SVGClose from '../../../public/svg/close.svg';
 
 interface Prop {
   canShow: boolean;
@@ -9,7 +8,12 @@ interface Prop {
   backgroundColor?: string;
 };
 
-const Modal: React.FC<Prop> = ({ canShow, children, backgroundColor, isFadeIn }) => (
+const Modal: React.FC<Prop> = ({
+  canShow,
+  children,
+  backgroundColor,
+  isFadeIn 
+}): JSX.Element => (
   <>
     {canShow && (
       <div

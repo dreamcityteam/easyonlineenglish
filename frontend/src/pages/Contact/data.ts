@@ -1,4 +1,4 @@
-import { Inputs } from './type';
+import { Info, Inputs } from './type';
 import { REGEXP } from '../../tools/constant';
 
 const inputs: Inputs = {
@@ -32,6 +32,28 @@ const inputs: Inputs = {
   },
 };
 
+const infos: Info[] = [
+  {
+    path: 'icons/phone-SdeywUetntw1CxsoJbOPwI3oFumj2J.avif',
+    alt: 'Phone',
+    title: 'Teléfono',
+    description: '+1 (849) 410-9664'
+  },
+  {
+    path: 'icons/email-jNdh3RwRu4df5LmIYENJtnpGq0h3QG.avif',
+    alt: 'Email',
+    title: 'Correo',
+    description: 'support@easyonlineenglish.com'
+  },
+  {
+    path: 'icons/location-FZAyKeKVwsTA89nlrrPndy8HU0s9A2.avif',
+    alt: 'Location',
+    title: 'Localización',
+    description: 'Cabarete, Puerto Plata, República Dominicana.'
+  }
+];
+
 export {
-  inputs
+  inputs,
+  infos
 }

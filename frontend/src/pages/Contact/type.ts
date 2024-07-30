@@ -7,6 +7,14 @@ type Inputs = {
   message: Field;
 };
 
+type Info = {
+  path: string;
+  alt: string;
+  description: string;
+  title: string;
+};
+
 export type {
-  Inputs
-}
+  Inputs,
+  Info
+};

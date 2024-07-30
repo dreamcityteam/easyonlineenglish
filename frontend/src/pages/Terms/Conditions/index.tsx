@@ -1,6 +1,6 @@
 import React from 'react';
 import style from '../style.module.sass';
-import useScrollToTop from '../../../components/ScrollUp';
+import useScrollToTop from '../../../hooks/ScrollUp';
 
 interface Props {
   removeH1?: boolean;

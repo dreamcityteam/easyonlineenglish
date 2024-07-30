@@ -1,54 +1,58 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import style from './style.module.sass';
 import { ROLE } from '../../tools/constant';
 import context from '../../global/state/context';
-import { getPath } from '../../tools/function';
+import { creditCards, terms } from './data';
+import { BackgroundColor, NamePath } from './type';
+import Image from '../Image';
+import style from './style.module.sass';
 
 const Footer: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);
-  const creditCards: string[] = ['mastercard.png', 'paypal.png', 'visa.jpg'];
-  const terms: string[][] = [
-    ['Términos y condiciones', 'conditions'],
-    ['Política de Privacidad', 'privacy'],
-    ['Acuerdo de Licencia de Usuario Final Global', 'user'],
-    ['Compra del Producto', 'payment'],
-  ];
   const location = useLocation();
   const isHomePage: boolean = location.pathname === '/' && user?.role !== ROLE.ADMIN;
 
+  const getBackgroundColor = (): BackgroundColor =>
+    isHomePage ? { style: { backgroundColor: '#f4f4f4' } } : {};
+
   return (
-    <footer className={style.footer} {...isHomePage ? {
-      style: {
-        backgroundColor: '#f4f4f4'
-      }
-    } : {}}>
+    <footer
+      className={style.footer} {...getBackgroundColor()}
+    >
       {isHomePage && (
         <ul className={style.footer__items}>
           <li className={style.footer__address}>
             <strong>Dirección: </strong>
             Cabarete, Puerto Plata, República Dominicana.
           </li>
+
           <li className={style.footer__term}>
-            {terms.map(([name, link], index: number): JSX.Element => (
-              <span key={index}><Link to={`term-${link}`}>{name}</Link></span>
+            {terms.map(({ name, path }: NamePath, index: number): JSX.Element => (
+              <span key={index}>
+                <Link to={`term-${path}`}>{name}</Link>
+              </span>
             ))}
           </li>
+
           <li className={style.footer__item}>
-            {creditCards.map((creditCard: string, index: number): JSX.Element => (
-              <img key={index} src={getPath(`2016/12/${creditCard}`)} />
+            {creditCards.map(({ name, path }: NamePath, index: number): JSX.Element => (
+              <Image
+                alt={`${name} icon`}
+                key={index}
+                path={path}
+              />
             ))}
           </li>
         </ul>
       )}
+
       <div className={style.footer__copyright}>
         <span >
           Copyright © {new Date().getFullYear()} Easy Online English
         </span>
       </div>
-
     </footer>
-  )
+  );
 };
 
 export default Footer;

@@ -2,12 +2,12 @@ import React from 'react';
 import Modal from '../Modal';
 import Image from '../Image';
 
-interface LoadingProps {
+interface Props {
   text: string;
   canShow: boolean;
 }
 
-const Loading: React.FC<LoadingProps> = ({
+const Loading: React.FC<Props> = ({
   text = 'Loading...',
   canShow
 }): JSX.Element => (

@@ -113,6 +113,28 @@
     &__image
       width: 100%
 
+  @media only screen and (max-width: 820px)
+    &__circle
+      &::before
+        width: 764px
+
+    &__image
+      animation: none !important
+      bottom: 0
+      height: 200px
+
+      &:first-child
+        left: -49px
+        bottom: -123px
+
+      &:nth-last-of-type(2)
+        left: -226px
+        bottom: -7px
+
+      &:last-child
+        left: -366px
+        bottom: -123px
+
   @media only screen and (max-width: 481px)
     &__wrapper
       h2
@@ -144,7 +166,8 @@
 
     &__buttons
       a
-        font-size: 20px
+        font-size: 20px !important
+        width: 200px
 
     &__circle
       height: 277px

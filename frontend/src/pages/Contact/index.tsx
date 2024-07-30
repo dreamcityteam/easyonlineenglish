@@ -1,12 +1,16 @@
 import React from 'react';
 import Form from '../../components/Form';
-import { inputs } from './data';
+import { infos, inputs } from './data';
 import style from './style.module.sass';
 import { HTTP_STATUS_CODES } from '../../tools/constant';
 import Image from '../../components/Image';
+import { Info } from './type';
 
 const Contact: React.FC = () => {
-  const onData = ({ response: { statusCode } }: any, updateState: (key: string, field: any) => void): void => {
+  const onForm = (
+    { response: { statusCode } }: any,
+    updateState: (key: string, field: any) => void
+  ): void => {
     const field = {
       validation: {
         isNotValid: true,
@@ -26,51 +30,33 @@ const Contact: React.FC = () => {
 
   return (
     <section>
-      <article className={style.form}>
-        <div className={style.form__container}>
-          <header>
+      <article className={style.contact}>
+        <div className={style.contact__container}>
+          <header className={style.contact__header}>
             <h1>Contáctate con nosotros</h1>
           </header>
-          <ul className={style.form__contact}>
-            <li>
-              <Image
-                path="icons/phone-SdeywUetntw1CxsoJbOPwI3oFumj2J.avif"
-                alt="Icon phone"
-              />
-              <div>
-                <strong>Teléfono:</strong>
-                <span>+1 (849) 410-9664</span>
-              </div>
-            </li>
-            <li>
-              <Image
-                path="icons/email-jNdh3RwRu4df5LmIYENJtnpGq0h3QG.avif"
-                alt="Icon email"
-              />
-              <div>
-                <strong>Correo:</strong>
-                <span>support@easyonlineenglish.com</span>
-              </div>
-            </li>
-            <li>
-              <Image
-                path="icons/location-FZAyKeKVwsTA89nlrrPndy8HU0s9A2.avif"
-                alt="Icon location"
-              />
-              <div>
-                <strong>Localización:</strong>
-                <span>Cabarete, Puerto Plata, República Dominicana.</span>
-              </div>
-            </li>
+          <ul className={style.contact__contact}>
+            {infos.map(({ path, alt, description, title }: Info, index: number): JSX.Element => (
+              <li key={index}>
+                <Image
+                  path={path}
+                  alt={`${alt} icon`}
+                />
+                <div>
+                  <strong>{title}:</strong>
+                  <span>{description}</span>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
-        <div className={style.form__container}>
+        <div>
           <Form
             canCleanInput
             api="contanct"
             buttonText="Enviar Mensaje"
             inputs={inputs}
-            onData={onData}
+            onData={onForm}
           />
         </div>
       </article>

@@ -2,6 +2,10 @@
 // Please do not change this file!
 interface CssExports {
   'home': string;
+  'home__formContainer': string;
+  'home__header': string;
+  'home__image': string;
+  'home__imageContainer': string;
   'home__wrapper': string;
 }
 export const cssExports: CssExports;

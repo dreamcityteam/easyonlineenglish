@@ -60,9 +60,10 @@ const Navigator: React.FC = (): JSX.Element => {
   const getTargetClassName = (path: string): string => (
     location.pathname === path ||
       (path === '/courses') && location.pathname.includes('course') ||
-      (path === '/plan') && location.pathname.includes('payment')
-      ? style.navigator__target
-      : ''
+      (path === '/plan') && location.pathname.includes('payment') ||
+      isAdmin(user) && (path === '/courses') && location.pathname === '/'
+    ? style.navigator__target
+    : ''
   );
 
   const Tabs = (): JSX.Element[] =>
@@ -96,7 +97,10 @@ const Navigator: React.FC = (): JSX.Element => {
             <Tabs />
             {user && (
               <li>
-                <Link to="/profile" className={style.navigator__user}>
+                <Link
+                  to={isAdmin(user) ? '/' : '/profile'}
+                  className={style.navigator__user}
+                >
                   <img
                     className={style.navigator__picture}
                     src={user.photo}

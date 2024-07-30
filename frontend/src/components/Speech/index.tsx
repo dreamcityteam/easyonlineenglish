@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { formatWord, gethPathWordpress, removeAccents } from '../../tools/function';
+import Image from '../Image';
 import style from './style.module.sass';
-import { formatWord, getPath, removeAccents } from '../../tools/function';
 
 interface Props {
   word: string;
@@ -25,17 +26,17 @@ const Speech: React.FC<Props> = ({
 
   const startListening = (): void => {
     const pronunciationAudio: HTMLAudioElement = new Audio(audioUrl);
-    const whistleAudio: HTMLAudioElement = new Audio(getPath('2016/12/pronunciation.mp3'));
+    const whistleAudio: HTMLAudioElement = new Audio(gethPathWordpress('2016/12/pronunciation.mp3'));
 
     pronunciationAudio.play();
     setCanPlay(true);
     onPlaySpeech && onPlaySpeech(true);
 
-    pronunciationAudio.onended = () => {
+    pronunciationAudio.onended = (): void => {
       whistleAudio.play();
     }
 
-    whistleAudio.onended = () => {
+    whistleAudio.onended = (): void => {
       pronunciation();
     }
 
@@ -122,18 +123,18 @@ const Speech: React.FC<Props> = ({
   return (
     <div className={style.speech}>
       {canPlay ? (
-        <img
+        <Image
           alt="Stop pronunciation"
           className={style.speech__icon}
           onClick={onStop}
-          src={getPath('2023/11/pause.avif')}
+          path="icons/pause-DoX98cDAlVrh7JNyCMpA2x6agge23r.avif"
         />
       ) : (
-        <img
+        <Image
           alt="Play pronunciation"
           className={style.speech__icon}
           onClick={startListening}
-          src={getPath('2023/11/microphone.avif')}
+          path="icons/microphone-FRNIePEA4ksnEtIJVFKXpqECQxO7H1.avif"
         />
       )}
       {canShowMessage && <p className={style.speech__feedback}>{output || 'Escuchar pronunciación'}</p>}

@@ -13,7 +13,10 @@ const Section4: React.FC = (): JSX.Element => (
 
       <div className={style.home__cards}>
         {cards.map((props: CardType, index: number): JSX.Element =>
-          <Card {...props} key={index} />
+          <Card
+            {...props}
+            key={index}
+          />
         )}
       </div>
     </div>
