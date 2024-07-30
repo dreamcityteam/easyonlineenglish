@@ -31,7 +31,8 @@
 #### Clone the Repository:
 1. Open the `terminal`, and execute the next command: 
 ```bash 
- git clone [https://github.com/XBrewyn/easy-online-english](https://github.com/dreamcityteam/easyonlineenglish.git)
+ git clone https://github.com/dreamcityteam/easyonlineenglish.git
+
  cd easy-online-english
 ```
 
@@ -48,3 +49,5 @@
 #### Run the Application in mode development:
 1. Open the terminal at the root of the project and execute the following command:
 ```cd frontend && npm start ```
+2. Open the terminal at the root of the project and execute the following command:
+```cd backend && npm start ```
