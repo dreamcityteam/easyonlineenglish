@@ -98,7 +98,6 @@ type Loading = {
 type State = {
   user: User | null;
   loading: Loading;
-  currentPathCourse: null | string;
   courseCache: CourseCache;
   coursesCache: CoursesCache;
   libraryCache: any;
