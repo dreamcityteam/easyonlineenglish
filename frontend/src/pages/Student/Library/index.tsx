@@ -66,70 +66,77 @@ const Library: React.FC = (): JSX.Element => {
       {value.name}
     </span>;
 
-  const englishVerbConjugation = ({
-    item,
-    lang = 'en',
-    text = ''
-  }: EnglishVerbConjugation): JSX.Element => {
-    const { verb = '' } = item;
+  const englishVerbConjugation = ({ item, lang = 'en', text = '' }: EnglishVerbConjugation): JSX.Element => {
+    const { verb = '', avoidPronouns = [], apostrophe = false } = item;
 
-    const englishPronouns: string[] = ['I', 'You', 'He', 'She', 'It', 'We', 'You', 'They'];
-    const spanishPronouns: string[] = ['Yo', 'Tú', 'Él', 'Ella', '', 'Nosotros(as)', 'Ustedes', 'Ellos(as)'];
-    const singularPronouns: string[] = ['She', 'He', 'It'];
+    const pronounsMap = {
+      en: {
+        gerund: ['I am', 'You are', 'He is', 'She is', 'It is', 'We are', 'You (plural) are', 'They are'],
+        base: ['I', 'You', 'He', 'She', 'It', 'We', 'You (plural)', 'They'],
+        singular: ['She', 'He', 'It'],
+      },
+      es: ['Yo', 'Tú', 'Él', 'Ella', '(Eso)', 'Nosotros(as)', 'Ustedes', 'Ellos(as)']
+    };
 
-    const isSpanish: boolean = lang === 'es';
-    const translation: string[] = isSpanish ? item.spanishTranslationConjugation || [] : [];
-    let pronouns: string[] = isSpanish ? spanishPronouns : englishPronouns;
+    const isSpanish = lang === 'es';
+    const translation = isSpanish ? item.spanishTranslationConjugation || [] : [];
+    const pronouns = isSpanish
+      ? pronounsMap.es
+      : verb.includes('ing') && !['bring', 'sing'].includes(verb)
+        ? pronounsMap.en.gerund
+        : pronounsMap.en.base;
 
     const style: any = {
       marginBottom: '10px',
       textTransform: 'initial',
       border: '1.5px solid black',
-      padding: 'padding: 5px'
+      padding: '5px',
     };
 
-    const getTranslation = (translation: any, pronoun: string): string =>
+    const getTranslation = (translation: string, pronoun: string): string =>
       translation.split(' ').length > 1 ? '' : pronoun;
 
-    const avoidPronouns = item.avoidPronouns || [];
-    const apostrophe = item.apostrophe || false
-
     const getApostrophe = (): string => {
-      const key: string = item.verb || '';
+      const lastLetter = verb.slice(-1);
+      if (['carry', 'fly', 'try' ].includes(verb)) return 'ies';
 
-      return { go: 'es', do: 'es' }[key] || 's'
-    }
+      return lastLetter === 'o' ? 'es' : 's';
+    };
 
-    const getVerb = (): string => {
-      const key: string = item.verb || '';
+    const getVerb = (pronoun: string): string => {
+      const isValid = ['He', 'She', 'It'].includes(pronoun);
 
-      return { be: 'will be', do: 'will do' }[key] || key;
-    }
+      if (isValid && verb === 'carry') {
+        return 'carr';
+      } else  if (isValid && verb === 'fly') {
+        return 'fl';
+      } else  if (isValid && verb === 'try') {
+        return 'tr';
+      }
+
+      return ({ be: 'will be', do: 'will do' }[verb] || verb.replace('-', ' '));
+    };
 
     return (
       <div>
-        {pronouns.map((pronoun: string, index: number): JSX.Element => (
-          <React.Fragment key={index}>
-            {!avoidPronouns.includes(englishPronouns[index]) && (
-              <div style={style}>
-                {getTranslation(translation[index] || verb, pronoun)}
-                <span>
-                  {' '}{translation[index] || getVerb()}
-
-                </span>
-                {singularPronouns.includes(pronoun) && !isSpanish && !apostrophe && (
-                  <strong style={{ color: 'blue', textDecoration: 'underline' }}>
-                    {getApostrophe()}
-                  </strong>
-                )}
-                {text ? <span> {text}</span> : ''}
-              </div>
-            )}
-          </React.Fragment>
+        {pronouns.map((pronoun: string, index: number) => (
+          !avoidPronouns.includes(pronounsMap.en.base[index]) && (
+            <div key={index} style={style}>
+              {getTranslation(translation[index] || verb, pronoun)}
+              <span> {translation[index] || getVerb(pronoun)}</span>
+              {pronounsMap.en.singular.includes(pronoun) && !isSpanish && !apostrophe && (
+                <strong style={{ color: 'blue', textDecoration: 'underline' }}>
+                  {getApostrophe()}
+                </strong>
+              )}
+              {text && <span> {text}</span>}.
+            </div>
+          )
         ))}
       </div>
     );
-  }
+  };
+
 
   return (
     <>
@@ -214,8 +221,8 @@ const Library: React.FC = (): JSX.Element => {
                 },
                 verb: {
                   value: 'verbo',
-                  render: (value: string): JSX.Element =>
-                    <strong style={{ color: 'blue' }}>{value}</strong>
+                  render: (value: string = ''): JSX.Element =>
+                    <strong style={{ color: 'blue' }}>{value.replace('-', ' ')}</strong>
                 },
                 englishWordConjugation: {
                   value: 'Inglés',

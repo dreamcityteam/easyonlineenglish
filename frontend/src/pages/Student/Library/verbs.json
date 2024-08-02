@@ -246,6 +246,493 @@
                 }
               ]
             }
+          },
+          {
+            "lession": {
+              "name": "lección 6",
+              "content": [
+                {
+                  "verb": "eat",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["como", "come", "come", "come", "come", "comemos", "comen", "comen"],
+                  "englishWordConjugationExample": "pepperoni and salami",
+                  "spanishTranslationConjugationExample": "pepperoni y salami"
+                },
+                {
+                  "verb": "eating",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo estoy comiendo", "Tú estás comiendo", "Él está comiendo", "Ella está comiendo", "(Eso) está comiendo", "estamos comiendo", "Ustedes están comiendo", "Ellos(as) están comiendo"],
+                  "englishWordConjugationExample": "now",
+                  "spanishTranslationConjugationExample": "ahora"
+                },
+                {
+                  "verb": "play",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["juego", "juega", "juega", "juega", "juega", "jugamos", "juegan", "juegan", "ayudan"],
+                  "englishWordConjugationExample": "bingo",
+                  "spanishTranslationConjugationExample": "el bingo"
+                },
+                {
+                  "verb": "love",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["amo", "amas", "ama", "ama", "ama", "amamos", "aman", "aman"],
+                  "englishWordConjugationExample": "salmon",
+                  "spanishTranslationConjugationExample": "el salmón"
+                },
+                {
+                  "verb": "know",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["sé", "sabes", "sabe", "sabe", "sabe", "sabemos", "saben", "saben"],
+                  "englishWordConjugationExample": "math",
+                  "spanishTranslationConjugationExample": "matemáticas"
+                },
+                {
+                  "verb": "tell",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["digo", "dices", "dice", "dice", "dice", "decimos", "dicen", "dicen"],
+                  "englishWordConjugationExample": "the truth",
+                  "spanishTranslationConjugationExample": "la verdad"
+                },
+                {
+                  "verb": "told",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["dije", "dijiste", "dijo", "dijo", "dijo", "dijimos", "dijeron", "dijeron"],
+                  "englishWordConjugationExample": "the truth",
+                  "spanishTranslationConjugationExample": "la verdad",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "think",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["pienso", "piensas", "piensa", "piensa", "piensa", "pensamos", "piensan", "piensan"],
+                  "englishWordConjugationExample": "it's correct",
+                  "spanishTranslationConjugationExample": "está correcto"
+                },
+                {
+                  "verb": "keep",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["mantengo", "mantienes", "mantiene", "mantiene", "mantiene", "mantenemos", "mantienen", "mantienen"],
+                  "englishWordConjugationExample": "calm",
+                  "spanishTranslationConjugationExample": "la calma"
+                },
+                {
+                  "verb": "give",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["doy", "das", "da", "da", "da", "damos", "dan", "dan"],
+                  "englishWordConjugationExample": "cash",
+                  "spanishTranslationConjugationExample": "cash"
+                },
+                {
+                  "verb": "work",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["trabajo", "trabajas", "trabaja", "trabaja", "trabaja", "trabajamos", "trabajan", "trabajan"],
+                  "englishWordConjugationExample": " in a hospital",
+                  "spanishTranslationConjugationExample": "en un hospital"
+                },
+                {
+                  "verb": "put",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["pongo", "pones", "pone", "pone", "pone", "ponemos", "ponen", "ponen"],
+                  "englishWordConjugationExample": "phone on silent",
+                  "spanishTranslationConjugationExample": "el teléfono en silencio"
+                },
+                {
+                  "verb": "got",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["obtuve", "conseguiste", "obtuvo", "obtuvo", "obtuvo", "obtuvimos", "obtuvieron", "obtuvieron"],
+                  "englishWordConjugationExample": "",
+                  "spanishTranslationConjugationExample": "",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "take",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["tomo", "toma", "toma", "toma", "toma", "tomamos", "toman", "toman"],
+                  "englishWordConjugationExample": "a taxi",
+                  "spanishTranslationConjugationExample": "un taxi"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 7",
+              "content": [
+                {
+                  "verb": "jump",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["salto", "saltas", "salta", "salta", "salta", "saltamos", "saltan", "saltan"],
+                  "englishWordConjugationExample": "on the sofa",
+                  "spanishTranslationConjugationExample": "en el sofá"
+                },
+                {
+                  "verb": "saw",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["vi", "viste", "vio", "vio", "vio", "vimos", "vieron", "vieron"],
+                  "englishWordConjugationExample": "the doctor",
+                  "spanishTranslationConjugationExample": "al doctor",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "call",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["llamo", "llamas", "llama", "llama", "llama", "llamamos", "llaman", "llaman"],
+                  "englishWordConjugationExample": "the police",
+                  "spanishTranslationConjugationExample": "a la policía"
+                },
+                {
+                  "verb": "ate",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["comí", "comiste", "comió", "comió", "comió", "comimos", "comieron", "comieron"],
+                  "englishWordConjugationExample": "sushi",
+                  "spanishTranslationConjugationExample": "sushi",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "use",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["uso", "usas", "usa", "usa", "usa", "usamos", "usan", "usan"],
+                  "englishWordConjugationExample": "the police",
+                  "spanishTranslationConjugationExample": "a la policía"
+                },
+                {
+                  "verb": "say",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["digo", "dices", "dice", "dice", "dice", "decimos", "dicen", "dicen"],
+                  "englishWordConjugationExample": "the police",
+                  "spanishTranslationConjugationExample": "a la policía"
+                },
+                {
+                  "verb": "pick",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["elijo", "eliges", "elige", "elige", "elige", "elegimos", "eligen", "eligen"],
+                  "englishWordConjugationExample": "a good hotel",
+                  "spanishTranslationConjugationExample": "un buen hotel"
+                },
+                {
+                  "verb": "hurt",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["hiero", "hieres", "hiere", "hiere", "hiere", "herimos", "hieren", "hieren"],
+                  "englishWordConjugationExample": "my feelings",
+                  "spanishTranslationConjugationExample": "mis sentimientos"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 8",
+              "content": [
+                {
+                  "verb": "feel",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["siento", "sientes", "siente", "siente", "siente", "sentimos", "sienten", "sienten"],
+                  "englishWordConjugationExample": "the emotion",
+                  "spanishTranslationConjugationExample": "la emoción"
+                },
+                {
+                  "verb": "bring",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["traigo", "traes", "trae", "trae", "trae", "traemos", "traen", "traen"],
+                  "englishWordConjugationExample": "on the sofa",
+                  "spanishTranslationConjugationExample": "en el sofá"
+                },
+                {
+                  "verb": "goes",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["", "", "va", "va", "va", "", "", ""],
+                  "englishWordConjugationExample": "to the bar",
+                  "spanishTranslationConjugationExample": "al bar",
+                  "avoidPronouns": ["I", "You", "We", "They"],
+                  "apostrophe": true
+                },
+                {
+                  "verb": "write",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["escribo", "escribes", "escribe", "escribe", "escribe", "escribimos", "escriben", "escriben"],
+                  "englishWordConjugationExample": "the formula",
+                  "spanishTranslationConjugationExample": "la fórmula"
+                },
+                {
+                  "verb": "run",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["corro", "corres", "corre", "corre", "corre", "corremos", "corren", "corren"],
+                  "englishWordConjugationExample": "fast",
+                  "spanishTranslationConjugationExample": "rápido"
+                },
+                {
+                  "verb": "gave",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["di", "diste", "dio", "dio", "dio", "dimos", "dieron", "dieron"],
+                  "englishWordConjugationExample": "a coffee",
+                  "spanishTranslationConjugationExample": "un café",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "open",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["abro", "abres", "abre", "abre", "abre", "abrimos", "abren", "abren"],
+                  "englishWordConjugationExample": "the office",
+                  "spanishTranslationConjugationExample": "la oficina"
+                },
+                {
+                  "verb": "find",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["consigo", "consigues", "consigue", "consigue", "consigue", "conseguimos", "consiguen", "consiguen"],
+                  "englishWordConjugationExample": "the key everyday",
+                  "spanishTranslationConjugationExample": "la llave"
+                },
+                {
+                  "verb": "hold",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["sostengo", "sostienes", "sostiene", "sostiene", "sostiene", "sostenemos", "sostienen", "sostienen"],
+                  "englishWordConjugationExample": "the door",
+                  "spanishTranslationConjugationExample": "la puerta"
+                },
+                {
+                  "verb": "buy",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["compro", "compras", "compra", "compra", "compra", "compramos", "compran", "compran"],
+                  "englishWordConjugationExample": "the key everyday",
+                  "spanishTranslationConjugationExample": "la llave"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 9",
+              "content": [
+                {
+                  "verb": "pull",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["jalo", "jalas", "jala", "jala", "jala", "jalamos", "jalan", "jalan"],
+                  "englishWordConjugationExample": "curtains",
+                  "spanishTranslationConjugationExample": "las cortinas"
+                },
+                {
+                  "verb": "cut",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["corto", "cortas", "corta", "corta", "corta", "cortamos", "cortan", "cortan"],
+                  "englishWordConjugationExample": "the cable",
+                  "spanishTranslationConjugationExample": "el cable"
+                },
+                {
+                  "verb": "sit",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo me siento", "Tú te sientas", "Él se sienta", "Ella se sienta", "(Eso) se sienta", "Nosotros(as) nos sentamos", "Ustedes se sientan", "Ellos(as) se sientan"],
+                  "englishWordConjugationExample": "down here",
+                  "spanishTranslationConjugationExample": "sientan aquí"
+                },
+                {
+                  "verb": "fall",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["caigo", "caes", "cae", "cae", "cae", "caemos", "caen", "caen"],
+                  "englishWordConjugationExample": "into the trap",
+                  "spanishTranslationConjugationExample": "en la trampa"
+                },
+                {
+                  "verb": "carry",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["llevo", "llevas", "lleva", "lleva", "lleva", "llevamos", "llevan", "llevan"],
+                  "englishWordConjugationExample": "carry the medicine",
+                  "spanishTranslationConjugationExample": "la medicina"
+                },
+                {
+                  "verb": "read",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["leo", "lees", "lee", "lee", "lee", "leemos", "leen", "leen"],
+                  "englishWordConjugationExample": "simple English",
+                  "spanishTranslationConjugationExample": "inglés simple"
+                },
+                {
+                  "verb": "wash",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["lavo", "lavas", "lava", "lava", "lava", "lavamos", "lavan", "lavan"],
+                  "englishWordConjugationExample": "the fruits",
+                  "spanishTranslationConjugationExample": "las frutas"
+                },
+                {
+                  "verb": "show",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["muestro", "muestras", "muestra", "muestra", "muestra", "mostramos", "muestran", "muestran"],
+                  "englishWordConjugationExample": "the money",
+                  "spanishTranslationConjugationExample": "el dinero"
+                },
+                {
+                  "verb": "live",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["vivo", "vives", "vive", "vive", "vive", "vivimos", "viven", "viven"],
+                  "englishWordConjugationExample": "in New York",
+                  "spanishTranslationConjugationExample": "en New York"
+                },
+                {
+                  "verb": "draw",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["dibujo", "dibujas", "dibuja", "dibuja", "dibuja", "dibujamos", "dibujan", "dibujan"],
+                  "englishWordConjugationExample": "animals",
+                  "spanishTranslationConjugationExample": "animales"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 10",
+              "content": [
+                {
+                  "verb": "clean",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["limpio", "limpias", "limpia", "limpia", "limpia", "limpiamos", "limpian", "limpian"],
+                  "englishWordConjugationExample": "",
+                  "spanishTranslationConjugationExample": ""
+                },
+                {
+                  "verb": "grow",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["cultivo", "cultivas", "cultiva", "cultiva", "cultiva", "cultivamos", "cultivan", "cultivan"],
+                  "englishWordConjugationExample": "tomatoes",
+                  "spanishTranslationConjugationExample": "tomates"
+                },
+                {
+                  "verb": "sing",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["canto", "cantas", "canta", "canta", "canta", "cantamos", "cantan", "cantan"],
+                  "englishWordConjugationExample": "karaoke",
+                  "spanishTranslationConjugationExample": "karaoke"
+                },
+                {
+                  "verb": "wish",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["deseo", "deseas", "desea", "desea", "desea", "deseamos", "desean", "desean"],
+                  "englishWordConjugationExample": "me well",
+                  "spanishTranslationConjugationExample": "lo mejor"
+                },
+                {
+                  "verb": "start",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["comienzo", "comienzas", "comienza", "comienza", "comienza", "comenzamos", "comienzan", "comienzan"],
+                  "englishWordConjugationExample": "the project",
+                  "spanishTranslationConjugationExample": "el proyecto"
+                },
+                {
+                  "verb": "does",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["", "", "hace", "hace", "hace", "", "", ""],
+                  "englishWordConjugationExample": "me well",
+                  "spanishTranslationConjugationExample": "lo mejor",
+                  "avoidPronouns": ["I", "You", "We", "They"],
+                  "apostrophe": true
+                },
+                {
+                  "verb": "talk",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["hablo", "hablas", "habla", "habla", "habla", "hablamos", "hablan", "hablan"],
+                  "englishWordConjugationExample": "a lot",
+                  "spanishTranslationConjugationExample": "mucho"
+                },
+                {
+                  "verb": "talking",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo estoy hablando", "Tú estás hablando", "Él está hablando", "Ella está hablando", "(Eso) está hablando", "Nosotros(as) estamos hablando", "Ustedes están hablando", "Ellos(as) están hablando"],
+                  "englishWordConjugationExample": "a lot",
+                  "spanishTranslationConjugationExample": "mucho"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 11",
+              "content": [
+                {
+                  "verb": "fly",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["vuelo", "vuelas", "vuela", "vuela", "vuela", "volamos", "vuelan", "vuelan"],
+                  "englishWordConjugationExample": "",
+                  "spanishTranslationConjugationExample": ""
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 12",
+              "content": [
+                {
+                  "verb": "stop",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["detengo", "detienes", "detiene", "detiene", "detiene", "detenemos", "detienen", "detienen"],
+                  "englishWordConjugationExample": "the car",
+                  "spanishTranslationConjugationExample": "el auto"
+                },
+                {
+                  "verb": "try",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["pruebo", "pruebas", "prueba", "prueba", "prueba", "probamos", "prueban", "prueban"],
+                  "englishWordConjugationExample": "the car",
+                  "spanishTranslationConjugationExample": "el auto"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 13",
+              "content": [
+                {
+                  "verb": "wake-up",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo me despierto", "Tú te despiertas", "Él se despierta", "Ella se despierta", "(Eso) se despierta", "Nosotros(as) nos despertamos", "despierta", "despierta"],
+                  "englishWordConjugationExample": "",
+                  "spanishTranslationConjugationExample": "",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "meet",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo me reúno", "Tu te reúnes", "Él se reúne", "Ella se reúne", "(Eso) se reúne", "Nososotros nos reunimos", "Ustedes se reúnen", "Ellos(as) se reúnen"],
+                  "englishWordConjugationExample": "my friends",
+                  "spanishTranslationConjugationExample": "con mis amigos"
+                },
+                {
+                  "verb": "care",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["cuido", "cuidas", "cuida", "cuida", "cuida", "Nosotros(as) cuidamos.", "cuida", "cuidan"],
+                  "englishWordConjugationExample": "my friends",
+                  "spanishTranslationConjugationExample": "con mis amigos"
+                }
+              ]
+            }
+          },
+          {
+            "lession": {
+              "name": "lección 14",
+              "content": [
+                {
+                  "verb": "touch",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["toco", "tocas", "toca", "toca", "toca", "tocamos", "tocan", "tocan"],
+                  "englishWordConjugationExample": "",
+                  "spanishTranslationConjugationExample": "",
+                  "apostrophe": true
+                },
+                {
+                  "verb": "cooking",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo estoy cocinando", "Tú estás cocinando", "Él está cocinando", "Ella está cocinando", "(Eso) está cocinando", "Nosotros(as) estamos cocinando", "Ustedes están cocinando", "Ellos(as) se reúnen"],
+                  "englishWordConjugationExample": "for you",
+                  "spanishTranslationConjugationExample": "par ti"
+                },
+                {
+                  "verb": "feeling",
+                  "englishWordConjugation": [],
+                  "spanishTranslationConjugation": ["Yo me estoy sintiendo", "Tú te estás sintiendo", "Él se está sintiendo", "Ella se está sintiendo", "(Eso) se está sintiendo", "Nosotros(as) estamos sintiendo", "Ustedes están sintiendo", "Ellos(as) están sintiendo"],
+                  "englishWordConjugationExample": "tired",
+                  "spanishTranslationConjugationExample": "cansado"
+                }
+              ]
+            }
           }
         ]
       }

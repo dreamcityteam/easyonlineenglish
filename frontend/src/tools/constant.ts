@@ -7,17 +7,17 @@ const REGEXP: { [key: string]: RegExp; } = {
   NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
   LAST_NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
   PASSWORD: /^.{8,}$/,
-}
+};
 
 const MESSAGE: { [key: string]: string; } = {
   PASSWORD: 'Su contraseña debería tener al menos 8 caracteres.',
-}
+};
 
 const ROLE: Role = {
   ADMIN: 'ADMIN',
   STUDENT: 'STUDENT',
   FREE: 'FREE',
-}
+};
 
 const HTTP_STATUS_CODES: StatusCode = {
   OK: 200,
@@ -26,7 +26,7 @@ const HTTP_STATUS_CODES: StatusCode = {
   UNAUTHORIZED: 401,
   NOT_FOUND: 404,
   TEMPORARY_REDIRECT: 307,
-}
+};
 
 const AUTH_TOKEN: 'AUTH_TOKEN' = 'AUTH_TOKEN';
 const TUTORIAL: 'TUTORIAL' = 'TUTORIAL';
@@ -57,7 +57,7 @@ const PAYMENT_METHOD: {
     AMOUNT: 35,
     DESCRIPTION: 'MEMBRESÍA POR 3 MES'
   }
-}
+};
 
 export {
   REGEXP,

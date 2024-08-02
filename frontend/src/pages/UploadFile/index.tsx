@@ -10,15 +10,11 @@ const UploadFile: React.FC = (): JSX.Element => {
 
     if (!inputFileRef.current) return;
 
-    // @ts-ignore
-    const file: File = inputFileRef.current.files[0]
+    const file: FileList | null = inputFileRef.current.files;
 
-    const url: string = await uploadBlob({
-      service: 'upload-file',
-      file
-    });
+    if (file) {
+      const url: string = await uploadBlob({ service: 'upload-file', file: file[0] });
 
-    if (url) {
       setBlob(url);
     } else {
       alert('Error al intentar subir la imagen.');

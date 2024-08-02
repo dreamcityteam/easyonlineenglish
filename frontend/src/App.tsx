@@ -37,7 +37,7 @@ const App: React.FC = (): JSX.Element => {
   };
 
   const canShowStudentSection = (): boolean =>
-    !!(state?.user && (isStudent(state?.user) || isFree(state?.user)));
+    isStudent(state?.user) || isFree(state?.user);
 
   return (
     <>

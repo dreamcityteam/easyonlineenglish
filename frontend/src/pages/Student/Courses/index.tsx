@@ -62,7 +62,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           <h1>Cursos</h1>
         </header>
         <div className={style.courses__items}>
-          {courses.map(({ _id, picture, title, description, progress = 0 }: TCourses, index: number): JSX.Element => {
+          {courses.map(({ _id, picture, title, description, progress = 0, isAvaliable = true }: TCourses, index: number): JSX.Element => {
             let _progress: number = courseCache[_id] ? courseCache[_id].progress : progress;
 
             _progress = isDemo ? getDemoCourseProgress(_id) : _progress;
@@ -98,8 +98,11 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 <div className={style.courses__title}>
                   <p>{isDemo ? '¡Prueba gratis! Las primeras 10 palabras.' : title}</p>
                 </div>
-                <Link className={style.courses__button} to={`/course/${_id}`}>
-                  ¡Comienza ya!
+                <Link
+                  className={style.courses__button}
+                  to={isAvaliable ? `/course/${_id}` : '#'}
+                >
+                  {isAvaliable ? '¡Comienza ya!' : '¡Muy pronto!'}
                 </Link>
               </article>
             )

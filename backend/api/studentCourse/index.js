@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
     let studentCourse = await StudentCourse
       .findOne({ idCourse: idCourse, idUser: userId })
       .select({ __v: 0, idUser: 0, idCourse: 0 });
+
     const courseWord = await CourseWord
       .find({ idCourse: idCourse })
       .select({ __v: 0, idCourse: 0 })

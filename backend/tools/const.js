@@ -5,12 +5,12 @@ const REGEXP = {
   NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
   LAST_NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
   PASSWORD: /^.{8,}$/
-}
+};
 
 const ROLE = {
   ADMIN: 'ADMIN',
   STUDENT: 'STUDENT',
-}
+};
 
 const HTTP_STATUS_CODES = {
   OK: 200,
@@ -19,7 +19,7 @@ const HTTP_STATUS_CODES = {
   UNAUTHORIZED: 401,
   NOT_FOUND: 404,
   TEMPORARY_REDIRECT: 307,
-}
+};
 
 const ENDPOINT = {
   AUTH: 'auth',
@@ -45,7 +45,7 @@ const ENDPOINT = {
   UPDATE_STUDENT_TERMS: 'update-student-terms',
   SUSCRIBETE: 'suscribete',
   UPLOAD_FILE: 'upload-file'
-}
+};
 
 const PAYMENT_METHOD = {
   1: {
@@ -63,17 +63,17 @@ const PAYMENT_METHOD = {
     AMOUNT: 35,
     DESCRIPTION: 'MEMBRESÍA POR 3 MES'
   }
-}
+};
 
 const INITIAL_COURSE = {
   TITLE: 'Inglés Conversacional',
   DESCRIPTION: 'Nuestro curso online de inglés conversacional te brinda la oportunidad de mejorar tus habilidades de comunicación en inglés de manera efectiva y práctica. A través de lecciones interactivas y dinámicas, te sumergirás en situaciones cotidianas para aprender a expresarte con confianza.',
   PICTURE: 'https://easyonlineenglish.com/wp-content/uploads/2024/06/Square1.jpg'
-}
+};
 
 const MESSAGE = {
   SUCCESSFUL: 'Successful!'
-}
+};
 
 module.exports = {
   HTTP_STATUS_CODES,

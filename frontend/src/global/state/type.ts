@@ -44,6 +44,7 @@ type Courses = {
   title: string;
   description: string;
   progress?: number;
+  isAvaliable: Boolean,
 }
 
 type LibraryContent = {
