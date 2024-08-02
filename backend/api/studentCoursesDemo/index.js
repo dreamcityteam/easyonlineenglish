@@ -9,12 +9,12 @@ module.exports = async (req, res) => {
   try {
     await connectToDatabase();
 
-    const course = await Course.findOne({ title: INITIAL_COURSE.TITLE }).select({ __v: 0 });
+    const course = await Course.find().select({ __v: 0 });
 
     if (course) {
       response.statusCode = HTTP_STATUS_CODES.OK;
       response.message = MESSAGE.SUCCESSFUL;
-      response.data = [course.toObject()];
+      response.data = course;
     } else {
       response.message = 'There are no courses available';
     }
