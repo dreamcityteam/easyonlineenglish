@@ -413,7 +413,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     pronunciation: string = ''
   ): JSX.Element | string => {
 
-    if (!feedback.canShow) {
+    if (!feedback.canShow || isCorrectPronuciation) {
       return sentence;
     }
 

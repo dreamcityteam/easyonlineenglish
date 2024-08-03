@@ -39,7 +39,7 @@ const ModalWrongPronunciation: React.FC<Props> = ({ state, isDemo }): JSX.Elemen
           to={isDemo ? '/plan' : '/courses'}
           className={style.modal__button}
         >
-          {isDemo ? 'planes' : 'Cursos'}
+          {isDemo ? 'Planes' : 'Cursos'}
         </Link>
       </div>
     </div>
