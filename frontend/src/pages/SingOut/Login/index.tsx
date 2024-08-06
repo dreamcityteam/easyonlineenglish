@@ -45,9 +45,8 @@ const Login: React.FC = (): JSX.Element => {
   return (
     <>
       <MetaTags />
-
       <section className={style.login}>
-        <div>
+        <div className={style.login__container}>
           <Form
             api="auth"
             title="Login"
