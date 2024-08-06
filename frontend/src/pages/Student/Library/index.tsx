@@ -98,23 +98,27 @@ const Library: React.FC = (): JSX.Element => {
 
     const getApostrophe = (): string => {
       const lastLetter = verb.slice(-1);
-      if (['carry', 'fly', 'try' ].includes(verb)) return 'ies';
+      if (['carry', 'fly', 'try', 'study' ].includes(verb)) return 'ies';
 
-      return lastLetter === 'o' ? 'es' : 's';
+      return lastLetter === 'o' || lastLetter === 'h' ? 'es' : 's';
     };
 
     const getVerb = (pronoun: string): string => {
       const isValid = ['He', 'She', 'It'].includes(pronoun);
 
-      if (isValid && verb === 'carry') {
-        return 'carr';
-      } else  if (isValid && verb === 'fly') {
-        return 'fl';
-      } else  if (isValid && verb === 'try') {
-        return 'tr';
+      if (
+        isValid && verb[verb.length - 1] === 'y' &&
+        !['buy', 'stay', 'pay'].includes(verb)
+      ) {
+        return verb.replace('y', '');
       }
 
-      return ({ be: 'will be', do: 'will do' }[verb] || verb.replace('-', ' '));
+      return ({
+        be: 'will be',
+        come: 'will come',
+        let: 'will let',
+        walk: 'will walk'
+      }[verb] || verb.replace('-', ' '));
     };
 
     return (
@@ -129,6 +133,7 @@ const Library: React.FC = (): JSX.Element => {
                   {getApostrophe()}
                 </strong>
               )}
+              {verb === 'search' ? ' for' : ''}
               {text && <span> {text}</span>}.
             </div>
           )
