@@ -193,7 +193,7 @@ const PaymentForms: React.FC = () => {
               <header>
                 <h1 className={style.payment__title}>{paymentTitle}</h1>
               </header>
- {/*
+
               <div className={style.payment__inputs}>
                 <div className={style.payment__inputs_container}>
                   <input
@@ -271,7 +271,7 @@ const PaymentForms: React.FC = () => {
                   </button>
                 )}
               </div>
-                           */}
+
               <PayPal
                 onComplete={onCompletePayPal}
                 plan={paymentMethod || ''}

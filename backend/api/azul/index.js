@@ -58,22 +58,21 @@ module.exports = async (req, res) => {
       });
   
       const $ = cheerio.load(data.ThreeDSMethod.MethodForm);
-      const formData = new FormData();
-
-      console.log(data.ThreeDSMethod.MethodForm)
 
       // Extract the input values
       const threeDSMethodData = $('input[name="threeDSMethodData"]').val();
       const DSMethodData = $('input[name="3DSMethodData"]').val();
       const formActionUrl = $('form#tdsMmethodForm').attr('action');
+  
+      const params = new URLSearchParams();
+  
+      params.append('3DSMethodData', DSMethodData);
+      params.append('threeDSMethodData', threeDSMethodData);
 
-      formData.append('threeDSMethodData', threeDSMethodData);
-      formData.append('3DSMethodData', DSMethodData);
-
-      const response = await axios.post(formActionUrl, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
+      const response = await axios.post(formActionUrl, params, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       });
-
+      console.log(response.data)
     if (data.IsoCode === '00') {
       const isPayment = await payment({
         idUser: req.user.id,
