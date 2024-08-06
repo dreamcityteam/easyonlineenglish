@@ -5,6 +5,7 @@ import style from './style.module.sass';
 import { HTTP_STATUS_CODES } from '../../tools/constant';
 import Image from '../../components/Image';
 import { Info } from './type';
+import MetaTags from './MetaTags';
 
 const Contact: React.FC = () => {
   const onForm = (
@@ -29,38 +30,41 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <section>
-      <article className={style.contact}>
-        <div className={style.contact__container}>
-          <header className={style.contact__header}>
-            <h1>Contáctate con nosotros</h1>
-          </header>
-          <ul className={style.contact__contact}>
-            {infos.map(({ path, alt, description, title }: Info, index: number): JSX.Element => (
-              <li key={index}>
-                <Image
-                  path={path}
-                  alt={`${alt} icon`}
-                />
-                <div>
-                  <strong>{title}:</strong>
-                  <span>{description}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <Form
-            canCleanInput
-            api="contanct"
-            buttonText="Enviar Mensaje"
-            inputs={inputs}
-            onData={onForm}
-          />
-        </div>
-      </article>
-    </section>
+    <>
+      <MetaTags />
+      <section>
+        <article className={style.contact}>
+          <div className={style.contact__container}>
+            <header className={style.contact__header}>
+              <h1>Contáctate con nosotros</h1>
+            </header>
+            <ul className={style.contact__contact}>
+              {infos.map(({ path, alt, description, title }: Info, index: number): JSX.Element => (
+                <li key={index}>
+                  <Image
+                    path={path}
+                    alt={`${alt} icon`}
+                  />
+                  <div>
+                    <strong>{title}:</strong>
+                    <span>{description}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <Form
+              canCleanInput
+              api="contanct"
+              buttonText="Enviar Mensaje"
+              inputs={inputs}
+              onData={onForm}
+            />
+          </div>
+        </article>
+      </section>
+    </>
   );
 }
 

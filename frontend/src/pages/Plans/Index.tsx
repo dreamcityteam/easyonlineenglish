@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './Card';
 import style from './style.module.sass';
 import FamilyPlan from './FamilyPlan';
+import MetaTags from './MetaTags';
 
 const Plans: React.FC = (): JSX.Element => {
   const characteristics: string[] = [
@@ -30,6 +31,8 @@ const Plans: React.FC = (): JSX.Element => {
   ];
 
   return (
+    <>
+    <MetaTags />
     <section className={style.plan}>
       <header>
         <h1 className={style.plan__title}>
@@ -43,6 +46,7 @@ const Plans: React.FC = (): JSX.Element => {
       </div>
       <FamilyPlan price="149.99" />
     </section>
+    </>
   );
 };
 

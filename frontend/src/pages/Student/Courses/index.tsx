@@ -5,6 +5,7 @@ import { SET_COURSES_CACHE } from '../../../global/state/actionTypes';
 import { Courses as TCourses } from '../../../global/state/type';
 import context from '../../../global/state/context';
 import style from './style.module.sass';
+import MetaTags from './MetaTags';
 
 interface Props {
   isDemo?: boolean;
@@ -57,6 +58,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   return (
     <>
+      <MetaTags />
       <section className={style.courses}>
         <header className={style.courses__header}>
           <h1>Cursos</h1>

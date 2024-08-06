@@ -15,6 +15,7 @@ import { LESSIONS_COUNT } from './data';
 import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
 import Image from '../../../components/Image';
+import MetaTags from './MetaTags';
 
 interface Props {
   isDemo?: boolean;
@@ -457,6 +458,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   return (
     <>
+      <MetaTags
+        title={course?.title || ''}
+        description={course?.description || ''}
+      />
       <section className={style.course}>
         {course && (
           <Aside
