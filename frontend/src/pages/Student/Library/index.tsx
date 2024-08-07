@@ -108,7 +108,7 @@ const Library: React.FC = (): JSX.Element => {
 
       if (
         isValid && verb[verb.length - 1] === 'y' &&
-        !['buy', 'stay', 'pay'].includes(verb)
+        !['buy', 'stay', 'pay', 'play'].includes(verb)
       ) {
         return verb.replace('y', '');
       }
