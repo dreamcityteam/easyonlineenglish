@@ -48,6 +48,4 @@
 
 #### Run the Application in mode development:
 1. Open the terminal at the root of the project and execute the following command:
-```cd frontend && npm start ```
-2. Open the terminal at the root of the project and execute the following command:
-```cd backend && npm start ```
+```npm start ```

@@ -43,7 +43,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     sentence: false
   });
   const [countPronunciation, setCountPronunciation] = useState<number>(1);
-  const [closeMessage, setCloseMessage] = useState<boolean>(false);
+  const [wrongPronunciationMessage, setWrongPronunciationMessage] = useState<boolean>(false);
   const [isCorrectPronuciation, setIsCorrectPronunciation] = useState<boolean>(false);
   const [pronunciationFeedback, setPronunciationFeedback] = useState<string>('');
 
@@ -301,8 +301,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       return skipWord();
     }
 
-    if (countPronunciation === 3) {
-      setCloseMessage(true);
+    if (countPronunciation === 3 && !isCorrect) {
+      setWrongPronunciationMessage(true);
     }
 
     setCountPronunciation(countPronunciation + 1);
@@ -592,7 +592,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           state={[canShowModal, setCanShowModal]}
         />
         <ModalWrongPronunciation
-          state={[closeMessage, setCloseMessage]}
+          state={[wrongPronunciationMessage, setWrongPronunciationMessage]}
         />
       </section >
     </>
