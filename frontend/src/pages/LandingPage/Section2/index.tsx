@@ -11,6 +11,7 @@ const Section2: React.FC = (): JSX.Element => {
   useScrollAnimation({
     classNameAnimation: style.img__animation,
     ref: imageRefs,
+    windowHeight: 200
   });
 
   return (
