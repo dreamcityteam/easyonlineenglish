@@ -33,11 +33,11 @@ const Speech: React.FC<Props> = ({
     onPlaySpeech && onPlaySpeech(true);
 
     pronunciationAudio.onended = (): void => {
-      whistleAudio.play();
-    }
-
-    whistleAudio.onended = (): void => {
       pronunciation();
+      setTimeout(() => {
+        whistleAudio.play();
+        setOutput('Ahora Pronunciar');
+      }, 500);
     }
 
     const pronunciation = (): void => {
@@ -50,10 +50,6 @@ const Speech: React.FC<Props> = ({
       setRecognition(recognition);
 
       recognition.continuous = true;
-
-      recognition.onstart = (): void => {
-        setOutput('Ahora Pronunciar');
-      }
 
       recognition.onresult = (event: any): void => {
         const transcript: any = event.results[event.results.length - 1][0].transcript;

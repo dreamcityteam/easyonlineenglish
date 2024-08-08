@@ -40,11 +40,12 @@ type Course = {
 
 type Courses = {
   _id: string;
-  picture: string;
-  title: string;
+  color: string;
   description: string;
-  progress?: number;
   isAvaliable: Boolean,
+  picture: string;
+  progress?: number;
+  title: string;
 }
 
 type LibraryContent = {

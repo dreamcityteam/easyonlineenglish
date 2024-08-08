@@ -64,7 +64,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           <h1>Cursos</h1>
         </header>
         <div className={style.courses__items}>
-          {courses.map(({ _id, picture, title, description, progress = 0, isAvaliable = true }: TCourses, index: number): JSX.Element => {
+          {courses.map(({ _id, picture, title, description, progress = 0, isAvaliable = true, color }: TCourses, index: number): JSX.Element => {
             let _progress: number = courseCache[_id] ? courseCache[_id].progress : progress;
 
             _progress = isDemo ? getDemoCourseProgress(_id) : _progress;
@@ -76,7 +76,10 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                   alt={title}
                   src={picture}
                 />
-                <div className={style.courses__background} />
+                <div
+                  className={style.courses__background}
+                  style={{ backgroundColor: color }}
+                />
                 <div className={style.courses__progress}>
                   <div className={style.courses__progress_chart}>
                     <svg viewBox="0 0 36 36" className={style.courses__progress_circular_chart}>

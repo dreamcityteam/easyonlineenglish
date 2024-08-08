@@ -38,21 +38,35 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [isSavingProgress, setIsSavingProgress] = useState<boolean>(false);
   const idCache: string = isDemo ? `${idCourse}-demo` : idCourse || '';
   const [canDisabledAudio, setCanDisabledAudio] = useState<boolean>(false);
-  const [canSlowAudio, setCanSlowAudio] = useState<{ [key: string]: boolean; }>({
-    word: false,
-    sentence: false
-  });
   const [countPronunciation, setCountPronunciation] = useState<number>(1);
   const [wrongPronunciationMessage, setWrongPronunciationMessage] = useState<boolean>(false);
   const [isCorrectPronuciation, setIsCorrectPronunciation] = useState<boolean>(false);
   const [pronunciationFeedback, setPronunciationFeedback] = useState<string>('');
+  const [canSlowAudio, setCanSlowAudio] = useState<{[key: string]: { audio: null | HTMLAudioElement; canPlay: boolean; }}>({
+    word: {
+      audio: null,
+      canPlay: false
+    },
+    sentence: {
+      audio: null,
+      canPlay: false
+    }
+  });
 
   useEffect(() => {
     saveCourseData();
   }, []);
 
+  const getAudioInitialize = () => ({
+    audio: null,
+    canPlay: false
+  });
+
   const disabledSlowAudio = (): void =>
-    setCanSlowAudio({ word: false, sentence: false });
+    setCanSlowAudio({
+      word: getAudioInitialize(),
+      sentence: getAudioInitialize(),
+    });
 
   const saveCourseCacheData = (course: TCourse): void =>
     dispatch({ type: SET_COURSE_CACHE, payload: { ...course, idCourse: idCache } });
@@ -392,20 +406,28 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   };
 
   const handlerOnPlayAudio = (type: 'word' | 'sentence'): void => {
+    const currentAudio = canSlowAudio[type];
     const isSentenceAudio: boolean = type === 'sentence';
     const url: string | undefined = isSentenceAudio
-      ? (canSlowAudio[type] && sentence?.audioSlowUrl) || sentence?.audioUrl
+      ? (currentAudio.canPlay && sentence?.audioSlowUrl) || sentence?.audioUrl
       : word?.audioUrl;
 
     if (!url || canDisabledAudio) return;
 
     const audio: HTMLAudioElement = new Audio(url);
 
+    if (currentAudio.audio) {
+      currentAudio.audio.pause();
+    }
+
     audio.play();
 
     setCanSlowAudio((prevState) => ({
       ...prevState,
-      [type]: !canSlowAudio[type]
+      [type]: {
+        audio: audio,
+        canPlay: !canSlowAudio[type].canPlay
+      },
     }));
   };
 
