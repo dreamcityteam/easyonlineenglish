@@ -13,7 +13,12 @@ const page404: React.FC = (): JSX.Element => {
       (location.pathname.includes('/course') || location.pathname === '/courses') && user && !user.payment.isPayment
     );
 
+    const canRedirectStudentCourse = (
+      (location.pathname === '/login') || location.pathname.includes('/register') && user
+    );
+
     canRedirectStudentPendingPayment && redirect('/plan');
+    canRedirectStudentCourse && redirect('/courses');
   }, [user]);
 
   return (
