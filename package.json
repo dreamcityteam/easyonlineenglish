@@ -1,12 +1,14 @@
 {
   "name": "easyonlineenglish",
   "version": "1.0.0",
-  "description": "<p align=\"center\">\r   <img width=\"150\" src=\"https://lh3.googleusercontent.com/d/1Le1RvHt1b3TDv9Tf_hFRdSD2u6tHAyWK\" />\r </p>\r <p align=\"center\">\r  <img width=\"150\" src=\"https://img.shields.io/badge/npm%20package->=18.16.0-green\" />\r </p>",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "frontend": "cd frontend && npm i && npm start",
-    "backend": "cd backend && npm i && npm start",
-    "start": "concurrently --kill-others \"npm run backend\" \"npm run frontend\""
+    "install-dependencies-frontend": "cd frontend && npm install",
+    "install-dependencies-backend": "cd backend && npm install",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm start",
+    "start": "npm run install-dependencies-frontend && npm run install-dependencies-backend && concurrently --kill-others \"npm run backend\" \"npm run frontend\""
   },
   "keywords": [],
   "author": "",

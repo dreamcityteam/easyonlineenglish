@@ -12,7 +12,7 @@ module.exports = async ({ user }, res) => {
     await connectToDatabase();
 
     let courses = await Course.find().lean().select({ __v: 0 });
-    console.log(courses)
+
     if (courses.length === 0) {
       response.message = 'There are no courses available';
     } else {

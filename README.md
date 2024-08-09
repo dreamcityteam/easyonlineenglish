@@ -36,14 +36,8 @@
  cd easy-online-english
 ```
 
-#### Install dependencies:
-1. Open the terminal at the root of the project and execute the following command:
-```bash 
-  cd frontend && npm install && cd .. && cd backend && npm install
-```
-
 #### Setup .env:
-1. Contact the developer to obtain the required `.env` file.
+1. Download the [files enviroment](https://dreamcityteam-my.sharepoint.com/:f:/p/bespinal/EltfquQcIxhLjuIvkG0gxwoBeOc6KRv17p19VxEAQTh8fg?e=pllXqH/).
 2. Add the `.env` file to both the backend and frontend directories.
 
 #### Run the Application in mode development:

@@ -72,7 +72,7 @@ module.exports = async (req, res) => {
       const response = await axios.post(formActionUrl, params, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       });
-      console.log(response.data)
+      (response.data)
     if (data.IsoCode === '00') {
       const isPayment = await payment({
         idUser: req.user.id,
