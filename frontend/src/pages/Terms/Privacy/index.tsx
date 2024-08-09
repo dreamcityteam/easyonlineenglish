@@ -1,6 +1,7 @@
 import React from 'react';
 import style from '../style.module.sass';
 import useScrollToTop from '../../../hooks/ScrollUp';
+import MetaTags from './MetaTags';
 
 interface Props {
   removeH1?: boolean;
@@ -12,6 +13,8 @@ const PrivacyPolicy: React.FC<Props> = ({ removeH1 }): JSX.Element => {
   const Tag = removeH1 ? 'h2' : 'h1';
 
   return (
+    <>
+    <MetaTags />
     <section className={style.terms}>
       <div className={style.terms__container}>
         <Tag>Política de Privacidad de Easy Online English</Tag>
@@ -119,6 +122,7 @@ const PrivacyPolicy: React.FC<Props> = ({ removeH1 }): JSX.Element => {
         </p>
       </div>
     </section>
+    </>
   );
 }
 
