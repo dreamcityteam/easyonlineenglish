@@ -217,7 +217,7 @@ const gethPathWordpress = (filename: string): string =>
   `${ASSETS_URL}${filename}`;
 
 const formatWord = (word: string): string =>
-  word.toLowerCase().replace(/\.|\?|,/g, '');
+  word.toLowerCase().replace(/[^\w ]/g, '');
 
 const removeAccents = (str: string): string =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
