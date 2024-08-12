@@ -8,7 +8,7 @@
     "install-dependencies-backend": "cd backend && npm install",
     "frontend": "cd frontend && npm start",
     "backend": "cd backend && npm start",
-    "start": "npm run install-dependencies-frontend && npm run install-dependencies-backend && concurrently --kill-others \"npm run backend\" \"npm run frontend\""
+    "start": "npm i && npm run install-dependencies-frontend && npm run install-dependencies-backend && concurrently --kill-others \"npm run backend\" \"npm run frontend\""
   },
   "keywords": [],
   "author": "",
