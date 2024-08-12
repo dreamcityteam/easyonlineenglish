@@ -408,9 +408,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const handlerOnPlayAudio = (type: 'word' | 'sentence'): void => {
     const currentAudio = canSlowAudio[type];
     const isSentenceAudio: boolean = type === 'sentence';
-    const url: string | undefined = isSentenceAudio
-      ? (currentAudio.canPlay && sentence?.audioSlowUrl) || sentence?.audioUrl
-      : word?.audioUrl;
+    // const url: string | undefined = isSentenceAudio
+    //   ? (currentAudio.canPlay && sentence?.audioSlowUrl) || sentence?.audioUrl
+    //   : word?.audioUrl;
+    const url: string | undefined = sentence?.audioUrl;
 
     if (!url || canDisabledAudio) return;
 
@@ -421,6 +422,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     }
 
     audio.play();
+
+    if (canSlowAudio[type].canPlay) {
+      audio.playbackRate = 0.84;
+    }
 
     setCanSlowAudio((prevState) => ({
       ...prevState,
