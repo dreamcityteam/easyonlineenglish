@@ -4,6 +4,7 @@ import Modal from '../../../../components/Modal';
 import { send } from '../../../../tools/function';
 import context from '../../../../global/state/context';
 import Loading from '../../../../components/Form/Loading';
+import { LESSIONS_COUNT } from '../data';
 
 interface Props {
   course: string;
@@ -50,6 +51,13 @@ const ModalRating: React.FC<Props> = ({ state, course, lesson }): JSX.Element =>
     });
   };
 
+  const formatLesson = (lesson: string): string => {
+    const [, number]: string[] = lesson.split(' ');
+    const index: number = LESSIONS_COUNT.indexOf(number);
+
+    return `Lección ${LESSIONS_COUNT[index - 1]}`;
+  }
+
   const onSend = async (): Promise<void> => {
     setIsLoading(true);
 
@@ -61,8 +69,8 @@ const ModalRating: React.FC<Props> = ({ state, course, lesson }): JSX.Element =>
         lastname: user.lastname,
         rating,
         course,
-        lesson
-      } 
+        lesson: formatLesson(lesson)
+      }
     }).post();
 
     setIsLoading(false);
