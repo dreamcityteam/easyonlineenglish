@@ -37,7 +37,7 @@
 ```
 
 #### Setup .env:
-1. Download the [files enviroment](https://dreamcityteam-my.sharepoint.com/:f:/p/bespinal/EltfquQcIxhLjuIvkG0gxwoBeOc6KRv17p19VxEAQTh8fg?e=pllXqH/).
+1. Download the [files enviroment](https://dreamcityteam-my.sharepoint.com/:f:/p/bespinal/EltfquQcIxhLjuIvkG0gxwoBUI-1yGqmeWQrOB-aX-Na2Q?e=6dY0gA).
 2. Add the `.env` file to both the backend and frontend directories.
 
 #### Run the Application in mode development:
