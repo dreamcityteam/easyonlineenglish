@@ -347,7 +347,7 @@
   }
 
   .modal {
-    width: 76%;
+    transform: scale(0.8);
   }
 
   .modal:has(table) {

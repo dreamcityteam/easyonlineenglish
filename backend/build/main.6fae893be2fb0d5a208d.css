@@ -380,7 +380,7 @@
   }
 
   .modal {
-    width: 76%;
+    transform: scale(0.8);
   }
 
   .modal:has(table) {
@@ -483,4 +483,4 @@
 
 html{background-color:#fff;font-family:system-ui}section{margin-top:-25px}@font-face{font-family:"Inter-ExtraBold";src:url(/4164cfba15dbca5f37aa.ttf) format("truetype")}@font-face{font-family:"Inter-black";src:url(/02850f28027788580733.ttf) format("truetype")}
 
-/*# sourceMappingURL=main.e05f87ca3d2a08c5a09f.css.map*/
+/*# sourceMappingURL=main.6fae893be2fb0d5a208d.css.map*/
