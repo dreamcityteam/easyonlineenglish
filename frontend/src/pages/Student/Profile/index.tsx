@@ -199,7 +199,6 @@ const Profile: React.FC = (): JSX.Element => {
       >
         <div className="modal">
           <div className="modal-table">
-            <Close onClose={() => setIsEditStudent(false)} />
             <header className="modal-table-title">
               <h2>Historial de pago</h2>
             </header>
@@ -220,6 +219,7 @@ const Profile: React.FC = (): JSX.Element => {
       <Modal
         canShow={isStudentInvoiceStory}
       >
+        <Close onClose={() => setIsStudentInvoiceStory(false)} />
         <div className="modal">
           <Form
             api="student-update"
