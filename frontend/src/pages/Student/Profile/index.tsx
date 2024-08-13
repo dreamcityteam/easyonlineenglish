@@ -219,8 +219,8 @@ const Profile: React.FC = (): JSX.Element => {
       <Modal
         canShow={isStudentInvoiceStory}
       >
-        <Close onClose={() => setIsStudentInvoiceStory(false)} />
         <div className="modal">
+          <Close onClose={() => setIsStudentInvoiceStory(false)} />
           <Form
             api="student-update"
             buttonText="Guardar"
