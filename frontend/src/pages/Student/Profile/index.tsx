@@ -173,7 +173,8 @@ const Profile: React.FC = (): JSX.Element => {
           </div>
         </div>
         <div className="bg">
-          <div><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          <div>
+            {[...Array(10)].map((_, index) => <span key={index}></span>)}
           </div>
         </div>
       </div>
@@ -220,7 +221,6 @@ const Profile: React.FC = (): JSX.Element => {
         canShow={isStudentInvoiceStory}
       >
         <div className="modal">
-          <Close onClose={() => setIsStudentInvoiceStory(false)} />
           <Form
             api="student-update"
             buttonText="Guardar"
@@ -229,7 +229,7 @@ const Profile: React.FC = (): JSX.Element => {
           />
         </div>
       </Modal>
-    </section >
+    </section>
   );
 };
 
