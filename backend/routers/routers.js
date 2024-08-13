@@ -21,6 +21,7 @@ const studentProfileImage = require('../api/studentProfileImage');
 const updateStudentTerms = require('../api/updateStudentTerms');
 const suscribete = require('../api/suscribete');
 const uploadFile = require('../api/uploadFile');
+const studentRating = require('../api/studentRating');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -139,5 +140,10 @@ module.exports = [
     path: ENDPOINT.UPLOAD_FILE,
     method: 'post',
     func: uploadFile
+  },
+  {
+    path: ENDPOINT.STUDENT_RATING,
+    method: 'post',
+    func: studentRating
   }
 ];

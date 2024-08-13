@@ -150,14 +150,14 @@ const Profile: React.FC = (): JSX.Element => {
             <li><span>Membresía</span>{getMembership()}</li>
           </ul>
           <div className="content__button">
-            {!invoiceStory.length || isFree(user) && (
+            {!isFree(user) || !!invoiceStory.length ? (
               <button
                 className="button"
                 onClick={() => setIsEditStudent(true)}
               >
                 <p className="button__text">Historial de pago</p>
               </button>
-            )}
+            ) : null}
             <button
               className="button"
               onClick={() => setIsStudentInvoiceStory(true)}

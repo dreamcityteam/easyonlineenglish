@@ -1,6 +1,6 @@
 @import '../../../../public/mixin/index.module'
 
-.ResetPassword
+.resetPassword
   display: flex
   justify-content: center
 
@@ -8,11 +8,14 @@
     width: 100%
 
   &__error
-    padding: 10px
+    color: red
     display: block
     max-width: 400px
-    color: red
+    padding: 10px
 
   @include mobile
-    form
-      width: 300px
+    &__form
+      > div
+        margin-top: 0
+        transform: scale(0.8)
+        width: 100%

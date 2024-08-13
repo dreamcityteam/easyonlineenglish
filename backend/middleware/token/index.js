@@ -36,6 +36,7 @@ module.exports = (req, res, next) => {
       isEndpoint(ENDPOINT.STUDENT_INVOICE_STORY) ||
       isEndpoint(ENDPOINT.STUDENT_DELETE_ACCOUNT) ||
       isEndpoint(ENDPOINT.UPDATE_STUDENT_TERMS) ||
+      isEndpoint(ENDPOINT.STUDENT_RATING) ||
       /^\/api\/v1\/student-course\/\w/.test(URL) ||
       /^\/api\/v1\/upload-file(?:\?filename=[^&]*)?$/.test(URL) ||
       /^\/api\/v1\/student-profile-image(?:\?filename=[^&]*)?$/.test(URL)

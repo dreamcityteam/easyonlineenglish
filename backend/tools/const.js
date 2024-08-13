@@ -44,7 +44,8 @@ const ENDPOINT = {
   STUDENT_PROFILE_IMAGE: 'student-profile-image',
   UPDATE_STUDENT_TERMS: 'update-student-terms',
   SUSCRIBETE: 'suscribete',
-  UPLOAD_FILE: 'upload-file'
+  UPLOAD_FILE: 'upload-file',
+  STUDENT_RATING: 'student-rating'
 };
 
 const PAYMENT_METHOD = {

@@ -16,6 +16,7 @@ import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
 import Image from '../../../components/Image';
 import MetaTags from './MetaTags';
+import ModalRating from './ModalRating';
 
 interface Props {
   isDemo?: boolean;
@@ -52,6 +53,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       canPlay: false
     }
   });
+  const [canShowModalRating, setCanShowModalRating] = useState<boolean>(false);
 
   useEffect(() => {
     saveCourseData();
@@ -203,6 +205,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         handleNextWord(nextWord, nextWordIndex, lessonIndex);
       } else if (nextLession) {
         const nextWord: Word = course.lessons[nextLessionIndex].words[0];
+
+        if ((course.index.lesson < nextLessionIndex)) {
+          setCanShowModalRating(true);
+        }
 
         handleNextWord(nextWord, 0, nextLessionIndex);
       } else {
@@ -619,6 +625,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         />
         <ModalWrongPronunciation
           state={[wrongPronunciationMessage, setWrongPronunciationMessage]}
+        />
+        <ModalRating
+          state={[canShowModalRating, setCanShowModalRating]}
+          course={course?.title || ''}
+          lesson={lessionTitle} 
         />
       </section >
     </>

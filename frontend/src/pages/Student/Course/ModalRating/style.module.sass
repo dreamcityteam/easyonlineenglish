@@ -1,0 +1,51 @@
+@import '../../../../../public/mixin/index.module'
+
+.stats
+  align-items: center
+  background-color: white
+  border-radius: 5px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  max-height: 500px
+  max-width: 590px
+  padding: 20px
+  position: relative
+  width: 100%
+  z-index: 4
+
+  &__container
+    align-items: center
+    display: flex
+    justify-content: center
+    list-style: none
+    padding: 0
+
+  &__number
+    cursor: pointer
+
+  &__container--hover
+    fill: #27b3e4
+    transition: fill 0.5s ease
+
+  &__header
+    color: #595959
+    text-align: center
+
+  &__button
+    background-color: #27b3e499
+    border-radius: 8px
+    border: none
+    color: white
+    cursor: pointer
+    margin-top: 20px
+    padding: 10px 20px
+    text-transform: capitalize
+    transition: background-color 0.5s ease
+
+    &:hover
+      background-color: #27b3e4
+
+  @include mobile
+    svg
+      width: 40px
