@@ -17,6 +17,7 @@ import ModalCongratulation from './ModalCongratulation';
 import Image from '../../../components/Image';
 import MetaTags from './MetaTags';
 import ModalRating from './ModalRating';
+import ModalTips from './ModalTips';
 
 interface Props {
   isDemo?: boolean;
@@ -631,6 +632,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           course={course?.title || ''}
           lesson={lessionTitle} 
         />
+        <ModalTips />
       </section >
     </>
   );
