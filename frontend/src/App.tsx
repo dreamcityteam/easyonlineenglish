@@ -53,10 +53,7 @@ const App: React.FC = (): JSX.Element => {
           <Footer />
         </Router>
       </context.Provider>
-      <Loading
-        canShow={state.loading.canShow}
-        text={state.loading.text}
-      />
+      <Loading canShow={state.loading.canShow} />
     </>
   );
 };

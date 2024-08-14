@@ -1,0 +1,23 @@
+@import '../../../public/mixin/index.module'
+
+.loading
+  align-content: center
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+  &__image
+    text-align: center
+
+    img
+      width: 300px
+
+  &__header
+    text-align: center
+      padding: 0 50px
+
+    p
+      text-align: justify
+
+  @include mobile
+    overflow-x: scroll
