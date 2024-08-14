@@ -8,6 +8,7 @@ type Inputs = {
   phone: Field;
   name: Field;
   lastname: Field;
+  repeatPassword: Field;
 };
 
 const inputs: Inputs = {
@@ -71,8 +72,19 @@ const inputs: Inputs = {
       regExp: REGEXP.PASSWORD,
     },
   },
+
+  repeatPassword: {
+    label: 'Repetir contraseña',
+    type: 'password',
+    placeholder: 'Escriba su contraseña',
+    autoComplete: 'new-password',
+    validation: {
+      message: MESSAGE.PASSWORD,
+      regExp: REGEXP.PASSWORD,
+    },
+  },
 };
 
 export {
   inputs
-}
+};

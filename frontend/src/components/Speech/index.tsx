@@ -28,6 +28,7 @@ const Speech: React.FC<Props> = ({
     const pronunciationAudio: HTMLAudioElement = new Audio(audioUrl);
     const whistleAudio: HTMLAudioElement = new Audio(gethPathWordpress('2016/12/pronunciation.mp3'));
 
+    pronunciationAudio.playbackRate = 0.75;
     pronunciationAudio.play();
     setCanPlay(true);
     onPlaySpeech && onPlaySpeech(true);

@@ -41,7 +41,19 @@ const Form: React.FC<Props> = ({
     keys.forEach((key: string): void => {
       const field: FieldForm = state[key];
 
-      if (field.validation?.isOpcional === true && !field.value) {
+      if (key === 'repeatPassword' && field.value) {
+        const fieldPassword = state['password'];
+        const isNotValid = fieldPassword.value !== field.value;
+
+        field.validation = {
+          ...field.validation,
+          emptyErrorMessage: '',
+          isNotValid,
+          message: isNotValid ? 'Las contraseñas no son iguales' : ''
+        };
+
+        isValid = !isNotValid;
+      } else if (field.validation?.isOpcional === true && !field.value) {
         field.validation = {
           ...field.validation,
           emptyErrorMessage: '',

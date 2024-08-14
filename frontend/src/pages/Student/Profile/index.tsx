@@ -22,6 +22,7 @@ const Profile: React.FC = (): JSX.Element => {
   const [isDeleteStudent, setIsDeleteStudent] = useState<boolean>(false);
   const fileInputRef = useRef(null);
   const redirect = useNavigate();
+  const isValid: boolean = invoiceStory.length === 0;
 
   useEffect(() => {
     setStudentInvoiceStory();
@@ -150,14 +151,16 @@ const Profile: React.FC = (): JSX.Element => {
             <li><span>Membresía</span>{getMembership()}</li>
           </ul>
           <div className="content__button">
-            {!isFree(user) || !!invoiceStory.length ? (
+            {!isFree(user) && (
               <button
                 className="button"
                 onClick={() => setIsEditStudent(true)}
+                disabled={isValid}
+                style={{ backgroundColor: isValid ? 'gray' : '' }}
               >
                 <p className="button__text">Historial de pago</p>
               </button>
-            ) : null}
+            )}
             <button
               className="button"
               onClick={() => setIsStudentInvoiceStory(true)}
@@ -199,6 +202,7 @@ const Profile: React.FC = (): JSX.Element => {
       >
         <div className="modal">
           <div className="modal-table">
+            <Close onClose={() => setIsEditStudent(false)} />
             <header className="modal-table-title">
               <h2>Historial de pago</h2>
             </header>
