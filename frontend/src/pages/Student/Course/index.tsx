@@ -429,7 +429,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     audio.play();
 
     if (canSlowAudio[type].canPlay && !sentence?.audioSlowUrl) {
-      audio.playbackRate = 0.75;
+      audio.playbackRate = 0.76;
     }
 
     setCanSlowAudio((prevState) => ({
