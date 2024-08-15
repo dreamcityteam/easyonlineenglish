@@ -30,6 +30,7 @@ const HTTP_STATUS_CODES: StatusCode = {
 
 const AUTH_TOKEN: 'AUTH_TOKEN' = 'AUTH_TOKEN';
 const TUTORIAL: 'TUTORIAL' = 'TUTORIAL';
+const SAVED_CURRED_SENTENCE: 'SAVED_CURRED_SENTENCE' = 'SAVED_CURRED_SENTENCE'
 const DEFAULT_PHOTO: string = 'https://secure.gravatar.com/avatar/3b314b13ca2c8ed3a56da2620bb25ff4?s=150&d=mm&r=g';
 const ASSETS_URL: string = 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/';
 
@@ -69,4 +70,5 @@ export {
   ASSETS_URL,
   MESSAGE,
   PAYMENT_METHOD,
+  SAVED_CURRED_SENTENCE
 }

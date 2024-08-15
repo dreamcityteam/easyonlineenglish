@@ -24,7 +24,7 @@ const uploadBlob = async ({ service, file }: { service: string; file: any; }): P
     ).then(response => response.json());
 
     return statusCode === HTTP_STATUS_CODES.OK ? data : '';
-  } catch(error) {
+  } catch (error) {
     console.error('Error uploading file:', error);
     return ''
   }
@@ -128,57 +128,28 @@ const getData = async (
   dispatch({ type: CLEAR_LOAD });
 }
 
-const cookie = {
-  set(
-    name: string,
-    value: string,
-    days?: number,
-    path: string = "/",
-    domain?: string,
-    secure?: boolean
-  ) {
-    let cookieString: string = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
-
-    if (days) {
-      const date: Date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      cookieString += `; expires=${date.toUTCString()}`;
-    }
-
-    if (path) {
-      cookieString += `; path=${path}`;
-    }
-
-    if (domain) {
-      cookieString += `; domain=${domain}`;
-    }
-
-    if (secure) {
-      cookieString += `; secure`;
-    }
-
-    document.cookie = cookieString;
+const Storage = {
+  set: (key: string, value: any): void => {
+    const jsonValue = JSON.stringify(value);
+    localStorage.setItem(key, jsonValue);
   },
 
-  get(name: string): string | null {
-    const nameEQ = encodeURIComponent(name) + "=";
-    const cookies = document.cookie.split(';');
+  remove: (key: string): void => {
+    localStorage.removeItem(key);
+  },
 
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i];
-
-      while (cookie.charAt(0) === ' ') {
-        cookie = cookie.substring(1, cookie.length);
-      }
-
-      if (cookie.indexOf(nameEQ) === 0) {
-        return decodeURIComponent(cookie.substring(nameEQ.length, cookie.length));
-      }
+  get: (key: string): any => {
+    const jsonValue = localStorage.getItem(key);
+    if (jsonValue) {
+      return JSON.parse(jsonValue);
     }
+    return null; // Return null if the key doesn't exist
+  },
 
-    return null;
+  clear: (): void => {
+    localStorage.clear();
   }
-}
+};
 
 const isUser = (): boolean => {
   const [{ user }] = useContext(context);
@@ -222,7 +193,7 @@ const formatWord = (word: string): string =>
 const removeAccents = (str: string): string =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-const getDomainBasedOnEnvironment  = (): string  =>
+const getDomainBasedOnEnvironment = (): string =>
   isDev() ? 'http://localhost:3000' : '';
 
 const getFetchCredentialsBasedOnEnvironment = (): 'include' | 'same-origin' =>
@@ -244,7 +215,6 @@ export {
   formatPhoneNumber,
   isDev,
   getData,
-  cookie,
   isUser,
   initGoogleAnalytics,
   isAdmin,
@@ -254,5 +224,6 @@ export {
   formatWord,
   removeAccents,
   uploadBlob,
-  getClassName
+  getClassName,
+  Storage
 };

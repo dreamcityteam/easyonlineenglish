@@ -9,7 +9,7 @@ import Speech from '../../../components/Speech';
 import { EnglishVerbConjugation, Item } from './type';
 import Sound from '../../../components/Sound';
 import verbs from './verbs.json';
-import Image from '../../../components/Image';
+import MetaTags from './MetaTags';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -98,7 +98,7 @@ const Library: React.FC = (): JSX.Element => {
 
     const getApostrophe = (): string => {
       const lastLetter = verb.slice(-1);
-      if (['carry', 'fly', 'try', 'study' ].includes(verb)) return 'ies';
+      if (['carry', 'fly', 'try', 'study'].includes(verb)) return 'ies';
 
       return lastLetter === 'o' || lastLetter === 'h' ? 'es' : 's';
     };
@@ -142,9 +142,12 @@ const Library: React.FC = (): JSX.Element => {
     );
   };
 
-
   return (
     <>
+      <MetaTags
+        title="Librería"
+        description="Descubre una amplia colección de vocabulario en inglés y verbos esenciales para mejorar tus habilidades lingüísticas. Perfecto para estudiantes de todos los niveles, ofrece recursos prácticos para aprender y dominar el inglés con facilidad."
+      />
       <section className={style.vocabularies}>
         <header className={style.vocabularies__header}>
           <h1>Librería</h1>

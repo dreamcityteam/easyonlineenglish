@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 interface Props {
   title: string;
   description: string;
-  schema: string;
+  schema?: string;
 }
 
 const MetaTags = ({
@@ -33,9 +33,11 @@ const MetaTags = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${origin}/logo192.png`} />
 
-      <script type="application/ld+json">
+      {schema && (
+        <script type="application/ld+json">
         {schema}
       </script>
+      )}      
     </Helmet>
   );
 };

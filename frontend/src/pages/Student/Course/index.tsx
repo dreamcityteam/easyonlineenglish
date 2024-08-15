@@ -5,10 +5,10 @@ import Aside from './Aside';
 import Speech from '../../../components/Speech';
 import style from './style.module.sass';
 import { CourseProgress, OnWord } from './types';
-import { formatWord, getData, isAdmin, removeAccents, send } from '../../../tools/function';
+import { formatWord, getData, isAdmin, removeAccents, send, Storage } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
-import { HTTP_STATUS_CODES } from '../../../tools/constant';
+import { HTTP_STATUS_CODES, SAVED_CURRED_SENTENCE } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
 import { LESSIONS_COUNT } from './data';
@@ -459,7 +459,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       <>
         {formattedWords.map((word: string, index: number): JSX.Element => {
           const isFirstWord: boolean = index === 0;
-          const isMismatch: boolean = pronunciations.includes(word);
+          let isMismatch: boolean = pronunciations.includes(word);
+
+          if (isMismatch && (formattedWords.length === pronunciations.length)) {
+            isMismatch = word === pronunciations[index];
+          }
 
           const style: any = {
             borderBottom: isMismatch ? 'none' : '2px solid red',
