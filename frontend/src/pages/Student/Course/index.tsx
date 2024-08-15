@@ -378,7 +378,9 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         ...course,
         index: {
           ...course.index,
-          sentence: sentenceIndex === word.sentences.length - 1 ? sentenceIndex : sentenceIndex + 1
+          sentence: (sentenceIndex === word.sentences.length - 1) 
+            ? sentenceIndex
+            : sentenceIndex + 1
         }
       });
     }
