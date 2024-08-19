@@ -163,7 +163,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       newWord = getWordSentenceCompleted(word);
     }
 
-    if (course && course.index.sentence > 0) {
+    if (course && course.index.sentence > 0 && !canTakeNextWord) {
       newWord = getWordSentenceCompleted(word, course?.index.sentence);
     }
 
@@ -254,7 +254,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
           currentState.completedWords[completedWords] = true;
           currentState.unlockedWords[unlockedWords] = true;
-          currentState.index = { lesson: index.lesson, word: index.word };
+          currentState.index = { lesson: index.lesson, word: index.word, sentence: 0 };
 
           saveCourseCacheData(currentState);
           return currentState;
@@ -368,10 +368,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         api: 'student-updated-sentence-index',
         data: {
           index: (sentenceIndex === word.sentences.length - 1)
-            ? sentenceIndex
-            : sentenceIndex + 1,
+          ? sentenceIndex
+          : sentenceIndex + 1,
           idStudentCourse: course?.idStudentCourse
-        }
+        }        
       }).post();
     }
   }
