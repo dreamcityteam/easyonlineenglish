@@ -114,7 +114,7 @@ const reducer = (state: State, { payload, type }: Option): State => ({
     title = '',
     description = '',
     isCompleted = false,
-    index = { lesson: 0, word: 0 },
+    index = { lesson: 0, word: 0, sentence: 0 },
     unlockedWords = {},
     completedWords = {},
     lessons = [],

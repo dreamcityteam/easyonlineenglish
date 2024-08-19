@@ -24,7 +24,11 @@ const studentCourseSchema = new Schema({
     word: {
       type: Number,
       default: 0
-    } 
+    },
+    sentence: {
+      type: Number,
+      default: 0
+    }
   },
   unlockedWords: {
     type: Map, 

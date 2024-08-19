@@ -89,7 +89,7 @@ const Navigator: React.FC = (): JSX.Element => {
             <Link className={style.navigator__link} to={isAdmin(user) ? '/courses' : '/'}>
             <Image
               alt="logo"
-              path="icons/logo-hUzihbdc6SVraJNSw22mWbQWhY8aF7.avif"
+              path="logoo-VwZrWBbCRKonq7x72TKO0TfiC1CUqH.webp"
             />
             </Link>
           </div>

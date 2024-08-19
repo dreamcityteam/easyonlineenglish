@@ -31,7 +31,7 @@ type Course = {
   title: string;
   description: string;
   isCompleted: boolean;
-  index: { lesson: number; word: number; sentence?: number };
+  index: { lesson: number; word: number; sentence: number };
   unlockedWords: { [key: string]: boolean };
   completedWords: { [key: string]: boolean };
   lessons: Lesson[];

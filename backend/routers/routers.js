@@ -22,6 +22,7 @@ const updateStudentTerms = require('../api/updateStudentTerms');
 const suscribete = require('../api/suscribete');
 const uploadFile = require('../api/uploadFile');
 const studentRating = require('../api/studentRating');
+const studentUpdateSentenceIndex = require('../api/studentUpdatedSentenceIndex');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -145,5 +146,10 @@ module.exports = [
     path: ENDPOINT.STUDENT_RATING,
     method: 'post',
     func: studentRating
+  },
+  {
+    path: ENDPOINT.STUDENT_UPDATE_SENTENCE_INDEX,
+    method: 'post',
+    func: studentUpdateSentenceIndex
   }
 ];

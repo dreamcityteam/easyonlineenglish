@@ -19,7 +19,7 @@ const Head = ({
 
   return (
     <Helmet>
-      <title>{title} | Easy Online English</title>
+      <title>{title} - Easy Online English</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={fullPath} />
 

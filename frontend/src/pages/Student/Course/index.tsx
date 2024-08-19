@@ -13,7 +13,7 @@ import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
-import { LESSIONS_COUNT } from './data';
+import { LESSIONS_COUNT, messagesCorrect, messagesWrong } from './data';
 import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
 import Image from '../../../components/Image';
@@ -129,12 +129,14 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   const setCourseData = (course: TCourse): void => {
     const currentLession: Lesson = course.lessons[course.index.lesson];
-    const cache: TCourse = courseCache[idCache];
-    const sentenceIndex: number = cache ? cache.index.sentence || 0 : 0;
+    let sentenceIndex: number = 0;
     let currentWord: Word = currentLession.words[course.index.word];
 
     if (course.completedWords[currentWord._id]) {
       currentWord = getWordSentenceCompleted(currentWord);
+    } else if (course.index.sentence > 0) {
+      sentenceIndex = course.index.sentence;
+      currentWord = getWordSentenceCompleted(currentWord, course.index.sentence);
     }
 
     setLessons(course.lessons);
@@ -161,6 +163,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       newWord = getWordSentenceCompleted(word);
     }
 
+    if (course && course.index.sentence > 0) {
+      newWord = getWordSentenceCompleted(word, course?.index.sentence);
+    }
+
     if (
       course?.unlockedWords[word._id] ||
       canTakeNextWord ||
@@ -179,11 +185,14 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     setCountPronunciation(0);
   };
 
-  const getWordSentenceCompleted = (word: Word): Word => {
+  const getWordSentenceCompleted = (word: Word, sentenceIndex?: number): Word => {
     const newState: Word = { ...word };
 
     newState.sentences = word.sentences.map(
-      (sentence: Sentence): Sentence => ({ ...sentence, isCompleted: true, })
+      (sentence: Sentence, index: number): Sentence => ({
+        ...sentence,
+        isCompleted: typeof sentenceIndex === 'number' ? (sentenceIndex > index) : true
+      })
     );
 
     return newState;
@@ -332,29 +341,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   };
 
   const getFeedbackMessage = () => {
-    const messagesCorrect: string[] = [
-      '¡Correcto!',
-      '¡Bien!',
-      '¡Vas bien!',
-      '¡Vas muy bien!',
-      '¡Sigue así!',
-      '¡Perfecto!',
-      '¡Bien hecho!',
-      '¡Te felicito!',
-      '¡Sigue avanzando!',
-      '¡Super bien!',
-      '¡Excelente!'
-    ];
-
-    const messagesWrong: string[] = [
-      '¡Vuelve a intentarlo!',
-      '¡Estuvo cerca! Pero lo puedes hacer mejor.',
-      '¡Buen intento! ¿Qué tal una vez más?',
-      '¡Bien! ¿Lo intentamos de nuevo?',
-      '¡Te invito a que lo intentes de nuevo!',
-    ];
-
-    const getMessage = (messages: string[]) => `${messages[Math.floor(Math.random() * messages.length)]}`;
+    const getMessage = (messages: string[]) =>
+      `${messages[Math.floor(Math.random() * messages.length)]}`;
 
     return {
       correct: getMessage(messagesCorrect),
@@ -364,7 +352,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   const skipWord = (): void => {
     setCountPronunciation(0);
-    saveCacheSentenceIndex();
+    saveSentenceIndex();
     setWord((currentState: any) => {
       const newState = currentState;
 
@@ -374,17 +362,17 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     });
   }
 
-  const saveCacheSentenceIndex = (): void => {
+  const saveSentenceIndex = async (): Promise<void> => {
     if (course && word) {
-      saveCourseCacheData({
-        ...course,
-        index: {
-          ...course.index,
-          sentence: (sentenceIndex === word.sentences.length - 1)
+      await send({
+        api: 'student-updated-sentence-index',
+        data: {
+          index: (sentenceIndex === word.sentences.length - 1)
             ? sentenceIndex
-            : sentenceIndex + 1
+            : sentenceIndex + 1,
+          idStudentCourse: course?.idStudentCourse
         }
-      });
+      }).post();
     }
   }
 
