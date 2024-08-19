@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Course as TCourse, Lesson, Sentence, Word } from '../../../global/state/type';
 import Aside from './Aside';
 import Speech from '../../../components/Speech';
@@ -8,14 +10,14 @@ import { CourseProgress, OnWord } from './types';
 import { formatWord, getData, isAdmin, removeAccents, send, Storage } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
-import { HTTP_STATUS_CODES, SAVED_CURRED_SENTENCE } from '../../../tools/constant';
+import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
 import { LESSIONS_COUNT } from './data';
 import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
 import Image from '../../../components/Image';
-import MetaTags from './MetaTags';
+import Head from './Head';
 import ModalRating from './ModalRating';
 import ModalTips from './ModalTips';
 
@@ -44,7 +46,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [wrongPronunciationMessage, setWrongPronunciationMessage] = useState<boolean>(false);
   const [isCorrectPronuciation, setIsCorrectPronunciation] = useState<boolean>(false);
   const [pronunciationFeedback, setPronunciationFeedback] = useState<string>('');
-  const [canSlowAudio, setCanSlowAudio] = useState<{[key: string]: { audio: null | HTMLAudioElement; canPlay: boolean; }}>({
+  const [canSlowAudio, setCanSlowAudio] = useState<{ [key: string]: { audio: null | HTMLAudioElement; canPlay: boolean; } }>({
     word: {
       audio: null,
       canPlay: false
@@ -378,7 +380,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         ...course,
         index: {
           ...course.index,
-          sentence: (sentenceIndex === word.sentences.length - 1) 
+          sentence: (sentenceIndex === word.sentences.length - 1)
             ? sentenceIndex
             : sentenceIndex + 1
         }
@@ -497,7 +499,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   return (
     <>
-      <MetaTags
+      <Head
         title={course?.title || ''}
         description={course?.description || ''}
       />
@@ -574,10 +576,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 </span>
               </div>
               <div className={style.course__feedback}>
-                <img
-                  alt="Sentence"
+                <LazyLoadImage
+                  alt={sentence?.englishWord}
                   className={style.course__image}
-                  loading="lazy"
+                  effect="blur"
                   src={sentence?.imageUrl}
                 />
                 {feedback.canShow && (
@@ -636,7 +638,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         <ModalRating
           state={[canShowModalRating, setCanShowModalRating]}
           course={course?.title || ''}
-          lesson={lessionTitle} 
+          lesson={lessionTitle}
         />
         <ModalTips />
       </section >

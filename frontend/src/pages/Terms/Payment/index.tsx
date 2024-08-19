@@ -1,7 +1,7 @@
 import React from 'react';
 import style from '../style.module.sass';
 import useScrollToTop from '../../../hooks/ScrollUp';
-import MetaTags from './MetaTags';
+import Head from './Head';
 
 interface Props {
   removeH1?: boolean;
@@ -14,7 +14,7 @@ const Payment: React.FC<Props> = ({ removeH1 }): JSX.Element => {
 
   return (
     <>
-      <MetaTags />
+      <Head />
       <section className={style.terms}>
         <div className={style.terms__container}>
           <Tag>

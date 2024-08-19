@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CLEAR_LOAD, SET_LOAD } from '../global/state/actionTypes';
 import { ASSETS_URL, HTTP_STATUS_CODES, ROLE } from './constant';
-import { Request, RequestOptions, Send, Store, Response, Data } from './type';
+import { Request, RequestOptions, Send, Response, Data } from './type';
 import context from '../global/state/context';
 import { User } from '../global/state/type';
 
@@ -92,23 +92,6 @@ const isDev = (): boolean =>
     ? process.env.NODE_ENV.includes('development')
     : false;
 
-const store: Store = {
-  get: (value: string): string | null | { [key: string]: any; } =>
-    localStorage.getItem(value),
-
-  set: (key: string, value: string | { [key: string]: any }): void => {
-    if (typeof value === 'string') {
-      localStorage.setItem(key, value);
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-  },
-
-  del: (key: string): void => {
-    localStorage.removeItem(key);
-  }
-}
-
 const formatPhoneNumber = (phoneNumber: string = ''): string =>
   phoneNumber
     .replace(/\D/g, '')
@@ -128,6 +111,25 @@ const getData = async (
   dispatch({ type: CLEAR_LOAD });
 }
 
+const Cookie = {
+  get: (name: string): string | null => {
+    const value: string = `; ${document.cookie}`;
+    const parts: string[] = value.split(`; ${name}=`);
+
+    return parts.length === 2 ? (parts.pop()?.split(';').shift() || null) : null;
+  },
+
+  set: (name: string, value: string, days: number = 7): void => {
+    const expires: Date = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+  },
+
+  remove: (name: string): void => {
+    document.cookie = `${name}=; Max-Age=-99999999; path=/`;
+  }
+};
+
 const Storage = {
   set: (key: string, value: any): void => {
     const jsonValue = JSON.stringify(value);
@@ -140,10 +142,7 @@ const Storage = {
 
   get: (key: string): any => {
     const jsonValue = localStorage.getItem(key);
-    if (jsonValue) {
-      return JSON.parse(jsonValue);
-    }
-    return null; // Return null if the key doesn't exist
+    return jsonValue ? JSON.parse(jsonValue) : null;
   },
 
   clear: (): void => {
@@ -211,7 +210,6 @@ const getClassName = (...props: string[]): string => {
 
 export {
   send,
-  store,
   formatPhoneNumber,
   isDev,
   getData,
@@ -225,5 +223,6 @@ export {
   removeAccents,
   uploadBlob,
   getClassName,
-  Storage
+  Storage,
+  Cookie
 };

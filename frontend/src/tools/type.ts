@@ -54,14 +54,6 @@ type Send = {
   patch: () => Promise<Response>;
 }
 
-type Store = {
-  del: (value: string) => void;
-  get: (value: string) => string | null | { [key: string]: any };
-  set: (key: string, value: string | {
-    [key: string]: any;
-  }) => void;
-};
-
 type Data = {
   token?: string | undefined;
   service: {
@@ -79,7 +71,6 @@ export type {
   Request,
   RequestOptions,
   Send,
-  Store,
   Response,
   StatusCode,
   Role,

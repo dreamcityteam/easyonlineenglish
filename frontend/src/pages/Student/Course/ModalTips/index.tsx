@@ -18,7 +18,7 @@ const ModalTips: React.FC = () => {
         <div className={style.loading__container}>
           <div className={style.loading__image}>
             <Image
-              path="icons/logo-loading-P5BjK5Qki2eDup3kG9XVBlTMXaRkyi.avif"
+              path="logo-loading-klQAUtgmmO98yTboO81AuSKCMrni6c.jpg"
               alt="Icon logo loading"
             />
           </div>

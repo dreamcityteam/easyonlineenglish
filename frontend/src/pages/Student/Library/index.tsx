@@ -9,7 +9,7 @@ import Speech from '../../../components/Speech';
 import { EnglishVerbConjugation, Item } from './type';
 import Sound from '../../../components/Sound';
 import verbs from './verbs.json';
-import MetaTags from './MetaTags';
+import Head from './Head';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -144,7 +144,7 @@ const Library: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <MetaTags
+      <Head
         title="Librería"
         description="Descubre una amplia colección de vocabulario en inglés y verbos esenciales para mejorar tus habilidades lingüísticas. Perfecto para estudiantes de todos los niveles, ofrece recursos prácticos para aprender y dominar el inglés con facilidad."
       />

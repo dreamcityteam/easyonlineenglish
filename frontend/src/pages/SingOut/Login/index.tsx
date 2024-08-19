@@ -7,7 +7,7 @@ import { CLEAN_CACHE, SET_USER } from '../../../global/state/actionTypes';
 import style from './style.module.sass';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { isAdmin, isFree } from '../../../tools/function';
-import MetaTags from './MetaTags';
+import Head from './Head';
 
 const Login: React.FC = (): JSX.Element => {
   const [{ googleAnalytics }, dispatch] = useContext(context);
@@ -44,7 +44,7 @@ const Login: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <MetaTags />
+      <Head />
       <section className={style.login}>
         <div className={style.login__container}>
           <Form

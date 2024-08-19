@@ -6,11 +6,11 @@ import Section4 from './Section4';
 import Section6 from './Section6';
 import Section5 from './Section5';
 import style from './style.module.sass';
-import MetaTags from './MetaTags';
+import Head from './Head';
 
 const Home: React.FC = () => (
   <>
-    <MetaTags />
+    <Head />
     <section className={style.home}>
       <Section1 />
       <Section2 />

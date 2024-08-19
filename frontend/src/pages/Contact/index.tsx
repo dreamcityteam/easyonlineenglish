@@ -5,7 +5,7 @@ import style from './style.module.sass';
 import { HTTP_STATUS_CODES } from '../../tools/constant';
 import Image from '../../components/Image';
 import { Info } from './type';
-import MetaTags from './MetaTags';
+import Head from './Head';
 
 const Contact: React.FC = () => {
   const onForm = (
@@ -31,7 +31,7 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      <MetaTags />
+      <Head />
       <section>
         <article className={style.contact}>
           <div className={style.contact__container}>

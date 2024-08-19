@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import style from './style.module.sass';
 import FamilyPlan from './FamilyPlan';
-import MetaTags from './MetaTags';
+import Head from './Head';
 
 const Plans: React.FC = (): JSX.Element => {
   const characteristics: string[] = [
@@ -32,7 +32,7 @@ const Plans: React.FC = (): JSX.Element => {
 
   return (
     <>
-    <MetaTags />
+    <Head />
     <section className={style.plan}>
       <header>
         <h1 className={style.plan__title}>

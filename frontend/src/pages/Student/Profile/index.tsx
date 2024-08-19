@@ -167,12 +167,12 @@ const Profile: React.FC = (): JSX.Element => {
             >
               <p className="button__text">Editar estudiante</p>
             </button>
-            <button
+            {/* <button
               className="button"
               onClick={() => setIsDeleteStudent(true)}
             >
               <p className="button__text">Borrar cuenta</p>
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="bg">

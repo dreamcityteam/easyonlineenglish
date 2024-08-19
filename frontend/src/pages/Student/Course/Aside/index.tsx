@@ -7,7 +7,7 @@ import style from './style.module.sass';
 import courseStyle from '../style.module.sass';
 import speechStyle from '../../../../components/Speech/style.module.sass';
 import Joyride from 'react-joyride';
-import { send, Storage } from '../../../../tools/function';
+import { Cookie, send, Storage } from '../../../../tools/function';
 import { TUTORIAL } from '../../../../tools/constant';
 import context from '../../../../global/state/context';
 import Image from '../../../../components/Image';
@@ -41,7 +41,7 @@ const Aside: React.FC<Props> = ({
   const [{ user }] = useContext(context);
 
   useEffect(() => {
-    if (user === null && Storage.get(TUTORIAL)) {
+    if (user === null && Cookie.get(TUTORIAL)) {
       setRun(false);
     } else if (user) {
       setRun(user?.isTutorial);
@@ -86,7 +86,7 @@ const Aside: React.FC<Props> = ({
     }
 
     if (data.action === 'reset') {
-      Storage.set(TUTORIAL, 'true');
+      Cookie.set(TUTORIAL, 'true');
       await send({ api: 'tutorial' }).patch();
     }
   };
