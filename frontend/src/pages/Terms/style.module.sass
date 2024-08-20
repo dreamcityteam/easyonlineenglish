@@ -1,4 +1,5 @@
 @import '../../../public/mixin/vars.module'
+@import '../../../public/mixin/index.module'
 
 .terms
   display: flex
@@ -19,10 +20,16 @@
 
     input[type="button"]
       border: none
-      background-color: $main__color
+      background-color: #f44336
       border-radius: 8px
       color: #fff
       padding: 10px
+
+  &__content
+    border-right: 0
+    height: 400px
+    margin-top: 20px
+    overflow: auto
 
   &__all
     align-items: center
@@ -41,8 +48,10 @@
     text-align: center
 
   &__container
-    padding: 20px
+    background: #085b96
+    color: white
     max-width: 800px
+    padding: 20px
 
   ol, ul
     counter-reset: item
@@ -67,3 +76,14 @@
 
       &:before
         content: counter(abc-counter, lower-alpha) "."
+
+  @include mobile
+    &__content
+      border: none
+
+    &__container
+      padding: 0 10px
+
+    &__form
+      padding: 20px 10px
+

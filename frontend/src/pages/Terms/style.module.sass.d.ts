@@ -5,6 +5,7 @@ interface CssExports {
   'terms__all': string;
   'terms__center': string;
   'terms__container': string;
+  'terms__content': string;
   'terms__form': string;
   'terms__listAbc': string;
 }

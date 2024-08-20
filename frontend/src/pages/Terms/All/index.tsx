@@ -33,10 +33,12 @@ const All: React.FC = (): JSX.Element => {
   return (
     <section className={style.terms__all}>
       <div className={style.terms__container}>
-        <Conditions removeH1 />
-        <Privacy removeH1 />
-        <FinalUser removeH1 />
-        <Payment removeH1 />
+        <div className={style.terms__content}>
+          <Conditions removeH1 />
+          <Privacy removeH1 />
+          <FinalUser removeH1 />
+          <Payment removeH1 />
+        </div>
         <form className={style.terms__form}>
           <input type="checkbox" onChange={handlerOnChange} />
           <label>Acepto los términos y condiciones</label>
