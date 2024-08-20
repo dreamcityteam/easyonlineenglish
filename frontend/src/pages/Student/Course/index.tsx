@@ -628,7 +628,9 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           course={course?.title || ''}
           lesson={lessionTitle}
         />
-        <ModalTips />
+        {!isDemo && (
+          <ModalTips />
+        )}
       </section >
     </>
   );
