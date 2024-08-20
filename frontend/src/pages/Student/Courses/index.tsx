@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { getData } from '../../../tools/function';
 import { SET_COURSES_CACHE } from '../../../global/state/actionTypes';
 import { Courses as TCourses } from '../../../global/state/type';
@@ -71,10 +73,12 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
             return (
               <article className={style.courses__container} key={index}>
-                <img
-                  className={style.courses__picture}
+                <LazyLoadImage
                   alt={title}
+                  effect="blur"
+                  height="246px"
                   src={picture}
+                  width="100%"
                 />
                 <div
                   className={style.courses__background}

@@ -8,7 +8,6 @@ interface CssExports {
   'courses__header': string;
   'courses__items': string;
   'courses__lazyLoading': string;
-  'courses__picture': string;
   'courses__progress': string;
   'courses__progress_chart': string;
   'courses__progress_circle': string;
