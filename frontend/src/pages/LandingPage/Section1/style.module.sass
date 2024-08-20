@@ -36,7 +36,7 @@
     width: 1568px
 
   &__buttons
-    margin-top: 20px
+    padding-bottom: 40px
 
     > a
       background-color: $red-color
@@ -46,8 +46,16 @@
       display: inline-block
       font-weight: bold
       max-width: 300px
+      position: absolute
       text-decoration: none
+      transition: all 0.2s ease
       width: 100%
+
+      &:hover
+        background: white
+        border: solid black 1.5px
+        color: red
+        transform: scale(1.1)
 
       &:first-child
         font-size: 31px
