@@ -254,7 +254,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
           currentState.completedWords[completedWords] = true;
           currentState.unlockedWords[unlockedWords] = true;
-          currentState.index = { lesson: index.lesson, word: index.word, sentence: 0 };
+          currentState.index = index;
 
           saveCourseCacheData(currentState);
           return currentState;
@@ -267,7 +267,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         idStudentCourse: course.idStudentCourse,
         completedWords: isCourseCompleted ? nextWord._id : word._id,
         unlockedWords: nextWord._id,
-        index: { lesson: nextLessonIndex, word: nextWordIndex },
+        index: { lesson: nextLessonIndex, word: nextWordIndex, sentence: 0 },
         progress: course.progress
       };
 
@@ -363,7 +363,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   }
 
   const saveSentenceIndex = async (): Promise<void> => {
-    if (course && word) {
+    if (course && word && !isAdmin(user) && !isDemo) {
       await send({
         api: 'student-updated-sentence-index',
         data: {

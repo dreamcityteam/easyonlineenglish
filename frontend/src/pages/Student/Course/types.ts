@@ -11,7 +11,7 @@ type CourseProgress = {
   idStudentCourse: string;
   completedWords: string;
   unlockedWords: string;
-  index: { lesson: number; word: number; sentence?: string };
+  index: { lesson: number; word: number; sentence: number; };
   progress: number;
 };
 
