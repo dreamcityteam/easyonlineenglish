@@ -8,6 +8,7 @@ interface CssExports {
   'table__image_container': string;
   'table__tbodyTd': string;
   'table__theadTh': string;
+  'table__verb': string;
   'vocabularies': string;
   'vocabularies__aside': string;
   'vocabularies__container': string;

@@ -86,12 +86,6 @@ const Library: React.FC = (): JSX.Element => {
         ? pronounsMap.en.gerund
         : pronounsMap.en.base;
 
-    const style: any = {
-      marginBottom: '10px',
-      textTransform: 'initial',
-      border: '1.5px solid black',
-      padding: '5px',
-    };
 
     const getTranslation = (translation: string, pronoun: string): string =>
       translation.split(' ').length > 1 ? '' : pronoun;
@@ -125,7 +119,7 @@ const Library: React.FC = (): JSX.Element => {
       <div>
         {pronouns.map((pronoun: string, index: number) => (
           !avoidPronouns.includes(pronounsMap.en.base[index]) && (
-            <div key={index} style={style}>
+            <div key={index} className={style.table__verb}>
               {getTranslation(translation[index] || verb, pronoun)}
               <span> {translation[index] || getVerb(pronoun)}</span>
               {pronounsMap.en.singular.includes(pronoun) && !isSpanish && !apostrophe && (

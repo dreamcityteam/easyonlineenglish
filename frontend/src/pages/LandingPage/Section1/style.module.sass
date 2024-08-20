@@ -24,7 +24,7 @@
       padding: 0
 
       li
-        font-weight: 100
+        font-weight: 500
         margin-bottom: 20px
 
   &__content
@@ -139,7 +139,6 @@
         font-size: 30px
 
       li
-        font-weight: 700 !important
         font-size: 15px
 
       .home__image
@@ -175,3 +174,21 @@
       &::before
         height: 637px
         width: 312px
+
+  @media only screen and (max-width: 360px)
+    &__circle
+      &::before
+        height: 623px
+
+    .home__image
+      &:first-child
+        bottom: -109px
+        height: 168px
+
+      &:nth-last-of-type(2)
+        bottom: -43px
+        height: 234px
+
+      &:last-child
+        bottom: -94px
+        height: 183px

@@ -34,7 +34,7 @@ const Section3: React.FC = (): JSX.Element => {
               ¡Empieza ya!
             </Link>
           </div>
-          <div>
+          <div className={style.home__image}>
             <Image
               alt="Young man"
               path="home/young-man-qztXULvNeCCNsamKfxa8vlj7BlnLFb.avif"

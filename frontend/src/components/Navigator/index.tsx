@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { studentPayment, studentPendingPayment, homepage, admin } from './data';
 import { Tab } from './type';
 import context from '../../global/state/context';
-import { isAdmin, isFree } from '../../tools/function';
+import { getClassName, isAdmin, isFree } from '../../tools/function';
 import Image from '../Image';
 import style from './style.module.sass'
 
@@ -69,11 +69,11 @@ const Navigator: React.FC = (): JSX.Element => {
   const Tabs = (): JSX.Element[] =>
     tabs.map(({ path, value, showMobile }: Tab, index: number): JSX.Element => (
       <li
-        className={`${style.navigator__tab} ${showMobile ? style.navigator__tabMobile : ''} `}
+        className={getClassName(style.navigator__tab, showMobile ? style.navigator__tabMobile : '')}
         key={index}
       >
         <Link
-          className={`${style.navigator__link} ${getTargetClassName(path)}`}
+          className={getClassName(style.navigator__link, getTargetClassName(path))}
           to={path}
         >
           {value}

@@ -5,6 +5,13 @@ import { Request, RequestOptions, Send, Response, Data } from './type';
 import context from '../global/state/context';
 import { User } from '../global/state/type';
 
+/**
+ * Uploads a file blob to the Vercel Blob Storage service.
+ * @param {Object} params - The parameters for uploading the blob.
+ * @param {string} params.service - The service to which the file will be uploaded.
+ * @param {any} params.file - The file to be uploaded.
+ * @returns {Promise<string>} The URL of the uploaded file or an empty string if the upload fails.
+ */
 const uploadBlob = async ({ service, file }: { service: string; file: any; }): Promise<string> => {
   if (!file) return '';
 
@@ -30,6 +37,11 @@ const uploadBlob = async ({ service, file }: { service: string; file: any; }): P
   }
 }
 
+/**
+ * Sends an HTTP request to the specified API.
+ * @param {Request} params - The parameters for the request.
+ * @returns {Send} An object containing methods for different HTTP methods (GET, POST, DELETE, PUT, PATCH).
+ */
 const send = ({ api, data, token }: Request): Send => {
   const options: RequestOptions = {
     headers: {
@@ -87,16 +99,30 @@ const send = ({ api, data, token }: Request): Send => {
   };
 };
 
+/**
+ * Determines if the current environment is development.
+ * @returns {boolean} True if the environment is development, otherwise false.
+ */
 const isDev = (): boolean =>
   process.env.NODE_ENV
     ? process.env.NODE_ENV.includes('development')
     : false;
 
+/**
+ * Formats a phone number into a standard (XXX) XXX-XXXX format.
+ * @param {string} [phoneNumber=''] - The phone number to format.
+ * @returns {string} The formatted phone number.
+ */
 const formatPhoneNumber = (phoneNumber: string = ''): string =>
   phoneNumber
     .replace(/\D/g, '')
     .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
 
+/**
+ * Fetches data from a service and dispatches the result to a reducer.
+ * @param {Data} params - The parameters for the data fetch.
+ * @returns {Promise<void>} A promise that resolves when the data fetch is complete.
+ */
 const getData = async (
   {
     token,
@@ -112,6 +138,11 @@ const getData = async (
 }
 
 const Cookie = {
+    /**
+   * Retrieves a cookie by name.
+   * @param {string} name - The name of the cookie to retrieve.
+   * @returns {string | null} The value of the cookie or null if not found.
+   */
   get: (name: string): string | null => {
     const value: string = `; ${document.cookie}`;
     const parts: string[] = value.split(`; ${name}=`);
@@ -119,43 +150,78 @@ const Cookie = {
     return parts.length === 2 ? (parts.pop()?.split(';').shift() || null) : null;
   },
 
+   /**
+   * Sets a cookie with the specified name, value, and expiration days.
+   * @param {string} name - The name of the cookie to set.
+   * @param {string} value - The value of the cookie.
+   * @param {number} [days=7] - The number of days until the cookie expires.
+   */
   set: (name: string, value: string, days: number = 7): void => {
     const expires: Date = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
     document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
   },
 
+  /**
+   * Removes a cookie by name.
+   * @param {string} name - The name of the cookie to remove.
+   */
   remove: (name: string): void => {
     document.cookie = `${name}=; Max-Age=-99999999; path=/`;
   }
 };
 
 const Storage = {
+  /**
+   * Sets a value in local storage by key.
+   * @param {string} key - The key under which to store the value.
+   * @param {any} value - The value to store in local storage.
+   */
   set: (key: string, value: any): void => {
     const jsonValue = JSON.stringify(value);
     localStorage.setItem(key, jsonValue);
   },
 
+  /**
+   * Removes a value from local storage by key.
+   * @param {string} key - The key of the value to remove.
+   */
   remove: (key: string): void => {
     localStorage.removeItem(key);
   },
 
+  /**
+   * Retrieves a value from local storage by key.
+   * @param {string} key - The key of the value to retrieve.
+   * @returns {any} The retrieved value or null if not found.
+  */
   get: (key: string): any => {
     const jsonValue = localStorage.getItem(key);
     return jsonValue ? JSON.parse(jsonValue) : null;
   },
 
+  /**
+   * Clears all values from local storage.
+   */
   clear: (): void => {
     localStorage.clear();
   }
 };
 
+/**
+ * Checks if there is a logged-in user.
+ * @returns {boolean} True if there is a logged-in user, otherwise false.
+ */
 const isUser = (): boolean => {
   const [{ user }] = useContext(context);
 
   return !!user;
 }
 
+/**
+ * Initializes Google Analytics by setting up the gtag function.
+ * @returns {any} The gtag function used for Google Analytics.
+ */
 const initGoogleAnalytics = (): any => {
   // @ts-ignore
   window.dataLayer = window.dataLayer || [];
@@ -174,38 +240,80 @@ const initGoogleAnalytics = (): any => {
   return gtag;
 };
 
+/**
+ * Checks if the user has an admin role.
+ * @param {User | null} user - The user object to check.
+ * @returns {boolean} True if the user has an admin role, otherwise false.
+ */
 const isAdmin = (user: User | null): boolean =>
   user?.role === ROLE.ADMIN;
 
+/**
+ * Checks if the user has a free role.
+ * @param {User | null} user - The user object to check.
+ * @returns {boolean} True if the user has a free role, otherwise false.
+ */
 const isFree = (user: User | null): boolean =>
   user?.role === ROLE.FREE;
 
+/**
+ * Checks if the user has a student role.
+ * @param {User | null} user - The user object to check.
+ * @returns {boolean} True if the user has a student role, otherwise false.
+ */
 const isStudent = (user: User | null): boolean =>
   user?.role === ROLE.STUDENT;
 
+/**
+ * Gets the path for a WordPress asset based on the filename.
+ * @param {string} filename - The filename of the asset.
+ * @returns {string} The full path to the asset.
+ */
 const gethPathWordpress = (filename: string): string =>
   `${ASSETS_URL}${filename}`;
 
+/**
+ * Formats a word by converting it to lowercase and removing any non-alphanumeric characters.
+ * @param {string} word - The word to format.
+ * @returns {string} The formatted word.
+ */
 const formatWord = (word: string): string =>
   word.toLowerCase().replace(/[^\w ']/g, '');
 
+/**
+ * Removes accents from a string.
+ * @param {string} str - The string from which to remove accents.
+ * @returns {string} The string with accents removed.
+ */
 const removeAccents = (str: string): string =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
+/**
+ * Gets the appropriate domain based on the current environment.
+ * @returns {string} The domain URL.
+ */
 const getDomainBasedOnEnvironment = (): string =>
-  isDev() ? 'http://localhost:3000' : '';
+  isDev() && process.env.HOST_DEV ? process.env.HOST_DEV : '';
 
+/**
+ * Gets the appropriate credentials setting for fetch requests based on the current environment.
+ * @returns {'include' | 'same-origin'} The credentials setting.
+ */
 const getFetchCredentialsBasedOnEnvironment = (): 'include' | 'same-origin' =>
   isDev() ? 'include' : 'same-origin';
 
+/**
+ * Constructs a className string from multiple class name parts.
+ * @param {...string} props - The class name parts to concatenate.
+ * @returns {string} The concatenated class name string.
+ */
 const getClassName = (...props: string[]): string => {
   let classes: string = '';
 
-  for (let index in props) {
-    classes += props[index] + (Number(index) < props.length - 1 ? ' ' : '');
-  }
+  for (let prop of props)
+    if (prop) classes += `${prop} `;
 
-  return classes;
+  return classes.trim();
 }
 
 export {

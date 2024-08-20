@@ -6,6 +6,7 @@ interface CssExports {
   'home__content': string;
   'home__discord': string;
   'home__discordIcon': string;
+  'home__image': string;
   'home__title': string;
   'imgAnimation': string;
   'img__animation': string;
