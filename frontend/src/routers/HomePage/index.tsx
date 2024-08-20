@@ -4,7 +4,6 @@ import Home from '../../pages/LandingPage';
 import Login from '../../pages/SingOut/Login';
 import Register from '../../pages/SingOut/Register';
 import Course from '../../pages/Student/Course';
-import Library from '../../pages/Student/Library';
 import Courses from '../../pages/Student/Courses';
 import { Routes, Route } from 'react-router-dom';
 import Page404 from '../../pages/Page404';
@@ -24,7 +23,6 @@ const RouterHomePage: React.FC = () => (
     <Route path="/register/:paymentMethod" element={<Register />} />
     <Route path="/courses" element={<Courses isDemo />} />
     <Route path="/course/:idCourse" element={<Course isDemo />} />
-    <Route path="/libraries" element={<Library />} />
     <Route path="/reset-password" element={<ResetPassword />} />
     <Route path="/reset-password-auth/:token" element={<ResetPasswordAuth />} />
     <Route path="/term-user" element={<FinalUser />} />

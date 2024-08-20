@@ -9,16 +9,23 @@ const page404: React.FC = (): JSX.Element => {
   const location = useLocation();
 
   useEffect(() => {
-    const canRedirectStudentPendingPayment = (
-      (location.pathname.includes('/course') || location.pathname === '/courses') && user && !user.payment.isPayment
-    );
+    if (
+      (location.pathname.includes('/course') ||
+      location.pathname === '/courses') &&
+      user &&
+      !user.payment.isPayment
+    ) redirect('/plan');
 
-    const canRedirectStudentCourse = (
-      (location.pathname === '/login') || location.pathname.includes('/register') && user
-    );
-
-    canRedirectStudentPendingPayment && redirect('/plan');
-    canRedirectStudentCourse && redirect('/courses');
+    if (
+      (
+        location.pathname === '/login' ||
+        location.pathname.includes('/register') &&
+        user
+      ) || (
+        location.pathname === '/library' &&
+        !user
+      )
+    ) redirect('/courses');
   }, [user]);
 
   return (

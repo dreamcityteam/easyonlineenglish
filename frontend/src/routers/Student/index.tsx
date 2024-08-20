@@ -26,7 +26,7 @@ const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
       </>
     )}
     <Route path="/profile" element={<Profile />} />
-    <Route path="/libraries" element={<Library />} />
+    <Route path="/library" element={<Library />} />
     <Route path="/close" element={<CloseSection />} />
     <Route path="/term-user" element={<FinalUser />} />
     <Route path="/term-payment" element={<TermPayment />} />
