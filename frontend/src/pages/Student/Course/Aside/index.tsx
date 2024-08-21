@@ -134,7 +134,8 @@ const Aside: React.FC<Props> = ({
           {
             target: '#tidio-chat-iframe',
             content: <h2 className={style.tutorial__title}>
-              Aquí podrás contactarte con nosotros en caso de cualquier inconveniente o duda sobre el curso.
+              Aqui podrás ponerte en contacto con nuestro equipo de servicio al cliente en caso de que tengas algún inconveniente, duda o algún comentario positivo que compartir.
+              Tu feebback es muy importante para nosotros.
             </h2>,
             disableBeacon: true
           }
