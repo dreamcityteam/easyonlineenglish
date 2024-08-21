@@ -596,7 +596,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 alt="Icon previous arrow"
                 className={style.course__arrowLeft}
                 onClick={onPrev}
-                path="icons/arrrowRight-s2PRMjqbJ39l9BV4CMJcXOW7HNRPv5.avif"
+                path="icons/arrow-left-dDv8ZNZLEXDLXMTIprH2prZLYzGDAJ.png"
               />
             )}
             <Speech
@@ -611,7 +611,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 alt="Icon next arrow"
                 className={style.course__arrowRight}
                 onClick={onNext}
-                path="icons/arrowLeft-V7ML2iDaMdMpVFT4euxlAlaWbYV5Eb.avif"
+                path="icons/arrow-right-yDOCuGraKYfcypi4OTVS03VQOIdSzJ.png"
               />
             ) : null}
           </div>

@@ -130,7 +130,7 @@ const Speech: React.FC<Props> = ({
           alt="Play pronunciation"
           className={style.speech__icon}
           onClick={startListening}
-          path="icons/microphone-FRNIePEA4ksnEtIJVFKXpqECQxO7H1.avif"
+          path="icons/microphone-WxMHE7VDCtwzsST9vrQOMFGL78dPYt.png"
         />
       )}
       {canShowMessage && <p className={style.speech__feedback}>{output || 'Escuchar pronunciación'}</p>}
