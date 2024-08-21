@@ -130,6 +130,13 @@ const Aside: React.FC<Props> = ({
             target: `.${speechStyle.speech}`,
             content: <h2 className={style.tutorial__title}>Aquí podrás escuchar la oración o frase en inglés y, cuando escuches un sonido, tendrás que pronunciarla.</h2>,
             disableBeacon: true
+          },
+          {
+            target: '#tidio-chat-iframe',
+            content: <h2 className={style.tutorial__title}>
+              Aquí podrás contactarte con nosotros en caso de cualquier inconveniente o duda sobre el curso.
+            </h2>,
+            disableBeacon: true
           }
         ]}
         locale={{
