@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './style.module.sass';
 import { Link } from 'react-router-dom';
-import { gethPathWordpress } from '../../../tools/function';
+import Image from '../../../components/Image';
 
 interface Props {
   price: string;
@@ -15,9 +15,10 @@ const FamilyPlan: React.FC<Props> = ({ price }): JSX.Element => (
         <span>6 meses</span>
       </div>
       <div className={style.familyPlan__user}>
-        <img
+        <Image
           className={style.familyPlan__img}
-          src={gethPathWordpress('2016/12/user5.png')}
+          path="icons/users-7Y4DMJFPNpmW4QLSn9S2v3V9aN60SS.png"
+          alt="Icon users"
         />
         <ul className={style.familyPlan__list}>
           <li>Hasta 5 usuarios</li>

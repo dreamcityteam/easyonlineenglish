@@ -37,7 +37,7 @@ const Section3: React.FC = (): JSX.Element => {
           <div className={style.home__image}>
             <Image
               alt="Young man"
-              path="home/young-man-qztXULvNeCCNsamKfxa8vlj7BlnLFb.avif"
+              path="home/Young%20man-X8WLIYFKKuyOkcc7HlIbWzjN9BWZLL.png"
               ref={imageRefs}
             />
           </div>
@@ -53,7 +53,7 @@ const Section3: React.FC = (): JSX.Element => {
           <Link to="https://discord.com/invite/QFaTXbkd">Únete ahora</Link>
           <Image
             alt="Discord icon"
-            path="icons/discord-Koq46wPnY9ixkpmeL371aZzQ6TGv12.avif"
+            path="home/Discord%20PNG%20Logo-01-fQjNmwmXk4EQkxrqVC9GqSSglWkxCQ.png"
           />
         </div>
       </div>

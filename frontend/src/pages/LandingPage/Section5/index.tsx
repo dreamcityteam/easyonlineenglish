@@ -51,12 +51,12 @@ const Section6: React.FC = (): JSX.Element => {
         <div className={style.home__imageContainer}>
           <Image
             alt="Email notification icon"
-            path="icons/email-2-NOwmYZsjmCWwtVMn6E8oYUro4Wi7eJ.avif"
+            path="icons/email-pqUi127oepcd6VCK1Ov3mMnB4qHRH9.png"
             className={style.home__image}
           />
           <Image
             alt="Email notification shadow icon"
-            path="home/shadow-WFRhXonJVV6SR5Rx6bWQQPITHrFRBn.avif"
+            path="icons/shadow-7AaAnWRYUijCOIbfdafW9PWrhrzDYq.jpg"
             className={style.home__image}
           />
         </div>

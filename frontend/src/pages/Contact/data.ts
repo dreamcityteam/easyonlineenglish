@@ -34,19 +34,19 @@ const inputs: Inputs = {
 
 const infos: Info[] = [
   {
-    path: 'icons/phone-SdeywUetntw1CxsoJbOPwI3oFumj2J.avif',
+    path: 'icons/phone-s59rhmvyjSlbehTTOUQwJ6039yBCO0.jpg',
     alt: 'Phone',
     title: 'Teléfono',
     description: '+1 (849) 410-9664'
   },
   {
-    path: 'icons/email-jNdh3RwRu4df5LmIYENJtnpGq0h3QG.avif',
+    path: 'icons/email-Kwptk8RyxQ3bnzsQTrfBmJGqJXrv8X.jpg',
     alt: 'Email',
     title: 'Correo',
     description: 'support@easyonlineenglish.com'
   },
   {
-    path: 'icons/location-FZAyKeKVwsTA89nlrrPndy8HU0s9A2.avif',
+    path: 'icons/location-EI0CinXiIt2tUHQywL0XLoD0r2CmTP.jpg',
     alt: 'Location',
     title: 'Localización',
     description: 'Cabarete, Puerto Plata, República Dominicana.'
