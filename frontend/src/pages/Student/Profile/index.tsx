@@ -182,7 +182,7 @@ const Profile: React.FC = (): JSX.Element => {
         </div>
       </div>
       <Modal
-        canShow={isDeleteStudent}
+        state={[isDeleteStudent, setIsDeleteStudent]}
       >
         <div className="modal">
           <div className="modal-delete-user">
@@ -198,7 +198,7 @@ const Profile: React.FC = (): JSX.Element => {
         </div>
       </Modal>
       <Modal
-        canShow={isEditStudent}
+        state={[isEditStudent, setIsEditStudent]}
       >
         <div className="modal">
           <div className="modal-table">
@@ -221,7 +221,7 @@ const Profile: React.FC = (): JSX.Element => {
         </div>
       </Modal>
       <Modal
-        canShow={isStudentInvoiceStory}
+        state={[isStudentInvoiceStory, setIsStudentInvoiceStory]}
       >
         <div className="modal">
           <Close onClose={() => setIsStudentInvoiceStory(false)} />

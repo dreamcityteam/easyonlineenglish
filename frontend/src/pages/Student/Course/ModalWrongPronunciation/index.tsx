@@ -8,11 +8,11 @@ interface Props {
 };
 
 const ModalWrongPronunciation: React.FC<Props> = ({ state }) => {
-  const [canShow, setCanShow] = state;
+  const [_, setCanShow] = state;
 
   return (
     <Modal
-      canShow={canShow}
+      state={state}
       isFadeIn
     >
       <div className={style.modal__message}>

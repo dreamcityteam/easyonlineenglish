@@ -78,7 +78,7 @@ const ModalRating: React.FC<Props> = ({ state, course, lesson }): JSX.Element =>
   }
 
   return (
-    <Modal canShow={canShow} isFadeIn>
+    <Modal state={state} isFadeIn>
       <div className={style.stats}>
         <header className={style.stats__header}>
           <h2>¿Cómo calificarías tu experiencia hasta ahora?</h2>

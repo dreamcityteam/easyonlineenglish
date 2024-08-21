@@ -54,7 +54,7 @@ const App: React.FC = (): JSX.Element => {
         </Router>
       </context.Provider>
       <Loading
-        canShow={state.loading.canShow}
+        state={[state.loading.canShow, () => {}]}
         text={state.loading.text}
       />
     </>

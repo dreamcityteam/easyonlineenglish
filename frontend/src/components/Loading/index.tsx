@@ -4,14 +4,14 @@ import Image from '../Image';
 
 interface Props {
   text: string;
-  canShow: boolean;
+  state: [boolean, (state: boolean) => void];
 }
 
 const Loading: React.FC<Props> = ({
   text = 'Loading...',
-  canShow
+  state
 }): JSX.Element => (
-  <Modal canShow={canShow} backgroundColor='#ffffff'>
+  <Modal state={state} backgroundColor='#ffffff'>
     <div>
       <div style={{ padding: '20px' }}>
         <Image

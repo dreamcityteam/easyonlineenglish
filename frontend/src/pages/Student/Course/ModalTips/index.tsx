@@ -13,7 +13,7 @@ const ModalTips: React.FC = () => {
   ), []);
 
   return (
-    <Modal canShow={canShow}>
+    <Modal state={[canShow, setCanShow]}>
       <div className={style.loading}>
         <div className={style.loading__container}>
           <div className={style.loading__image}>

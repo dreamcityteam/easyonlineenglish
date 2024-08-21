@@ -278,7 +278,7 @@ const PaymentForms: React.FC = () => {
               />
             </form>
           </div>
-          <Modal canShow={canOpenModal}>
+          <Modal state={[canOpenModal, setCanOpenModal]}>
             <div className={style.payment__modal}>
               <Close onClose={() => setCanOpenModal(false)} />
               <header className={style.payment__modalIcon}>
