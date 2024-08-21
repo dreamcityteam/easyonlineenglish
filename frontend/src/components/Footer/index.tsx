@@ -23,7 +23,9 @@ const Footer: React.FC = (): JSX.Element => {
         <ul className={style.footer__items}>
           <li className={style.footer__address}>
             <strong>Dirección: </strong>
-            Cabarete, Puerto Plata, República Dominicana.
+            <div>
+              <span>Cabarete, Puerto Plata, República Dominicana.</span>
+            </div>
           </li>
 
           <li className={style.footer__term}>
