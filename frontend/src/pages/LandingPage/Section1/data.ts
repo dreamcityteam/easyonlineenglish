@@ -3,7 +3,7 @@ import { Image } from './type';
 const images: Image[] = [
   {
     alt: 'Worman watching a her computer',
-    path: 'home/woman-tEgLIU2QggCPUaU40af0zyXHg4I2I4.jpg'
+    path: 'home/woman-odTIG84FRbzfXPWkUlrT4rd6vIim0b.avif'
   },
   {
     alt: 'Man looking at his phone',
