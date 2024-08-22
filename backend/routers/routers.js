@@ -22,6 +22,7 @@ const updateStudentTerms = require('../api/updateStudentTerms');
 const suscribete = require('../api/suscribete');
 const uploadFile = require('../api/uploadFile');
 const studentRating = require('../api/studentRating');
+const azulPayment3DS = require('../api/azul3ds/3dresponse');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -145,5 +146,10 @@ module.exports = [
     path: ENDPOINT.STUDENT_RATING,
     method: 'post',
     func: studentRating
+  },
+  {
+    path: ENDPOINT.AZUL_PAYMENT_3DS,
+    method: 'post',
+    func: azulPayment3DS
   }
 ];

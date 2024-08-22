@@ -27,12 +27,7 @@ module.exports = async (req, res) => {
   };
 
   try {
-    if (!PAYMENT) {
-      response.message = 'Invalid payment method.';
-      response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
-      return send(response);
-    }
-  
+    
     const { data } = await axios.post(
       API,
       getData({
@@ -57,22 +52,6 @@ module.exports = async (req, res) => {
         }
       });
   
-      const $ = cheerio.load(data.ThreeDSMethod.MethodForm);
-
-      // Extract the input values
-      const threeDSMethodData = $('input[name="threeDSMethodData"]').val();
-      const DSMethodData = $('input[name="3DSMethodData"]').val();
-      const formActionUrl = $('form#tdsMmethodForm').attr('action');
-  
-      const params = new URLSearchParams();
-  
-      params.append('3DSMethodData', DSMethodData);
-      params.append('threeDSMethodData', threeDSMethodData);
-
-      const response = await axios.post(formActionUrl, params, {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-      });
-      (response.data)
     if (data.IsoCode === '00') {
       const isPayment = await payment({
         idUser: req.user.id,
@@ -105,9 +84,8 @@ module.exports = async (req, res) => {
       response.data.field = 'cvc';
     } else {
       response.message = data.ErrorDescription;
-    
     }
-    response.data.form = data?.ThreeDSMethod?.MethodForm || '';
+    
   } catch (error) {
 
     console.log("error", error);

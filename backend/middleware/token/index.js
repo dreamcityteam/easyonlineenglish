@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
   const tokenFromCookie = authenticator.get();
   const tokenFromHeader = getTokenFromHeader(req);
 
-  if (isEndpoint(ENDPOINT.CONTANCT) || isEndpoint(ENDPOINT.SUSCRIBETE)) {
+  if (isEndpoint(ENDPOINT.CONTANCT) || isEndpoint(ENDPOINT.SUSCRIBETE) || isEndpoint(ENDPOINT.AZUL_PAYMENT_3DS)) {
     return next();
   }
 
@@ -31,6 +31,7 @@ module.exports = (req, res, next) => {
       isEndpoint(ENDPOINT.LIBRARY) ||
       isEndpoint(ENDPOINT.STUDENT_UPDATE) ||
       isEndpoint(ENDPOINT.AZUL_PAYMENT) ||
+      isEndpoint(ENDPOINT.AZUL_PAYMENT_3DS) ||
       isEndpoint(ENDPOINT.STUDENT_TUTORIAL) ||
       isEndpoint(ENDPOINT.PAYPAL) ||
       isEndpoint(ENDPOINT.STUDENT_INVOICE_STORY) ||

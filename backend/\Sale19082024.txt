@@ -1,0 +1,1 @@
+AlterUrl | Mon Aug 19 2024 13:01:46 GMT-0400 (Atlantic Standard Time) | Sale | M018T5F1 | M018T5F1 | {"AuthorizationCode":"","AzulOrderId":"44437712","CustomOrderId":"M018T5F1","DateTime":"20240819130144","ErrorDescription":"SGS-050655: Unable to verify card enrollment","IsoCode":"99","LotNumber":"","RRN":"","ResponseCode":"ISO8583","ResponseMessage":"ERROR","Ticket":""}

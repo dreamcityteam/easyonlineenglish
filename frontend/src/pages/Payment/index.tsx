@@ -14,6 +14,7 @@ import SVGSuccess from '../../../public/svg/success.svg';
 import Close from '../../components/Modal/Close';
 import PayPal from './PayPal';
 import AllTerms from '../Terms/All';
+import { launcher, statusCode } from './helper';
 
 const PaymentForms: React.FC = () => {
   const { paymentMethod } = useParams<string>();
@@ -87,6 +88,77 @@ const PaymentForms: React.FC = () => {
     setState({ ...state, focus: { ...state[name], value } });
   };
 
+  const handleSecure2Method = (result: any) => {
+    const iframe = document.createElement("iframe");
+    iframe.src =
+      "data:text/html;charset=utf-8," +
+      encodeURI(result?.transactionResp?.data?.ThreeDSMethod?.MethodForm);
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+
+    const resp3Ds = {
+      AzulOrderId: result?.transactionResp?.data?.AzulOrderId,
+    };
+    setTimeout(() => {
+      threeResponse(resp3Ds, result);
+    }, 10000);
+  };
+  const threeDsV1 = (resp: any) => {
+    if (
+      resp.ResponseMessage === "3D_SECURE_CHALLENGE" &&
+      resp.ThreeDSChallenge.PaReq !== ""
+    ) {
+      statusCode(
+        resp.ThreeDSChallenge.RedirectPostUrl,
+        resp.ThreeDSChallenge.MD,
+        resp.ThreeDSChallenge.PaReq,
+        `${window.location.href}?orderId=${resp.transactionResp.orderId}`
+      );
+    } else if (
+      resp.ResponseMessage === "3D_SECURE_CHALLENGE" &&
+      resp.ThreeDSChallenge.CReq !== ""
+    ) {
+      statusCode(
+        resp.ThreeDSChallenge.RedirectPostUrl,
+        resp.ThreeDSChallenge.CReq,
+        null,
+        `${window.location.href}?orderId=${resp.transactionResp.orderId}`
+      );
+    } else {
+      //confirmBookingByOrderId(resp.transactionResp.orderId);
+    }
+  };
+  //Handle 3DChallenge
+  const threeResponse = (resp3Ds: any, parentResult: any) => {
+    launcher(resp3Ds, "booking/response3ds")
+      .then((resp: any) => {
+        if (
+          resp.ResponseMessage === "3D_SECURE_CHALLENGE" &&
+          resp.ThreeDSChallenge.CReq !== ""
+        ) {
+          statusCode(
+            resp.ThreeDSChallenge.RedirectPostUrl,
+            resp.ThreeDSChallenge.CReq,
+            null,
+            `${window.location.href}?orderId=${parentResult.transactionResp.orderId}`
+          );
+          return;
+        } else if (resp.ResponseMessage == "APROBADA") {
+          //confirmBookingByOrderId(parentResult.transactionResp.orderId);
+          return;
+        } else {
+          //handleOpenFail(payNotProcessed, resp.ErrorDescription);
+          //handleCloseLoading();
+          return;
+        }
+      })
+      .catch((err) => {
+        console.log("err", { err, stack: err?.stack });
+        //handleOpenFail(payNotProcessed, "Favor intentar más tarde.");
+        //handleCloseLoading();
+      });
+  };
+
   const processPayment = async (): Promise<void> => {
     const EXPIRY_PREFIX = '20';
 
@@ -97,7 +169,7 @@ const PaymentForms: React.FC = () => {
     const {
       response: { data = {}, statusCode },
     }: any = await send({
-      api: 'azul-payment',
+      api: 'azul-payment-3ds',
       data: {
         plan: paymentMethod,
         csv: state.cvc.value,
@@ -107,7 +179,50 @@ const PaymentForms: React.FC = () => {
       },
     }).post();
 
-    setTreeDSecureForm(data.form || '');
+    console.log("data", data);
+    console.log("statusCode", statusCode);
+
+    if (!data.success) {
+      //handleOpenFail(message, result.error_msg); // HANDLE ERRROR MESSAGE
+
+      try {
+      
+      } catch (e) {
+        console.log(e);
+      }
+      return;
+    } else {
+
+      if (data.result.ResponseMessage == "3D_SECURE_CHALLENGE") {
+        const objString = JSON.stringify(state);
+        localStorage.setItem("state", objString);
+        //const servicesStr = JSON.stringify(extraServices);
+        //localStorage.setItem("services", servicesStr);
+
+        //threeDsV1(result);
+        return;
+      } else if (data.result.ResponseMessage == "3D_SECURE_2_METHOD") {
+        const objString = JSON.stringify(state);
+        localStorage.setItem("state", objString);
+        //const servicesStr = JSON.stringify(extraServices);
+        //localStorage.setItem("services", servicesStr);
+        //handleSecure2Method(result);
+
+        return;
+      } else {
+        if (data.result.ResponseMessage == "Booking pagado con éxito") {
+          console.log("Se debe mostrar el modal de success directamente");
+          //handleOpenAprove(result);
+          //handleCloseLoading();
+        } else {
+          //handleOpenFail(payNotProcessed, message.join("\n"));
+          //handleCloseLoading();
+          //setBtnAble(true);
+        }
+      }
+    }
+
+    //setTreeDSecureForm(data.form || '');
 
     if (statusCode === HTTP_STATUS_CODES.OK) {
       setCanOpenModal(true);
