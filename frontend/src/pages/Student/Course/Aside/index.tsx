@@ -171,7 +171,7 @@ const Aside: React.FC<Props> = ({
           onClick={toggleSidebar}
         >
           <Image
-            path="icons/menu-kSzFtbNmdC6Wmt8VUxbjoEfsENhcf4.avif"
+            path="icons/menu-Tl5hunSmTrcEE3CgnlTsnDMZEzzqTu.png"
             alt="Aside button"
           />
         </div>

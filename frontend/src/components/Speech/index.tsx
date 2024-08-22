@@ -123,7 +123,7 @@ const Speech: React.FC<Props> = ({
           alt="Stop pronunciation"
           className={style.speech__icon}
           onClick={onStop}
-          path="icons/pause-DoX98cDAlVrh7JNyCMpA2x6agge23r.avif"
+          path="icons/pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj.png"
         />
       ) : (
         <Image
