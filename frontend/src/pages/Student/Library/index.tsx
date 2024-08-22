@@ -10,6 +10,7 @@ import { EnglishVerbConjugation, Item } from './type';
 import Sound from '../../../components/Sound';
 import verbs from './verbs.json';
 import Head from './Head';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -189,10 +190,10 @@ const Library: React.FC = (): JSX.Element => {
                   value: 'Referencia',
                   render: (value: string, item: Item): JSX.Element => (
                     <div className={style.table__image_container}>
-                      <img
+                      <LazyLoadImage
                         alt={`Vocabulary - ${item.englishWord}`}
                         className={style.table__image}
-                        loading="lazy"
+                        effect="blur"
                         src={value}
                       />
                       {typeof speech[item.englishWord] !== 'undefined' && (

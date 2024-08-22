@@ -22,7 +22,7 @@ const uploadBlob = async ({ service, file }: { service: string; file: any; }): P
     formData.append('photo', file);
 
     const { response: { data, statusCode } } = await fetch(
-      `${getDomainBasedOnEnvironment()}/api/v1/${service}?filename=${fileName}.avif`,
+      `${getDomainBasedOnEnvironment()}/api/v1/${service}?filename=${fileName}.jpg`,
       {
         method: 'POST',
         body: formData,
