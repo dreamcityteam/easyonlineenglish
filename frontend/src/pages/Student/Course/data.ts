@@ -1,26 +1,3 @@
-const LESSIONS_COUNT: string[] = [
-  'uno',
-  'dos',
-  'tres',
-  'cuatro',
-  'cinco',
-  'seis',
-  'siete',
-  'ocho',
-  'nueve',
-  'diez',
-  'once',
-  'doce',
-  'trece',
-  'catorce',
-  'quince',
-  'dieciséis',
-  'diecisiete',
-  'dieciocho',
-  'diecinueve',
-  'veinte'
-];
-
 const messagesCorrect: string[] = [
   '¡Correcto!',
   '¡Bien!',
@@ -45,7 +22,6 @@ const messagesWrong: string[] = [
 
 
 export {
-  LESSIONS_COUNT,
   messagesCorrect,
   messagesWrong
 }

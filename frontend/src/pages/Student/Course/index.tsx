@@ -13,7 +13,7 @@ import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
-import { LESSIONS_COUNT, messagesCorrect, messagesWrong } from './data';
+import { messagesCorrect, messagesWrong } from './data';
 import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
 import Image from '../../../components/Image';
@@ -107,8 +107,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   const formatLessons = (words: Word[]): Lesson[] => {
     type Lessons = { title: string; words: Word[]; };
-    const getLessonData = (title: string) => ({ title: `Lección ${title}`, words: [] });
-    const lessons: Lessons[] = [getLessonData(LESSIONS_COUNT[0])];
+    const getLessonData = (title: number) => ({ title: `Lección ${title}`, words: [] });
+    const lessons: Lessons[] = [getLessonData(1)];
     let currentLesson: Lessons = lessons[0];
 
     words.forEach((word: Word, index: number): void => {
@@ -117,7 +117,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       if ((index + 1) % 25 === 0) {
         const len: number = lessons.length;
 
-        lessons.push(getLessonData(LESSIONS_COUNT[len]));
+        lessons.push(getLessonData(len + 1));
         currentLesson = lessons[len];
       }
     });
