@@ -1,7 +1,8 @@
 .profile-page {
   display: flex;
-  min-height: 100vh;
   padding-top: 5rem;
+  margin-top: 100px;
+
 }
 
 .modal-table {
@@ -353,10 +354,6 @@
 
   .modal:has(table) {
     width: 100%;
-  }
-
-  .profile-page {
-    margin-top: 100px;
   }
 
   .content {
