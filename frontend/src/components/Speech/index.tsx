@@ -23,7 +23,8 @@ const Speech: React.FC<Props> = ({
   const [output, setOutput] = useState<string>('');
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const [recognition, setRecognition] = useState<any>(null);
-  const startText = 'Ahora Pronuncia';
+  const startText: string = 'Ahora Pronunciar';
+  const endText: string = 'Escucha el audio';
 
   const startListening = (): void => {
     const pronunciationAudio: HTMLAudioElement = new Audio(audioUrl);
@@ -65,7 +66,7 @@ const Speech: React.FC<Props> = ({
           pronunciation
         );
         setCanPlay(false);
-        setOutput('Escuchar pronunciación');
+        setOutput(endText);
         recognition.stop();
       }
 
@@ -106,7 +107,7 @@ const Speech: React.FC<Props> = ({
       recognition.onend = (): void => {
         setCanPlay(false);
         onPlaySpeech && onPlaySpeech(false);
-        setOutput('Escuchar pronunciación');
+        setOutput(endText);
       }
 
       recognition.start();
@@ -119,22 +120,22 @@ const Speech: React.FC<Props> = ({
 
   return (
     <div className={style.speech}>
-      {canPlay ? (
+      {canPlay && output === startText ? (
         <Image
           alt="Stop pronunciation"
           className={getClassName(style.speech__icon, `${output === startText ? style.speech__beatAnimation : ''}`)}
           onClick={onStop}
-          path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
+          path="icons/microphone-WxMHE7VDCtwzsST9vrQOMFGL78dPYt.png"
         />
       ) : (
         <Image
           alt="Play pronunciation"
           className={style.speech__icon}
           onClick={startListening}
-          path="icons/microphone-WxMHE7VDCtwzsST9vrQOMFGL78dPYt.png"
+          path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
         />
       )}
-      {canShowMessage && <p className={style.speech__feedback}>{output || 'Escuchar pronunciación'}</p>}
+      {canShowMessage && <p className={style.speech__feedback}>{output || endText}</p>}
     </div>
   );
 }
