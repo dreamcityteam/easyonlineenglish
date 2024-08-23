@@ -55,6 +55,12 @@
   "he is hungry": ["he's hungry", "his hungry"],
   "are you gonna use this space": ["are you going to use this space"],
   "he is a good waiter": ["he's a good waiter", "his a good waiter"],
-  "they're gonna drink tea": ["they're going drink tea"],
-  "i'm gonna go home this summer": ["i'm going go home this summer"]
+  "they're gonna drink tea": ["they're going to drink tea"],
+  "i'm gonna go home this summer": ["i'm going to go home this summer"],
+  "what are you gonna do": ["what are you going to do"],
+  "they're available now": ["they are available now"],
+  "she is a lady": ["she's a lady"],
+  "she is feeling sad": ["she's feeling sad"],
+  "i believe she is over there": ["i believe she's over there"],
+  "she is alone today": ["she's alone today"]
 }

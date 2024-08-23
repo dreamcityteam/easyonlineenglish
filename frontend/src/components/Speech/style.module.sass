@@ -10,6 +10,9 @@
     padding: 15px
     border-radius: 50%
     width: 90px
+  
+  &__beatAnimation
+    animation: beat 1s infinite
 
   &__feedback
     -webkit-background-clip: text
@@ -17,6 +20,16 @@
     @include background-gradient()
     color: transparent
     font-weight: bold
+
+  @keyframes beat
+    0%, 100%
+      transform: scale(1)
+
+    25%
+      transform: scale(1.2)
+
+    50%
+      transform: scale(1)
 
   @include mobile
     &__icon

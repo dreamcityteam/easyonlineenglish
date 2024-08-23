@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styleDefault from './style.module.sass';
 import Image from '../Image';
+import { getClassName } from '../../tools/function';
 
 interface Props {
   src: string;
@@ -46,14 +47,14 @@ const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
       {canPlay ? (
         <Image
           alt="Stop pronunciation"
-          className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
-          path="icons/pause-audio-GCNorppjLX90z5rrDmSxm2aYWCK8XK.avif"
+          className={getClassName(style.sound__icon, styleDefault.sound__icon)}
+          path="icons/pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj.png"
           onClick={handleTogglePlay}
         />
       ) : (
         <Image
           alt="Play pronunciation"
-          className={`${style.sound__icon}  ${styleDefault.sound__icon}`}
+          className={getClassName(style.sound__icon, styleDefault.sound__icon)}
           path="icons/play-audio-ZNHpsTvarg2rllIwC6PnU6W6Fqrm5f.avif"
           onClick={handleTogglePlay}
         />

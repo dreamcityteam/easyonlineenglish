@@ -124,7 +124,7 @@ const Library: React.FC = (): JSX.Element => {
               {getTranslation(translation[index] || verb, pronoun)}
               <span> {translation[index] || getVerb(pronoun)}</span>
               {pronounsMap.en.singular.includes(pronoun) && !isSpanish && !apostrophe && (
-                <strong style={{ color: 'blue', textDecoration: 'underline' }}>
+                <strong className={style.table__verbText}>
                   {getApostrophe()}
                 </strong>
               )}
@@ -225,7 +225,9 @@ const Library: React.FC = (): JSX.Element => {
                 verb: {
                   value: 'verbo',
                   render: (value: string = ''): JSX.Element =>
-                    <strong style={{ color: 'blue' }}>{value.replace('-', ' ')}</strong>
+                    <strong className={style.table__verbText}>
+                      {value.replace('-', ' ')}
+                    </strong>
                 },
                 englishWordConjugation: {
                   value: 'Inglés',

@@ -9,6 +9,7 @@ interface CssExports {
   'table__tbodyTd': string;
   'table__theadTh': string;
   'table__verb': string;
+  'table__verbText': string;
   'vocabularies': string;
   'vocabularies__aside': string;
   'vocabularies__container': string;

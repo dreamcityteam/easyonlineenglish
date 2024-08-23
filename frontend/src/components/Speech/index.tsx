@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatWord, gethPathWordpress, removeAccents } from '../../tools/function';
+import { formatWord, getClassName, gethPathWordpress, removeAccents } from '../../tools/function';
 import Image from '../Image';
 import style from './style.module.sass';
 
@@ -23,6 +23,7 @@ const Speech: React.FC<Props> = ({
   const [output, setOutput] = useState<string>('');
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const [recognition, setRecognition] = useState<any>(null);
+  const startText = 'Ahora Pronuncia';
 
   const startListening = (): void => {
     const pronunciationAudio: HTMLAudioElement = new Audio(audioUrl);
@@ -36,7 +37,7 @@ const Speech: React.FC<Props> = ({
       pronunciation();
       setTimeout(() => {
         whistleAudio.play();
-        setOutput('Ahora Pronunciar');
+        setOutput(startText);
       }, 500);
     }
 
@@ -121,9 +122,9 @@ const Speech: React.FC<Props> = ({
       {canPlay ? (
         <Image
           alt="Stop pronunciation"
-          className={style.speech__icon}
+          className={getClassName(style.speech__icon, `${output === startText ? style.speech__beatAnimation : ''}`)}
           onClick={onStop}
-          path="icons/pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj.png"
+          path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
         />
       ) : (
         <Image
