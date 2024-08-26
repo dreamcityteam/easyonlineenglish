@@ -62,5 +62,7 @@
   "she is a lady": ["she's a lady"],
   "she is feeling sad": ["she's feeling sad"],
   "i believe she is over there": ["i believe she's over there"],
-  "she is alone today": ["she's alone today"]
+  "she is alone today": ["she's alone today"],
+  "we'll return tomorrow": ["will return tomorrow"],
+  "she is not sure about this project": ["she's not sure about this project"]
 }
