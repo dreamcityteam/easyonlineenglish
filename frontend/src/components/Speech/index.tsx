@@ -123,7 +123,12 @@ const Speech: React.FC<Props> = ({
       {canPlay && output === startText ? (
         <Image
           alt="Stop pronunciation"
-          className={getClassName(style.speech__icon, `${output === startText ? style.speech__beatAnimation : ''}`)}
+          className={getClassName(
+            style.speech__icon,
+            (output === startText) 
+              ? style.speech__beatAnimation
+              : ''
+          )}
           onClick={onStop}
           path="icons/microphone-WxMHE7VDCtwzsST9vrQOMFGL78dPYt.png"
         />
@@ -131,7 +136,7 @@ const Speech: React.FC<Props> = ({
         <Image
           alt="Play pronunciation"
           className={style.speech__icon}
-          onClick={startListening}
+          onClick={canPlay ? () => {} : startListening}
           path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
         />
       )}

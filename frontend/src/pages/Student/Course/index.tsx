@@ -16,7 +16,7 @@ import pronunciation from './pronunciation.json';
 import { messagesCorrect, messagesWrong } from './data';
 import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
-import Image from '../../../components/Image';
+import ImageComponent from '../../../components/Image';
 import Head from './Head';
 import ModalRating from './ModalRating';
 import ModalTips from './ModalTips';
@@ -163,7 +163,14 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       newWord = getWordSentenceCompleted(word);
     }
 
-    if (course && course.index.sentence > 0 && !canTakeNextWord) {
+    if (
+      course &&
+      (
+        !course?.completedWords[newWord._id] &&
+        course.index.sentence > 0 &&
+        !canTakeNextWord
+      )
+    ) {
       newWord = getWordSentenceCompleted(word, course?.index.sentence);
     }
 
@@ -592,7 +599,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           </div>
           <div className={style.course__pronunciation}>
             {sentenceIndex > 0 && (
-              <Image
+              <ImageComponent
                 alt="Icon previous arrow"
                 className={style.course__arrowLeft}
                 onClick={onPrev}
@@ -607,7 +614,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               word={sentence?.englishWord || ''}
             />
             {isSavingProgress || sentence?.isCompleted || isAdmin(user) ? (
-              <Image
+              <ImageComponent
                 alt="Icon next arrow"
                 className={style.course__arrowRight}
                 onClick={onNext}
