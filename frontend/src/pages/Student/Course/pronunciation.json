@@ -63,6 +63,10 @@
   "she is feeling sad": ["she's feeling sad"],
   "i believe she is over there": ["i believe she's over there"],
   "she is alone today": ["she's alone today"],
-  "we'll return tomorrow": ["will return tomorrow"],
-  "she is not sure about this project": ["she's not sure about this project"]
+  "we'll return tomorrow": ["will return tomorrow", "well return tomorrow"],
+  "she is not sure about this project": ["she's not sure about this project"],
+  "the doctor set the date": ["the doctor said the date"],
+  "we'll discuss that tomorrow": ["well this cost that tomorrow", "will discuss that tomorrow"],
+  "it's going to take me three days to follow all steps": ["it's going to take me 3 days to follow all steps"],
+  "marcos speaks many languages": ["marco's speak many languages"]
 }
