@@ -7,6 +7,7 @@ import context from '../../../../global/state/context';
 import { State } from '../../../../global/state/type';
 import { HTTP_STATUS_CODES } from '../../../../tools/constant';
 import { SET_USER } from '../../../../global/state/actionTypes';
+import style from './style.module.sass';
 
 interface Props {
   state: [boolean, (value: boolean) => void];
@@ -40,7 +41,7 @@ const ModalEdit: React.FC<Props> = ({ state }) => {
     <Modal
       state={state}
     >
-      <div className="modal">
+      <div className={style.modal}>
         <Close onClose={() => state[1](false)} />
         <Form
           api="student-update"

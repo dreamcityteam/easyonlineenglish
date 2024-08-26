@@ -7,7 +7,7 @@ import ModalDelete from './ModalDelete';
 import ModalEdit from './ModalEdit';
 import ModalInvoiceStory from './ModalInvoiceStory';
 import StudentImage from './StudentImage';
-import './main.css';
+import style from './style.module.sass';
 
 const Profile: React.FC = (): JSX.Element => {
   const [{ user }] = useContext<[State, any]>(context);
@@ -29,36 +29,37 @@ const Profile: React.FC = (): JSX.Element => {
 
   return (
     <section>
-      <div className="profile-page">
-        <div className="content">
+      <div className={style.profile}>
+        <div className={style.profile__content}>
           <StudentImage />
-          <div className="content__title">
+          <div className={style.profile__title}>
             <h2>
               {user?.name} {user?.lastname}
             </h2>
             <span>Estudiante - Easy Online English</span>
           </div>
-          <div className="content__description">
-          </div>
-          <ul className="content__list">
+
+          <ul className={style.profile__info}>
             <li><span>Email</span>{user?.email}</li>
             <li><span>Teléfono</span>{formatPhoneNumber(user?.phone)}</li>
             <li><span>Membresía</span>{getMembership()}</li>
           </ul>
-          <div className="content__button">
+
+          <div className={style.profile__buttonContainer}>
             {!isFree(user) && (
               <button
-                className="button"
+                className={style.profile__button}
                 onClick={() => setIsStudentInvoiceStory(true)}
               >
-                <p className="button__text">Historial de pago</p>
+                <p>Historial de pago</p>
               </button>
             )}
+
             <button
-              className="button"
+              className={style.profile__button}
               onClick={() => setIsEditStudent(true)}
             >
-              <p className="button__text">Editar estudiante</p>
+              <p>Editar estudiante</p>
             </button>
             {/* <button
               className="button"
@@ -68,11 +69,13 @@ const Profile: React.FC = (): JSX.Element => {
             </button> */}
           </div>
         </div>
-        <div className="bg">
+
+        <div className={style.profile__background}>
           <div>
             {[...Array(10)].map((_, index) => <span key={index}></span>)}
           </div>
         </div>
+
       </div>
       <ModalInvoiceStory state={[isStudentInvoiceStory, setIsStudentInvoiceStory]} />
       <ModalDelete state={[isDeleteStudent, setIsDeleteStudent]} />

@@ -3,6 +3,7 @@ import context from '../../../../global/state/context';
 import { State } from '../../../../global/state/type';
 import { UPDATE_STUDENT_PHOTO } from '../../../../global/state/actionTypes';
 import { uploadBlob } from '../../../../tools/function';
+import style from './style.module.sass';
 
 const StudentImage: React.FC = () => {
   const [{ user }, dispatch] = useContext<[State, any]>(context);
@@ -36,15 +37,15 @@ const StudentImage: React.FC = () => {
   }
 
   return (
-    <div className="content__cover">
+    <div className={style.avatar}>
       <div
-        className="content__avatar"
+        className={style.avatar__image}
         style={{
-            background: `white url("${user?.photo}") center center no-repeat`
+          background: `white url("${user?.photo}") center center no-repeat`
         }}
         onClick={handleButtonClick}
       />
-      <form className="content__file">
+      <form className={style.avatar__input}>
         <input
           type="file"
           onChange={handleFileChange}

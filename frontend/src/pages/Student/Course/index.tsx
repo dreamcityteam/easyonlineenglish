@@ -167,8 +167,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       course &&
       (
         !course?.completedWords[newWord._id] &&
-        course.index.sentence > 0 &&
-        !canTakeNextWord
+        course.index.sentence > 0
       )
     ) {
       newWord = getWordSentenceCompleted(word, course?.index.sentence);
@@ -328,7 +327,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
     setFeedback({
       message: (isCorrect || isSkip)
-        ? isSkip ? '¡Practicar más, lo lograrás!' : getFeedbackMessage().correct
+        ? isSkip ? '¡Practica más, lo lograrás!' : getFeedbackMessage().correct
         : getFeedbackMessage().wrong,
       canShow: true,
     });

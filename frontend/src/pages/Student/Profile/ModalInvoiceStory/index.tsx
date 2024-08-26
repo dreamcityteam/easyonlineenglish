@@ -49,28 +49,28 @@ const ModalInvoiceStory: React.FC<Props> = ({ state }) => {
 
   return (
     <Modal
-    state={state}
-  >
-    <div className="modal">
-      <div className="modal-table">
-        <Close onClose={() => state[1](false)} />
-        <header className="modal-table-title">
-          <h2>Historial de pago</h2>
-        </header>
-        <Table
-          style={style}
-          data={invoiceStory}
-          custom={{
-            plan: { value: 'Descripción' },
-            dateEnd: { value: 'Vencimiento' },
-            dateStart: { value: 'Pago' },
-            type: { value: 'Tipo de pago' },
-            amount: { value: 'Monto' }
-          }}
-        />
+      state={state}
+    >
+      <div className={style.modal}>
+        <div className={style.modal__content}>
+          <Close onClose={() => state[1](false)} />
+          <header className={style.modal__title}>
+            <h2>Historial de pago</h2>
+          </header>
+          <Table
+            style={style}
+            data={invoiceStory}
+            custom={{
+              plan: { value: 'Descripción' },
+              dateEnd: { value: 'Vencimiento' },
+              dateStart: { value: 'Pago' },
+              type: { value: 'Tipo de pago' },
+              amount: { value: 'Monto' }
+            }}
+          />
+        </div>
       </div>
-    </div>
-  </Modal>
+    </Modal>
   );
 }
 

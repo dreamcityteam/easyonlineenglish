@@ -16,6 +16,7 @@ const ModalTips: React.FC = () => {
     <Modal state={[canShow, setCanShow]}>
       <div className={style.loading}>
         <div className={style.loading__container}>
+          <Close onClose={() => setCanShow(false)} />
           <div className={style.loading__image}>
             <Image
               path="logo-loading-klQAUtgmmO98yTboO81AuSKCMrni6c.jpg"
@@ -23,7 +24,6 @@ const ModalTips: React.FC = () => {
             />
           </div>
           <div>
-            <Close onClose={() => setCanShow(false)} />
             <header className={style.loading__header}>
               <h2>"{title}"</h2>
               <p>{text}</p>

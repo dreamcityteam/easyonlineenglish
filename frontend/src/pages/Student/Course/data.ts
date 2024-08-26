@@ -14,12 +14,11 @@ const messagesCorrect: string[] = [
 
 const messagesWrong: string[] = [
   '¡Vuelve a intentarlo!',
-  '¡Estuvo cerca! Pero lo puedes hacer mejor.',
+  '¡Estuvo cerca! Lo puedes hacer mejor.',
   '¡Buen intento! ¿Qué tal una vez más?',
   '¡Bien! ¿Lo intentamos de nuevo?',
-  '¡Te invito a que lo intentes de nuevo!',
+  '¡Intentamos nuevamente!',
 ];
-
 
 export {
   messagesCorrect,

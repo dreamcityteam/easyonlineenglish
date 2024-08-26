@@ -2,12 +2,6 @@
 // Please do not change this file!
 interface CssExports {
   'modal': string;
-  'modal__content': string;
-  'modal__title': string;
-  'table': string;
-  'table__tbodyTd': string;
-  'table__tbodyTr': string;
-  'table__theadTh': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
