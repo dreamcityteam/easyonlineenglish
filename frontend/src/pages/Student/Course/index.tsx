@@ -167,7 +167,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       course &&
       (
         !course?.completedWords[newWord._id] &&
-        course.index.sentence > 0
+        course.index.sentence > 0 &&
+        !canTakeNextWord
       )
     ) {
       newWord = getWordSentenceCompleted(word, course?.index.sentence);

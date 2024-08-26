@@ -12,3 +12,23 @@ section
 @font-face
   font-family: 'Inter-black'
   src: url('../public/fonts/inter/Inter-Light.ttf') format('truetype')
+
+/* The entire scrollbar */
+::-webkit-scrollbar
+  height: 12px
+  width: 12px
+
+/* The scrollbar track */
+::-webkit-scrollbar-track
+  background: transparent
+  border-radius: 10px
+
+/* The scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb
+  background-image: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
+  border-radius: 10px
+  cursor: pointer
+
+/* The scrollbar corner for both horizontal and vertical scrollbars */
+::-webkit-scrollbar-corner
+  background: #f1f1f1
