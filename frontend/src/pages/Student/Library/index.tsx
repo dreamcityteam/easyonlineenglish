@@ -18,8 +18,12 @@ const Library: React.FC = (): JSX.Element => {
   const [content, setContent] = useState<LibraryContent[]>([]);
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [{ libraryCache }, dispatch] = useContext(context);
-  const [speech, setSpeech] = useState<{ [key: string]: boolean; }>({});
-  const [canShow, setCanShow] = useState<boolean>(false);
+  const [speech, setSpeech] = useState<{
+    [key: string]: {
+      isCorrect: boolean;
+      canShow: boolean;
+    };
+  }>({});
 
   useEffect(() => {
     saveLibraryData();
@@ -59,15 +63,17 @@ const Library: React.FC = (): JSX.Element => {
   }
 
   const onCheck = (isCorrect: boolean, englishWord: string): void => {
-    setCanShow(true);
     setSpeech((currentState) => ({
       ...currentState,
-      [englishWord]: isCorrect
+      [englishWord]: { isCorrect, canShow: true }
     }));
   }
 
-  const onPlaySpeech = (isPlay: boolean): void => {
-    isPlay && setCanShow(false);
+  const onPlaySpeech = (isPlay: boolean, englishWord: string): void => {
+    isPlay && setSpeech((currentState) => ({
+      ...currentState,
+      [englishWord]: { isCorrect: false, canShow: false }
+    }));
   }
 
   const handlerOnClickRow = (value: any): JSX.Element =>
@@ -193,7 +199,7 @@ const Library: React.FC = (): JSX.Element => {
                     <Speech
                       audioUrl={value}
                       onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
-                      onPlaySpeech={onPlaySpeech}
+                      onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.englishWord)}
                       word={item.englishWord}
                       canShowMessage={false}
                       canNext={pronunciation}
@@ -209,12 +215,12 @@ const Library: React.FC = (): JSX.Element => {
                         effect="blur"
                         src={value}
                       />
-                      {typeof speech[item.englishWord] !== 'undefined' && canShow && (
+                      {typeof speech[item.englishWord] !== 'undefined' && speech[item.englishWord].canShow && (
                         <span
                           className={style.table__feedback}
                           style={{ background: speech[item.englishWord] ? '#4caf50' : '#f44336' }}
                         >
-                          {speech[item.englishWord] ? 'Correcto' : 'Incorrecto'}
+                          {speech[item.englishWord].isCorrect ? 'Correcto' : 'Incorrecto'}
                         </span>
                       )}
                     </div>
