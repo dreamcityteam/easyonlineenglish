@@ -22,7 +22,10 @@ const updateStudentTerms = require('../api/updateStudentTerms');
 const suscribete = require('../api/suscribete');
 const uploadFile = require('../api/uploadFile');
 const studentRating = require('../api/studentRating');
-const azulPayment3DS = require('../api/azul3ds/3dresponse');
+const azulPayment3DS = require('../api/azul3ds/3dsrequest');
+const azulPayment3DSResponse = require('../api/azul3ds/3dsresponse');
+const azulPayment3DSNotification = require('../api/azul3ds/3dsnotification');
+const azulPayment3DSGetResponseData = require('../api/azul3ds/3dsgetresponsedata');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -151,5 +154,20 @@ module.exports = [
     path: ENDPOINT.AZUL_PAYMENT_3DS,
     method: 'post',
     func: azulPayment3DS
+  },
+  {
+    path: ENDPOINT.AZUL_PAYMENT_3DS_RESPONSE,
+    method: 'post',
+    func: azulPayment3DSResponse
+  },
+  {
+    path: ENDPOINT.AZUL_PAYMENT_3DS_NOTIFICATION,
+    method: 'post',
+    func: azulPayment3DSNotification
+  },
+  {
+    path: ENDPOINT.AZUL_PAYMENT_3DS_GET_RESPONSE_DATA,
+    method: 'get',
+    func: azulPayment3DSGetResponseData
   }
 ];

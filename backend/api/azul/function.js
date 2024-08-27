@@ -1,5 +1,5 @@
 const id = "12345";
-const url = "http://localhost:3000/";
+const url = "https://7be5-148-0-134-107.ngrok-free.app/";
 
 const getData = ({ number, expiration, csv, amount }) => ({
   Channel: 'EC',

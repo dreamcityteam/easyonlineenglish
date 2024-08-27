@@ -33,10 +33,11 @@ const uploadBlob = async ({ service, file }: { service: string; file: any; }): P
 const send = ({ api, data, token }: Request): Send => {
   const options: RequestOptions = {
     headers: {
+      //"ngrok-skip-browser-warning": "69420",
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {})
     },
-    credentials: getFetchCredentialsBasedOnEnvironment(),
+    credentials: "include",
     method: 'GET',
     ...(data ? { body: JSON.stringify(data) } : {}),
   };
@@ -222,8 +223,8 @@ const formatWord = (word: string): string =>
 const removeAccents = (str: string): string =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-const getDomainBasedOnEnvironment  = (): string  =>
-  isDev() ? 'http://localhost:3000' : '';
+export const getDomainBasedOnEnvironment  = (): string  =>
+  isDev() ? 'https://7be5-148-0-134-107.ngrok-free.app' : '';
 
 const getFetchCredentialsBasedOnEnvironment = (): 'include' | 'same-origin' =>
   isDev() ? 'include' : 'same-origin';

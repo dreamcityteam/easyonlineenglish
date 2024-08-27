@@ -1,422 +1,375 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Cards from 'react-credit-cards-2';
-import 'react-credit-cards-2/dist/es/styles-compiled.css';
-import style from './style.module.sass';
-import context from '../../global/state/context';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { send } from '../../tools/function';
-import { SET_USER } from '../../global/state/actionTypes';
-import Loading from '../../components/Form/Loading';
-import { HTTP_STATUS_CODES } from '../../tools/constant';
-import { Field } from './type';
-import Modal from '../../components/Modal';
-import SVGSuccess from '../../../public/svg/success.svg';
-import Close from '../../components/Modal/Close';
-import PayPal from './PayPal';
-import AllTerms from '../Terms/All';
-import { launcher, statusCode } from './helper';
+import React, { useContext, useEffect, useState } from "react";
+import Cards from "react-credit-cards-2";
+import "react-credit-cards-2/dist/es/styles-compiled.css";
+import style from "./style.module.sass";
+import context from "../../global/state/context";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { send } from "../../tools/function";
+import { SET_USER } from "../../global/state/actionTypes";
+import Loading from "../../components/Form/Loading";
+import { HTTP_STATUS_CODES } from "../../tools/constant";
+import { Field } from "./type";
+import Modal from "../../components/Modal";
+import SVGSuccess from "../../../public/svg/success.svg";
+import Close from "../../components/Modal/Close";
+import PayPal from "./PayPal";
+import AllTerms from "../Terms/All";
+import { launcher, statusCode } from "./helper";
 
 const PaymentForms: React.FC = () => {
-  const { paymentMethod } = useParams<string>();
-  const [canOpenModal, setCanOpenModal] = useState<boolean>(false);
-  const [paymentTitle, setPaymentTitle] = useState<string>();
-  const [{ user, googleAnalytics }, dispatch] = useContext(context);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const redirect = useNavigate();
-  const [state, setState] = useState<any>({
-    number: { value: '', messageError: '' },
-    name: { value: '', messageError: '' },
-    expiry: { value: '', messageError: '' },
-    cvc: { value: '', messageError: '' },
-    focus: { value: '', messageError: '' },
-  });
-  const [treeDSecureForm, setTreeDSecureForm] = useState<string>('');
+	const { paymentMethod } = useParams<string>();
+	const [canOpenModal, setCanOpenModal] = useState<boolean>(false);
+	const [paymentTitle, setPaymentTitle] = useState<string>();
+	const [{ user, googleAnalytics }, dispatch] = useContext(context);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const redirect = useNavigate();
+	const [state, setState] = useState<any>({
+		number: { value: "", messageError: "" },
+		name: { value: "", messageError: "" },
+		expiry: { value: "", messageError: "" },
+		cvc: { value: "", messageError: "" },
+		focus: { value: "", messageError: "" },
+	});
+	const [treeDSecureForm, setTreeDSecureForm] = useState<string>("");
 
-  useEffect(() => {
-    if (paymentMethod === '1') setPaymentTitle('MEMBRESÍA POR 1 MES');
-    else if (paymentMethod === '2')
-      setPaymentTitle('MEMBRESÍA POR 1 AÑO');
-    else if (paymentMethod === '3')
-      setPaymentTitle('MEMBRESÍA POR 3 MES');
-    else redirect('/plan');
-  }, []);
+	useEffect(() => {
+		if (paymentMethod === "1") setPaymentTitle("MEMBRESÍA POR 1 MES");
+		else if (paymentMethod === "2") setPaymentTitle("MEMBRESÍA POR 1 AÑO");
+		else if (paymentMethod === "3") setPaymentTitle("MEMBRESÍA POR 3 MES");
+		else redirect("/plan");
+	}, []);
 
-  const isEmptyField = (): boolean => {
-    let isEmpty: boolean = false;
+	const isEmptyField = (): boolean => {
+		let isEmpty: boolean = false;
 
-    Object.keys(state).forEach((key) => {
-      const field = state[key];
+		Object.keys(state).forEach((key) => {
+			const field = state[key];
 
-      const messageError: string =
-        field && !field.value && key !== 'focus'
-          ? 'Complete este campo.'
-          : '';
+			const messageError: string = field && !field.value && key !== "focus" ? "Complete este campo." : "";
 
-      if (messageError) {
-        isEmpty = true;
-      }
+			if (messageError) {
+				isEmpty = true;
+			}
 
-      setState((state: any) => ({
-        ...state,
-        [key]: { ...state[key], messageError },
-      }));
-    });
+			setState((state: any) => ({
+				...state,
+				[key]: { ...state[key], messageError },
+			}));
+		});
 
-    return isEmpty;
-  };
+		return isEmpty;
+	};
 
-  const handleInputChange = ({
-    target: { name, value },
-  }: any): void => {
-    let newValue: string = value;
+	const handleInputChange = ({ target: { name, value } }: any): void => {
+		let newValue: string = value;
 
-    if (name === 'number') {
-      newValue = getNumber(value);
-    } else if (name === 'expiry') {
-      newValue = getNumber(value);
-    }
+		if (name === "number") {
+			newValue = getNumber(value);
+		} else if (name === "expiry") {
+			newValue = getNumber(value);
+		}
 
-    setState({
-      ...state,
-      [name]: { ...state[name], value: newValue },
-    });
-  };
+		setState({
+			...state,
+			[name]: { ...state[name], value: newValue },
+		});
+	};
 
-  const handleFocusChange = ({
-    target: { name, value },
-  }: any): void => {
-    setState({ ...state, focus: { ...state[name], value } });
-  };
+	const handleFocusChange = ({ target: { name, value } }: any): void => {
+		setState({ ...state, focus: { ...state[name], value } });
+	};
 
-  const handleSecure2Method = (result: any) => {
-    const iframe = document.createElement("iframe");
-    iframe.src =
-      "data:text/html;charset=utf-8," +
-      encodeURI(result?.transactionResp?.data?.ThreeDSMethod?.MethodForm);
-    iframe.style.display = "none";
-    document.body.appendChild(iframe);
+	const handleSecure2Method = (result: any) => {
+		const iframe = document.createElement("iframe");
+		iframe.src =
+			"data:text/html;charset=utf-8," + encodeURI(result?.transactionResp?.data?.ThreeDSMethod?.MethodForm);
+		iframe.style.display = "none";
+		document.body.appendChild(iframe);
 
-    const resp3Ds = {
-      AzulOrderId: result?.transactionResp?.data?.AzulOrderId,
-    };
-    setTimeout(() => {
-      threeResponse(resp3Ds, result);
-    }, 10000);
-  };
-  const threeDsV1 = (resp: any) => {
-    if (
-      resp.ResponseMessage === "3D_SECURE_CHALLENGE" &&
-      resp.ThreeDSChallenge.PaReq !== ""
-    ) {
-      statusCode(
-        resp.ThreeDSChallenge.RedirectPostUrl,
-        resp.ThreeDSChallenge.MD,
-        resp.ThreeDSChallenge.PaReq,
-        `${window.location.href}?orderId=${resp.transactionResp.orderId}`
-      );
-    } else if (
-      resp.ResponseMessage === "3D_SECURE_CHALLENGE" &&
-      resp.ThreeDSChallenge.CReq !== ""
-    ) {
-      statusCode(
-        resp.ThreeDSChallenge.RedirectPostUrl,
-        resp.ThreeDSChallenge.CReq,
-        null,
-        `${window.location.href}?orderId=${resp.transactionResp.orderId}`
-      );
-    } else {
-      //confirmBookingByOrderId(resp.transactionResp.orderId);
-    }
-  };
-  //Handle 3DChallenge
-  const threeResponse = (resp3Ds: any, parentResult: any) => {
-    launcher(resp3Ds, "booking/response3ds")
-      .then((resp: any) => {
-        if (
-          resp.ResponseMessage === "3D_SECURE_CHALLENGE" &&
-          resp.ThreeDSChallenge.CReq !== ""
-        ) {
-          statusCode(
-            resp.ThreeDSChallenge.RedirectPostUrl,
-            resp.ThreeDSChallenge.CReq,
-            null,
-            `${window.location.href}?orderId=${parentResult.transactionResp.orderId}`
-          );
-          return;
-        } else if (resp.ResponseMessage == "APROBADA") {
-          //confirmBookingByOrderId(parentResult.transactionResp.orderId);
-          return;
-        } else {
-          //handleOpenFail(payNotProcessed, resp.ErrorDescription);
-          //handleCloseLoading();
-          return;
-        }
-      })
-      .catch((err) => {
-        console.log("err", { err, stack: err?.stack });
-        //handleOpenFail(payNotProcessed, "Favor intentar más tarde.");
-        //handleCloseLoading();
-      });
-  };
+		const resp3Ds = {
+			AzulOrderId: result?.transactionResp?.data?.AzulOrderId,
+		};
+		setTimeout(() => {
+			threeResponse(resp3Ds, result);
+		}, 10000);
+	};
+	const threeDsV1 = (vals: any) => {
 
-  const processPayment = async (): Promise<void> => {
-    const EXPIRY_PREFIX = '20';
+    const resp = vals.transactionResp.data;
 
-    if (isEmptyField()) return;
+		if (resp.ResponseMessage === "3D_SECURE_CHALLENGE" && resp.ThreeDSChallenge.PaReq !== "") {
+			statusCode(
+				resp.ThreeDSChallenge.RedirectPostUrl,
+				resp.ThreeDSChallenge.MD,
+				resp.ThreeDSChallenge.PaReq,
+				`${window.location.href}?orderId=${resp.transactionResp.orderId}`,
+			);
+		} else if (resp.ResponseMessage === "3D_SECURE_CHALLENGE" && resp.ThreeDSChallenge.CReq !== "") {
+			statusCode(
+				resp.ThreeDSChallenge.RedirectPostUrl,
+				resp.ThreeDSChallenge.CReq,
+				null,
+				`${window.location.href}?orderId=${vals.transactionResp.orderId}`,
+			);
+		} else {
+			//confirmBookingByOrderId(resp.transactionResp.orderId);
+		}
+	};
+	//Handle 3DChallenge
+	const threeResponse = async (resp3Ds: any, parentResult: any) => {
+		const {
+			response: { data = {} },
+		} = await send({
+			api: "azul-payment-3ds-response",
+			data: resp3Ds,
+		}).post();
 
-    setIsLoading(true);
+		const resp = data.result;
 
-    const {
-      response: { data = {}, statusCode },
-    }: any = await send({
-      api: 'azul-payment-3ds',
-      data: {
-        plan: paymentMethod,
-        csv: state.cvc.value,
-        expiration: `${EXPIRY_PREFIX}${state.expiry.value}`,
-        number: state.number.value,
-        name: state.name.value,
-      },
-    }).post();
+		if (resp.ResponseMessage === "3D_SECURE_CHALLENGE" && resp.ThreeDSChallenge.CReq !== "") {
+			statusCode(
+				resp.ThreeDSChallenge.RedirectPostUrl,
+				resp.ThreeDSChallenge.CReq,
+				null,
+				`${window.location.href}?orderId=${parentResult.transactionResp.orderId}`,
+			);
+			return;
+		} else if (resp.ResponseMessage == "APROBADA") {
+			redirect(`/azul-payment-3ds-get-response-data?orderId=${parentResult.transactionResp.orderId}`)
+			return;
+		} else {
+			//handleOpenFail(payNotProcessed, resp.ErrorDescription);
+			//handleCloseLoading();
+			return;
+		}
+	};
 
-    console.log("data", data);
-    console.log("statusCode", statusCode);
+	const processPayment = async (): Promise<void> => {
+		const EXPIRY_PREFIX = "20";
 
-    if (!data.success) {
-      //handleOpenFail(message, result.error_msg); // HANDLE ERRROR MESSAGE
+		if (isEmptyField()) return;
 
-      try {
-      
-      } catch (e) {
-        console.log(e);
-      }
-      return;
-    } else {
+		setIsLoading(true);
 
-      if (data.result.ResponseMessage == "3D_SECURE_CHALLENGE") {
-        const objString = JSON.stringify(state);
-        localStorage.setItem("state", objString);
-        //const servicesStr = JSON.stringify(extraServices);
-        //localStorage.setItem("services", servicesStr);
+		const {
+			response: { data = {}, statusCode },
+		}: any = await send({
+			api: "azul-payment-3ds",
+			data: {
+				plan: paymentMethod,
+				csv: state.cvc.value,
+				expiration: `${EXPIRY_PREFIX}${state.expiry.value}`,
+				number: state.number.value,
+				name: state.name.value,
+			},
+		}).post();
 
-        //threeDsV1(result);
-        return;
-      } else if (data.result.ResponseMessage == "3D_SECURE_2_METHOD") {
-        const objString = JSON.stringify(state);
-        localStorage.setItem("state", objString);
-        //const servicesStr = JSON.stringify(extraServices);
-        //localStorage.setItem("services", servicesStr);
-        //handleSecure2Method(result);
+		if (!data.success) {
+			//handleOpenFail(message, result.error_msg); // HANDLE ERRROR MESSAGE
 
-        return;
-      } else {
-        if (data.result.ResponseMessage == "Booking pagado con éxito") {
-          console.log("Se debe mostrar el modal de success directamente");
-          //handleOpenAprove(result);
-          //handleCloseLoading();
-        } else {
-          //handleOpenFail(payNotProcessed, message.join("\n"));
-          //handleCloseLoading();
-          //setBtnAble(true);
-        }
-      }
-    }
+			try {
+			} catch (e) {
+				console.log(e);
+			}
+			return;
+		} else {
+			const message = data.result.transactionResp.respMsg;
 
-    //setTreeDSecureForm(data.form || '');
+			if (message == "3D_SECURE_CHALLENGE") {
+				threeDsV1(data.result);
+				return;
+			} else if (message == "3D_SECURE_2_METHOD") {
+				handleSecure2Method(data.result);
 
-    if (statusCode === HTTP_STATUS_CODES.OK) {
-      setCanOpenModal(true);
-      dispatch({
-        type: SET_USER,
-        payload: {
-          ...user,
-          payment: { isPayment: true, plan: paymentMethod },
-        },
-      });
-      googleAnalytics('event', `payment_${paymentMethod}`, {
-        'event_category': 'payment',
-        'event_label': 'Pago'
-      });
-    } else if (data.message) {
-      setState((state: any) => ({
-        ...state,
-        [data.field]: {
-          ...state[data.field],
-          messageError: data.message,
-        },
-      }));
-    }
+				return;
+			} else {
+				if (statusCode === HTTP_STATUS_CODES.OK) {
+					setCanOpenModal(true);
+					dispatch({
+						type: SET_USER,
+						payload: {
+							...user,
+							payment: { isPayment: true, plan: paymentMethod },
+						},
+					});
+					googleAnalytics("event", `payment_${paymentMethod}`, {
+						event_category: "payment",
+						event_label: "Pago",
+					});
+				} else if (data.message) {
+					setState((state: any) => ({
+						...state,
+						[data.field]: {
+							...state[data.field],
+							messageError: data.message,
+						},
+					}));
+				}
+			}
+		}
 
-    setIsLoading(false);
-  };
+		//setTreeDSecureForm(data.form || '');
 
-  const getErrorMessage = (field: Field): JSX.Element => (
-    <span className={style.payment__errorMessage}>
-      {field && field.messageError}
-    </span>
-  );
+		setIsLoading(false);
+	};
 
-  const formatInput = (
-    type: 'number' | 'expiry',
-    value: string
-  ): string => {
-    const format = {
-      number: { regExp: /.{1,4}/g, sing: ' ' },
-      expiry: { regExp: /.{1,2}/g, sing: '/' },
-    };
-    const cleaned = value.replace(/\D/g, '');
-    const groups = cleaned.match(format[type].regExp);
+	const getErrorMessage = (field: Field): JSX.Element => (
+		<span className={style.payment__errorMessage}>{field && field.messageError}</span>
+	);
 
-    return groups ? groups.join(format[type].sing) : value;
-  };
+	const formatInput = (type: "number" | "expiry", value: string): string => {
+		const format = {
+			number: { regExp: /.{1,4}/g, sing: " " },
+			expiry: { regExp: /.{1,2}/g, sing: "/" },
+		};
+		const cleaned = value.replace(/\D/g, "");
+		const groups = cleaned.match(format[type].regExp);
 
-  const getNumber = (value: string): string =>
-    value.replace(/\D/g, '');
+		return groups ? groups.join(format[type].sing) : value;
+	};
 
-  const handleKeyPress = (event: any) => {
-    if (event.key === 'Enter') {
-      processPayment();
-    }
-  };
+	const getNumber = (value: string): string => value.replace(/\D/g, "");
 
-  const onCompletePayPal = () => {
-    setCanOpenModal(true);
-    dispatch({
-      type: SET_USER,
-      payload: {
-        ...user,
-        payment: { isPayment: true, plan: paymentMethod },
-      },
-    });
-  }
+	const handleKeyPress = (event: any) => {
+		if (event.key === "Enter") {
+			processPayment();
+		}
+	};
 
-  return (
-    <>
-      {user?.isTerms ? (
-        <section className={style.payment}>
-          <div className={style.payment__container}>
-            <div className={style.payment__card}>
-              <Cards
-                number={state.number.value}
-                name={state.name.value}
-                expiry={state.expiry.value}
-                cvc={state.cvc.value}
-              />
-            </div>
+	const onCompletePayPal = () => {
+		setCanOpenModal(true);
+		dispatch({
+			type: SET_USER,
+			payload: {
+				...user,
+				payment: { isPayment: true, plan: paymentMethod },
+			},
+		});
+	};
 
-            <form className={style.payment__form}>
-              <header>
-                <h1 className={style.payment__title}>{paymentTitle}</h1>
-              </header>
+	return (
+		<>
+			{user?.isTerms ? (
+				<section className={style.payment}>
+					<div className={style.payment__container}>
+						<div className={style.payment__card}>
+							<Cards
+								number={state.number.value}
+								name={state.name.value}
+								expiry={state.expiry.value}
+								cvc={state.cvc.value}
+							/>
+						</div>
 
-              <div className={style.payment__inputs}>
-                <div className={style.payment__inputs_container}>
-                  <input
-                    type="text"
-                    name="name"
-                    maxLength={30}
-                    onChange={handleInputChange}
-                    onFocus={handleFocusChange}
-                    placeholder="Nombre"
-                    className={style.payment__input}
-                    value={state.name.value}
-                    onKeyDown={handleKeyPress}
-                  />
-                  {getErrorMessage(state.name)}
-                </div>
-              </div>
-              <div className={style.payment__inputs}>
-                <div className={style.payment__inputs_container}>
-                  <input
-                    type="text"
-                    name="number"
-                    maxLength={19}
-                    onChange={handleInputChange}
-                    onFocus={handleFocusChange}
-                    placeholder="Número de la tarjeta"
-                    className={style.payment__input}
-                    value={formatInput('number', state.number.value)}
-                    onKeyDown={handleKeyPress}
-                  />
-                  {getErrorMessage(state.number)}
-                </div>
-              </div>
-              <div className={style.payment__inputs}>
-                <div className={style.payment__inputs_container}>
-                  <input
-                    type="text"
-                    name="expiry"
-                    maxLength={5}
-                    onChange={handleInputChange}
-                    onFocus={handleFocusChange}
-                    placeholder="Fecha de expiración"
-                    className={style.payment__input}
-                    value={formatInput('expiry', state.expiry.value)}
-                    onKeyDown={handleKeyPress}
-                  />
-                  {getErrorMessage(state.expiry)}
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    name="cvc"
-                    maxLength={3}
-                    onChange={handleInputChange}
-                    onFocus={handleFocusChange}
-                    placeholder="CVC"
-                    className={style.payment__input}
-                    value={state.cvc.value}
-                    onKeyDown={handleKeyPress}
-                  />
-                  <div className={style.payment__cvc}>
-                    {getErrorMessage(state.cvc)}
-                  </div>
-                </div>
-              </div>
-              <div className={style.payment__input_button}>
-                {isLoading ? (
-                  <Loading />
-                ) : (
-                  <button
-                    onClick={processPayment}
-                    type="button"
-                    className={style.payment__input_button}
-                  >
-                    Pagar
-                  </button>
-                )}
-              </div>
+						<form className={style.payment__form}>
+							<header>
+								<h1 className={style.payment__title}>{paymentTitle}</h1>
+							</header>
 
-              <PayPal
-                onComplete={onCompletePayPal}
-                plan={paymentMethod || ''}
-              />
-            </form>
-          </div>
-          <Modal canShow={canOpenModal}>
-            <div className={style.payment__modal}>
-              <Close onClose={() => setCanOpenModal(false)} />
-              <header className={style.payment__modalIcon}>
-                <img src={SVGSuccess} />
-                <h2>éxito</h2>
-              </header>
-              <div className={style.payment__modalText}>
-                <p>
-                  Tu pago ha sido procesado correctamente. Hemos enviado
-                  una factura a tu correo electrónico.
-                </p>
-              </div>
-              <Link to="/courses" className={style.payment__modalButton}>
-                Comenzar los cursos
-              </Link>
-            </div>
-          </Modal>
-          <div dangerouslySetInnerHTML={{ __html: treeDSecureForm }} />
+							<div className={style.payment__inputs}>
+								<div className={style.payment__inputs_container}>
+									<input
+										type="text"
+										name="name"
+										maxLength={30}
+										onChange={handleInputChange}
+										onFocus={handleFocusChange}
+										placeholder="Nombre"
+										className={style.payment__input}
+										value={state.name.value}
+										onKeyDown={handleKeyPress}
+									/>
+									{getErrorMessage(state.name)}
+								</div>
+							</div>
+							<div className={style.payment__inputs}>
+								<div className={style.payment__inputs_container}>
+									<input
+										type="text"
+										name="number"
+										maxLength={19}
+										onChange={handleInputChange}
+										onFocus={handleFocusChange}
+										placeholder="Número de la tarjeta"
+										className={style.payment__input}
+										value={formatInput("number", state.number.value)}
+										onKeyDown={handleKeyPress}
+									/>
+									{getErrorMessage(state.number)}
+								</div>
+							</div>
+							<div className={style.payment__inputs}>
+								<div className={style.payment__inputs_container}>
+									<input
+										type="text"
+										name="expiry"
+										maxLength={5}
+										onChange={handleInputChange}
+										onFocus={handleFocusChange}
+										placeholder="Fecha de expiración"
+										className={style.payment__input}
+										value={formatInput("expiry", state.expiry.value)}
+										onKeyDown={handleKeyPress}
+									/>
+									{getErrorMessage(state.expiry)}
+								</div>
+								<div>
+									<input
+										type="text"
+										name="cvc"
+										maxLength={3}
+										onChange={handleInputChange}
+										onFocus={handleFocusChange}
+										placeholder="CVC"
+										className={style.payment__input}
+										value={state.cvc.value}
+										onKeyDown={handleKeyPress}
+									/>
+									<div className={style.payment__cvc}>{getErrorMessage(state.cvc)}</div>
+								</div>
+							</div>
+							<div className={style.payment__input_button}>
+								{isLoading ? (
+									<Loading />
+								) : (
+									<button
+										onClick={processPayment}
+										type="button"
+										className={style.payment__input_button}
+									>
+										Pagar
+									</button>
+								)}
+							</div>
 
-        </section>
-      ) : <AllTerms />}
-    </>
-  );
+							<PayPal onComplete={onCompletePayPal} plan={paymentMethod || ""} />
+						</form>
+					</div>
+					<Modal canShow={canOpenModal}>
+						<div className={style.payment__modal}>
+							<Close onClose={() => setCanOpenModal(false)} />
+							<header className={style.payment__modalIcon}>
+								<img src={SVGSuccess} />
+								<h2>éxito</h2>
+							</header>
+							<div className={style.payment__modalText}>
+								<p>
+									Tu pago ha sido procesado correctamente. Hemos enviado una factura a tu correo
+									electrónico.
+								</p>
+							</div>
+							<Link to="/courses" className={style.payment__modalButton}>
+								Comenzar los cursos
+							</Link>
+						</div>
+					</Modal>
+					<div dangerouslySetInnerHTML={{ __html: treeDSecureForm }} />
+				</section>
+			) : (
+				<AllTerms />
+			)}
+		</>
+	);
 };
 
 export default PaymentForms;

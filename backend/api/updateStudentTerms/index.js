@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
   try {
     await connectToDatabase();
 
-    const user = await User.findById(req.user.id);
+    /*const user = await User.findById(req.user.id);
 
     if (!user) {
       response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
@@ -25,11 +25,12 @@ module.exports = async (req, res) => {
         $currentDate: { updatedAt: true }
       },
       { new: true }
-    );
+    );*/
 
     response.statusCode = HTTP_STATUS_CODES.OK;
     response.message = MESSAGE.SUCCESSFUL;
-    response.data = updatedUser;
+    response.data = {};
+    //response.data = updatedUser;
   } catch (error) {
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
     response.message = `Error updating user: ${error.message}`;

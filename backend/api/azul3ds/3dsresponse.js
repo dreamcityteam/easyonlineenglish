@@ -9,15 +9,15 @@ const { payment } = require('../../tools/payment');
 const cheerio = require('cheerio');
 const FormData = require('form-data');
 const Payment3dSecureService = require('./function');
-
+const AzulTransactionResp = require('../../schemas/azulPaymentResp.schema');
+const connectToDatabase = require('../../db');
 
 module.exports = async (req, res) => {
-  console.log("hello");
   const payment3dSecureService = new Payment3dSecureService();
-  const response = getResponse(res);
+  const response = getResponse(res);  
 
-  console.log("la");
-  
+  const { AzulOrderId } = req.body;
+
 
   response.data = {
     field: 'number',
@@ -25,35 +25,31 @@ module.exports = async (req, res) => {
   };
 
   try {
+    await connectToDatabase();
 
-    const dto = {
-      "paymentInformation": {
-        "cardholderName": "CODIKA",
-        "cardNumber": "4005520000000129",
-        "expirationDate": "202505",
-        "cvv": "112",
-        "cardType": "VISA",
-        "billingAddress": {
-          "country": "Republica Dominicana",
-          "city": "Santo Domingo",
-          "addressLine1": "Calle 1",
-          "addressLine2": "Los Aco",
-          "zone": "Santo Domingo",
-          "zipCode": "10701"
-        }
-      },
-      "installments": 1,
-      "hasSpecialServiceList": true
-    }
+    const transaction = await AzulTransactionResp.findOne({
+        AzulOrderId
+    })
 
-    const price = 1000;
-    const itbis = 180;
-    
-    
-    const transactionResp = await payment3dSecureService.MakePaymentOnSale(dto, price, itbis, false);
+    const data = {
+      AzulOrderId,
+      MethodNotificationStatus: transaction?.threeDSResponse !== '' ? 'RECEIVED' : ''
+    };
 
-    console.log("transactionResp",transactionResp);
-    
+    await connectToDatabase();
+
+    const resp = await payment3dSecureService.ThreeDSecure2(data);
+
+    transaction.transactionResp.push(resp)
+    transaction.statusMSG = resp?.ErrorDescription != "" ? resp.ErrorDescription : resp?.ResponseMessage;
+
+    await transaction.save()
+
+    response.data.message = MESSAGE.SUCCESS;
+    response.statusCode = HTTP_STATUS_CODES.OK;
+    response.data.success = true;
+    response.data.result = resp;
+    /*
     if (transactionResp.data.IsoCode === '00' || '3D2METHOD') {
       /*const isPayment = await payment({
         idUser: req.user.id,
@@ -72,7 +68,7 @@ module.exports = async (req, res) => {
       if (isPayment) {
         response.data.message = MESSAGE.SUCCESS;
         response.statusCode = HTTP_STATUS_CODES.OK;
-      }*/
+      }
 
         response.data.message = MESSAGE.SUCCESS;
         response.statusCode = HTTP_STATUS_CODES.OK;
@@ -100,7 +96,7 @@ module.exports = async (req, res) => {
     
     }
 
-    response.data.result = transactionResp.data;
+    response.data.result = transactionResp.data;*/
   } catch (error) {
 
     console.log("error", error);

@@ -20,7 +20,7 @@ const app = express();
 const BUILD_PATH = '../build';
 const { PORT = 3000 } = process.env;
 
-app.use(helmet({
+/*app.use(helmet({
   crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
 }));
 
@@ -29,7 +29,38 @@ if (isDev()) {
     origin: 'http://localhost:8080',
     credentials: true
   }));
-}
+}*/
+
+// CHANGED IN ORDER TO USE 3DS FORM
+app.use(helmet({
+  referrerPolicy: { policy: 'no-referrer' },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      imgSrc: ["'self'", 'data:', '*'],
+      scriptSrc: ["'self'", "'unsafe-inline'"], // Adjust based on your needs
+      // other policies...
+    },
+  },
+}));
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow any origin
+    callback(null, true);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning'],
+}));
+
+app.use((req, res, next) => {
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  next();
+});
 
 app.use(cookieParser());
 app.use(express.json({ limit: '10mb' }));

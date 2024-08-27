@@ -47,6 +47,11 @@ const ENDPOINT = {
   UPLOAD_FILE: 'upload-file',
   STUDENT_RATING: 'student-rating',
   AZUL_PAYMENT_3DS: 'azul-payment-3ds',
+  AZUL_PAYMENT_3DS_RESPONSE: 'azul-payment-3ds-response',
+  AZUL_PAYMENT_3DS_NOTIFICATION: 'azul-payment-3ds-notification',
+  AZUL_PAYMENT_3DS_GET_RESPONSE_DATA: 'azul-payment-3ds-get-response-data',
+
+
 };
 
 const PAYMENT_METHOD = {

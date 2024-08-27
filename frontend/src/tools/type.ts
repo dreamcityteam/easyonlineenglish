@@ -24,10 +24,11 @@ type StatusCode = {
 
 type RequestOptions = {
   method: string;
-  credentials: 'same-origin' | 'include', 
+  credentials?: 'same-origin' | 'include', 
   headers: {
     'Content-Type': string;
     Authorization?: string;
+    "ngrok-skip-browser-warning"?: string,
   };
   body?: string;
 }

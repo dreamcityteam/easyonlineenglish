@@ -33,6 +33,7 @@ const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
     <Route path="/term-privacy" element={<Privacy />} />
     <Route path="/term-conditions" element={<Conditions />} />
     <Route path="/payment/:paymentMethod" element={<Payment />} />
+
     <Route path="/plan" element={<Plans />} />
     <Route path="*" element={<Page404 />} />
   </Routes>

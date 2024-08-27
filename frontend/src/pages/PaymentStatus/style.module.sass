@@ -1,0 +1,118 @@
+@import '../../../public/mixin/index.module'
+@import '../../../public/mixin/vars.module'
+
+.payment
+  align-items: center
+  display: flex
+  flex-direction: column
+
+  &__container
+    align-items: center
+    border-radius: 10px
+    border: solid 2px #06609e
+    display: flex
+    flex-direction: column
+    justify-content: center
+    margin-top: 150px
+    max-width: 502px
+    padding: 20px
+    position: relative
+
+  &__inputs
+    margin-top: 20px
+    display: flex
+
+  &__inputs_container
+    width: 100%
+
+  &__card
+    position: absolute
+    top: -92px
+
+  &__form
+    padding: 20px
+
+  &__input
+    border-radius: 8px
+    border: solid 1px #d1d1d1
+    margin-top: 10px
+    outline: none
+    padding: 10px
+    width: 100%
+
+  input[name="cvc"]
+    margin-left: 10px
+    width: 160px
+
+  &__input_button
+    margin-top: 13px
+
+    button
+      background-color: #06609e
+      border-radius: 8px
+      border: none
+      color: #fff
+      cursor: pointer
+      padding: 15px 20px
+      width: 100%
+
+  &__errorMessage
+    color: #f44336
+    display: block
+    font-size: 12px
+    margin-top: 5px
+    position: absolute
+
+  &__title
+    color: $main__color
+    font-family: monospace
+    font-size: 40px
+    margin-top: 75px
+
+  &__cvc
+    margin-left: 15px
+
+  &__modal
+    position: relative
+    padding: 20px
+    background-color: white
+    max-width: 500px
+    max-height: 500px
+    z-index: 4
+
+    & > div:first-child
+      right: -50px
+      top: -70px
+
+  &__modalButton
+    background: #3bb979
+    color: white
+    display: block
+    left: 0
+    padding: 20px
+    position: absolute
+    text-align: center
+    text-decoration: none
+    width: 100%
+
+  &__modalText
+    color: #6c6c6c
+    line-height: 1.5
+
+  &__modalIcon
+    text-align: center
+
+    h2
+      color: #3cb878
+      text-transform: uppercase
+
+  @include mobile
+    &__title
+      font-size: 30px
+
+    &__container
+      transform: scale(0.8)
+      margin-top: 51px
+
+    &__modal
+      max-width: 70%
