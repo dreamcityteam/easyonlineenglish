@@ -218,7 +218,7 @@ const Library: React.FC = (): JSX.Element => {
                       {typeof speech[item.englishWord] !== 'undefined' && speech[item.englishWord].canShow && (
                         <span
                           className={style.table__feedback}
-                          style={{ background: speech[item.englishWord] ? '#4caf50' : '#f44336' }}
+                          style={{ background: speech[item.englishWord].isCorrect ? '#4caf50' : '#f44336' }}
                         >
                           {speech[item.englishWord].isCorrect ? 'Correcto' : 'Incorrecto'}
                         </span>
