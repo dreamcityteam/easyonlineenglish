@@ -39,6 +39,20 @@ module.exports = class Payment3dSecureService {
 		}
 	}
 
+	_maskString(input) {
+		const length = input.length;
+		if (length <= 10) {
+			// If the string length is less than or equal to 8, we cannot mask anything
+			return input;
+		}
+	  
+		const firstSix = input.slice(0, 4);
+		const lastFour = input.slice(-4);
+		const maskedMiddle = '*'.repeat(length - 10);
+	  
+		return `${firstSix}${maskedMiddle}${lastFour}`;
+	  }
+
 	_getOptions(path, env) {
 		var certFile = "";
 		var keyFile = "";
@@ -53,10 +67,6 @@ module.exports = class Payment3dSecureService {
 				var fileContent = fs.readFileSync(route);
 				if (file === "pfx_easyonlineenglish.local.pfx") {
 					pfxFile = fileContent;
-				} else if (file === "Codika_cert.pem") {
-					certFile = fileContent;
-				} else if (file === "Key.pem") {
-					keyFile = fileContent;
 				}
 			});
 		} else {
@@ -66,10 +76,6 @@ module.exports = class Payment3dSecureService {
 				var fileContent = fs.readFileSync(route);
 				if (file === "pfx_easyonlineenglish.local.pfx") {
 					pfxFile = fileContent;
-				} else if (file === "Codika_cert.pem") {
-					certFile = fileContent;
-				} else if (file === "Key.pem") {
-					keyFile = fileContent;
 				}
 			});
 		}
@@ -83,8 +89,8 @@ module.exports = class Payment3dSecureService {
 			timeout: parseInt(this.Cred.TimeOut),
 			headers: { "Content-Type": "application/json", Auth1: this.Cred.Auth1, Auth2: this.Cred.Auth2 },
 			json: true,
-			key: keyFile,
-			cert: certFile,
+			//key: keyFile,
+			//cert: certFile,
 			pfx: pfxFile,
 		};
 
@@ -147,18 +153,18 @@ module.exports = class Payment3dSecureService {
                     key: options.key,
                     cert: options.cert
                 }),*/
-				/*httpsAgent: new https.Agent({
+				httpsAgent: new https.Agent({
                     hostname: 'pruebas.azul.com.do',
                     port: 443,
                     path: '/WebServices/JSON/default.aspx',
                     method: 'POST',
                     pfx: options.pfx,
                     passphrase: '123',
-                }),*/
-				httpsAgent: new https.Agent({
+                }),
+				/*httpsAgent: new https.Agent({
 					key: options.key,
 					cert: options.cert,
-				}),
+				}),*/
 				data: jsonData,
 			});
 
@@ -175,18 +181,18 @@ module.exports = class Payment3dSecureService {
 					method: optionsAlt.method,
 					headers: optionsAlt.headers,
 					timeout: optionsAlt.timeout,
-					/*httpsAgent: new https.Agent({
+					httpsAgent: new https.Agent({
                         hostname: 'pruebas.azul.com.do',
                         port: 443,
                         path: '/WebServices/JSON/default.aspx',
                         method: 'POST',
                         pfx: optionsAlt.pfx,
                         passphrase: '123',
-                    }),*/
-					httpsAgent: new https.Agent({
+                    }),
+					/*httpsAgent: new https.Agent({
 						key: optionsAlt.key,
 						cert: optionsAlt.cert,
-					}),
+					}),*/
 					data: jsonData,
 				});
 
@@ -687,7 +693,7 @@ module.exports = class Payment3dSecureService {
 		});
 
 		//dto.paymentInformation.cardType = getCardBrand(dto.paymentInformation.cardNumber)
-		//dto.paymentInformation.cardNumber = maskString(dto.paymentInformation.cardNumber)
+		dto.paymentInformation.cardNumber = this._maskString(dto.paymentInformation.cardNumber)
 
 		await connectToDatabase();
 
