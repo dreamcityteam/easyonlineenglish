@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Table from '../../../components/Table';
 import style from './style.module.sass';
 import { SET_LIBRARY } from '../../../global/state/actionTypes';
@@ -10,7 +11,7 @@ import { EnglishVerbConjugation, Item } from './type';
 import Sound from '../../../components/Sound';
 import verbs from './verbs.json';
 import Head from './Head';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import pronunciation from './pronunciation.json';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -18,6 +19,7 @@ const Library: React.FC = (): JSX.Element => {
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [{ libraryCache }, dispatch] = useContext(context);
   const [speech, setSpeech] = useState<{ [key: string]: boolean; }>({});
+  const [canShow, setCanShow] = useState<boolean>(false);
 
   useEffect(() => {
     saveLibraryData();
@@ -56,8 +58,17 @@ const Library: React.FC = (): JSX.Element => {
     setTabIndex(index);
   }
 
-  const onCheck = (isCorrect: boolean, englishWord: string): void =>
-    setSpeech((currentState) => ({ ...currentState, [englishWord]: isCorrect }));
+  const onCheck = (isCorrect: boolean, englishWord: string): void => {
+    setCanShow(true);
+    setSpeech((currentState) => ({
+      ...currentState,
+      [englishWord]: isCorrect
+    }));
+  }
+
+  const onPlaySpeech = (isPlay: boolean): void => {
+    isPlay && setCanShow(false);
+  }
 
   const handlerOnClickRow = (value: any): JSX.Element =>
     <span
@@ -182,8 +193,10 @@ const Library: React.FC = (): JSX.Element => {
                     <Speech
                       audioUrl={value}
                       onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
+                      onPlaySpeech={onPlaySpeech}
                       word={item.englishWord}
                       canShowMessage={false}
+                      canNext={pronunciation}
                     />
                 },
                 imageUrl: {
@@ -196,7 +209,7 @@ const Library: React.FC = (): JSX.Element => {
                         effect="blur"
                         src={value}
                       />
-                      {typeof speech[item.englishWord] !== 'undefined' && (
+                      {typeof speech[item.englishWord] !== 'undefined' && canShow && (
                         <span
                           className={style.table__feedback}
                           style={{ background: speech[item.englishWord] ? '#4caf50' : '#f44336' }}
