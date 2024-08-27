@@ -19,7 +19,7 @@ const ModalWrongPronunciation: React.FC<Props> = ({ state }) => {
         <Close onClose={() => setCanShow(false)} />
         <header>
           <h2 className={style.modal__title}>
-            Estamos avazando cada día más
+            Estamos avanzando cada día más.
           </h2>
         </header>
         <div>
