@@ -6,11 +6,12 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const cors = require('cors');
 const routers = require('../routers');
-const middlewareToken = require('../middleware/token');
-const removeCache = require('../middleware/cache');
 const initialDatabase = require('../initialDatabase');
 const connectToDatabase = require('../db');
 const { isDev } = require('../tools/functions');
+const middlewareToken = require('../middleware/token');
+const middlewareImage = require('../middleware/image');
+const middlewareCache = require('../middleware/cache');
 
 connectToDatabase().then(() => {
   initialDatabase();
@@ -36,12 +37,8 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: false }));
 app.use(middlewareToken);
 app.use('/api/v1', routers);
-app.use(removeCache);
-
-app.use((_req, res, next) => {
-  res.setHeader('Content-Security-Policy', "img-src 'self' data: *");
-  next();
-});
+app.use(middlewareCache);
+app.use(middlewareImage);
 
 if (isDev()) {
   app.listen(PORT, () => console.log('Server is running on port', PORT));

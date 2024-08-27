@@ -1,5 +1,5 @@
 @import '../../../../../public/mixin/index.module'
-  
+
 .modal
   &__content
     font-size: 20px
@@ -14,6 +14,11 @@
     position: relative
     width: 100%
     z-index: 4
+
+    > div:first-child
+      position: absolute
+      right: 9px
+      top: 13px
 
   &__text
     text-align: center
