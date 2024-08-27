@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { CLEAR_LOAD, SET_LOAD } from '../global/state/actionTypes';
-import { ASSETS_URL, HTTP_STATUS_CODES, ROLE } from './constant';
+import { HTTP_STATUS_CODES, ROLE } from './constant';
 import { Request, RequestOptions, Send, Response, Data } from './type';
 import context from '../global/state/context';
 import { User } from '../global/state/type';
@@ -270,7 +270,7 @@ const isStudent = (user: User | null): boolean =>
  * @returns {string} The full path to the asset.
  */
 const gethPathWordpress = (filename: string): string =>
-  `${ASSETS_URL}${filename}`;
+  `https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/${filename}`;
 
 /**
  * Formats a word by converting it to lowercase and removing any non-alphanumeric characters.

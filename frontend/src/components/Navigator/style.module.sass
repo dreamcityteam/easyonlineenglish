@@ -87,15 +87,8 @@
   &__tabMobile
     display: none
 
-  @include mobile
-    &__link
-      font-size: 15px
-
   @media only screen and (max-width: 900px)
     padding: 20px
-
-    &__logo
-      width: 200px
 
     &__hamburger
       display: flex
@@ -124,3 +117,14 @@
     &__links
       &:has(.navigator__user)
         width: auto
+
+  @media only screen and (max-width: 820px)
+    &__links
+      top: 113px
+
+  @media only screen and (max-width: 481px)
+    &__logo
+      width: 200px
+
+    &__link
+      font-size: 15px

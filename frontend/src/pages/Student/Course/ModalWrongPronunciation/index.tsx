@@ -19,12 +19,12 @@ const ModalWrongPronunciation: React.FC<Props> = ({ state }) => {
         <Close onClose={() => setCanShow(false)} />
         <header>
           <h2 className={style.modal__title}>
-            No capto tus palabras
+            Estamos avazando cada día más
           </h2>
         </header>
         <div>
           <p>
-            Por favor, intenta pronunciar más despacio.
+            Ahora intentemos pronunciar más lento y con mayor precisión.
           </p>
         </div>
         <span

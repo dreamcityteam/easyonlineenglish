@@ -25,8 +25,18 @@ const UploadFile: React.FC = (): JSX.Element => {
     <section style={{ padding: '20px' }}>
       <h2>Subir imagen</h2>
       <form>
-        <input name="file" ref={inputFileRef} type="file" required />
-        <button type="submit" onClick={handlerUploadPhoto}>Upload</button>
+        <input
+          name="file"
+          ref={inputFileRef}
+          type="file"
+          required
+        />
+        <button
+          type="submit"
+          onClick={handlerUploadPhoto}
+          >
+            Upload
+        </button>
       </form>
       {blob && (
         <div>
