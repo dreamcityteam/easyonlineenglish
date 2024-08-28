@@ -1,5 +1,18 @@
 {
   "son": ["sun"],
+  "three": ["3"],
+  "four": ["4"],
+  "sixth": ["six", "6th", "safe"],
   "seventh": ["7th"],
-  "eighth": ["ace"]
+  "eighth": ["ace", "8th"],
+  "nineth": ["9th"],
+  "tenth": ["thanks", "tents", "10th"],
+  "twelfth": ["12", "12th"],
+  "thirteenth": ["13th"],
+  "twentieth": ["20th"],
+  "twenty first": ["21st"],
+  "thirtieth": ["30th"],
+  "fortieth": ["40th"],
+  "eleventh": ["11th"],
+  "fifth": ["face"]
 }

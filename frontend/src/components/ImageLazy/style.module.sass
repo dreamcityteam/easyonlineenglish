@@ -5,7 +5,6 @@ $conic__gradient1: conic-gradient(from 90deg at left 3px top 3px, #0000 90deg, $
 $conic__gradient2: conic-gradient(from -90deg at bottom 3px right 3px, #0000 90deg, $main__color 0)
 
 .imageLazy
-
   &__loader
     width: 85px
     height: 50px
@@ -13,6 +12,10 @@ $conic__gradient2: conic-gradient(from -90deg at bottom 3px right 3px, #0000 90d
     background-position: left, center, right
     background-repeat: no-repeat
     animation: animation 1s infinite
+
+  @include mobile
+    &__loader
+      transform: scale(0.6)
 
 @keyframes animation
   0%
@@ -25,10 +28,3 @@ $conic__gradient2: conic-gradient(from -90deg at bottom 3px right 3px, #0000 90d
     background-size: 25px 50%, 25px 50%, 25px 100%
   100%
     background-size: 25px 50%, 25px 50%, 25px 50%
-
-@keyframes imageAnimation
-  0%
-   opacity: 0
-
-  100%
-    opacity: 1

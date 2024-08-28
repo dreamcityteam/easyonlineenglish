@@ -2,7 +2,6 @@
 // Please do not change this file!
 interface CssExports {
   'animation': string;
-  'imageAnimation': string;
   'imageLazy__loader': string;
 }
 export const cssExports: CssExports;

@@ -212,7 +212,6 @@ const Library: React.FC = (): JSX.Element => {
                       <ImageLazy
                         alt={`Vocabulary - ${item.englishWord}`}
                         className={style.table__image}
-                    
                         src={value}
                       />
                       {typeof speech[item.englishWord] !== 'undefined' && speech[item.englishWord].canShow && (
