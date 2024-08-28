@@ -14,5 +14,6 @@
   "thirtieth": ["30th"],
   "fortieth": ["40th"],
   "eleventh": ["11th"],
-  "fifth": ["face"]
+  "fifth": ["face", "50th"],
+  "hundredth": ["hundredths", "hundreds", "100th", "hundres"]
 }
