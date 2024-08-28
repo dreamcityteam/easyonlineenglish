@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Table from '../../../components/Table';
 import style from './style.module.sass';
 import { SET_LIBRARY } from '../../../global/state/actionTypes';
@@ -12,6 +11,7 @@ import Sound from '../../../components/Sound';
 import verbs from './verbs.json';
 import Head from './Head';
 import pronunciation from './pronunciation.json';
+import ImageLazy from '../../../components/ImageLazy';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -209,10 +209,10 @@ const Library: React.FC = (): JSX.Element => {
                   value: 'Referencia',
                   render: (value: string, item: Item): JSX.Element => (
                     <div className={style.table__image_container}>
-                      <LazyLoadImage
+                      <ImageLazy
                         alt={`Vocabulary - ${item.englishWord}`}
                         className={style.table__image}
-                        effect="blur"
+                    
                         src={value}
                       />
                       {typeof speech[item.englishWord] !== 'undefined' && speech[item.englishWord].canShow && (

@@ -1,13 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import { Course as TCourse, Lesson, Sentence, Word } from '../../../global/state/type';
+import {
+  Course as TCourse,
+  Lesson,
+  Sentence,
+  Word
+} from '../../../global/state/type';
 import Aside from './Aside';
 import Speech from '../../../components/Speech';
 import style from './style.module.sass';
 import { CourseProgress, OnWord } from './types';
-import { formatWord, getData, isAdmin, removeAccents, send, Storage } from '../../../tools/function';
+import {
+  formatWord,
+  getClassName,
+  getData,
+  isAdmin,
+  removeAccents,
+  send
+} from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
@@ -20,6 +30,7 @@ import ImageComponent from '../../../components/Image';
 import Head from './Head';
 import ModalRating from './ModalRating';
 import ModalTips from './ModalTips';
+import ImageLazy from '../../../components/ImageLazy';
 
 interface Props {
   isDemo?: boolean;
@@ -375,10 +386,10 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         api: 'student-updated-sentence-index',
         data: {
           index: (sentenceIndex === word.sentences.length - 1)
-          ? sentenceIndex
-          : sentenceIndex + 1,
+            ? sentenceIndex
+            : sentenceIndex + 1,
           idStudentCourse: course?.idStudentCourse
-        }        
+        }
       }).post();
     }
   }
@@ -514,7 +525,12 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           <div>
             <div className={style.course__lession_container}>
               <span
-                className={`${style.course__text_grandient} ${style.course__text_lession}`}
+                className={
+                  getClassName(
+                    style.course__text_grandient,
+                    style.course__text_lession
+                  )
+                }
               >
                 {lessionTitle}
               </span>
@@ -522,14 +538,24 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             <div className={style.course__englishWord_container}>
               <span
                 onClick={() => handlerOnPlayAudio('word')}
-                className={`${style.course__text_grandient} ${style.course__englishWord}`}
+                className={
+                  getClassName(
+                    style.course__text_grandient,
+                    style.course__englishWord
+                  )
+                }
               >
                 "{word?.englishWord}"
               </span>
             </div>
             <div className={style.course__spanishTranslation_container}>
               <span
-                className={`${style.course__text_grandient} ${style.course__spanishTranslation}`}
+                className={
+                  getClassName(
+                    style.course__text_grandient,
+                    style.course__spanishTranslation
+                  )
+                }
               >
                 {word?.spanishTranslation}
               </span>
@@ -571,10 +597,9 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 </span>
               </div>
               <div className={style.course__feedback}>
-                <LazyLoadImage
+                <ImageLazy
                   alt={sentence?.englishWord}
                   className={style.course__image}
-                  effect="blur"
                   src={sentence?.imageUrl}
                 />
                 {feedback.canShow && (
