@@ -4,6 +4,20 @@ const connectToDatabase = require('../db');
 const { getDurationInMonth, sendEmail, getMonthsDiff } = require('./functions')
 const { PAYMENT_METHOD } = require('./const');
 
+/**
+ * Processes a payment for a user.
+ * @param {Object} param - Payment parameters.
+ * @param {string} param.idUser - ID of the user.
+ * @param {Object} param.payment - Payment details.
+ * @param {string} param.payment.name - Name of the payer.
+ * @param {string} param.payment.plan - Payment plan.
+ * @param {string} [param.payment.azulRRN=null] - Azul RRN.
+ * @param {string} [param.payment.azulCustomOrderId=null] - Azul Custom Order ID.
+ * @param {string} [param.payment.azulOrderId=null] - Azul Order ID.
+ * @param {string} [param.payment.azulTicket=null] - Azul Ticket.
+ * @param {string} param.payment.type - Payment type (e.g., 'PAYPAL').
+ * @returns {Promise<boolean>} - Returns true if payment was processed successfully, otherwise false.
+ */
 const payment = async ({
   idUser,
   payment: {
@@ -75,6 +89,18 @@ const payment = async ({
   return isPayment;
 }
 
+/**
+ * Generates an HTML template for a bill.
+ * @param {Object} param - Bill details.
+ * @param {string} param.name - Name of the customer.
+ * @param {string} param.phone - Phone number of the customer.
+ * @param {string} param.description - Description of the payment.
+ * @param {number} param.price - Price of the payment.
+ * @param {number} param.total - Total amount of the payment.
+ * @param {Date} param.dateStart - Start date of the payment period.
+ * @param {Date} param.dateEnd - End date of the payment period.
+ * @returns {string} - HTML string representing the bill.
+ */
 const getBillTemplate = ({
   name,
   phone,
