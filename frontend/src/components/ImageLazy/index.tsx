@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from './style.module.sass';
 
 interface Props {
@@ -16,13 +16,15 @@ const ImageLazy: React.FC<Props & React.RefAttributes<HTMLImageElement>> = React
     className = '',
     onClick = () => { },
     onLoad = () => { }
-  },
-    ref
-  ): JSX.Element => {
+  }): JSX.Element => {
     const [isInView, setIsInView] = useState<boolean>(true);
+    const imgRef = useRef(null);
 
     useEffect(() => {
-      setIsInView(false);
+      // @ts-ignore
+      if (!imgRef?.current?.complete) {
+        setIsInView(false);
+      }
     }, [src]);
 
     const handlerOnLoad = (event: any) => {
@@ -38,7 +40,7 @@ const ImageLazy: React.FC<Props & React.RefAttributes<HTMLImageElement>> = React
           loading="lazy"
           onClick={onClick}
           onLoad={handlerOnLoad}
-          ref={ref}
+          ref={imgRef}
           src={src}
           style={{
             opacity: isInView ? 1 : 0,
