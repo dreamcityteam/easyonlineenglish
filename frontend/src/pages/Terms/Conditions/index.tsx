@@ -43,12 +43,12 @@ const Conditions: React.FC<Props> = ({ removeH1 }): JSX.Element => {
             </li>
             <li>
               Está prohibido recopilar o utilizar cualquier listado de productos, descripciones o precios con el propósito de establecer precios predatorios en el mercado;
+              Está prohibido revender o utilizar comercialmente este sitio web o sus contenidos;
             </li>
-            Está prohibido revender o utilizar comercialmente este sitio web o sus contenidos;
             <li>
               Está prohibido reproducir, duplicar, copiar, vender, revender o explotar el sitio web para cualquier propósito comercial sin el consentimiento expreso y por escrito de Easy Online English.;
+              Abstenerse de realizar cualquier uso derivado de este sitio web o de sus contenidos;
             </li>
-            Abstenerse de realizar cualquier uso derivado de este sitio web o de sus contenidos;
             <li>
               Está prohibido enmarcar o utilizar técnicas de enmarcado para incluir cualquier marca comercial, logotipo u otra información de propiedad exclusiva (incluyendo imágenes, texto, diseño de página o formulario) de Easy Online English y sus empresas afiliadas sin el consentimiento expreso por escrito de Easy Online English.;
             </li>
@@ -94,10 +94,10 @@ const Conditions: React.FC<Props> = ({ removeH1 }): JSX.Element => {
               Material para el cual no ha obtenido todas las licencias y/o aprobaciones necesarias;
             </li>
             <li>
-              material que constituya o fomente una conducta que sería considerada un delito penal, daría lugar a responsabilidad civil o de otro modo sería contraria a la ley o infringiría los derechos de cualquier tercero, en cualquier país del mundo; y,
+              Material que constituya o fomente una conducta que sería considerada un delito penal, daría lugar a responsabilidad civil o de otro modo sería contraria a la ley o infringiría los derechos de cualquier tercero, en cualquier país del mundo;
             </li>
             <li>
-              cualquier tipo de virus informáticos, piratería informática, uso de robots, extracción de datos o herramientas similares de recopilación de datos, envío automatizado de datos bombas lógicas, caballos de Troya, gusanos, componentes dañinos, datos corruptos u otro software malicioso, etc.;
+              Cualquier tipo de virus informáticos, piratería informática, uso de robots, extracción de datos o herramientas similares de recopilación de datos, envío automatizado de datos bombas lógicas, caballos de Troya, gusanos, componentes dañinos, datos corruptos u otro software malicioso, etc.;
             </li>
           </ol>
           <p>
