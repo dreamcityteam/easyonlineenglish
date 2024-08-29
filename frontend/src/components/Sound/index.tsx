@@ -55,7 +55,7 @@ const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
         <Image
           alt="Play pronunciation"
           className={getClassName(style.sound__icon, styleDefault.sound__icon)}
-          path="icons/play-audio-ZNHpsTvarg2rllIwC6PnU6W6Fqrm5f.avif"
+          path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
           onClick={handleTogglePlay}
         />
       )}
