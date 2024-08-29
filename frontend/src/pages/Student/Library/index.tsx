@@ -196,14 +196,16 @@ const Library: React.FC = (): JSX.Element => {
                 pronunciation: {
                   value: 'Pronunciación',
                   render: (value: string, item: Item): JSX.Element =>
-                    <Speech
-                      audioUrl={value}
-                      onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
-                      onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.englishWord)}
-                      word={item.englishWord}
-                      canShowMessage={false}
-                      canNext={pronunciation}
-                    />
+                    <div className={style.table__pronunciation}>
+                      <Speech
+                        audioUrl={value}
+                        onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
+                        onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.englishWord)}
+                        word={item.englishWord}
+                        canShowMessage={false}
+                        canNext={pronunciation}
+                      />
+                    </div>
                 },
                 imageUrl: {
                   value: 'Referencia',
