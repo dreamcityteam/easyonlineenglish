@@ -22,6 +22,7 @@ interface CssExports {
   'course__save_progress_container': string;
   'course__spanishTranslation': string;
   'course__spanishTranslation_container': string;
+  'course__textSentence': string;
   'course__text_grandient': string;
   'course__text_language': string;
   'course__text_lession': string;

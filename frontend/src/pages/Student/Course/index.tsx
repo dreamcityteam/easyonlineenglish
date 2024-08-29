@@ -585,7 +585,12 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 <div>
                   <span
                     onClick={() => handlerOnPlayAudio('sentence')}
-                    className={style.course__text_grandient}
+                    className={
+                      getClassName(
+                        style.course__text_grandient,
+                        style.course__textSentence
+                      )
+                    }
                   >
                     {checkPronunciation(sentence?.englishWord, pronunciationFeedback)}
                   </span>
@@ -612,7 +617,12 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               </div>
               <div className={style.course__content_text}>
                 <div>
-                  <span className={style.course__text_grandient}>
+                  <span className={
+                    getClassName(
+                      style.course__text_grandient,
+                      style.course__textSentence
+                    )
+                  }>
                     {sentence?.spanishTranslation}
                   </span>
                 </div>
