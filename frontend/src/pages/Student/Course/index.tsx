@@ -11,11 +11,10 @@ import Speech from '../../../components/Speech';
 import style from './style.module.sass';
 import { CourseProgress, OnWord } from './types';
 import {
-  formatWord,
+  checkPronunciation,
   getClassName,
   getData,
   isAdmin,
-  removeAccents,
   send
 } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
@@ -452,40 +451,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     }));
   };
 
-  const checkPronunciation = (
-    sentence: string = '',
-    pronunciation: string = ''
-  ): JSX.Element | string => {
-
-    if (!feedback.canShow || isCorrectPronuciation) {
-      return sentence;
-    }
-
-    const formattedWords: string[] = removeAccents(formatWord(sentence)).split(' ');
-    const pronunciations: string[] = pronunciation.toLowerCase().split(' ');
-    const spliteWords: string[] = sentence.split(' ');
-
-    return (
-      <>
-        {formattedWords.map((word: string, index: number): JSX.Element => {
-          const isFirstWord: boolean = index === 0;
-          let isMismatch: boolean = pronunciations.includes(word);
-
-          if (isMismatch && (formattedWords.length === pronunciations.length)) {
-            isMismatch = word === pronunciations[index];
-          }
-
-          const style: any = {
-            borderBottom: isMismatch ? 'none' : '2px solid red',
-            textTransform: isFirstWord ? 'capitalize' : 'none'
-          };
-
-          return <span key={index} style={style}> {spliteWords[index]} </span>;
-        })}
-      </>
-    );
-  };
-
   const BarStatus = ({ hiddenCount = false }): JSX.Element => {
     const percentage: number = getWordProgress();
     const style: any = {
@@ -592,7 +557,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                       )
                     }
                   >
-                    {checkPronunciation(sentence?.englishWord, pronunciationFeedback)}
+                    {checkPronunciation(
+                      sentence?.englishWord,
+                      pronunciationFeedback,
+                      !(!feedback.canShow || isCorrectPronuciation)
+                    )}
                   </span>
                 </div>
                 <span

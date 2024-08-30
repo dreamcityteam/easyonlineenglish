@@ -4,7 +4,7 @@ import { HTTP_STATUS_CODES, ROLE } from './constant';
 import { Request, RequestOptions, Send, Response, Data } from './type';
 import context from '../global/state/context';
 import { User } from '../global/state/type';
-
+import React from 'react';
 /**
  * Uploads a file blob to the Vercel Blob Storage service.
  * @param {Object} params - The parameters for uploading the blob.
@@ -136,6 +136,62 @@ const getData = async (
   statusCode === HTTP_STATUS_CODES.OK && success(data);
   dispatch({ type: CLEAR_LOAD });
 }
+
+/**
+ * Checks the pronunciation of each word in a sentence and highlights mismatches.
+ *
+ * @param {string} [sentence=''] - The sentence to be checked.
+ * @param {string} [pronunciation=''] - The expected pronunciation, with words separated by spaces.
+ * @param {boolean} [canShow=false] - Determines whether to perform the check or return the original sentence.
+ * @returns {JSX.Element | string} - If `canShow` is true, returns a JSX element with each word styled based on pronunciation match. Otherwise, returns the original sentence as a string.
+ *
+ * @example
+ * // Renders the sentence with words underlined in red if they don't match the pronunciation.
+ * checkPronunciation('Hello world', 'hello word', true);
+ *
+ * @example
+ * // Returns the original sentence as a string because `canShow` is false.
+ * checkPronunciation('Hello world', 'hello word', false); 
+ */
+const checkPronunciation = (
+  sentence: string = '',
+  pronunciation: string = '',
+  canShow: boolean = false
+): JSX.Element | string => {
+
+  if (!canShow) {
+    return sentence
+  }
+
+  const formattedWords: string[] = removeAccents(formatWord(sentence)).split(' ');
+  const pronunciations: string[] = pronunciation.toLowerCase().split(' ');
+  const spliteWords: string[] = sentence.split(' ');
+
+  return (
+    <>
+      {formattedWords.map((word: string, index: number): JSX.Element => {
+        const isFirstWord: boolean = index === 0;
+        let isMismatch: boolean = pronunciations.includes(word);
+
+        if (isMismatch && (formattedWords.length === pronunciations.length)) {
+          isMismatch = word === pronunciations[index];
+        }
+
+        const style: any = {
+          borderBottom: isMismatch ? 'none' : '2px solid red',
+          textTransform: isFirstWord ? 'capitalize' : 'none'
+        };
+
+        const canAddSpace = (condiction: boolean): string =>
+          condiction ? ' ' : '';
+
+        return <span key={index} style={style}>
+         {canAddSpace(index !== 0)}{spliteWords[index]}{canAddSpace(index !== formattedWords.length - 1)}
+        </span>;
+      })}
+    </>
+  );
+};
 
 const Cookie = {
     /**
@@ -332,5 +388,6 @@ export {
   uploadBlob,
   getClassName,
   Storage,
-  Cookie
+  Cookie,
+  checkPronunciation
 };

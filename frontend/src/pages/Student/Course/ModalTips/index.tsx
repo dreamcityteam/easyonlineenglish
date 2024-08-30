@@ -1,20 +1,45 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Modal from '../../../../components/Modal';
 import Image from '../../../../components/Image';
-import { data, data2 } from './data';
-import { Data } from './type';
+import { data2 } from './data';
 import style from './style.module.sass';
-import Close from '../../../../components/Modal/Close';
-import Sound from '../../../../components/Sound';
+import Speech from '../../../../components/Speech';
+import { checkPronunciation } from '../../../../tools/function';
 
-const ModalTips: React.FC = () => {
-  const [canShow, setCanShow] = useState<boolean>(true);
-  const { es, en, audio }: any = useMemo(() => (
-    data2[Math.floor(Math.random() * data2.length)]
-  ), []);
+interface SpeechFeedbackState {
+  canShow: boolean;
+  canShowFeedback: boolean;
+  pronunciation: string;
+}
+
+const initialState: SpeechFeedbackState = {
+  canShow: true,
+  canShowFeedback: false,
+  pronunciation: '',
+};
+
+const onSpeechFeedback = (
+  isCorrect: boolean,
+  pronunciation: string,
+  setState: React.Dispatch<React.SetStateAction<SpeechFeedbackState>>
+): void => {
+  setState({
+    canShow: !isCorrect,
+    canShowFeedback: !isCorrect,
+    pronunciation,
+  });
+};
+
+const ModalTips: React.FC = (): JSX.Element => {
+  const [state, setState] = useState<SpeechFeedbackState>(initialState);
+  const { es = '', en = '', audio = '' } = useMemo(() => data2[Math.floor(Math.random() * data2.length)], []);
 
   return (
-    <Modal state={[canShow, setCanShow]}>
+    <Modal
+      state={[state.canShow, (canShow) => setState({ ...state, canShow })]}
+      isFadeIn
+      isBackgroundClose 
+    >
       <div className={style.tips}>
         <div className={style.tips__container}>
           <div className={style.tips__image}>
@@ -25,10 +50,16 @@ const ModalTips: React.FC = () => {
           </div>
           <div>
             <header className={style.tips__header}>
-              <h2>"{en}"</h2>
+              <h2>"{checkPronunciation(en, state.pronunciation, state.canShowFeedback)}"</h2>
               <p>{es}</p>
             </header>
-            <Sound src={audio} style={style} />
+            <div className={style.tips__speech}>
+            <Speech
+              audioUrl={audio}
+              onCheck={(isCorrect, pronunciation) => onSpeechFeedback(isCorrect, pronunciation, setState)}
+              word={en}
+            />
+            </div>
           </div>
         </div>
       </div>

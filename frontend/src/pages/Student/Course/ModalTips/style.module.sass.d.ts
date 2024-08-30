@@ -6,6 +6,7 @@ interface CssExports {
   'tips__container': string;
   'tips__header': string;
   'tips__image': string;
+  'tips__speech': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

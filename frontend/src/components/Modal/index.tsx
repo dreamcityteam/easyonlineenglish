@@ -6,18 +6,20 @@ interface Prop {
   isFadeIn?: boolean;
   backgroundColor?: string;
   state: [boolean, (state: boolean) => void];
+  isBackgroundClose ?: boolean;
 };
 
 const Modal: React.FC<Prop> = ({
   children,
   backgroundColor,
   isFadeIn,
-  state
+  state,
+  isBackgroundClose = true
 }): JSX.Element => {
   const [canShow, setCanShow] = state;
 
   const onClick = ({ target }: any) => {
-    target.classList.contains(style.modal) && setCanShow(false);
+    target.classList.contains(style.modal) && setCanShow(isBackgroundClose);
   }
 
   return (
