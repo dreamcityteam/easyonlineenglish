@@ -6,9 +6,10 @@ import { getClassName } from '../../tools/function';
 interface Props {
   src: string;
   style: { [key: string]: any };
+  render?: () => JSX.Element;
 }
 
-const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
+const Sound: React.FC<Props> = ({ src, style = {}, render }): JSX.Element => {
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
 
@@ -40,25 +41,31 @@ const Sound: React.FC<Props> = ({ src, style = {} }): JSX.Element => {
     }
   };
 
+
   return (
     <div
       className={`${style.sound} ${styleDefault.sound}`}
     >
-      {canPlay ? (
-        <Image
-          alt="Stop pronunciation"
-          className={getClassName(style.sound__icon, styleDefault.sound__icon)}
-          path="icons/pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj.png"
-          onClick={handleTogglePlay}
-        />
-      ) : (
-        <Image
-          alt="Play pronunciation"
-          className={getClassName(style.sound__icon, styleDefault.sound__icon)}
-          path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
-          onClick={handleTogglePlay}
-        />
-      )}
+      {render
+        ? <div onClick={handleTogglePlay}>{render()}</div>
+        : (
+          canPlay ? (
+            <Image
+              alt="Stop pronunciation"
+              className={getClassName(style.sound__icon, styleDefault.sound__icon)}
+              path="icons/pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj.png"
+              onClick={handleTogglePlay}
+            />
+          ) : (
+            <Image
+              alt="Play pronunciation"
+              className={getClassName(style.sound__icon, styleDefault.sound__icon)}
+              path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
+              onClick={handleTogglePlay}
+            />
+          )
+        )}
+
       <audio
         ref={audioRef}
         src={src}

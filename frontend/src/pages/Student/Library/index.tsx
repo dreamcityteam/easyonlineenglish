@@ -197,9 +197,13 @@ const Library: React.FC = (): JSX.Element => {
 
                 englishLetter: {
                   value: 'Letra',
-                  render: (value: string): JSX.Element =>
+                  render: (value: string, item): JSX.Element =>
                     <div style={{ cursor: 'pointer', fontSize: '40px' }}>
-                      <strong>{value}</strong>
+                      <Sound
+                        src={item.englishLetterAudioUrl}
+                        style={{}}
+                        render={() => <strong>{value}</strong>}
+                      />
                     </div>
                 },
 
