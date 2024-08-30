@@ -198,7 +198,7 @@ const Library: React.FC = (): JSX.Element => {
                 englishLetter: {
                   value: 'Letra',
                   render: (value: string): JSX.Element =>
-                    <div style={{ cursor: 'pointer' }}>
+                    <div style={{ cursor: 'pointer', fontSize: '40px' }}>
                       <strong>{value}</strong>
                     </div>
                 },
@@ -207,7 +207,7 @@ const Library: React.FC = (): JSX.Element => {
                   value: 'Referencia',
                   render: (value: string): JSX.Element =>
                     <div style={{ cursor: 'pointer' }}>
-                      <span>
+                      <span style={{ fontSize: '50px' }}>
                         <strong style={{ color: 'red' }}>{value[0]}</strong>
                         {value.substring(1, value.length)}
                       </span>
