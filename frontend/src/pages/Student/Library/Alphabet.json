@@ -1,262 +1,163 @@
 [
   {
-    "letter": {
-      "value": "a",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "b",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "c",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "d",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "e",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "f",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "g",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "h",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "i",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "j",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "k",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "l",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "m",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "n",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "o",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "p",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "q",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "r",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "s",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "t",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "u",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "v",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "w",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "x",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "y",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
-  },
-  {
-    "letter": {
-      "value": "z",
-      "audioUrl": ""
-    },
-    "reference": {
-      "imageUrl": "",
-      "audioUrl": ""
-    }
+    "name": "Alfabeto",
+    "content": [
+      {
+        "englishLetter": "a",
+        "reference": "animal",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "b",
+        "reference": "boy",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "c",
+        "reference": "car",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "d",
+        "reference": "david",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "e",
+        "reference": "error",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "f",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "g",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "h",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "i",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "j",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "k",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "l",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "m",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "n",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "o",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "p",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "q",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "r",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "s",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "t",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "u",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "v",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "w",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "x",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "y",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      },
+      {
+        "englishLetter": "z",
+        "reference": "",
+        "englishLetterAudioUrl": "",
+        "referenceAudioUrl": ""
+      }
+    ]
   }
 ]

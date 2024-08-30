@@ -12,6 +12,7 @@ import verbs from './verbs.json';
 import Head from './Head';
 import pronunciation from './pronunciation.json';
 import ImageLazy from '../../../components/ImageLazy';
+import alphabet from './Alphabet.json';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -43,7 +44,7 @@ const Library: React.FC = (): JSX.Element => {
       service: { method: 'get', endpoint: 'library' },
       modal: { dispatch, text: 'Cargando libreria' },
       success: (data): void => {
-        const newData: any[] = [...data];
+        const newData: any[] = [...alphabet, ...data];
 
         newData.unshift(verbs);
 
@@ -192,6 +193,34 @@ const Library: React.FC = (): JSX.Element => {
                   value: 'Audio',
                   render: (value: string): JSX.Element =>
                     <Sound src={value} style={style} />
+                },
+
+                englishLetter: {
+                  value: 'Letra',
+                  render: (value: string): JSX.Element =>
+                    <div style={{ cursor: 'pointer' }}>
+                      <strong>{value}</strong>
+                    </div>
+                },
+
+                reference: {
+                  value: 'Referencia',
+                  render: (value: string): JSX.Element =>
+                    <div style={{ cursor: 'pointer' }}>
+                      <span>
+                        <strong style={{ color: 'red' }}>{value[0]}</strong>
+                        {value.substring(1, value.length)}
+                      </span>
+                    </div>
+                },
+
+                englishLetterAudioUrl: {
+                  avoid: true,
+                  value: 'Letter'
+                },
+
+                referenceAudioUrl: {
+                  avoid: true,
                 },
                 pronunciation: {
                   value: 'Pronunciación',
