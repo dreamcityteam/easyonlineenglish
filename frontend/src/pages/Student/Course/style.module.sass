@@ -2,6 +2,7 @@
 
 .course
   display: flex
+  padding-bottom: 30px
 
   &__container
     text-align: center
@@ -143,8 +144,6 @@
     border-radius: 50%
     cursor: pointer
     height: 53px
-    position: relative
-    top: -24px
     width: 53px
 
   &__pronunciation
@@ -167,15 +166,20 @@
     justify-content: space-between
     width: 462px
 
+  &__speech
+    position: relative
+
+    p
+      bottom: -50px
+      position: absolute
+      width: 200px
+
   @media only screen and (max-width: 1024px)
     &__content
       padding: 0 40px
 
     &__container
       margin-top: 15px
-
-    &__pronunciation
-      padding: 0
 
     &__message
       margin-left: 0
@@ -214,19 +218,14 @@
     &__button
       width: 258px
 
-    &__speech img
-      position: relative
-      top: 7px
-      width: 70px
-
     &__content
       padding: 0
 
     &__content_text
       padding: 20px
 
-    &__arrow
-      top: -18px
+    &__arrow,
+    &__speech img
       height: 35px
       width: 35px
 
@@ -253,30 +252,22 @@
   @media screen and (max-width: 950px) and (min-width: 700px)
     &__button
       width: 355px
-      
+
     &__feedback
       height: 250px
       width: 350px
 
-    &__arrow
-      top: -18px
+    &__arrow,
+    &__speech img
       height: 45px
       width: 45px
-
-    &__speech img
-      width: 80px
 
   @media only screen and (max-width: 500px)
     &__button
       width: 145px
 
-    &__speech
-      img
-        position: relative
-        top: 7px
-        width: 60px
-      p
-        font-size: 12px
+    &__speech p
+      font-size: 12px
 
     &__textSentence
       font-weight: 400
@@ -287,8 +278,8 @@
     &__content_text
       padding: 20px
 
-    &__arrow
-      top: -19px
+    &__arrow,
+    &__speech img
       height: 28px
       width: 28px
 
