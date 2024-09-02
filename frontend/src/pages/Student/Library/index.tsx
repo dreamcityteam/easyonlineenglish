@@ -201,6 +201,7 @@ const Library: React.FC = (): JSX.Element => {
               style={style}
               custom={{
                 _id: { avoid: true },
+                isFeedback: {avoid: true},
                 englishWord: { 
                   value: 'Ingles',
                   render: (value: string, item): JSX.Element =>
