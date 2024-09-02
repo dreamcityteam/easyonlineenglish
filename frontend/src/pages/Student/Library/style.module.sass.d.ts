@@ -3,6 +3,7 @@
 interface CssExports {
   'sound__icon': string;
   'table': string;
+  'table__expresion': string;
   'table__feedback': string;
   'table__image': string;
   'table__image_container': string;

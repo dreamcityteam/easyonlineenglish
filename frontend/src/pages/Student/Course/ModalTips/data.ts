@@ -1,322 +1,236 @@
-import { Data } from './type';
-
-const data: Data[] = [
+const data: any[] = [
   {
-    'title': 'Establece metas claras',
-    'text': 'Define qué nivel de inglés quieres alcanzar y en qué plazo. Esto te ayudará a mantenerte enfocado y motivado.'
+    spanishTranslation: 'Por favor.',
+    englishWord: 'Please.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Please.mp3'
   },
   {
-    'title': 'Practica diariamente',
-    'text': 'Dedica tiempo todos los días al aprendizaje del inglés, incluso si es solo unos minutos.'
+    spanishTranslation: 'De nada.',
+    englishWord: 'You\'re welcome.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/You%E2%80%99re-welcome.mp3'
   },
   {
-    'title': 'Escucha inglés',
-    'text': 'Escucha música, pódcast, o mira películas y series en inglés. Intenta hacerlo sin subtítulos para mejorar tu comprensión auditiva.'
+    spanishTranslation: 'Disculpe.',
+    englishWord: 'Excuse me.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Excuse-me.mp3'
   },
   {
-    'title': 'Lee en inglés',
-    'text': 'Lee libros, artículos, blogs o noticias en inglés. Comienza con textos sencillos y aumenta la dificultad gradualmente.'
+    spanishTranslation: 'Lo siento / Disculpa.',
+    englishWord: 'I\'m sorry.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I%E2%80%99m-sorry.mp3'
   },
   {
-    'title': 'Habla con nativos',
-    'text': 'Busca oportunidades para conversar con hablantes nativos.'
+    spanishTranslation: '¿Cómo estás?',
+    englishWord: 'How are you?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-are-you.mp3'
   },
   {
-    'title': 'Lo más importante es querer aprender',
-    'text': 'Si muestras un gran interés en aprender, todo lo que te propongas se te hará más fácil.'
+    spanishTranslation: 'Estoy bien, ¿y tú?',
+    englishWord: 'I\'m fine, thank you.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I%E2%80%99m-fine-thank-you.mp3'
   },
   {
-    'title': 'Aprende vocabulario nuevo',
-    'text': 'Haz listas de palabras y frases nuevas, y repásalas regularmente. Usa tarjetas de memoria (flashcards) para ayudarte.'
+    spanishTranslation: '¿Cuál es tu nombre?',
+    englishWord: 'What\'s your name?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What%E2%80%99s-your-name.mp3'
   },
   {
-    'title': 'Escribe en inglés',
-    'text': 'Practica escribiendo diarios, correos electrónicos o ensayos. Esto te ayudará a mejorar tu gramática y tu capacidad de expresión.'
+    spanishTranslation: 'Me llamo María.',
+    englishWord: 'My name is Maria.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/My-name-is-Maria.mp3'
   },
   {
-    'title': 'Haz uso de aplicaciones',
-    'text': 'Utiliza aplicaciones y plataformas donde el idioma utilizado sea el inglés. Por ejemplo, Easy Online English.'
+    spanishTranslation: 'Un placer conocerte.',
+    englishWord: 'Nice to meet you.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Nice-to-meet-you.mp3'
   },
   {
-    'title': 'Repite cuantas veces puedas',
-    'text': 'Dedica tiempo a repetir cada palabra que escuches en inglés, dentro y fuera de clase.'
+    spanishTranslation: '¿De dónde eres?',
+    englishWord: 'Where are you from?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-are-you-from.mp3'
   },
   {
-    'title': 'Participa en foros',
-    'text': 'Únete a foros o comunidades en línea donde puedas interactuar en inglés. Esto te ayudará a practicar la escritura y a familiarizarte con distintos estilos de comunicación.'
+    spanishTranslation: 'Soy de Los Angeles.',
+    englishWord: 'I\'m from Los Angeles.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I%E2%80%99m-from-Los-Angeles.mp3'
   },
   {
-    'title': 'Estudia frases comunes',
-    'text': 'Aprende y usa frases y expresiones idiomáticas comunes. Esto te ayudará a sonar más natural al hablar. Te recomendamos visitar nuestra biblioteca virtual.'
+    spanishTranslation: '¿Me puedes ayudar?',
+    englishWord: 'Can you help me?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-help-me.mp3'
   },
   {
-    'title': 'Juega con el idioma',
-    'text': 'Usa juegos de palabras, crucigramas, videjuegos en línea o juegos de mesa en inglés para hacer el aprendizaje más divertido.'
+    spanishTranslation: 'No entiendo.',
+    englishWord: 'I don\'t understand.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don%E2%80%99t-understand.mp3'
   },
   {
-    'title': 'Grábate hablando',
-    'text': 'Grábate leyendo en voz alta o hablando en inglés y escucha la grabación para identificar áreas de mejora.'
+    spanishTranslation: '¿Me puedes repetir eso, por favor?',
+    englishWord: 'Could you repeat that, please?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Could-you-repeat-that-please.mp3'
   },
   {
-    'title': 'Fija un horario regular',
-    'text': 'Crea un horario de estudio y cúmplelo. La regularidad es clave para el aprendizaje de un nuevo idioma.'
+    spanishTranslation: '¿Cuánto cuesta?',
+    englishWord: 'How much does this cost?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-much-does-this-cost.mp3'
   },
   {
-    'title': 'Practica la pronunciación',
-    'text': 'Escucha y repite palabras y frases para mejorar tu pronunciación. Puedes usar Easy Online English para comparar tu pronunciación con la de hablantes nativos.'
+    spanishTranslation: 'Me gustaría comprar esto.',
+    englishWord: 'I\'d like to buy this.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-to-buy-this%20(2).mp3'
   },
   {
-    'title': 'Aprende sobre la cultura',
-    'text': 'Familiarízate con la cultura de los países de habla inglesa. Esto te dará contexto y enriquecerá tu aprendizaje del idioma.'
+    spanishTranslation: '¿Dónde está el baño?',
+    englishWord: 'Where is the restroom?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-is-the-restroom%20(2).mp3'
   },
   {
-    'title': 'No temas cometer errores',
-    'text': 'Los errores son parte del proceso de aprendizaje. No tengas miedo de cometerlos y aprende de ellos.'
+    spanishTranslation: 'Estoy perdido.',
+    englishWord: 'I\'m lost.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-lost%20(2).mp3'
   },
   {
-    'title': 'Familiarizate primero similares en inglés y español',
-    'text': 'Nuestro curso está diseñado bajo esa metodología.'
+    spanishTranslation: '¿Me da la cuenta por favor?',
+    englishWord: 'Can I have the bill, please?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-I-have-the-bill-please%20(2).mp3'
   },
   {
-    'title': 'Sé paciente y perseverante',
-    'text': 'Aprender un nuevo idioma lleva tiempo. Mantén una actitud positiva y sigue practicando.'
-  }
-];
-
-const data2: any[] = [
-  {
-    es: 'Por favor.',
-    en: 'Please.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Please.mp3'
-  },
-  {
-    es: 'De nada.',
-    en: 'You\'re welcome.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/You%E2%80%99re-welcome.mp3'
-  },
-  {
-    es: 'Disculpe.',
-    en: 'Excuse me.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Excuse-me.mp3'
-  },
-  {
-    es: 'Lo siento / Disculpa.',
-    en: 'I\'m sorry.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I%E2%80%99m-sorry.mp3'
-  },
-  {
-    es: '¿Cómo estás?',
-    en: 'How are you?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-are-you.mp3'
-  },
-  {
-    es: 'Estoy bien, ¿y tú?',
-    en: 'I\'m fine, thank you.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I%E2%80%99m-fine-thank-you.mp3'
-  },
-  {
-    es: '¿Cuál es tu nombre?',
-    en: 'What\'s your name?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What%E2%80%99s-your-name.mp3'
-  },
-  {
-    es: 'Me llamo María.',
-    en: 'My name is Maria.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/My-name-is-Maria.mp3'
-  },
-  {
-    es: 'Un placer conocerte.',
-    en: 'Nice to meet you.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Nice-to-meet-you.mp3'
-  },
-  {
-    es: '¿De dónde eres?',
-    en: 'Where are you from?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-are-you-from.mp3'
-  },
-  {
-    es: 'Soy de Los Angeles.',
-    en: 'I\'m from Los Angeles.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I%E2%80%99m-from-Los-Angeles.mp3'
-  },
-  {
-    es: '¿Me puedes ayudar?',
-    en: 'Can you help me?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-help-me.mp3'
-  },
-  {
-    es: 'No entiendo.',
-    en: 'I don\'t understand.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don%E2%80%99t-understand.mp3'
-  },
-  {
-    es: '¿Me puedes repetir eso, por favor?',
-    en: 'Could you repeat that, please?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Could-you-repeat-that-please.mp3'
-  },
-  {
-    es: '¿Cuánto cuesta?',
-    en: 'How much does this cost?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-much-does-this-cost.mp3'
-  },
-  {
-    es: 'Me gustaría comprar esto.',
-    en: 'I\'d like to buy this.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-to-buy-this%20(2).mp3'
-  },
-  {
-    es: '¿Dónde está el baño?',
-    en: 'Where is the restroom?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-is-the-restroom%20(2).mp3'
-  },
-  {
-    es: 'Estoy perdido.',
-    en: 'I\'m lost.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-lost%20(2).mp3'
-  },
-  {
-    es: '¿Me da la cuenta por favor?',
-    en: 'Can I have the bill, please?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-I-have-the-bill-please%20(2).mp3'
-  },
-  {
-    es: 'Necesito un taxi.',
-    en: 'I need a taxi.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-a-taxi.mp3'
+    spanishTranslation: 'Necesito un taxi.',
+    englishWord: 'I need a taxi.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-a-taxi.mp3'
   },
   {
-    es: '¿Qué hora es?',
-    en: 'What time is it?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-time-is-it.mp3'
+    spanishTranslation: '¿Qué hora es?',
+    englishWord: 'What time is it?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-time-is-it.mp3'
   },
   {
-    es: '¿Cómo se dice "mango" en Inglés?',
-    en: 'How do you say "mango" in English?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-you-say-Mango-in-English.mp3'
+    spanishTranslation: '¿Cómo se dice "mango" en Inglés?',
+    englishWord: 'How do you say "mango" in English?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-you-say-Mango-in-English.mp3'
   },
   {
-    es: 'No hablo bien inglés.',
-    en: 'I don\'t speak English very well.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don’t-speak-English-very-well.mp3'
+    spanishTranslation: 'No hablo bien inglés.',
+    englishWord: 'I don\'t speak English very well.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don’t-speak-English-very-well.mp3'
   },
   {
-    es: '¿Puedes hablar más despacio?',
-    en: 'Can you speak more slowly?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-speak-more-slowly.mp3'
+    spanishTranslation: '¿Puedes hablar más despacio?',
+    englishWord: 'Can you speak more slowly?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-speak-more-slowly.mp3'
   },
   {
-    es: 'Estoy aprendiendo inglés.',
-    en: 'I\'m learning English.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-learning-English.mp3'
+    spanishTranslation: 'Estoy aprendiendo inglés.',
+    englishWord: 'I\'m learning English.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-learning-English.mp3'
   },
   {
-    es: '¿Me puedes mostrar?',
-    en: 'Can you show me?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-show-me.mp3'
+    spanishTranslation: '¿Me puedes mostrar?',
+    englishWord: 'Can you show me?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-show-me.mp3'
   },
   {
-    es: '¿Qué significa esa palabra?',
-    en: 'What does this word mean?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-does-this-word-mean.mp3'
+    spanishTranslation: '¿Qué significa esa palabra?',
+    englishWord: 'What does this word mean?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-does-this-word-mean.mp3'
   },
   {
-    es: 'Tengo hambre.',
-    en: 'I\'m hungry.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-hungry.mp3'
+    spanishTranslation: 'Tengo hambre.',
+    englishWord: 'I\'m hungry.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-hungry.mp3'
   },
   {
-    es: 'Tengo sed.',
-    en: 'I\'m thirsty.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-thirsty.mp3'
+    spanishTranslation: 'Tengo sed.',
+    englishWord: 'I\'m thirsty.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-thirsty.mp3'
   },
   {
-    es: 'Me gustaría un poco de agua, por favor.',
-    en: 'I\'d like some water, please.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-some-water-please.mp3'
+    spanishTranslation: 'Me gustaría un poco de agua, por favor.',
+    englishWord: 'I\'d like some water, please.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-some-water-please.mp3'
   },
   {
-    es: '¿Dónde puedo conseguir un cajero automático?',
-    en: 'Where can I find an ATM?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-can-I-find-an-ATM.mp3'
+    spanishTranslation: '¿Dónde puedo conseguir un cajero automático?',
+    englishWord: 'Where can I find an ATM?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-can-I-find-an-ATM.mp3'
   },
   {
-    es: 'Estoy aquí de vacaciones.',
-    en: 'I\'m here on vacation.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-here-on-vacation.mp3'
+    spanishTranslation: 'Estoy aquí de vacaciones.',
+    englishWord: 'I\'m here on vacation.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-here-on-vacation.mp3'
   },
   {
-    es: 'Estoy aquí por trabajo.',
-    en: 'I\'m here for work.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-here-for-work.mp3'
+    spanishTranslation: 'Estoy aquí por trabajo.',
+    englishWord: 'I\'m here for work.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-here-for-work.mp3'
   },
   {
-    es: '¿Hablas inglés?',
-    en: 'Do you speak English?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Do-you-speak-English.mp3'
+    spanishTranslation: '¿Hablas inglés?',
+    englishWord: 'Do you speak English?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Do-you-speak-English.mp3'
   },
   {
-    es: 'Necesito ir al doctor.',
-    en: 'I need to go to the doctor.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-to-go-to-the-doctor.mp3'
+    spanishTranslation: 'Necesito ir al doctor.',
+    englishWord: 'I need to go to the doctor.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-to-go-to-the-doctor.mp3'
   },
   {
-    es: '¿Cómo llego a la bomba de gasolina?',
-    en: 'How do I get to the gas station?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-I-get-to-the-gas-station.mp3'
+    spanishTranslation: '¿Cómo llego a la bomba de gasolina?',
+    englishWord: 'How do I get to the gas station?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-I-get-to-the-gas-station.mp3'
   },
   {
-    es: '¿Me puede recomendar un buen restaurante?',
-    en: 'Can you recommend a good restaurant?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-recommend-a-good-restaurant.mp3'
+    spanishTranslation: '¿Me puede recomendar un buen restaurante?',
+    englishWord: 'Can you recommend a good restaurant?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-recommend-a-good-restaurant.mp3'
   },
   {
-    es: 'Estoy buscando pan integral.',
-    en: 'I\'m looking for whole wheat grain bread.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-whole-wheat-grain-bread.mp3'
+    spanishTranslation: 'Estoy buscando pan integral.',
+    englishWord: 'I\'m looking for whole wheat grain bread.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-whole-wheat-grain-bread.mp3'
   },
   {
-    es: 'Estoy buscando la farmacia más cercana.',
-    en: 'I\'m looking for the nearest pharmacy.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-the-nearest-pharmacy.mp3'
+    spanishTranslation: 'Estoy buscando la farmacia más cercana.',
+    englishWord: 'I\'m looking for the nearest pharmacy.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-the-nearest-pharmacy.mp3'
   },
   {
-    es: '¿Cómo está el clima hoy?',
-    en: 'What\'s the weather like today?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What’s-the-weather-like-today.mp3'
+    spanishTranslation: '¿Cómo está el clima hoy?',
+    englishWord: 'What\'s the weather like today?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What’s-the-weather-like-today.mp3'
   },
   {
-    es: 'Estoy cansado.',
-    en: 'I\'m tired.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-tired.mp3'
+    spanishTranslation: 'Estoy cansado.',
+    englishWord: 'I\'m tired.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-tired.mp3'
   },
   {
-    es: 'No sé.',
-    en: 'I don\'t know.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don’t-know.mp3'
+    spanishTranslation: 'No sé.',
+    englishWord: 'I don\'t know.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don’t-know.mp3'
   },
   {
-    es: '¿Me lo puedo probar?',
-    en: 'Can I try it on?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-I-try-it-on.mp3'
+    spanishTranslation: '¿Me lo puedo probar?',
+    englishWord: 'Can I try it on?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-I-try-it-on.mp3'
   },
   {
-    es: '¿Este asiento está ocupado?',
-    en: 'Is this seat taken?',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Is-this-seat-taken.mp3'
+    spanishTranslation: '¿Este asiento está ocupado?',
+    englishWord: 'Is this seat taken?',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Is-this-seat-taken.mp3'
   },
   {
-    es: 'Que tengas un buen día.',
-    en: 'Have a nice day.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Have-a-nice-day.mp3'
+    spanishTranslation: 'Que tengas un buen día.',
+    englishWord: 'Have a nice day.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Have-a-nice-day.mp3'
   },
   {
-    es: 'Me duele.',
-    en: 'It hurts.',
-    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/It-hurts.mp3'
+    spanishTranslation: 'Me duele.',
+    englishWord: 'It hurts.',
+    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/It-hurts.mp3'
   }
 ];
 
 export {
-  data,
-  data2
+  data
 };

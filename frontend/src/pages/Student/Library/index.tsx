@@ -13,6 +13,7 @@ import Head from './Head';
 import pronunciation from './pronunciation.json';
 import ImageLazy from '../../../components/ImageLazy';
 import alphabet from './Alphabet.json';
+import tips from './basicExpresion.json';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -44,7 +45,7 @@ const Library: React.FC = (): JSX.Element => {
       service: { method: 'get', endpoint: 'library' },
       modal: { dispatch, text: 'Cargando libreria' },
       success: (data): void => {
-        const newData: any[] = [...alphabet, ...data];
+        const newData: any[] = [...alphabet, ...data, ...tips];
 
         newData.unshift(verbs);
 
@@ -200,7 +201,15 @@ const Library: React.FC = (): JSX.Element => {
               style={style}
               custom={{
                 _id: { avoid: true },
-                englishWord: { value: 'Ingles' },
+                englishWord: { 
+                  value: 'Ingles',
+                  render: (value: string, item): JSX.Element =>
+                    <div className={style.table__expresion}>
+                      {value}
+                      {item.isFeedback && <Feedback englishWord={value} />}
+                    </div>
+
+                },
                 spanishTranslation: { value: 'Español' },
                 audioUrl: {
                   value: 'Audio',

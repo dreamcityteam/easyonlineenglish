@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import Modal from '../../../../components/Modal';
 import Image from '../../../../components/Image';
-import { data2 } from './data';
+import { data } from './data';
 import style from './style.module.sass';
 import Speech from '../../../../components/Speech';
 import { checkPronunciation } from '../../../../tools/function';
@@ -32,7 +32,7 @@ const onSpeechFeedback = (
 
 const ModalTips: React.FC = (): JSX.Element => {
   const [state, setState] = useState<SpeechFeedbackState>(initialState);
-  const { es = '', en = '', audio = '' } = useMemo(() => data2[Math.floor(Math.random() * data2.length)], []);
+  const { spanishTranslation = '', englishWord = '', audioUrl = '' } = useMemo(() => data[Math.floor(Math.random() * data.length)], []);
 
   return (
     <Modal
@@ -50,14 +50,14 @@ const ModalTips: React.FC = (): JSX.Element => {
           </div>
           <div>
             <header className={style.tips__header}>
-              <h2>"{checkPronunciation(en, state.pronunciation, state.canShowFeedback)}"</h2>
-              <p>{es}</p>
+              <h2>"{checkPronunciation(englishWord, state.pronunciation, state.canShowFeedback)}"</h2>
+              <p>{spanishTranslation}</p>
             </header>
             <div className={style.tips__speech}>
             <Speech
-              audioUrl={audio}
+              audioUrl={audioUrl}
               onCheck={(isCorrect, pronunciation) => onSpeechFeedback(isCorrect, pronunciation, setState)}
-              word={en}
+              word={englishWord}
             />
             </div>
           </div>
