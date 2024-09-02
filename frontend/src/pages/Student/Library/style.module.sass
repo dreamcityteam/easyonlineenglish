@@ -71,11 +71,15 @@
     background-clip: text
     color: transparent
 
-  &__image_container
+  &__image_container,
+  &__letter
     align-items: center
     display: flex
     justify-content: center
     position: relative
+
+  &__letter .table__feedback
+    font-size: 20px
 
   &__feedback
     position: absolute
@@ -99,6 +103,9 @@
   &__tbodyTd
     padding: 20px
 
+  &__letter
+    font-size: 50px
+
   @include mobile
     &__theadTh,
     &__tbodyTd
@@ -113,8 +120,8 @@
     div
       text-align: center
 
-    &__pronunciation img
-      width: 76px
+    &__letter
+      font-size: 30px
 
 .sound
   &__icon

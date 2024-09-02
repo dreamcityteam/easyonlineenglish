@@ -6,7 +6,7 @@ interface CssExports {
   'table__feedback': string;
   'table__image': string;
   'table__image_container': string;
-  'table__pronunciation': string;
+  'table__letter': string;
   'table__tbodyTd': string;
   'table__theadTh': string;
   'table__verb': string;

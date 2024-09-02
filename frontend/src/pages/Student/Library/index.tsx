@@ -155,6 +155,19 @@ const Library: React.FC = (): JSX.Element => {
     );
   };
 
+  const Feedback = ({ englishWord }: { englishWord: string; }): JSX.Element => (
+    <>
+      {typeof speech[englishWord] !== 'undefined' && speech[englishWord].canShow && (
+        <span
+          className={style.table__feedback}
+          style={{ background: speech[englishWord].isCorrect ? '#4caf50' : '#f44336' }}
+        >
+          {speech[englishWord].isCorrect ? 'Correcto' : 'Incorrecto'}
+        </span>
+      )}
+    </>
+  );
+
   return (
     <>
       <Head
@@ -194,30 +207,71 @@ const Library: React.FC = (): JSX.Element => {
                   render: (value: string): JSX.Element =>
                     <Sound src={value} style={style} />
                 },
-
+                // LETTER STRCUTURE
                 englishLetter: {
                   value: 'Letra',
                   render: (value: string, item): JSX.Element =>
-                    <div style={{ cursor: 'pointer', fontSize: '40px' }}>
+                    <div className={style.table__letter}>
                       <Sound
                         src={item.englishLetterAudioUrl}
                         style={{}}
                         render={() => <strong>{value}</strong>}
                       />
+                      <Feedback englishWord={value} />
                     </div>
                 },
 
                 reference: {
                   value: 'Referencia',
-                  render: (value: string): JSX.Element =>
-                    <div style={{ cursor: 'pointer' }}>
-                      <span style={{ fontSize: '50px' }}>
-                        <strong style={{ color: 'red' }}>{value[0]}</strong>
-                        {value.substring(1, value.length)}
-                      </span>
+                  render: (value: string, item): JSX.Element =>
+                    <div className={style.table__letter}>
+                      <Sound
+                        src={item.referenceAudioUrl}
+                        style={{}}
+                        render={() => (
+                          <div>
+                            <span>
+                              <strong style={{ color: 'red' }}>{value[0]}</strong>
+                              {value.substring(1, value.length)}
+                            </span>
+                          </div>
+                        )}
+                      />
+                      <Feedback englishWord={value} />
                     </div>
                 },
 
+                pronunciationLetter: {
+                  value: 'Pronunciación',
+                  render: (value: string, item: any): JSX.Element =>
+                    <div>
+                      <Speech
+                        audioUrl={value}
+                        onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishLetter)}
+                        onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.englishLetter)}
+                        word={item.englishLetter}
+                        canShowMessage={false}
+                        canNext={pronunciation}
+                      />
+                    </div>
+                },
+
+                pronunciationReference: {
+                  value: 'Pronunciación',
+                  render: (value: string, item: any): JSX.Element =>
+                    <div>
+                      <Speech
+                        audioUrl={value}
+                        onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.reference)}
+                        onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.reference)}
+                        word={item.reference}
+                        canShowMessage={false}
+                        canNext={pronunciation}
+                      />
+                    </div>
+                },
+
+                // LETTER STRCUTURE
                 englishLetterAudioUrl: {
                   avoid: true,
                   value: 'Letter'
@@ -229,7 +283,7 @@ const Library: React.FC = (): JSX.Element => {
                 pronunciation: {
                   value: 'Pronunciación',
                   render: (value: string, item: Item): JSX.Element =>
-                    <div className={style.table__pronunciation}>
+                    <div>
                       <Speech
                         audioUrl={value}
                         onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
@@ -249,14 +303,8 @@ const Library: React.FC = (): JSX.Element => {
                         className={style.table__image}
                         src={value}
                       />
-                      {typeof speech[item.englishWord] !== 'undefined' && speech[item.englishWord].canShow && (
-                        <span
-                          className={style.table__feedback}
-                          style={{ background: speech[item.englishWord].isCorrect ? '#4caf50' : '#f44336' }}
-                        >
-                          {speech[item.englishWord].isCorrect ? 'Correcto' : 'Incorrecto'}
-                        </span>
-                      )}
+
+                      <Feedback englishWord={item.englishWord} />
                     </div>
                   )
                 },
