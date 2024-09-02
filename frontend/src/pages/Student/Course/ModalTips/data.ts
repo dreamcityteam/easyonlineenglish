@@ -149,173 +149,171 @@ const data2: any[] = [
     en: 'I don\'t understand.',
     audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don%E2%80%99t-understand.mp3'
   },
-  [
-    {
-      es: '¿Me puedes repetir eso, por favor?',
-      en: 'Could you repeat that, please?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Could-you-repeat-that-please.mp3'
-    },
-    {
-      es: '¿Cuánto cuesta?',
-      en: 'How much does this cost?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-much-does-this-cost.mp3'
-    },
-    {
-      es: 'Me gustaría comprar esto.',
-      en: 'I\'d like to buy this.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-to-buy-this%20(2).mp3'
-    },
-    {
-      es: '¿Dónde está el baño?',
-      en: 'Where is the restroom?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-is-the-restroom%20(2).mp3'
-    },
-    {
-      es: 'Estoy perdido.',
-      en: 'I\'m lost.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-lost%20(2).mp3'
-    },
-    {
-      es: '¿Me da la cuenta por favor?',
-      en: 'Can I have the bill, please?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-I-have-the-bill-please%20(2).mp3'
-    },
-    {
-      es: 'Necesito un taxi.',
-      en: 'I need a taxi.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-a-taxi.mp3'
-    },
-    {
-      es: '¿Qué hora es?',
-      en: 'What time is it?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-time-is-it.mp3'
-    },
-    {
-      es: '¿Cómo se dice "mango" en Inglés?',
-      en: 'How do you say "mango" in English?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-you-say-Mango-in-English.mp3'
-    },
-    {
-      es: 'No hablo bien inglés.',
-      en: 'I don\'t speak English very well.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don’t-speak-English-very-well.mp3'
-    },
-    {
-      es: '¿Puedes hablar más despacio?',
-      en: 'Can you speak more slowly?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-speak-more-slowly.mp3'
-    },
-    {
-      es: 'Estoy aprendiendo inglés.',
-      en: 'I\'m learning English.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-learning-English.mp3'
-    },
-    {
-      es: '¿Me puedes mostrar?',
-      en: 'Can you show me?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-show-me.mp3'
-    },
-    {
-      es: '¿Qué significa esa palabra?',
-      en: 'What does this word mean?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-does-this-word-mean.mp3'
-    },
-    {
-      es: 'Tengo hambre.',
-      en: 'I\'m hungry.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-hungry.mp3'
-    },
-    {
-      es: 'Tengo sed.',
-      en: 'I\'m thirsty.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-thirsty.mp3'
-    },
-    {
-      es: 'Me gustaría un poco de agua, por favor.',
-      en: 'I\'d like some water, please.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-some-water-please.mp3'
-    },
-    {
-      es: '¿Dónde puedo conseguir un cajero automático?',
-      en: 'Where can I find an ATM?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-can-I-find-an-ATM.mp3'
-    },
-    {
-      es: 'Estoy aquí de vacaciones.',
-      en: 'I\'m here on vacation.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-here-on-vacation.mp3'
-    },
-    {
-      es: 'Estoy aquí por trabajo.',
-      en: 'I\'m here for work.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-here-for-work.mp3'
-    },
-    {
-      es: '¿Hablas inglés?',
-      en: 'Do you speak English?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Do-you-speak-English.mp3'
-    },
-    {
-      es: 'Necesito ir al doctor.',
-      en: 'I need to go to the doctor.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-to-go-to-the-doctor.mp3'
-    },
-    {
-      es: '¿Cómo llego a la bomba de gasolina?',
-      en: 'How do I get to the gas station?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-I-get-to-the-gas-station.mp3'
-    },
-    {
-      es: '¿Me puede recomendar un buen restaurante?',
-      en: 'Can you recommend a good restaurant?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-recommend-a-good-restaurant.mp3'
-    },
-    {
-      es: 'Estoy buscando pan integral.',
-      en: 'I\'m looking for whole wheat grain bread.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-whole-wheat-grain-bread.mp3'
-    },
-    {
-      es: 'Estoy buscando la farmacia más cercana.',
-      en: 'I\'m looking for the nearest pharmacy.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-the-nearest-pharmacy.mp3'
-    },
-    {
-      es: '¿Cómo está el clima hoy?',
-      en: 'What\'s the weather like today?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What’s-the-weather-like-today.mp3'
-    },
-    {
-      es: 'Estoy cansado.',
-      en: 'I\'m tired.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-tired.mp3'
-    },
-    {
-      es: 'No sé.',
-      en: 'I don\'t know.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don’t-know.mp3'
-    },
-    {
-      es: '¿Me lo puedo probar?',
-      en: 'Can I try it on?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-I-try-it-on.mp3'
-    },
-    {
-      es: '¿Este asiento está ocupado?',
-      en: 'Is this seat taken?',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Is-this-seat-taken.mp3'
-    },
-    {
-      es: 'Que tengas un buen día.',
-      en: 'Have a nice day.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Have-a-nice-day.mp3'
-    },
-    {
-      es: 'Me duele.',
-      en: 'It hurts.',
-      audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/It-hurts.mp3'
-    }
-  ]  
+  {
+    es: '¿Me puedes repetir eso, por favor?',
+    en: 'Could you repeat that, please?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Could-you-repeat-that-please.mp3'
+  },
+  {
+    es: '¿Cuánto cuesta?',
+    en: 'How much does this cost?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-much-does-this-cost.mp3'
+  },
+  {
+    es: 'Me gustaría comprar esto.',
+    en: 'I\'d like to buy this.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-to-buy-this%20(2).mp3'
+  },
+  {
+    es: '¿Dónde está el baño?',
+    en: 'Where is the restroom?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-is-the-restroom%20(2).mp3'
+  },
+  {
+    es: 'Estoy perdido.',
+    en: 'I\'m lost.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-lost%20(2).mp3'
+  },
+  {
+    es: '¿Me da la cuenta por favor?',
+    en: 'Can I have the bill, please?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-I-have-the-bill-please%20(2).mp3'
+  },
+  {
+    es: 'Necesito un taxi.',
+    en: 'I need a taxi.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-a-taxi.mp3'
+  },
+  {
+    es: '¿Qué hora es?',
+    en: 'What time is it?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-time-is-it.mp3'
+  },
+  {
+    es: '¿Cómo se dice "mango" en Inglés?',
+    en: 'How do you say "mango" in English?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-you-say-Mango-in-English.mp3'
+  },
+  {
+    es: 'No hablo bien inglés.',
+    en: 'I don\'t speak English very well.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don’t-speak-English-very-well.mp3'
+  },
+  {
+    es: '¿Puedes hablar más despacio?',
+    en: 'Can you speak more slowly?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-speak-more-slowly.mp3'
+  },
+  {
+    es: 'Estoy aprendiendo inglés.',
+    en: 'I\'m learning English.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-learning-English.mp3'
+  },
+  {
+    es: '¿Me puedes mostrar?',
+    en: 'Can you show me?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-show-me.mp3'
+  },
+  {
+    es: '¿Qué significa esa palabra?',
+    en: 'What does this word mean?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-does-this-word-mean.mp3'
+  },
+  {
+    es: 'Tengo hambre.',
+    en: 'I\'m hungry.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-hungry.mp3'
+  },
+  {
+    es: 'Tengo sed.',
+    en: 'I\'m thirsty.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-thirsty.mp3'
+  },
+  {
+    es: 'Me gustaría un poco de agua, por favor.',
+    en: 'I\'d like some water, please.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-some-water-please.mp3'
+  },
+  {
+    es: '¿Dónde puedo conseguir un cajero automático?',
+    en: 'Where can I find an ATM?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-can-I-find-an-ATM.mp3'
+  },
+  {
+    es: 'Estoy aquí de vacaciones.',
+    en: 'I\'m here on vacation.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-here-on-vacation.mp3'
+  },
+  {
+    es: 'Estoy aquí por trabajo.',
+    en: 'I\'m here for work.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-here-for-work.mp3'
+  },
+  {
+    es: '¿Hablas inglés?',
+    en: 'Do you speak English?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Do-you-speak-English.mp3'
+  },
+  {
+    es: 'Necesito ir al doctor.',
+    en: 'I need to go to the doctor.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-to-go-to-the-doctor.mp3'
+  },
+  {
+    es: '¿Cómo llego a la bomba de gasolina?',
+    en: 'How do I get to the gas station?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-I-get-to-the-gas-station.mp3'
+  },
+  {
+    es: '¿Me puede recomendar un buen restaurante?',
+    en: 'Can you recommend a good restaurant?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-recommend-a-good-restaurant.mp3'
+  },
+  {
+    es: 'Estoy buscando pan integral.',
+    en: 'I\'m looking for whole wheat grain bread.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-whole-wheat-grain-bread.mp3'
+  },
+  {
+    es: 'Estoy buscando la farmacia más cercana.',
+    en: 'I\'m looking for the nearest pharmacy.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-the-nearest-pharmacy.mp3'
+  },
+  {
+    es: '¿Cómo está el clima hoy?',
+    en: 'What\'s the weather like today?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What’s-the-weather-like-today.mp3'
+  },
+  {
+    es: 'Estoy cansado.',
+    en: 'I\'m tired.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-tired.mp3'
+  },
+  {
+    es: 'No sé.',
+    en: 'I don\'t know.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-don’t-know.mp3'
+  },
+  {
+    es: '¿Me lo puedo probar?',
+    en: 'Can I try it on?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-I-try-it-on.mp3'
+  },
+  {
+    es: '¿Este asiento está ocupado?',
+    en: 'Is this seat taken?',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Is-this-seat-taken.mp3'
+  },
+  {
+    es: 'Que tengas un buen día.',
+    en: 'Have a nice day.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Have-a-nice-day.mp3'
+  },
+  {
+    es: 'Me duele.',
+    en: 'It hurts.',
+    audio: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/It-hurts.mp3'
+  }
 ];
 
 export {

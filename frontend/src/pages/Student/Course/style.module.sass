@@ -107,7 +107,7 @@
     justify-content: center
     margin: 0
     padding: 5px
-    width: 350px
+    width: 27%
 
     &:first-child
       text-align: left
@@ -139,19 +139,13 @@
       color: white
       padding: 0 10px
 
-  &__arrowLeft,
-  &__arrowRight
-    cursor: pointer
-    position: absolute
-    margin-top: -50px
+  &__arrow
     border-radius: 50%
+    cursor: pointer
+    height: 53px
+    position: relative
+    top: -24px
     width: 53px
-
-  &__arrowRight
-    margin-left: 350px
-
-  &__arrowLeft
-    margin-right: 350px
 
   &__pronunciation
     align-items: center
@@ -167,24 +161,21 @@
     border-top-left-radius: 5px
     border-top-right-radius: 5px
 
-  @media only screen and (max-width: 1366px)
-    &__text_lession
-      font-weight: normal
+  &__button
+    align-items: center
+    display: flex
+    justify-content: space-between
+    width: 462px
+
+  @media only screen and (max-width: 1024px)
     &__content
       padding: 0 40px
 
-  @media only screen and (max-width: 1024px)
     &__container
       margin-top: 15px
 
     &__pronunciation
       padding: 0
-
-    &__arrowRight
-      margin-left: 314px
-
-    &__arrowLeft
-      margin-right: 321px
 
     &__message
       margin-left: 0
@@ -219,7 +210,74 @@
     &__progress span
       font-size: 18px
 
-  @media only screen and (max-width: 481px)
+  @media only screen and (max-width: 950px)
+    &__button
+      width: 258px
+
+    &__speech img
+      position: relative
+      top: 7px
+      width: 70px
+
+    &__content
+      padding: 0
+
+    &__content_text
+      padding: 20px
+
+    &__arrow
+      top: -18px
+      height: 35px
+      width: 35px
+
+    &__feedback
+      height: 200px
+      width: 250px
+
+    &__content_text,
+    &__text_language,
+    &__text_lession,
+    &__spanishTranslation,
+    &__englishWord
+      font-size: 25px
+
+    &__text_language
+      font-size: 12px
+
+    &__message
+      font-size: 8px
+
+    &__progress span
+      font-size: 15px
+
+  @media screen and (max-width: 950px) and (min-width: 700px)
+    &__button
+      width: 355px
+      
+    &__feedback
+      height: 250px
+      width: 350px
+
+    &__arrow
+      top: -18px
+      height: 45px
+      width: 45px
+
+    &__speech img
+      width: 80px
+
+  @media only screen and (max-width: 500px)
+    &__button
+      width: 145px
+
+    &__speech
+      img
+        position: relative
+        top: 7px
+        width: 60px
+      p
+        font-size: 12px
+
     &__textSentence
       font-weight: 400
 
@@ -228,18 +286,11 @@
 
     &__content_text
       padding: 20px
-      width: 120px
 
-    &__arrowRight,
-    &__arrowLeft
-      margin-top: -37px
+    &__arrow
+      top: -19px
+      height: 28px
       width: 28px
-
-    &__arrowRight
-      margin-left: 107px
-
-    &__arrowLeft
-      margin-right: 107px
 
     &__feedback
       height: 130px

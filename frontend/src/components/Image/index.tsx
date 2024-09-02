@@ -5,11 +5,13 @@ interface Props {
   className?: string;
   onClick?: () => void;
   path: string;
+  style?: { [key: string]: string | number; }
 }
 
 const Image: React.FC<Props & React.RefAttributes<HTMLImageElement>> = React.forwardRef<HTMLImageElement, Props>(
-  ({ path, alt, className = '', onClick = () => {} }, ref): JSX.Element => (
+  ({ path, alt, style, className = '', onClick = () => {} }, ref): JSX.Element => (
     <img
+      style={style}
       alt={alt}
       {...className ? { className: className } : {} }
       {...ref ? { ref: ref } : {} }

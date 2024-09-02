@@ -216,10 +216,23 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   };
 
   const onPrev = (): void => {
-    (sentenceIndex > 0) && update(sentenceIndex - 1);
+    canClickOnPrevButton() && update(sentenceIndex - 1);
   }
 
+  const canClickOnNextButton = (): boolean =>
+    isSavingProgress || sentence?.isCompleted || isAdmin(user);
+
+  const canClickOnPrevButton = (): boolean =>
+    sentenceIndex > 0;
+
+  const disableButton = (canClick: boolean): { [key: string]: any; } => ({
+    opacity: canClick ? 1 : 0.5,
+    transition: 'opacity 1s ease'
+  });
+
   const onNext = (): void => {
+    if (!canClickOnNextButton()) return;
+
     const len: number = word ? (word.sentences.length - 1) : 0;
 
     if (sentenceIndex < len) {
@@ -602,29 +615,31 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             </div>
           </div>
           <div className={style.course__pronunciation}>
-            {sentenceIndex > 0 && (
+            <div className={style.course__button}>
               <ImageComponent
                 alt="Icon previous arrow"
-                className={style.course__arrowLeft}
+                className={style.course__arrow}
                 onClick={onPrev}
                 path="icons/arrow-left-dDv8ZNZLEXDLXMTIprH2prZLYzGDAJ.png"
+                style={disableButton(canClickOnPrevButton())}
               />
-            )}
-            <Speech
-              audioUrl={sentence?.audioUrl || ''}
-              canNext={pronunciation}
-              onCheck={onSpeechFeedback}
-              onPlaySpeech={onPlaySpeech}
-              word={sentence?.englishWord || ''}
-            />
-            {isSavingProgress || sentence?.isCompleted || isAdmin(user) ? (
+              <div className={style.course__speech}>
+                <Speech
+                  audioUrl={sentence?.audioUrl || ''}
+                  canNext={pronunciation}
+                  onCheck={onSpeechFeedback}
+                  onPlaySpeech={onPlaySpeech}
+                  word={sentence?.englishWord || ''}
+                />
+              </div>
               <ImageComponent
                 alt="Icon next arrow"
-                className={style.course__arrowRight}
+                className={style.course__arrow}
                 onClick={onNext}
                 path="icons/arrow-right-yDOCuGraKYfcypi4OTVS03VQOIdSzJ.png"
+                style={disableButton(canClickOnNextButton())}
               />
-            ) : null}
+            </div>
           </div>
         </div>
         <ModalCongratulation

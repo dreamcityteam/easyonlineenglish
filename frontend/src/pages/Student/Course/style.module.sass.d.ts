@@ -2,9 +2,9 @@
 // Please do not change this file!
 interface CssExports {
   'course': string;
-  'course__arrowLeft': string;
-  'course__arrowRight': string;
+  'course__arrow': string;
   'course__bar': string;
+  'course__button': string;
   'course__container': string;
   'course__content': string;
   'course__content_container': string;
@@ -22,6 +22,7 @@ interface CssExports {
   'course__save_progress_container': string;
   'course__spanishTranslation': string;
   'course__spanishTranslation_container': string;
+  'course__speech': string;
   'course__textSentence': string;
   'course__text_grandient': string;
   'course__text_language': string;
