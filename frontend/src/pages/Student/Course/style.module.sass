@@ -45,7 +45,7 @@
     height: 300px
     justify-content: center
     position: relative
-    width: 450px
+    width: 400px
 
   &__content_container
     align-items: center
@@ -107,7 +107,6 @@
     font-weight: 900
     justify-content: center
     margin: 0
-    padding: 5px
     width: 27%
 
     &:first-child
@@ -164,7 +163,7 @@
     align-items: center
     display: flex
     justify-content: space-between
-    width: 462px
+    width: 400px
 
   &__speech
     position: relative
@@ -175,6 +174,9 @@
       width: 200px
 
   @media only screen and (max-width: 1024px)
+    &__content_text
+      word-break: break-all
+
     &__content
       padding: 0 40px
 
@@ -241,7 +243,7 @@
       font-size: 25px
 
     &__text_language
-      font-size: 12px
+      font-size: 15px
 
     &__message
       font-size: 8px
