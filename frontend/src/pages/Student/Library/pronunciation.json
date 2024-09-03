@@ -62,5 +62,9 @@
   "nine hundred": ["900"],
   "one thousand": ["1000"],
   "two thousand": ["2000"],
-  "one hundred thousand": ["100000"]
+  "one hundred thousand": ["100000"],
+  "stepsister": ["step sister"],
+  "stepbrother": ["step brother"],
+  "stepson": ["step song", "step son"],
+  "hues": ["hughes"]
 }
