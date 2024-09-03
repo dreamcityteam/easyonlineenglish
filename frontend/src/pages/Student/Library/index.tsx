@@ -262,6 +262,7 @@ const Library: React.FC = (): JSX.Element => {
                         word={item.englishLetter}
                         canShowMessage={false}
                         canNext={pronunciation}
+                        interimResults
                       />
                     </div>
                 },
@@ -277,6 +278,7 @@ const Library: React.FC = (): JSX.Element => {
                         word={item.reference}
                         canShowMessage={false}
                         canNext={pronunciation}
+                        interimResults
                       />
                     </div>
                 },
@@ -301,6 +303,7 @@ const Library: React.FC = (): JSX.Element => {
                         word={item.englishWord}
                         canShowMessage={false}
                         canNext={pronunciation}
+                        interimResults
                       />
                     </div>
                 },

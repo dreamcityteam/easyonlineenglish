@@ -651,12 +651,12 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         />
         <ModalRating
           state={[canShowModalRating, setCanShowModalRating]}
-          course={course?.title || ''}
+          course={course?.title}
           lesson={lessionTitle}
         />
-        {!isDemo && (
+        {!isAdmin(user) && !isDemo ? (
           <ModalTips />
-        )}
+        ) : null}
       </section >
     </>
   );

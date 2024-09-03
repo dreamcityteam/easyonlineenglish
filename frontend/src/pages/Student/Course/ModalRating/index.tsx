@@ -6,12 +6,12 @@ import context from '../../../../global/state/context';
 import Loading from '../../../../components/Form/Loading';
 
 interface Props {
-  course: string;
+  course?: string;
   lesson: string;
   state: [boolean, any];
 }
 
-const ModalRating: React.FC<Props> = ({ state, course, lesson }): JSX.Element => {
+const ModalRating: React.FC<Props> = ({ state, course = '', lesson }): JSX.Element => {
   const [rating, setRating] = useState<number>(0);
   const stats = useMemo(() => [...Array(5)], []);
   const refs = useRef(stats.map(() => React.createRef<HTMLLIElement>()));
