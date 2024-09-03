@@ -110,7 +110,7 @@ const getBillTemplate = ({
   dateStart,
   dateEnd
 }) => {
-  const LOGO_URL = 'https://easyonlineenglish.com/wp-content/uploads/2023/12/Logo-Demo-12.png';
+  const LOGO_URL = 'https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/logoo-VwZrWBbCRKonq7x72TKO0TfiC1CUqH.webp';
 
   const formatRow = (textAlign) => 
     `style="text-align: ${textAlign}; border-bottom: solid #598da6 2px; padding: 20px 0;"`;
