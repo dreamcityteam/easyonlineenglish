@@ -303,7 +303,7 @@ const Library: React.FC = (): JSX.Element => {
                         word={item.englishWord}
                         canShowMessage={false}
                         canNext={pronunciation}
-                        interimResults={tabIndex === 1 || tabIndex === 4 || tabIndex === 7 || tabIndex === 11}
+                        interimResults={tabIndex === 1 || tabIndex === 4 || tabIndex === 7}
                       />
                     </div>
                 },

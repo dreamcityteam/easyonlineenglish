@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROLE } from '../../tools/constant';
 import context from '../../global/state/context';
@@ -9,17 +9,21 @@ import style from './style.module.sass';
 
 const Footer: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);
-  const location = useLocation();
-  const isHomePage: boolean = location.pathname === '/' && user?.role !== ROLE.ADMIN;
+  const { pathname } = useLocation();
+  const canShowInfo: boolean = useMemo(() => (
+    pathname.includes('term') ||
+    pathname.includes('payment') ||
+    (pathname === '/' && user?.role !== ROLE.ADMIN)
+  ), [pathname]);
 
   const getBackgroundColor = (): BackgroundColor =>
-    isHomePage ? { style: { backgroundColor: '#f4f4f4' } } : {};
+    canShowInfo ? { style: { backgroundColor: '#fbfbfb' } } : {};
 
   return (
     <footer
       className={style.footer} {...getBackgroundColor()}
     >
-      {isHomePage && (
+      {canShowInfo ? (
         <ul className={style.footer__items}>
           <li className={style.footer__address}>
             <strong>Dirección: </strong>
@@ -46,7 +50,7 @@ const Footer: React.FC = (): JSX.Element => {
             ))}
           </li>
         </ul>
-      )}
+      ) : null}
 
       <div className={style.footer__copyright}>
         <span >
