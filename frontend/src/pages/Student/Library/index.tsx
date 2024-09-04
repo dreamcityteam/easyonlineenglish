@@ -14,6 +14,7 @@ import pronunciation from './pronunciation.json';
 import ImageLazy from '../../../components/ImageLazy';
 import alphabet from './Alphabet.json';
 import tips from './basicExpresion.json';
+import Image from '../../../components/Image';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -159,12 +160,16 @@ const Library: React.FC = (): JSX.Element => {
   const Feedback = ({ englishWord }: { englishWord: string; }): JSX.Element => (
     <>
       {typeof speech[englishWord] !== 'undefined' && speech[englishWord].canShow && (
-        <span
+        <div
           className={style.table__feedback}
-          style={{ background: speech[englishWord].isCorrect ? '#4caf50' : '#f44336' }}
         >
-          {speech[englishWord].isCorrect ? '✓' : 'x'}
-        </span>
+          <Image
+            alt="Feedback icon"
+            path={speech[englishWord].isCorrect
+              ? 'icons/file%20(2)-rUytCHTrOOkY1XVHaQluxJV3jc8ewm.png'
+              : 'icons/file%20(1)%20(1)-8wtGfDcRc7aApX2SS1WrAYNhWBfTHl.png'}
+            />
+        </div>
       )}
     </>
   );
