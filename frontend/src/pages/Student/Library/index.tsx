@@ -163,7 +163,7 @@ const Library: React.FC = (): JSX.Element => {
           className={style.table__feedback}
           style={{ background: speech[englishWord].isCorrect ? '#4caf50' : '#f44336' }}
         >
-          {speech[englishWord].isCorrect ? 'Correcto' : 'Incorrecto'}
+          {speech[englishWord].isCorrect ? '✓' : 'x'}
         </span>
       )}
     </>
@@ -201,15 +201,16 @@ const Library: React.FC = (): JSX.Element => {
               style={style}
               custom={{
                 _id: { avoid: true },
-                isFeedback: {avoid: true},
-                englishWord: { 
+                isFeedback: { avoid: true },
+                englishWord: {
                   value: 'Ingles',
-                  render: (value: string, item): JSX.Element =>
-                    <div className={style.table__expresion}>
-                      {value}
-                      {item.isFeedback && <Feedback englishWord={value} />}
-                    </div>
-
+                  render: (value: string): JSX.Element =>
+                    <>
+                      <div className={style.table__expresion}>
+                        {value}
+                        {<Feedback englishWord={value} />}
+                      </div>
+                    </>
                 },
                 spanishTranslation: { value: 'Español' },
                 audioUrl: {
@@ -316,8 +317,6 @@ const Library: React.FC = (): JSX.Element => {
                         className={style.table__image}
                         src={value}
                       />
-
-                      <Feedback englishWord={item.englishWord} />
                     </div>
                   )
                 },

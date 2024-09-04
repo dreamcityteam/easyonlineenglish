@@ -84,9 +84,10 @@
 
   &__feedback
     position: absolute
-    border-radius: 9px
+    border-radius: 50%
     color: white
-    padding: 10px 20px
+    padding: 5px 10px
+    right: 0
 
   &__theadTh
     text-align: center
@@ -109,9 +110,9 @@
     font-size: 50px
 
   @include mobile
-    &__letter .table__feedback,
-    &__expresion .table__feedback
-      right: 0
+    .table__feedback
+      right: auto
+      left: -40px
 
     &__theadTh,
     &__tbodyTd
