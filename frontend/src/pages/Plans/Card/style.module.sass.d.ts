@@ -16,6 +16,7 @@ interface CssExports {
   'card__price': string;
   'card__priceTitle': string;
   'card__priceValue': string;
+  'card__priceValueDOP': string;
   'card__title': string;
   'card__uniTime': string;
 }

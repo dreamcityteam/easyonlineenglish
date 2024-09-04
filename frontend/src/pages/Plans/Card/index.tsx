@@ -10,6 +10,7 @@ interface Props {
   prices: string;
   isPopular?: boolean;
   plan: number;
+  DOP: string;
 }
 
 const Card: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const Card: React.FC<Props> = ({
   characteristics,
   prices,
   plan,
+  DOP,
   isPopular = false
 }): JSX.Element => (
   <div className={`${style.card} ${isPopular ? style.card__popular : ''}`}>
@@ -59,6 +61,7 @@ const Card: React.FC<Props> = ({
     <div className={style.card__price}>
       <span className={style.card__priceTitle}>Precio</span>
       <span className={style.card__priceValue}>${prices}</span>
+      <span className={style.card__priceValueDOP}>Aproximado: {DOP}</span>
     </div>
     <div>
       <Link className={style.card__link} to={isUser() ? `/payment/${plan}` : `/register/${plan}`}>

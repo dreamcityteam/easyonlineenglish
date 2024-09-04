@@ -16,17 +16,20 @@ const Plans: React.FC = (): JSX.Element => {
       unitTime: '1 mes',
       characteristics,
       prices: '12.99',
+      DOP: 'DOP $775.98',
     },
     {
       unitTime: '1 año',
       characteristics,
       prices: '129.99',
-      isPopular: true
+      isPopular: true,
+      DOP: 'DOP $7,765.14',
     },
     {
       unitTime: '3 mes',
       characteristics,
-      prices: '34.99'
+      prices: '34.99',
+      DOP: 'DOP $2,090.18',
     }
   ];
 
