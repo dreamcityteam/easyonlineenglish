@@ -66,10 +66,8 @@
     text-transform: initial
 
   &__verbText
-    -webkit-background-clip: text
-    @include background-gradient()
-    background-clip: text
-    color: transparent
+    color: red
+    font-size: 30px
 
   &__image_container,
   &__letter,
@@ -96,6 +94,16 @@
     text-align: center
     text-transform: capitalize
 
+  &__tbodyTd span
+    background-clip: text
+    @include background-gradient()
+    color: transparent
+    font-size: 30px
+    font-weight: bold
+
+  &__letter span
+    font-size: 40px
+
   &__image
     border-radius: 20px
     height: 100px
@@ -115,7 +123,9 @@
       left: -40px
 
     &__theadTh,
-    &__tbodyTd
+    &__tbodyTd span,
+    &__letter span,
+    &__verbText
       font-size: 1rem
 
     &__tbodyTd

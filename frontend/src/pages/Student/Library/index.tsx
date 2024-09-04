@@ -140,7 +140,7 @@ const Library: React.FC = (): JSX.Element => {
         {pronouns.map((pronoun: string, index: number) => (
           !avoidPronouns.includes(pronounsMap.en.base[index]) && (
             <div key={index} className={style.table__verb}>
-              {getTranslation(translation[index] || verb, pronoun)}
+              <span>{getTranslation(translation[index] || verb, pronoun)}</span>
               <span> {translation[index] || getVerb(pronoun)}</span>
               {pronounsMap.en.singular.includes(pronoun) && !isSpanish && !apostrophe && (
                 <strong className={style.table__verbText}>
@@ -148,7 +148,7 @@ const Library: React.FC = (): JSX.Element => {
                 </strong>
               )}
               {verb === 'search' ? ' for' : ''}
-              {text && <span> {text}</span>}.
+              {text && <span> {text}.</span>}
             </div>
           )
         ))}
@@ -205,14 +205,18 @@ const Library: React.FC = (): JSX.Element => {
                 englishWord: {
                   value: 'Ingles',
                   render: (value: string): JSX.Element =>
-                    <>
-                      <div className={style.table__expresion}>
-                        {value}
-                        {<Feedback englishWord={value} />}
-                      </div>
-                    </>
+                    <span className={style.table__expresion}>
+                      {value}
+                      {<Feedback englishWord={value} />}
+                    </span>
                 },
-                spanishTranslation: { value: 'Español' },
+                spanishTranslation: {
+                  value: 'Español',
+                  render: (value: string): JSX.Element =>
+                    <span className={style.table__letter}>
+                      {value}
+                    </span>
+                },
                 audioUrl: {
                   value: 'Audio',
                   render: (value: string): JSX.Element =>
@@ -226,7 +230,7 @@ const Library: React.FC = (): JSX.Element => {
                       <Sound
                         src={item.englishLetterAudioUrl}
                         style={{}}
-                        render={() => <strong>{value}</strong>}
+                        render={() => <span>{value}</span>}
                       />
                       <Feedback englishWord={value} />
                     </div>
@@ -339,7 +343,7 @@ const Library: React.FC = (): JSX.Element => {
                   value: 'verbo',
                   render: (value: string = ''): JSX.Element =>
                     <strong className={style.table__verbText}>
-                      {value.replace('-', ' ')}
+                      <span>{value.replace('-', ' ')}</span>
                     </strong>
                 },
                 englishWordConjugation: {
