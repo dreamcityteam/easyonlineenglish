@@ -14,7 +14,7 @@ const Modal: React.FC<Prop> = ({
   backgroundColor,
   isFadeIn,
   state,
-  isBackgroundClose = true
+  isBackgroundClose = false
 }): JSX.Element => {
   const [canShow, setCanShow] = state;
 
