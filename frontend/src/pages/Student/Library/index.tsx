@@ -15,6 +15,7 @@ import ImageLazy from '../../../components/ImageLazy';
 import alphabet from './Alphabet.json';
 import tips from './basicExpresion.json';
 import Image from '../../../components/Image';
+import Aside from '../../../components/Aside';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -31,7 +32,7 @@ const Library: React.FC = (): JSX.Element => {
   useEffect(() => {
     saveLibraryData();
   }, []);
-  console.log(tabIndex)
+
   const saveLibraryCacheData = (library: LibraryCache): void =>
     dispatch({ type: SET_LIBRARY, payload: { library } });
 
@@ -185,21 +186,8 @@ const Library: React.FC = (): JSX.Element => {
           <h1>Librería</h1>
         </header>
         <div className={style.vocabularies__container}>
-          <aside className={style.vocabularies__aside}>
-            <ul className={style.vocabularies__tabs}>
-              {data.map(({ name }: any, index: number): JSX.Element => (
-                <li
-                  key={index}
-                  onClick={() => handlerOnTab(index)}
-                  className={`${style.vocabularies__tab} ${tabIndex === index ? style.vocabularies__tabFocus : ''}`}
-                >
-                  <span className={style.vocabularies__section}>
-                    {name}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </aside>
+         
+          <Aside onClick={handlerOnTab} data={data} tabIndex={tabIndex} />
           <div className={style.vocabularies__table}>
             <Table
               data={content}

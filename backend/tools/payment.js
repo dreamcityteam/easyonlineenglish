@@ -112,7 +112,7 @@ const getBillTemplate = ({
 }) => {
   const LOGO_URL = 'https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/logoo-VwZrWBbCRKonq7x72TKO0TfiC1CUqH.webp';
 
-  const formatRow = (textAlign) => 
+  const formatRow = (textAlign) =>
     `style="text-align: ${textAlign}; border-bottom: solid #598da6 2px; padding: 20px 0;"`;
 
   const formatDate = (date) => {
