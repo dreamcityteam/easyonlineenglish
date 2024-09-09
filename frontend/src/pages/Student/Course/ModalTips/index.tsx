@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Modal from '../../../../components/Modal';
 import Image from '../../../../components/Image';
 import { data } from './data';
@@ -31,8 +31,17 @@ const onSpeechFeedback = (
 };
 
 const ModalTips: React.FC = (): JSX.Element => {
+  const [attempt, setAttempt] = useState<number>(0);
   const [state, setState] = useState<SpeechFeedbackState>(initialState);
   const { spanishTranslation = '', englishWord = '', audioUrl = '' } = useMemo(() => data[Math.floor(Math.random() * data.length)], []);
+
+  useEffect(() => {
+    setAttempt(attempt + 1);
+
+    if (attempt === 3) {
+      setState({ ...state, canShow: false });
+    }
+  }, [state]);
 
   return (
     <Modal
