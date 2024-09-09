@@ -185,11 +185,6 @@ const data: any[] = [
     audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-recommend-a-good-restaurant.mp3'
   },
   {
-    spanishTranslation: 'Estoy buscando pan integral.',
-    englishWord: 'I\'m looking for whole wheat grain bread.',
-    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-whole-wheat-grain-bread.mp3'
-  },
-  {
     spanishTranslation: 'Estoy buscando la farmacia más cercana.',
     englishWord: 'I\'m looking for the nearest pharmacy.',
     audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-looking-for-the-nearest-pharmacy.mp3'
