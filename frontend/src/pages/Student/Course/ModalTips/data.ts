@@ -76,7 +76,7 @@ const data: any[] = [
   },
   {
     spanishTranslation: 'Me gustaría comprar esto.',
-    englishWord: 'I\'d like to buy this.',
+    englishWord: 'I would like to buy this.',
     audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-to-buy-this%20(2).mp3'
   },
   {
@@ -146,7 +146,7 @@ const data: any[] = [
   },
   {
     spanishTranslation: 'Me gustaría un poco de agua, por favor.',
-    englishWord: 'I\'d like some water, please.',
+    englishWord: 'I would like some water, please.',
     audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-some-water-please.mp3'
   },
   {
