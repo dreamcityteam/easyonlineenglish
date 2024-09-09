@@ -12,6 +12,7 @@ import style from './style.module.sass';
 import { CourseProgress, OnWord } from './types';
 import {
   checkPronunciation,
+  Cookie,
   getClassName,
   getData,
   isAdmin,
@@ -19,7 +20,7 @@ import {
 } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
-import { HTTP_STATUS_CODES } from '../../../tools/constant';
+import { HTTP_STATUS_CODES, TUTORIAL } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
 import { messagesCorrect, messagesWrong } from './data';
@@ -654,7 +655,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           course={course?.title}
           lesson={lessionTitle}
         />
-        {!isAdmin(user) && !isDemo ? (
+        {!isAdmin(user) && !isDemo && !user?.isTutorial ? (
           <ModalTips />
         ) : null}
       </section >
