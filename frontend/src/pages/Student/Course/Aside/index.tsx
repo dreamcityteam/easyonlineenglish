@@ -103,39 +103,38 @@ const Aside: React.FC<Props> = ({
         steps={[
           {
             target: `.${style.aside__button}`,
-            content: <h2 className={style.tutorial__title}>Aquí puedes desplegar el menú de navegación del curso.</h2>,
+            content: <h2 className={style.tutorial__title}>Este es el menú de navigación del curso.</h2>,
             disableBeacon: true,
             disableScrolling: true,
           },
           {
             target: `.${courseStyle.course__englishWord}`,
-            content: <h2 className={style.tutorial__title}>Aquí podrás ver la palabra en inglés. Si haces clic en la palabra, podrás escuchar su pronunciación a dos velocidades distintas.</h2>,
+            content: <h2 className={style.tutorial__title}>Esta es la palabra que vas a aprender. Dale clic y la escucharás en dos velocidades.</h2>,
             disableBeacon: true,
             disableScrolling: true,
 
           },
           {
             target: `.${courseStyle.course__spanishTranslation}`,
-            content: <h2 className={style.tutorial__title}>Aquí podrás leer la traducción al español de la palabra en inglés.</h2>,
+            content: <h2 className={style.tutorial__title}>Esta es la trauducción al español de la palabra a aprender.</h2>,
             disableBeacon: true,
             disableScrolling: true,
 
           },
           {
             target: `.${courseStyle.course__content_text} .${courseStyle.course__text_grandient}`,
-            content: <h2 className={style.tutorial__title}>Aquí podrás leer la frase u oración en inglés. Si haces clic, podrás escuchar su pronunciación a dos velocidades distintas.</h2>,
+            content: <h2 className={style.tutorial__title}>Esta es la palabra o la oración a aprender. Haz clic en ella y la escucharás en dos velocidades. </h2>,
             disableBeacon: true
           },
           {
             target: `.${speechStyle.speech}`,
-            content: <h2 className={style.tutorial__title}>Aquí podrás escuchar la oración o frase en inglés y, cuando escuches un sonido, tendrás que pronunciarla.</h2>,
+            content: <h2 className={style.tutorial__title}>Haz clic y escucharás la palabra u oración, Después del sonido puedes pronunciarla. Recuerda repetir cada palabra lentamente.</h2>,
             disableBeacon: true
           },
           {
             target: '#tidio-chat-iframe',
             content: <h2 className={style.tutorial__title}>
-              Aqui podrás ponerte en contacto con nuestro equipo de servicio al cliente en caso de que tengas algún inconveniente, duda o algún comentario positivo que compartir.
-              Tu feebback es muy importante para nosotros.
+             Ponte en contacto con nuestro esquipo de servicio al cliente en caso de que tengas algún comentario que hacer. 
             </h2>,
             disableBeacon: true
           }
