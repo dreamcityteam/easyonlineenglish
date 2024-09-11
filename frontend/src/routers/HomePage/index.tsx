@@ -20,7 +20,7 @@ const RouterHomePage: React.FC = () => (
     <Route index element={<Home />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/login" element={<Login />} />
-    <Route path="/register/:paymentMethod" element={<Register />} />
+    <Route path="/register" element={<Register />} />
     <Route path="/courses" element={<Courses isDemo />} />
     <Route path="/course/:idCourse" element={<Course isDemo />} />
     <Route path="/reset-password" element={<ResetPassword />} />

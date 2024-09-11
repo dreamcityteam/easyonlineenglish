@@ -2,37 +2,37 @@ import { Tab } from './type';
 
 const studentPayment: Tab[] = [
   { path: '/', value: 'Inicio' },
-  { path: '/contact', value: 'contacto' },
-  { path: '/courses', value: 'cursos' },
-  { path: '/library', value: 'librería' },
-  { path: '/profile', value: 'perfil', showMobile: true },
-  { path: '/conversation', value: 'conversaciones' },
-  { path: '/plan', value: 'planes' },
-  { path: '/close', value: 'cerrar sesión' },
+  { path: '/contact', value: 'Contacto' },
+  { path: '/courses', value: 'Cursos' },
+  { path: '/library', value: 'Librería' },
+  { path: '/profile', value: 'Perfil', showMobile: true },
+  { path: '/conversation', value: 'Conversaciones' },
+  { path: '/plan', value: 'Planes' },
+  { path: '/close', value: 'Cerrar sesión' },
 ];
 
 const studentPendingPayment: Tab[] = [
   { path: '/', value: 'Inicio' },
-  { path: '/contact', value: 'contacto' },
-  { path: '/profile', value: 'perfil', showMobile: true },
-  { path: '/plan', value: 'planes' },
-  { path: '/close', value: 'cerrar sesión' },
+  { path: '/contact', value: 'Contacto' },
+  { path: '/profile', value: 'Perfil', showMobile: true },
+  { path: '/plan', value: 'Planes' },
+  { path: '/close', value: 'Cerrar sesión' },
 ];
 
 const homepage: Tab[] = [
-  { path: '/', value: 'inicio' },
-  { path: '/courses', value: 'cursos' },
-  { path: '/contact', value: 'contacto' },
-  { path: '/plan', value: 'Planes' },
-  { path: '/login', value: 'iniciar sesión' },
+  { path: '/', value: 'Inicio' },
+  { path: '/courses', value: 'Cursos' },
+  { path: '/contact', value: 'Contacto' },
+  { path: '/register', value: 'Crea tu cuenta' },
+  { path: '/login', value: 'Iniciar sesión' },
 ];
 
 const admin: Tab[] = [
-  { path: '/courses', value: 'courses' },
+  { path: '/courses', value: 'Courses' },
   // { path: '/upload', value: 'upload' },
-  { path: '/conversation', value: 'conversaciones' },
-  { path: '/library', value: 'librería' },
-  { path: '/close', value: 'cerrar sesión' },
+  { path: '/conversation', value: 'Conversaciones' },
+  { path: '/library', value: 'Librería' },
+  { path: '/close', value: 'Cerrar sesión' },
 ];
 
 export { studentPendingPayment, studentPayment, homepage, admin };

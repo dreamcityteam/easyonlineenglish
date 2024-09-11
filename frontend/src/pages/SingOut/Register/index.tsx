@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import Form from '../../../components/Form';
 import { inputs } from './data';
 import style from './style.module.sass';
@@ -9,7 +9,6 @@ import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 
 const Register: React.FC = (): JSX.Element => {
-  const { paymentMethod } = useParams<string>();
   const [_, dispatch] = useContext<[State, any]>(context);
   const navigate: NavigateFunction = useNavigate();
 
@@ -30,7 +29,7 @@ const Register: React.FC = (): JSX.Element => {
       updateState('email', field);
     } else if (statusCode === HTTP_STATUS_CODES.OK) {
       dispatch({ type: SET_USER, payload: data });
-      navigate(`/payment/${paymentMethod}`);
+      navigate(`/plan`);
     } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
       field.validation.serverErrorMessage = 'Se produjo un error al intentar guardar los datos.';
       updateState('password', field);

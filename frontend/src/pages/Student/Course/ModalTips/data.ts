@@ -130,11 +130,6 @@ const data: any[] = [
     audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Can-you-show-me.mp3'
   },
   {
-    spanishTranslation: '¿Qué significa esa palabra?',
-    englishWord: 'What does this word mean?',
-    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/What-does-this-word-mean.mp3'
-  },
-  {
     spanishTranslation: 'Tengo hambre.',
     englishWord: 'I\'m hungry.',
     audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’m-hungry.mp3'
@@ -148,11 +143,6 @@ const data: any[] = [
     spanishTranslation: 'Me gustaría un poco de agua, por favor.',
     englishWord: 'I would like some water, please.',
     audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I’d-like-some-water-please.mp3'
-  },
-  {
-    spanishTranslation: '¿Dónde puedo conseguir un cajero automático?',
-    englishWord: 'Where can I find an ATM?',
-    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/Where-can-I-find-an-ATM.mp3'
   },
   {
     spanishTranslation: 'Estoy aquí de vacaciones.',
@@ -173,11 +163,6 @@ const data: any[] = [
     spanishTranslation: 'Necesito ir al doctor.',
     englishWord: 'I need to go to the doctor.',
     audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/I-need-to-go-to-the-doctor.mp3'
-  },
-  {
-    spanishTranslation: '¿Cómo llego a la bomba de gasolina?',
-    englishWord: 'How do I get to the gas station?',
-    audioUrl: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/How-do-I-get-to-the-gas-station.mp3'
   },
   {
     spanishTranslation: '¿Me puede recomendar un buen restaurante?',
