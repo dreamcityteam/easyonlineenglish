@@ -22,12 +22,12 @@ const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
     <Route path="/contact" element={<Contact />} />
     {isPayment && (
       <>
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/course/:idCourse" element={<Course />} />
         <Route path="/conversation" element={<Conversation />} />
         <Route path="/library" element={<Library />} />
       </>
     )}
+    <Route path="/courses" element={<Courses />} />
+    <Route path="/course/:idCourse" element={<Course />} />
     <Route path="/profile" element={<Profile />} />
     <Route path="/close" element={<CloseSection />} />
     <Route path="/term-user" element={<FinalUser />} />

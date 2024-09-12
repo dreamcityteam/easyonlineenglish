@@ -4,6 +4,7 @@ const connectToDatabase = require('../../db');
 const Course = require('../../schemas/course.schema');
 const StudentCourse = require('../../schemas/studentCourse.schema');
 const CourseWord = require('../../schemas/courseWord.schema');
+const { getPayment } = require('../auth/functions');
 
 module.exports = async (req, res) => {
   const response = getResponse(res);
@@ -13,6 +14,8 @@ module.exports = async (req, res) => {
   try {
     await connectToDatabase();
 
+    const payment = await getPayment(userId);
+    
     // Find the student's course
     let studentCourse = await StudentCourse
       .findOne({ idCourse: idCourse, idUser: userId })
@@ -21,7 +24,8 @@ module.exports = async (req, res) => {
     const courseWord = await CourseWord
       .find({ idCourse: idCourse })
       .select({ __v: 0, idCourse: 0 })
-      .sort({ _id: 1 });
+      .sort({ _id: 1 })
+      .limit(payment && payment.isPayment ? null : 10);
 
     if (!studentCourse) {
       const firstWord = courseWord[0]._id;

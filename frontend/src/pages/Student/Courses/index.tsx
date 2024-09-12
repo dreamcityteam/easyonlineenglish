@@ -15,7 +15,7 @@ interface Props {
 
 const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [courses, setCourses] = useState<TCourses[]>([]);
-  const [{ coursesCache, courseCache }, dispatch] = useContext(context);
+  const [{ user, coursesCache, courseCache }, dispatch] = useContext(context);
   const idCourseCache: 'demo' | 'courses' = isDemo ? 'demo' : 'courses';
 
   useEffect(() => {
@@ -105,7 +105,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                   <p>{description}</p>
                 </div>
                 <div className={style.courses__title}>
-                  <p>{isDemo ? '¡Prueba gratis! Las primeras 10 palabras.' : title}</p>
+                  <p>{isDemo || !user.payment.isPayment ? '¡Prueba gratis! Las primeras 10 palabras.' : title}</p>
                 </div>
                 <Link
                   className={style.courses__button}

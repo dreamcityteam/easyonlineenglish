@@ -7,7 +7,7 @@ import style from './style.module.sass';
 import courseStyle from '../style.module.sass';
 import speechStyle from '../../../../components/Speech/style.module.sass';
 import Joyride from 'react-joyride';
-import { Cookie, send, Storage } from '../../../../tools/function';
+import { Cookie, send } from '../../../../tools/function';
 import { TUTORIAL } from '../../../../tools/constant';
 import context from '../../../../global/state/context';
 import Image from '../../../../components/Image';
@@ -21,6 +21,8 @@ interface Props {
   isTutorial: boolean;
   lessonIndex: number;
 };
+
+const elements: HTMLLIElement[] = [];
 
 const Aside: React.FC<Props> = ({
   onClick,
@@ -37,7 +39,6 @@ const Aside: React.FC<Props> = ({
   const currentFocusWordRef = useRef<HTMLLIElement | any>(null);
   const currentFocusLessonRef = useRef<HTMLLIElement | any>(null);
   const [run, setRun] = useState<boolean>(isTutorial);
-  const [spotlightWidth, setSpotlightWidth] = useState<string>('');
   const [{ user }] = useContext(context);
 
   useEffect(() => {
@@ -80,14 +81,15 @@ const Aside: React.FC<Props> = ({
 
   const handleStepChange = async (data: any): Promise<void> => {
     const { step, action } = data;
-    const element = document.querySelector(step.target);
-
+    const element: HTMLLIElement = document.querySelector(step.target);
 
     if (element && step.target !== '#tidio-chat-iframe') {
       element.style.cssText = 'position: relative; z-index: 2;';
+      elements.push(element);
     }
 
     if (action === 'reset') {
+      elements.forEach((element) => element.removeAttribute('style'));
       Cookie.set(TUTORIAL, 'true');
       await send({ api: 'tutorial' }).patch();
     }
@@ -113,7 +115,8 @@ const Aside: React.FC<Props> = ({
                     <h2>Menú de navegación</h2>
                   </header>
                   <p>
-                    Aquí podrás ver cuantas lecciones has hecho en el curso                </p>
+                    Aquí podrás ver cuantas lecciones has hecho en el curso.
+                  </p>
                 </div>
               ),
             disableBeacon: true,
@@ -295,9 +298,6 @@ const Aside: React.FC<Props> = ({
           skip: 'Saltar'
         }}
         styles={{
-          spotlight: {
-            maxWidth: spotlightWidth,
-          },
           buttonClose: {
             display: 'none',
           },

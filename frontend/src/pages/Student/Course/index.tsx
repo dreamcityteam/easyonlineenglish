@@ -12,7 +12,6 @@ import style from './style.module.sass';
 import { CourseProgress, OnWord } from './types';
 import {
   checkPronunciation,
-  Cookie,
   getClassName,
   getData,
   isAdmin,
