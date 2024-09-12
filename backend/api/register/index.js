@@ -58,6 +58,7 @@ module.exports = async (req, res) => {
       email: email.toLowerCase(),
       phone: formatPhoneNumber(phone),
       password: await hash.create(password),
+      isActive: false
     });
 
     user = await newUser.save();
