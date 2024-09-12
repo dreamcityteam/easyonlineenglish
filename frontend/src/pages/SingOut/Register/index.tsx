@@ -1,16 +1,12 @@
-import React, { useContext } from 'react';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import Form from '../../../components/Form';
 import { inputs } from './data';
 import style from './style.module.sass';
-import { SET_USER } from '../../../global/state/actionTypes';
-import { State } from '../../../global/state/type';
-import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
+import RegistrationSuccess from './RegistrationSuccess';
 
 const Register: React.FC = (): JSX.Element => {
-  const [_, dispatch] = useContext<[State, any]>(context);
-  const navigate: NavigateFunction = useNavigate();
+  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState<boolean>(false);
 
   const onData = (payload: any, updateState: (key: string, field: any) => void): void => {
     const { statusCode, message = '', data } = payload.response;
@@ -28,8 +24,7 @@ const Register: React.FC = (): JSX.Element => {
       field.validation.serverErrorMessage = 'Este correo electrónico ya está en uso.';
       updateState('email', field);
     } else if (statusCode === HTTP_STATUS_CODES.OK) {
-      dispatch({ type: SET_USER, payload: data });
-      navigate(`/plan`);
+      setIsRegistrationSuccess(true);
     } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
       field.validation.serverErrorMessage = 'Se produjo un error al intentar guardar los datos.';
       updateState('password', field);
@@ -38,13 +33,17 @@ const Register: React.FC = (): JSX.Element => {
 
   return (
     <section className={style.register}>
-      <Form
-        api="register"
-        title="Registro"
-        buttonText="Proceder al pago"
-        inputs={inputs}
-        onData={onData}
-      />
+      {isRegistrationSuccess
+        ? <RegistrationSuccess />
+        : <Form
+          api="register"
+          title="Registro"
+          buttonText="Registrarse"
+          inputs={inputs}
+          onData={onData}
+        />
+      }
+
     </section>
   );
 }

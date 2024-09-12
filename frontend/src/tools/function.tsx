@@ -128,12 +128,14 @@ const getData = async (
     token,
     service,
     success,
+    error = () => {},
     modal: { dispatch, text = '' }
   }: Data
 ): Promise<void> => {
   dispatch({ type: SET_LOAD, payload: { text, canShow: true } });
   const { response: { statusCode, data } }: Response = await send({ api: service.endpoint, token })[service.method]();
   statusCode === HTTP_STATUS_CODES.OK && success(data);
+  statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR && error();
   dispatch({ type: CLEAR_LOAD });
 }
 

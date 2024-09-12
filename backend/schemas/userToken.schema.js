@@ -13,7 +13,7 @@ const userTokenSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ['PASSWORD', 'AUTH'],
+    enum: ['PASSWORD', 'AUTH', 'ACTIVE_ACCOUNT'],
     default: 'PASSWORD',
   },
 });

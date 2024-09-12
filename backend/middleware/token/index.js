@@ -17,7 +17,8 @@ module.exports = (req, res, next) => {
 
   if (tokenFromHeader && (
     isEndpoint(ENDPOINT.RESET_PASSWORD_AUTH) ||
-    isEndpoint(ENDPOINT.RESET_PASSWORD)
+    isEndpoint(ENDPOINT.RESET_PASSWORD) ||
+    isEndpoint(ENDPOINT.ACTIVE_ACCOUNT)
   )) {
     return verifyToken(verifyTokenOpcion, tokenFromHeader);
   }

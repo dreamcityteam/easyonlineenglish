@@ -17,9 +17,9 @@ module.exports = async (req, res) => {
       if (!user) {
         response.message = 'User not found';
         response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
-      } else if (user.deleted) {
+      } else if (user.deleted || !user.isActive) {
         response.statusCode = HTTP_STATUS_CODES.OK;
-        response.message = 'User deleted';
+        response.message = user.deleted ? 'deleted' : 'actived';
 
         return send(response);
       } else {
@@ -36,9 +36,9 @@ module.exports = async (req, res) => {
     const user = await User.findOne({ $or: [{ email: field }, { username: field }] }).select({ __v: 0 });
 
     if (user && (await hash.compare({ password, hash: user.password }))) {
-      if (user.deleted) {
+      if (user.deleted || !user.isActive) {
         response.statusCode = HTTP_STATUS_CODES.OK;
-        response.message = 'User deleted';
+        response.message = user.deleted ? 'deleted' : 'actived';
 
         return send(response);
       }

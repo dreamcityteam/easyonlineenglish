@@ -61,6 +61,7 @@ type Data = {
     endpoint: string;
   };
   success: (data: any) => void;
+  error?: () => void;
   modal: {
     dispatch: Dispatch<any>;
     text?: string;

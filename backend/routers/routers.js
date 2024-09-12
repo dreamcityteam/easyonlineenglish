@@ -23,6 +23,7 @@ const suscribete = require('../api/suscribete');
 const uploadFile = require('../api/uploadFile');
 const studentRating = require('../api/studentRating');
 const studentUpdateSentenceIndex = require('../api/studentUpdatedSentenceIndex');
+const activeAccount = require('../api/activeAccount');
 
 const { ENDPOINT } = require('../tools/const');
 
@@ -151,5 +152,10 @@ module.exports = [
     path: ENDPOINT.STUDENT_UPDATE_SENTENCE_INDEX,
     method: 'post',
     func: studentUpdateSentenceIndex
+  },
+  {
+    path: ENDPOINT.ACTIVE_ACCOUNT,
+    method: 'post',
+    func: activeAccount
   }
 ];

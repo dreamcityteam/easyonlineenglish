@@ -8,7 +8,7 @@ const getEmailTemplate = ({ token, username, supportEmail, telefono }) => `
       <p><a href="${token}">Restablecer Contraseña</a></p>
       <li>Ingresa y confirma tu nueva contraseña en la página que se abrirá.</li>
     </ol>
-    <p>Por razones de seguridad, este enlace solo será válido por 24 horas. Si el enlace expira, deberás solicitar un nuevo correo de restablecimiento de contraseña.</p>
+    <p>Por razones de seguridad, este enlace solo será válido por 2 minutos. Si el enlace expira, deberás solicitar un nuevo correo de <a href="#">activación de cuenta</a>.</p>
     <p>Si tienes alguna pregunta o necesitas ayuda adicional, no dudes en contactarnos a través de <a href="mailto:${supportEmail}">${supportEmail}</a> o llamando al <a href="tel:${telefono}">${telefono}</a>.</p>
     <p>Gracias por tu atención.</p>
   </div>
