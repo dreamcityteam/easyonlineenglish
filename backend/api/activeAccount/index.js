@@ -1,11 +1,18 @@
 const connectToDatabase = require('../../db');
 const { HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
-const { send, getResponse } = require('../../tools/functions');
+const { send, getResponse, setCookie, getToken } = require('../../tools/functions');
 const User = require('../../schemas/user.schema');
+const UserToken = require('../../schemas/userToken.schema');
 
 module.exports = async (req, res) => {
   const response = getResponse(res);
   const { type, id } = req.user;
+
+  const userToken = await UserToken.findOne({
+    idUser: id,
+    type: 'ACTIVE_ACCOUNT',
+    token: req.token,
+  }).select({ __v: 0 });
 
   if (type !== 'active-account') {
     response.message = 'Invalid token';
@@ -13,7 +20,7 @@ module.exports = async (req, res) => {
     return send(response);
   }
 
-  if (!id) {
+  if (!id || !userToken) {
     response.message = 'Invalid parameters';
     response.statusCode = HTTP_STATUS_CODES.BAD_REQUEST;
     return send(response);
@@ -35,6 +42,7 @@ module.exports = async (req, res) => {
       return send(response);
     }
 
+    setCookie({ res, value: getToken({ id: user._id }) });
     response.message = MESSAGE.SUCCESSFUL;
     response.statusCode = HTTP_STATUS_CODES.OK;
     response.data = user;

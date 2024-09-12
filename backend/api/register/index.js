@@ -3,6 +3,7 @@ const { formatPhoneNumber, getEmailTemplate } = require('./functions');
 const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/const');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
+const UserToken = require('../../schemas/userToken.schema');
 
 const getLink = ({ req, token, path }) =>
   `${req.protocol}://${req.get('host')}/${path}/${token}`;
@@ -80,6 +81,13 @@ module.exports = async (req, res) => {
     };
 
     if (await sendEmail(emailConfig)) {
+      const userToken = new UserToken({
+        idUser: user._id,
+        token,
+        type: 'ACTIVE_ACCOUNT'
+      });
+
+      await userToken.save();
       response.message = 'Se ha enviado un correo electrónico de activación.';
       response.statusCode = HTTP_STATUS_CODES.OK;
     } else {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { getData } from '../../../tools/function';
 import context from '../../../global/state/context';

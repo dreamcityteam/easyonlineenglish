@@ -13,7 +13,6 @@ import Privacy from '../../pages/Terms/Privacy';
 import FinalUser from '../../pages/Terms/FinalUser';
 import Payment from '../../pages/Terms/Payment';
 import Conditions from '../../pages/Terms/Conditions';
-import Plans from '../../pages/Plans/Index';
 import ActiveAccount from '../../pages/SingOut/ActiveAccount';
 
 const RouterHomePage: React.FC = () => (
