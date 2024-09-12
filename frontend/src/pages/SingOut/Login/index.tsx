@@ -17,8 +17,11 @@ const Login: React.FC = (): JSX.Element => {
   const onData = ({ response: { statusCode, data: user, message } }: any): void => {
     setText('');
 
-    if (message === 'User deleted') {
+    if (message === 'deleted') {
       setText('Esta cuenta ha sido eliminada.');
+
+    } else if (message === 'actived') {
+      setText('Esta cuenta no ha sido activada.');
 
     } else if (statusCode === HTTP_STATUS_CODES.NOT_FOUND) {
       setText('La dirección de correo electrónico o la contraseña son incorrectas.');
