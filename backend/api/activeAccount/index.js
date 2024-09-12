@@ -8,19 +8,13 @@ module.exports = async (req, res) => {
   const response = getResponse(res);
   const { type, id } = req.user;
 
-  const userToken = await UserToken.findOne({
-    idUser: id,
-    type: 'ACTIVE_ACCOUNT',
-    token: req.token,
-  }).select({ __v: 0 });
-
   if (type !== 'active-account') {
     response.message = 'Invalid token';
     response.statusCode = HTTP_STATUS_CODES.UNAUTHORIZED;
     return send(response);
   }
 
-  if (!id || !userToken) {
+  if (!id) {
     response.message = 'Invalid parameters';
     response.statusCode = HTTP_STATUS_CODES.BAD_REQUEST;
     return send(response);
@@ -29,11 +23,24 @@ module.exports = async (req, res) => {
   try {
     await connectToDatabase();
 
+    const userToken = await UserToken.findOne({
+      idUser: id,
+      type: 'ACTIVE_ACCOUNT',
+      token: req.token,
+    }).select({ __v: 0 });
+
+    if (!userToken) {
+      response.message = 'Invalid parameters';
+      response.statusCode = HTTP_STATUS_CODES.BAD_REQUEST;
+      return send(response);
+    }
+
     const user = await User.findOneAndUpdate(
       { _id: id },
       { isActive: true },
       { new: true }
-    ).select('-password -__v')
+    )
+      .select('-password -__v')
       .exec();
 
     if (!user) {
@@ -42,6 +49,7 @@ module.exports = async (req, res) => {
       return send(response);
     }
 
+    await UserToken.deleteOne({ idUser: user._id });
     setCookie({ res, value: getToken({ id: user._id }) });
     response.message = MESSAGE.SUCCESSFUL;
     response.statusCode = HTTP_STATUS_CODES.OK;
