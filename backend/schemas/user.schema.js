@@ -55,7 +55,11 @@ const userSchema = new Schema({
   isTerms: {
     type: Boolean,
     default: false,
-  }
+  },
+  isActive: {
+    type: Boolean,
+    default: false
+  },
 });
 
 const User = mongoose.model('User', userSchema);

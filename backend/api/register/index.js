@@ -1,8 +1,11 @@
-const { getResponse, getToken, send, setCookie, hash } = require('../../tools/functions');
-const { formatPhoneNumber } = require('./functions');
-const { REGEXP, HTTP_STATUS_CODES, MESSAGE } = require('../../tools/const');
+const { getResponse, getToken, send, sendEmail, hash } = require('../../tools/functions');
+const { formatPhoneNumber, getEmailTemplate } = require('./functions');
+const { REGEXP, HTTP_STATUS_CODES } = require('../../tools/const');
 const connectToDatabase = require('../../db');
 const User = require('../../schemas/user.schema');
+
+const getLink = ({ req, token, path }) =>
+  `${req.protocol}://${req.get('host')}/${path}/${token}`;
 
 module.exports = async (req, res) => {
   const {
@@ -43,6 +46,8 @@ module.exports = async (req, res) => {
     return send(response);
   }
 
+  let user;
+
   try {
     await connectToDatabase();
 
@@ -55,14 +60,38 @@ module.exports = async (req, res) => {
       password: await hash.create(password),
     });
 
-    const user = await newUser.save();
-    setCookie({ res, value: getToken({ id: user._id }) });
-    response.statusCode = HTTP_STATUS_CODES.OK;
-    response.message = MESSAGE.SUCCESSFUL;
-    response.data = user;
+    user = await newUser.save();
+
+    const type = 'active-account';
+    const { EMAIL_USER = '' } = process.env;
+    const token = getToken({ id: user._id, type, expiresIn: '1d' });
+
+    const emailConfig = {
+      from: EMAIL_USER,
+      to: email,
+      subject: 'easyonlineenglish - activar cuenta',
+      html: getEmailTemplate({
+        username: user.username,
+        supportEmail: EMAIL_USER,
+        telefono: '+1 (849) 410-9664',
+        token: getLink({ req, path: type, token }),
+      })
+    };
+
+    if (await sendEmail(emailConfig)) {
+      response.message = 'Se ha enviado un correo electrónico de activación.';
+      response.statusCode = HTTP_STATUS_CODES.OK;
+    } else {
+      response.message = 'Ups, ocurrió un error. Por favor, inténtalo de nuevo más tarde.';
+      response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
+
+      if (user) await User.findByIdAndDelete(user._id);
+    }
   } catch (error) {
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
     response.message = `Error saving user! ${error}`;
+
+    if (user) await User.findByIdAndDelete(user._id);
   }
 
   send(response);

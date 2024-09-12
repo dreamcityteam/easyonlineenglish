@@ -20,7 +20,7 @@ const inputs: Inputs = {
   repeatPassword: {
     label: 'Repetir contraseña',
     type: 'password',
-    placeholder: 'Escriba su contraseña',
+    placeholder: 'Escriba su contraseña.',
     autoComplete: 'new-password',
     validation: {
       message: MESSAGE.PASSWORD,

@@ -23,6 +23,7 @@ type User = {
   };
   isTutorial: boolean;
   isTerms: boolean;
+  isActive: boolean;
 }
 
 type Course = {

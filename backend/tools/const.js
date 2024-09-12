@@ -46,7 +46,8 @@ const ENDPOINT = {
   SUSCRIBETE: 'suscribete',
   UPLOAD_FILE: 'upload-file',
   STUDENT_RATING: 'student-rating',
-  STUDENT_UPDATE_SENTENCE_INDEX: 'student-updated-sentence-index'
+  STUDENT_UPDATE_SENTENCE_INDEX: 'student-updated-sentence-index',
+  ACTIVE_ACCOUNT: 'active-account'
 };
 
 const PAYMENT_METHOD = {
