@@ -22,7 +22,7 @@ const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
     <Route path="/contact" element={<Contact />} />
     {isPayment && (
       <>
-        <Route path="/conversation" element={<Conversation />} />
+        {/* <Route path="/conversation" element={<Conversation />} /> */}
         <Route path="/library" element={<Library />} />
       </>
     )}

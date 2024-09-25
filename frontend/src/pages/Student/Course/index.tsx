@@ -19,7 +19,7 @@ import {
 } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
-import { HTTP_STATUS_CODES, TUTORIAL } from '../../../tools/constant';
+import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
 import { messagesCorrect, messagesWrong } from './data';
@@ -138,9 +138,19 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   };
 
   const setCourseData = (course: TCourse): void => {
-    const currentLession: Lesson = course.lessons[course.index.lesson];
+    let indexLesson: number = course.index.lesson;
+    let indexWord: number = course.index.word;
     let sentenceIndex: number = 0;
-    let currentWord: Word = currentLession.words[course.index.word];
+
+    if (course.lessons.length === 1) {
+      const wordCompletedLength: number = Object.keys(course.completedWords).length;
+
+      indexLesson = 0;
+      indexWord = wordCompletedLength < 10 ? wordCompletedLength : 9;
+    }
+
+    const currentLession: Lesson = course.lessons[indexLesson];
+    let currentWord: Word = currentLession.words[indexWord];
 
     if (course.completedWords[currentWord._id]) {
       currentWord = getWordSentenceCompleted(currentWord);
@@ -154,8 +164,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     setLessionTitle(currentLession.title);
     setSentence(currentWord.sentences[sentenceIndex]);
     setCourse(course);
-    setLessonIndex(course.index.lesson);
-    setWordIndex(course.index.word);
+    setLessonIndex(indexLesson);
+    setWordIndex(indexWord);
     setSentenceIndex(sentenceIndex);
   }
 

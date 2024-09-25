@@ -37,7 +37,7 @@ const Section3: React.FC = (): JSX.Element => {
           <div className={style.home__image}>
             <Image
               alt="Young man"
-              path="home/Young%20man-X8WLIYFKKuyOkcc7HlIbWzjN9BWZLL.png"
+              path="home/eoe_anna_w_laptop_small_360-Nm3ibANzYajysvGsqwKq08iTEYBfQl.png"
               ref={imageRefs}
             />
           </div>

@@ -2,8 +2,8 @@ import { Image } from './type';
 
 const images: Image[] = [
   {
-    alt: 'Worman watching a her computer',
-    path: 'home/woman-WGWq2YIkKxqNQfYCag7eoKovTfx9rz.png'
+    alt: 'Maria watching a her computer',
+    path: 'home/maria_laptop_homepage_720-jtpHMwBXKWoLr0qxahJz9h3AidsWh5.png'
   },
   {
     alt: 'Man looking at his phone',
@@ -11,7 +11,7 @@ const images: Image[] = [
   },
   {
     alt: 'Man using a table',
-    path: 'home/man-2-fKfa5j8IbR2hAwlMuFSX4DEfg2zhwB.png'
+    path: 'home/erick_ipad_homepage_720-ot1EoPXM6Ig5ey3U49gpD1ay10Rjsk.png'
   }
 ];
 

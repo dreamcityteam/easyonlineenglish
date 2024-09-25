@@ -62,18 +62,26 @@ const Navigator: React.FC = (): JSX.Element => {
       (path === '/courses') && location.pathname.includes('course') ||
       (path === '/plan') && location.pathname.includes('payment') ||
       isAdmin(user) && (path === '/courses') && location.pathname === '/'
-    ? style.navigator__target
-    : ''
+      ? style.navigator__target
+      : ''
   );
 
   const Tabs = (): JSX.Element[] =>
     tabs.map(({ path, value, showMobile }: Tab, index: number): JSX.Element => (
       <li
-        className={getClassName(style.navigator__tab, showMobile ? style.navigator__tabMobile : '')}
+        className={getClassName(
+          style.navigator__tab,
+          showMobile ? style.navigator__tabMobile : '',
+          createAccountStyle(value)
+        )}
         key={index}
       >
         <Link
-          className={getClassName(style.navigator__link, getTargetClassName(path))}
+          className={getClassName(
+            style.navigator__link,
+            getTargetClassName(path),
+   
+          )}
           to={path}
         >
           {value}
@@ -81,16 +89,19 @@ const Navigator: React.FC = (): JSX.Element => {
       </li>
     ));
 
+  const createAccountStyle = (tabName: string): string =>
+    tabName === 'Crea tu cuenta' ? style.navigator__crateAccountTab : ''
+
   return (
     <>
       <nav className={style.navigator} ref={nav}>
         <div className={style.navigator__container}>
           <div className={style.navigator__logo}>
             <Link className={style.navigator__link} to={isAdmin(user) ? '/courses' : '/'}>
-            <Image
-              alt="logo"
-              path="logoo-VwZrWBbCRKonq7x72TKO0TfiC1CUqH.webp"
-            />
+              <Image
+                alt="logo"
+                path="logoo-VwZrWBbCRKonq7x72TKO0TfiC1CUqH.webp"
+              />
             </Link>
           </div>
           <ul className={style.navigator__links}>

@@ -10,6 +10,7 @@ const REGEXP = {
 const ROLE = {
   ADMIN: 'ADMIN',
   STUDENT: 'STUDENT',
+  FREE: 'FREE'
 };
 
 const HTTP_STATUS_CODES = {

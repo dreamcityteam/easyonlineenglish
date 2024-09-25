@@ -17,25 +17,14 @@
   "it was made for elena": ["he was made for elena it"],
   "elena had a confusion": ["atlanta had a confusion"],
   "here is the pasta": ["here's the pasta"],
-  "he is with his pastor": ["he's with his pastor", "his with his pastor"],
-  "he is an admirable boy": ["he's an admirable boy", "his an admirable boy"],
-  "she is a popular girl": ["she's a popular girl"],
-  "she is a sentimental girl": ["she's a sentimental girl"],
-  "he is a man of honor": ["he's a man of honor", "his a man of honor"],
   "her name is elena": ["her name is selena"],
-  "she is very adorable": ["she's very adorable"],
   "elena is very irritable": ["atlanta is very irritable"],
-  "yes she is here": ["yes she's here"],
-  "he is not normal": ["he's not normal", "his not normal"],
-  "she is a good doctor": ["she's a good doctor"],
   "i'll want a taxi": ["i want a taxi"],
   "elena will go to the opera": ["atlanta will go to the opera"],
   "elena will do her hobby": ["atlanta will do her hobby"],
   "we're inseperable": ["we are inseparable"],
   "look and then do it": ["luke and then do it"],
-  "she is a little girl": ["she's a little girl"],
   "what did you do": ["what do you do"],
-  "he is up there": ["he's up there", "his up there"],
   "what is your opinion": ["what is your opinin"],
   "it has a red collar": ["he has a red color", "it has a red color"],
   "any idea is a good one": ["any ideas a good one"],
@@ -46,25 +35,14 @@
   "there is not much time to do it": ["there's not much time to do it"],
   "please give me a cold drink": ["please give me a call drink"],
   "the dominoes are black and white": ["the domino's are black and white"],
-  "he is an individual": ["he's an individual", "his an individual"],
-  "he is in a hotel": ["he's in a hotel", "his in a hotel"],
-  "he is popular": ["he's popular", "his popular"],
-  "he is sentimental": ["he's sentimental", "his sentimental"],
   "flamingoes don't fly much": ["flamingos don't fly much"],
   "please stop the bus": ["please stop the boss"],
-  "he is hungry": ["he's hungry", "his hungry"],
   "are you gonna use this space": ["are you going to use this space"],
-  "he is a good waiter": ["he's a good waiter", "his a good waiter"],
   "they're gonna drink tea": ["they're going to drink tea"],
   "i'm gonna go home this summer": ["i'm going to go home this summer"],
   "what are you gonna do": ["what are you going to do"],
   "they're available now": ["they are available now"],
-  "she is a lady": ["she's a lady"],
-  "she is feeling sad": ["she's feeling sad"],
-  "i believe she is over there": ["i believe she's over there"],
-  "she is alone today": ["she's alone today"],
   "we'll return tomorrow": ["will return tomorrow", "well return tomorrow"],
-  "she is not sure about this project": ["she's not sure about this project"],
   "the doctor set the date": ["the doctor said the date"],
   "we'll discuss that tomorrow": ["well discussed that tomorrow", "will discuss that tomorrow"],
   "it's going to take me three days to follow all steps": ["it's going to take me 3 days to follow all steps"],
@@ -73,5 +51,329 @@
   "the exchange rate today is 24 dollars": ["the exchange rate today is 24"],
   "the sun sets at 6 pm": ["the sun sets at 600 pm"],
   "he made it as simple as possible": ["he made it how simple as possible"],
-  "she is a normal individual": ["she's a normal individual"]
+
+  "he is an individual": [
+    "he's an individual",
+    "his an individual",
+    "she's an individual",
+    "she is an individual"
+  ],
+  "he is in a hotel": [
+    "he's in a hotel",
+    "his in a hotel",
+    "she's in a hotel",
+    "she is in a hotel"
+  ],
+  "he is popular": [
+    "he's popular",
+    "his popular",
+    "she's popular",
+    "she is popular"
+  ],
+  "he is sentimental": [
+    "he's sentimental",
+    "his sentimental",
+    "she's sentimental",
+    "she is sentimental"
+  ],
+  "he is at the hotel": [
+    "he's at the hotel",
+    "his at the hotel",
+    "she's at the hotel",
+    "she is at the hotel"
+  ],
+  "he is not casual": [
+    "he's not casual",
+    "his not casual",
+    "he isn't casual",
+    "his isn't casual",
+    "she's not casual",
+    "she is not casual"
+  ],
+  "he is not normal": [
+    "he's not normal",
+    "his not normal",
+    "he isn't normal",
+    "his isn't normal",
+    "she's not normal",
+    "she is not normal"
+  ],
+  "he is an admirable boy": [
+    "he's an admirable boy",
+    "his an admirable boy",
+    "she's an admirable boy",
+    "she is an admirable boy"
+  ],
+  "he is a man of honor": [
+    "he's a man of honor",
+    "his a man of honor",
+    "she's a man of honor",
+    "she is a man of honor"
+  ],
+  "he is a man of decision": [
+    "he's a man of decision",
+    "his a man of decision",
+    "she's a man of decision",
+    "she is a man of decision"
+  ],
+  "he is with his pastor": [
+    "he's with his pastor",
+    "his with his pastor",
+    "she's with his pastor",
+    "she is with his pastor"
+  ],
+  "he is up there": [
+    "he's up there",
+    "his up there",
+    "she's up there",
+    "she is up there"
+  ],
+  "he is so good": [
+    "he's so good",
+    "his so good",
+    "she's so good",
+    "she is so good"
+  ],
+  "he is my boy": [
+    "he's my boy",
+    "his my boy",
+    "she's my boy",
+    "she is my boy"
+  ],
+  "he is not done with his work": [
+    "he's not done with his work",
+    "his not done with his work",
+    "he isn't done with his work",
+    "his isn't done with his work",
+    "she's not done with his work",
+    "she isn't done with his work",
+    "she is not done with his work"
+  ],
+  "he is away from home now": [
+    "he's away from home now",
+    "his away from home now",
+    "she's away from home now",
+    "she is away from home now"
+  ],
+  "he is pretty sensible": [
+    "he's pretty sensible",
+    "his pretty sensible",
+    "she's pretty sensible",
+    "she is pretty sensible"
+  ],
+  "he is going to write the formula now": [
+    "he's going to write the formula now",
+    "his going to write the formula now",
+    "she's going to write the formula now",
+    "she is going to write the formula now"
+  ],
+  "he is the best doctor for diabetes": [
+    "he's the best doctor for diabetes",
+    "his the best doctor for diabetes",
+    "she's the best doctor for diabetes",
+    "she is the best doctor for diabetes"
+  ],
+  "he is very kind to the boy": [
+    "he's very kind to the boy",
+    "his very kind to the boy",
+    "she's very kind to the boy",
+    "she is very kind to the boy"
+  ],
+  "he is a new actor": [
+    "he's a new actor",
+    "his a new actor",
+    "she's a new actor",
+    "she is a new actor"
+  ],
+  "he is a funny man": [
+    "he's a funny man",
+    "his a funny man",
+    "she's a funny man",
+    "she is a funny man"
+  ],
+  "he is hungry": [
+    "he's hungry",
+    "his hungry",
+    "she's hungry",
+    "she is hungry"
+  ],
+  "he is a good waiter": [
+    "he's a good waiter",
+    "his a good waiter",
+    "she's a good waiter",
+    "she is a good waiter"
+  ],
+  "he is cooking french fries": [
+    "he's cooking french fries",
+    "his cooking french fries",
+    "she's cooking french fries",
+    "she is cooking french fries"
+  ],
+  "no one can be as slow as he is": [
+    "no one can be as slow as his",
+    "no one can be as slow as he's",
+    "no one can be as slow as she's",
+    "no one can be as slow as she is"
+  ],
+  "he is a bad teacher": [
+    "he's a bad teacher",
+    "his a bad teacher",
+    "she's a bad teacher",
+    "she is a bad teacher"
+  ],
+  "he is the new guest": [
+    "he's the new guest",
+    "his the new guest",
+    "she's the new guest",
+    "she is the new guest"
+  ],
+  "he is a wonderful husband": [
+    "he's a wonderful husband",
+    "his a wonderful husband",
+    "she's a wonderful husband",
+    "she is a wonderful husband"
+  ],
+  "he is the last one": [
+    "he's the last one",
+    "his the last one",
+    "she's the last one",
+    "she is the last one"
+  ],
+  "he is a strange person": [
+    "he's a strange person",
+    "his a strange person",
+    "she's a strange person",
+    "she is a strange person"
+  ],
+  "he is better than that": [
+    "he's better than that",
+    "his better than that",
+    "she's better than that",
+    "she is better than that"
+  ],
+  "he is next on the list": [
+    "he's next on the list",
+    "his next on the list",
+    "she's next on the list",
+    "she is next on the list"
+  ],
+
+
+
+  "she is very adorable": [
+    "she's very adorable"
+  ],
+  "she is adorable": [
+    "she's adorable"
+  ],
+  "she is in a hotel": [
+    "she's in a hotel"
+  ],
+  "she is an ideal doctor": [
+    "she's an ideal doctor"
+  ],
+  "she is a normal individual": [
+    "she's a normal individual"
+  ],
+  "she is a popular girl": [
+    "she's a popular girl"
+  ],
+  "she is a sentimental girl": [
+    "she's a sentimental girl"
+  ],
+  "yes, she is here": [
+    "yes, she's here"
+  ],
+  "she is a good doctor": [
+    "she's a good doctor"
+  ],
+  "she is going to go over there": [
+    "she's going to go over there"
+  ],
+  "i like julia because she is sensible": [
+    "i like julia because she's sensible"
+  ],
+  "she is over here": [
+    "she's over here"
+  ],
+  "she is a little girl": [
+    "she's a little girl"
+  ],
+  "she is eating now": [
+    "she's eating now"
+  ],
+  "she is eating a sandwich": [
+    "she's eating a sandwich"
+  ],
+  "she is always an angel": [
+    "she's always an angel"
+  ],
+  "she is pretty sensitive": [
+    "she's pretty sensitive"
+  ],
+  "she is pretty miserable": [
+    "she's pretty miserable"
+  ],
+  "she is a pretty girl": [
+    "she's a pretty girl"
+  ],
+  "she is the right age for me": [
+    "she's the right age for me"
+  ],
+  "why don't you like her? she is very funny": [
+    "Why don't you like her? she's very funny"
+  ],
+  "she is talking to the boy": [
+    "she's talking to the boy"
+  ],
+  "she is tired": [
+    "she's tired"
+  ],
+  "she is going to open the door": [
+    "she's going to open the door"
+  ],
+  "she is the manager of this project": [
+    "she's the manager of this project"
+  ],
+  "she is a waitress": [
+    "she's a waitress"
+  ],
+  "she is cooking your food": [
+    "she's cooking your food"
+  ],
+  "she is in the living room": [
+    "she's in the living room"
+  ],
+  "she is my friend": [
+    "she's my friend"
+  ],
+  "she is a lady": [
+    "she's a lady"
+  ],
+  "she is feeling sad": [
+    "she's feeling sad"
+  ],
+  "she is alone today": [
+    "she's alone today"
+  ],
+  "she is a single mother": [
+    "she's a single mother"
+  ],
+  "i believe she is over there": [
+    "i believe she's over there"
+  ],
+  "she is an honorable person": [
+    "she's an honorable person"
+  ],
+  "she is not sure about this project": [
+    "she's not sure about this project",
+    "she isn't sure about this project"
+  ],
+  "she is dancing with him": [
+    "she's dancing with him",
+    "she isn't dancing with him"
+  ],
+  "she is too young to be here": [
+    "she's too young to be here"
+  ]
 }

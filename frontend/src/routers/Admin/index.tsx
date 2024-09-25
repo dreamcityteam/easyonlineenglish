@@ -16,7 +16,7 @@ const Admin: React.FC = (): JSX.Element => (
     <Route path="/course/:idCourse" element={<Course />} />
     <Route path="/upload" element={<UploadFile />} />
     <Route path="/library" element={<Library />} />
-    <Route path="/conversation" element={<Conversation />} />
+    {/* <Route path="/conversation" element={<Conversation />} /> */}
     <Route path="*" element={<Page404 />} />
   </Routes>
 );

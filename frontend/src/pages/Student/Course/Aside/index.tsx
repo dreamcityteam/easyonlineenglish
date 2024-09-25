@@ -83,7 +83,7 @@ const Aside: React.FC<Props> = ({
     const { step, action } = data;
     const element: HTMLLIElement = document.querySelector(step.target);
 
-    if (element && step.target !== '#tidio-chat-iframe') {
+    if (element && step.target !== '#tidio-chat-iframe' && !Cookie.get(TUTORIAL)) {
       element.style.cssText = 'position: relative; z-index: 2;';
       elements.push(element);
     }

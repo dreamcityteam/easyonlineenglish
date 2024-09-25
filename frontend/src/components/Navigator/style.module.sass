@@ -53,6 +53,13 @@
   &__target
     border-bottom: solid 2px #0170b9
 
+  &__crateAccountTab
+    &:has(.navigator__target)
+      animation: none
+
+    .navigator__target
+      border-bottom: solid 2px white
+
   &__line
     background-color: #414141
     height: 2px
@@ -86,8 +93,48 @@
   &__tabMobile
     display: none
 
+  &__crateAccountTab
+    animation: beat 1s infinite
+    background-color: red
+    border-radius: 8px
+    border: solid 1px transparent
+    cursor: pointer
+    margin-top: 0
+    padding: 10px
+
+    > a
+      color: white
+
+    &:hover
+      animation: none
+      background-color: white
+      border: solid 1px black
+      transition: transform 1s easy
+
+      > a
+        color: red
+
+  @keyframes beat
+    0%, 100%
+      transform: scale(1)
+
+    25%
+      transform: scale(1.2)
+
+    50%
+      transform: scale(1)
+
   @media only screen and (max-width: 900px)
     padding: 20px
+
+    &__crateAccountTab
+      animation: none
+      background-color: transparent
+      margin-top: 15px
+      padding: 0
+
+      > a
+        color: #0170b9
 
     &__hamburger
       display: flex
