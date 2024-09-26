@@ -3,11 +3,6 @@ type NamePath = {
   path: string;
 };
 
-type BackgroundColor = {
-  style: { background: string; }
-} | {};
-
 export type {
-  NamePath,
-  BackgroundColor
+  NamePath
 };

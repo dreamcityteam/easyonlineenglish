@@ -35,7 +35,9 @@ const page404: React.FC = (): JSX.Element => {
           <h3 className={style.page404__subTitle}>¡Ups! Página no encontrada</h3>
           <h1 className={style.page404__title}><span>4</span><span>0</span><span>4</span></h1>
         </div>
-        <h2>Lo sentimos, pero la página que solicitaste no se ha encontrado.</h2>
+        <h2 className={style.page404__description}>
+          Lo sentimos, pero la página que solicitaste no se ha encontrado.
+        </h2>
       </div>
     </section>
   )

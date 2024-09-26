@@ -38,32 +38,42 @@
     transform: translate(-50%,-50%)
 
     > span
+      color: #005d92
       text-shadow: -8px 0 0 #fff
 
+      &:nth-child(2)
+        color: red
+
   &__subTitle
-    color: #000
     font-family: cabin,sans-serif
     font-size: 20px
-    font-weight: 400
+    font-weight: bold
     margin-bottom: 25px
     margin-top: 0
     text-transform: uppercase
 
+  &__description
+    font-weight: normal
+
   @media only screen and (max-width: 767px)
-    .page404__content
+    &__content
       height: 200px
 
-    .page404__title
+    &__title
       font-size: 200px
 
-@media only screen and (max-width: 480px)
-  .page404__content
-    height: 162px
+  @media only screen and (max-width: 480px)
+    &__content
+      height: 162px
 
-  .page404__title
-    font-size: 162px
-    height: 150px
-    line-height: 162px
+    &__title
+      font-size: 162px
+      height: 150px
+      line-height: 162px
 
-  .page404__subTitle
-    font-size: 16px
+    &__subTitle
+      font-size: 16px
+
+    &__description
+      padding: 20px
+      font-size: 20px

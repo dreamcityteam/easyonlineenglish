@@ -1,11 +1,11 @@
 import React, { useContext, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ROLE } from '../../tools/constant';
 import context from '../../global/state/context';
 import { creditCards, terms } from './data';
-import { BackgroundColor, NamePath } from './type';
+import { NamePath } from './type';
 import Image from '../Image';
 import style from './style.module.sass';
+import { isAdmin } from '../../tools/function';
 
 const Footer: React.FC = (): JSX.Element => {
   const [{ user }] = useContext(context);
@@ -13,16 +13,11 @@ const Footer: React.FC = (): JSX.Element => {
   const canShowInfo: boolean = useMemo(() => (
     pathname.includes('term') ||
     pathname.includes('payment') ||
-    (pathname === '/' && user?.role !== ROLE.ADMIN)
+    (pathname === '/' && !isAdmin(user))
   ), [pathname]);
 
-  const getBackgroundColor = (): BackgroundColor =>
-    canShowInfo ? { style: { backgroundColor: '#fbfbfb' } } : {};
-
   return (
-    <footer
-      className={style.footer} {...getBackgroundColor()}
-    >
+    <footer className={style.footer}>
       {canShowInfo ? (
         <ul className={style.footer__items}>
           <li className={style.footer__address}>

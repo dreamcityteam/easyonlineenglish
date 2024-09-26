@@ -4,6 +4,7 @@ interface CssExports {
   'page404': string;
   'page404__container': string;
   'page404__content': string;
+  'page404__description': string;
   'page404__subTitle': string;
   'page404__title': string;
 }
