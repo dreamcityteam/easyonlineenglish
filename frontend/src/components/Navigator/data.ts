@@ -4,6 +4,7 @@ const studentPayment: Tab[] = [
   { path: '/', value: 'Inicio' },
   { path: '/contact', value: 'Contacto' },
   { path: '/courses', value: 'Cursos' },
+  { path: '/plan', value: 'Plan' },
   { path: '/library', value: 'Librería' },
   { path: '/profile', value: 'Perfil', showMobile: true },
   // { path: '/conversation', value: 'Conversaciones' },
