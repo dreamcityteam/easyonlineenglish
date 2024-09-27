@@ -8,7 +8,7 @@ interface Prop {
 
 const Close: React.FC<Prop> = ({ onClose }) => (
   <div className={style.close} onClick={onClose}>
-    <span>X</span>
+    <img src={SVGClose} />
   </div>
 );
 

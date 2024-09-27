@@ -18,7 +18,6 @@ interface CssExports {
   'vocabularies__header': string;
   'vocabularies__section': string;
   'vocabularies__tab': string;
-  'vocabularies__tabFocus': string;
   'vocabularies__table': string;
   'vocabularies__tabs': string;
 }
