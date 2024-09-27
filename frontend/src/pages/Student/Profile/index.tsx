@@ -8,6 +8,8 @@ import ModalEdit from './ModalEdit';
 import ModalInvoiceStory from './ModalInvoiceStory';
 import StudentImage from './StudentImage';
 import style from './style.module.sass';
+import SVGEdit from '../../../../public/svg/edit.svg';
+import SVGHistory from '../../../../public/svg/history.svg';
 
 const Profile: React.FC = (): JSX.Element => {
   const [{ user }] = useContext<[State, any]>(context);
@@ -31,6 +33,29 @@ const Profile: React.FC = (): JSX.Element => {
     <section>
       <div className={style.profile}>
         <div className={style.profile__content}>
+        <div className={style.profile__buttonContainer}>
+            {!isFree(user) && (
+              <button
+                className={style.profile__button}
+                onClick={() => setIsStudentInvoiceStory(true)}
+              >
+                <img src={SVGHistory} />
+              </button>
+            )}
+
+            <button
+              className={style.profile__button}
+              onClick={() => setIsEditStudent(true)}
+            >
+             <img src={SVGEdit} />
+            </button>
+            {/* <button
+              className="button"
+              onClick={() => setIsDeleteStudent(true)}
+            >
+              <p className="button__text">Borrar cuenta</p>
+            </button> */}
+          </div>
           <StudentImage />
           <div className={style.profile__title}>
             <h2>
@@ -44,30 +69,6 @@ const Profile: React.FC = (): JSX.Element => {
             <li><span>Teléfono</span>{formatPhoneNumber(user?.phone)}</li>
             <li><span>Membresía</span>{getMembership()}</li>
           </ul>
-
-          <div className={style.profile__buttonContainer}>
-            {!isFree(user) && (
-              <button
-                className={style.profile__button}
-                onClick={() => setIsStudentInvoiceStory(true)}
-              >
-                <p>Historial de pago</p>
-              </button>
-            )}
-
-            <button
-              className={style.profile__button}
-              onClick={() => setIsEditStudent(true)}
-            >
-              <p>Editar estudiante</p>
-            </button>
-            {/* <button
-              className="button"
-              onClick={() => setIsDeleteStudent(true)}
-            >
-              <p className="button__text">Borrar cuenta</p>
-            </button> */}
-          </div>
         </div>
 
         <div className={style.profile__background}>

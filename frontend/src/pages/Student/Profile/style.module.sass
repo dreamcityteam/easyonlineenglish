@@ -121,7 +121,6 @@
 
     li
       border-radius: 8px
-      border: solid 1.5px #dadada
       color: #5f5f5f
       font-size: 1rem
       font-weight: 400
@@ -132,41 +131,31 @@
     span
       color: #494949
       display: block
-      font-size: 1.3rem
+      font-size: 1.2rem
       font-weight: 600
 
   &__buttonContainer
     align-items: center
     display: flex
-    justify-content: center
-    margin: 2rem 0 2rem
-    order: 4
+    justify-content: space-between
+    margin: 0 0 2rem
     text-align: center
 
   &__button
     background: #06609e
-    border-radius: 2rem
+    border-radius: 50%
     border: none
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08)
     color: #fff
     cursor: pointer
     display: inline-block
-    font-size: 1rem
-    margin-bottom: 10px
-    min-width: 167px
     text-align: center
     text-decoration: none
     transition: all 0.2s ease
+    padding: 10px
 
     &:last-child
-      margin-left: 50px
-      background-color: #4caf50
-
-    &:hover
-      background: white
-      border: solid black 1.5px
-      color: red
-      transform: scale(1.1)
+      background-color: #ff0014
 
   @media (max-width: 481px)
     &__content
@@ -187,18 +176,15 @@
       li
         font-size: 0.8rem
         border: none
-        border-top: solid 1.5px #dadada
-
-        &:last-child
-          border-bottom: solid 1.5px #dadada
-          margin-bottom: 20px
 
       span
         font-size: 1.2rem
 
     &__buttonContainer
       margin: 0rem 0 2.2rem
-      flex-direction: column
+      position: relative
+      top: 35px
+      margin: 0 13px
 
     &__button
       &:last-child
