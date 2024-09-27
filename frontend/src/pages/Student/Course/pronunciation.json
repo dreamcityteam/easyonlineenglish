@@ -47,9 +47,378 @@
   "we'll enjoy the movie": ["will enjoy the movie"],
   "the exchange rate today is 24 dollars": ["the exchange rate today is 24"],
   "the sun sets at 6 pm": ["the sun sets at 600 pm"],
-  "he made it as simple as possible": ["he made it how simple as possible"],
-
   "where are my jeans": ["where are my shins"],
+
+  "he wants her radio": [
+    "she wants her radio"
+  ],
+
+  "he made it there": [
+    "she made it there"
+  ],
+
+  "he said hello": [
+    "she said hello"
+  ],
+
+  "he made it for me": [
+    "she made it for me"
+  ],
+
+  "he made it as simple as possible": [
+    "she made it as simple as possible",
+    "he made it how simple as possible",
+    "she made it as how simple as possible"
+  ],
+
+  "he was in a coma": [
+    "she was in a coma"
+  ],
+
+  "he said it": [
+    "she said it"
+  ],
+
+  "all he said was no": [
+    "all she said was no"
+  ],
+
+  "he said it with humor": [
+    "she said it with humor"
+  ],
+
+  "he made it with chocolate": [
+    "she made it with chocolate"
+  ],
+
+  "he can make a table": [
+    "she can make a table"
+  ],
+
+  "he will let Carlos do it": [
+    "she will let Carlos do it"
+  ],
+
+  "he came in the taxi": [
+    "she came in the taxi"
+  ],
+
+  "he can go there": [
+    "she can go there"
+  ],
+
+  "he went into the taxi": [
+    "she went into the taxi"
+  ],
+
+  "he will help her": [
+    "she will help her"
+  ],
+
+  "he ran there": [
+    "she ran there"
+  ],
+
+  "he went to the cafeteria": [
+    "she went to the cafeteria"
+  ],
+
+  "he just came": [
+    "she just came"
+  ],
+
+  "he just came to see me": [
+    "she just came to see me"
+  ],
+
+  "he did me a favor": [
+    "she did me a favor"
+  ],
+
+  "what did he do": [
+    "what did she do"
+  ],
+
+  "he could do it": [
+    "she could do it"
+  ],
+
+  "he would be a good actor": [
+    "she would be a good actor"
+  ],
+
+  "he can have cereal if he wants": [
+    "she can have cereal if he wants"
+  ],
+
+  "he will give his opinion": [
+    "she will give his opinion"
+  ],
+
+  "he could be here by now": [
+    "she could be here by now"
+  ],
+
+  "he saw Isabel in the taxi": [
+    "she saw Isabel in the taxi"
+  ],
+
+  "he goes there sometimes": [
+    "she goes there sometimes"
+  ],
+
+  "he goes to the casino": [
+    "she goes to the casino"
+  ],
+
+  "was he right or wrong": [
+    "Was she right or wrong"
+  ],
+
+  "he gave me the wrong idea": [
+    "she gave me the wrong idea"
+  ],
+
+  "he will keep the original version": [
+    "she will keep the original version"
+  ],
+
+  "he may go to the hotel": [
+    "she may go to the hotel"
+  ],
+  
+  "he loves golf": [
+    "she loves golf"
+  ],
+
+  "is he correct": [
+    "is she correct"
+  ],
+
+  "he told me again": [
+    "she told me again"
+  ],
+
+  "is he going to write the manual": [
+    "is she going to write the manual"
+  ],
+
+  "why is he so happy": [
+    "why is she so happy"
+  ],
+
+  "how many pizzas did he get": [
+    "how many pizzas did she get"
+  ],
+
+  "he will never say that again": [
+    "she will never say that again"
+  ],
+
+  "he does the plans for the company": [
+    "she does the plans for the company"
+  ],
+
+  "he does good work": [
+    "she does good work"
+  ],
+
+  "he does what he wants to do": [
+    "she does what he wants to do"
+  ],
+
+  "he likes what she does": [
+    "she likes what she does"
+  ],
+
+  "he will sing at the opera": [
+    "she will sing at the opera"
+  ],
+
+  "he won't talk to David": [
+    "she won't talk to David"
+  ],
+
+  "he was found in good condition": [
+    "she was found in good condition"
+  ],
+
+  "he came on his own": [
+    "she came on his own"
+  ],
+
+  "he can't read": [
+    "she can't read"
+  ],
+
+  "he can read simple english": [
+    "she can read simple english"
+  ],
+
+  "he doesn't have it": [
+    "she doesn't have it"
+  ],
+
+  "he doesn't think it will help": [
+    "she doesn't think it will help"
+  ],
+
+  "when did he get sick": [
+    "when did he get sick"
+  ],
+
+  "he didn't want breakfast": [
+    "she didn't want breakfast"
+  ],
+
+  "he wants chicken for dinner": [
+    "she wants chicken for dinner"
+  ],
+
+  "he will come at noon": [
+    "she will come at noon"
+  ],
+
+  "he knows how to use the right words": [
+    "she knows how to use the right words"
+  ],
+
+  "he knows many words": [
+    "she knows many words"
+  ],
+
+  "he should go to your house": [
+    "she should go to your house"
+  ],
+
+  "why is he in the room": [
+    "why is she in the room"
+  ],
+
+  "he put the receipt on the table": [
+    "she put the receipt on the table"
+  ],
+
+  "did he touch your iphone": [
+    "did she touch your iphone"
+  ],
+
+  "is he your friend": [
+    "is she your friend"
+  ],
+
+  "he makes people laugh": [
+    "she makes people laugh"
+  ],
+
+  "he wants to learn about computers": [
+    "she wants to learn about computers"
+  ],
+
+  "he had a good reason": [
+    "she had a good reason"
+  ],
+
+  "he had a long life": [
+    "she had a long life"
+  ],
+
+  "he was busy yesterday": [
+    "she was busy yesterday"
+  ],
+
+  "this is the first house he built": [
+    "this is the first house she built"
+  ],
+
+  "he built a beautiful table": [
+    "she built a beautiful table"
+  ],
+
+  "he came from South America": [
+    "she came from South America"
+  ],
+
+  "he will speak in public": [
+    "she will speak in public"
+  ],
+
+  "is he alone now": [
+    "is she alone now"
+  ],
+
+  "he doesn't like to be alone at night": [
+    "she doesn't like to be alone at night"
+  ],
+
+  "he had just a single drink": [
+    "she had just a single drink"
+  ],
+
+  "he ate french fries": [
+    "she ate french fries"
+  ],
+
+  "what street does he live on": [
+    "what street does she live on"
+  ],
+
+  "he sells cars": [
+    "she sells cars"
+  ],
+
+  "he doesn't understand the issue": [
+    "she doesn't understand the issue"
+  ],
+
+  "he married maria": [
+    "she married maria"
+  ],
+
+  "is he a good person": [
+    "is she a good person"
+  ],
+
+  "he made a simple request": [
+    "she made a simple request"
+  ],
+
+  "he saw the request for a new table": [
+    "she saw the request for a new table"
+  ],
+
+  "he was a rich man": [
+    "she was a rich man"
+  ],
+
+
+  "he doesn't feel safe at night": [
+    "she doesn't feel safe at night"
+  ],
+
+  "i cannot remember where he lives": [
+    "i cannot remember where she lives"
+  ],
+
+  "he wants bacon for breakfast": [
+    "she wants bacon for breakfast"
+  ],
+
+  "he said he was poor": [
+    "she said he was poor"
+  ],
+
+  "he had to accept the consequences": [
+    "she had to accept the consequences"
+  ],
+
+  "he will always be welcome": [
+    "she will always be welcome"
+  ],
+
+  "he cannot decide where to go": [
+    "she cannot decide where to go"
+  ],
 
   "he is an individual": [
     "he's an individual",
