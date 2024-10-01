@@ -65,10 +65,10 @@ const Speech: React.FC<Props> = ({
     const formattedTranscript: string = formatWord(transcript).trim();
     const formattedWord: string = removeAccents(formatWord(word));
 
-    console.table([{
-      'Pronunciación': formattedTranscript,
-      Texto: formattedWord
-    }]);
+    console.log(
+      `Pronunciación': ${formattedTranscript}`,
+      `\nTexto: ${formattedWord}`
+    );
 
     const isCorrect: boolean = formattedTranscript === formattedWord ||
       !!canNext[formattedWord]?.includes(formattedTranscript);

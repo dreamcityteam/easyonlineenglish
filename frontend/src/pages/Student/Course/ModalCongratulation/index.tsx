@@ -18,7 +18,6 @@ const ModalWrongPronunciation: React.FC<Props> = ({ state, isDemo }): JSX.Elemen
   const isDemoStudent: boolean = user?.payment?.isPayment === false && isStudent(user);
   const _isDemo: boolean = isDemo || isDemoStudent;
 
-  console.log(isDemoStudent)
   return (
     <Modal
       state={state}

@@ -38,7 +38,7 @@ const Register: React.FC = (): JSX.Element => {
         : <Form
           api="register"
           title="Registro"
-          buttonText="Registrarse"
+          buttonText="Regístrate"
           inputs={inputs}
           onData={onData}
         />
