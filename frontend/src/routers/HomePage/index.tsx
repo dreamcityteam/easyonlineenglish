@@ -14,6 +14,7 @@ import FinalUser from '../../pages/Terms/FinalUser';
 import Payment from '../../pages/Terms/Payment';
 import Conditions from '../../pages/Terms/Conditions';
 import ActiveAccount from '../../pages/SingOut/ActiveAccount';
+import Tutorial from '../../pages/Tutorial';
 
 const RouterHomePage: React.FC = () => (
   <Routes>
@@ -30,6 +31,7 @@ const RouterHomePage: React.FC = () => (
     <Route path="/term-privacy" element={<Privacy />} />
     <Route path="/term-conditions" element={<Conditions />} />
     <Route path="/active-account/:token" element={<ActiveAccount />} />
+    {/* <Route path="/tutorial" element={<Tutorial />} /> */}
     <Route path="*" element={<Page404 />} />
   </Routes>
 );

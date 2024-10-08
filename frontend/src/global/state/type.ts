@@ -91,6 +91,7 @@ type Sentence = {
   audioUrl: string;
   isCompleted?: boolean;
   audioSlowUrl: string;
+  audioSplitUrls: string[]; 
 }
 
 type Loading = {

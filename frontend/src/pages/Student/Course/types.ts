@@ -15,7 +15,20 @@ type CourseProgress = {
   progress: number;
 };
 
+type AudioWordProps = {
+  type: 'englishWord' | 'letter';
+};
+
+type WordSplitType = {
+  hasQuotes?: boolean;
+  isHighlights?: boolean;
+  text: string;
+  url: string;
+};
+
 export type {
   OnWord,
-  CourseProgress
+  CourseProgress,
+  AudioWordProps,
+  WordSplitType
 }

@@ -22,6 +22,7 @@ const sentenceSchema = new Schema({
     type: String,
     required: true
   },
+  audioSplitUrls: [String],
 });
 
 const courseWordSchema = new Schema({

@@ -26,6 +26,7 @@ const homepage: Tab[] = [
   { path: '/contact', value: 'Contacto' },
   { path: '/register', value: 'Crea tu cuenta' },
   { path: '/login', value: 'Iniciar sesión' },
+  // { path: '/tutorial', value: 'Tutorial' },
 ];
 
 const admin: Tab[] = [

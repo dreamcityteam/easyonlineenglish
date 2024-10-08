@@ -10,7 +10,6 @@ interface CssExports {
   'course__content_container': string;
   'course__content_text': string;
   'course__englishWord': string;
-  'course__englishWord_container': string;
   'course__feedback': string;
   'course__image': string;
   'course__lession_container': string;
@@ -27,6 +26,8 @@ interface CssExports {
   'course__text_grandient': string;
   'course__text_language': string;
   'course__text_lession': string;
+  'sound': string;
+  'sound__icon': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

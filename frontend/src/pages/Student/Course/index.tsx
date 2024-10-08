@@ -9,12 +9,13 @@ import {
 import Aside from './Aside';
 import Speech from '../../../components/Speech';
 import style from './style.module.sass';
-import { CourseProgress, OnWord } from './types';
+import { CourseProgress, OnWord, WordSplitType } from './types';
 import {
-  checkPronunciation,
+  formatWord,
   getClassName,
   getData,
   isAdmin,
+  removeAccents,
   send
 } from '../../../tools/function';
 import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
@@ -30,6 +31,7 @@ import Head from './Head';
 import ModalRating from './ModalRating';
 import ModalTips from './ModalTips';
 import ImageLazy from '../../../components/ImageLazy';
+import Sound from '../../../components/Sound';
 
 interface Props {
   isDemo?: boolean;
@@ -51,37 +53,15 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [wordIndex, setWordIndex] = useState<number>(0);
   const [isSavingProgress, setIsSavingProgress] = useState<boolean>(false);
   const idCache: string = isDemo ? `${idCourse}-demo` : idCourse || '';
-  const [canDisabledAudio, setCanDisabledAudio] = useState<boolean>(false);
   const [countPronunciation, setCountPronunciation] = useState<number>(1);
   const [wrongPronunciationMessage, setWrongPronunciationMessage] = useState<boolean>(false);
   const [isCorrectPronuciation, setIsCorrectPronunciation] = useState<boolean>(false);
   const [pronunciationFeedback, setPronunciationFeedback] = useState<string>('');
-  const [canSlowAudio, setCanSlowAudio] = useState<{ [key: string]: { audio: null | HTMLAudioElement; canPlay: boolean; } }>({
-    word: {
-      audio: null,
-      canPlay: false
-    },
-    sentence: {
-      audio: null,
-      canPlay: false
-    }
-  });
   const [canShowModalRating, setCanShowModalRating] = useState<boolean>(false);
 
   useEffect(() => {
     saveCourseData();
   }, []);
-
-  const getAudioInitialize = () => ({
-    audio: null,
-    canPlay: false
-  });
-
-  const disabledSlowAudio = (): void =>
-    setCanSlowAudio({
-      word: getAudioInitialize(),
-      sentence: getAudioInitialize(),
-    });
 
   const saveCourseCacheData = (course: TCourse): void =>
     dispatch({ type: SET_COURSE_CACHE, payload: { ...course, idCourse: idCache } });
@@ -208,7 +188,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       cleanFeedback();
     }
 
-    disabledSlowAudio();
     setCountPronunciation(0);
   };
 
@@ -267,7 +246,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         handleNextWord(word, wordIndex, lessonIndex, true);
       }
 
-      disabledSlowAudio();
     }
   };
 
@@ -419,7 +397,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const onPlaySpeech = (isPlay: boolean): void => {
     isPlay && cleanFeedback();
     setPlaySpeech(isPlay);
-    setCanDisabledAudio(isPlay);
   };
 
   const cleanFeedback = (): void =>
@@ -444,36 +421,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     );
   };
 
-  const handlerOnPlayAudio = (type: 'word' | 'sentence'): void => {
-    const currentAudio = canSlowAudio[type];
-    const isSentenceAudio: boolean = type === 'sentence';
-    const url: string | undefined = isSentenceAudio
-      ? (currentAudio.canPlay && sentence?.audioSlowUrl) || sentence?.audioUrl
-      : word?.audioUrl;
-
-    if (!url || canDisabledAudio) return;
-
-    const audio: HTMLAudioElement = new Audio(url);
-
-    if (currentAudio.audio) {
-      currentAudio.audio.pause();
-    }
-
-    audio.play();
-
-    if (canSlowAudio[type].canPlay && !sentence?.audioSlowUrl) {
-      audio.playbackRate = 0.76;
-    }
-
-    setCanSlowAudio((prevState) => ({
-      ...prevState,
-      [type]: {
-        audio: audio,
-        canPlay: !canSlowAudio[type].canPlay
-      },
-    }));
-  };
-
   const BarStatus = ({ hiddenCount = false }): JSX.Element => {
     const percentage: number = getWordProgress();
     const style: any = {
@@ -490,6 +437,80 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       </>
     );
   }
+
+  const AudioWord = (type: 'englishWord' | 'letter'): JSX.Element | null => {
+    // Handles playing audio when a URL is provided
+    const playAudio = (url: string) => {
+      if (!url) return;
+      const audio: HTMLAudioElement = new Audio(url);
+      audio.play().catch((error) => {
+        console.error('Failed to play audio:', error);
+      });
+    };
+
+    // Renders a clickable span that plays audio
+    const WordSplit: React.FC<WordSplitType> = ({
+      url,
+      text,
+      hasQuotes = false,
+      isHighlights = false
+    }): JSX.Element => (
+      <span
+        style={{ cursor: 'pointer', borderBottom: isHighlights ? '2px solid red' : 'none' }}
+        className={getClassName(style.course__text_grandient, style.course__textSentence)}
+        onClick={() => playAudio(url)}
+      >
+        {hasQuotes ? `"${text}"` : text}
+      </span>
+    );
+
+    if (type === 'letter' && word) {
+      return (
+        <WordSplit
+          url={word.audioUrl}
+          text={word.englishWord}
+          hasQuotes
+        />
+      );
+    }
+
+    if (type === 'englishWord' && sentence) {
+      const { audioSplitUrls = [], englishWord = '', audioUrl = '', audioSlowUrl = '' } = sentence;
+      const splitTexts: string[] = englishWord.split(' ');
+      const shouldPlaySingleAudio: boolean = audioSplitUrls.length === 0;
+      const pronunciations: string[] = pronunciationFeedback.toLowerCase().split(' ');
+
+      return (
+        <div onClick={shouldPlaySingleAudio ? () => playAudio(audioUrl) : undefined}>
+          {
+            splitTexts.map((text: string, index: number): JSX.Element => {
+              let isMismatch: boolean = pronunciations.includes(removeAccents(formatWord(text)));
+
+              return (
+                <React.Fragment key={index}>
+                  {WordSplit({
+                    url: audioSplitUrls[index],
+                    text: `${text} `,
+                    isHighlights: !(!feedback.canShow || isCorrectPronuciation) && !isMismatch
+                  })}
+                </React.Fragment>
+              )
+            })
+          }
+          {audioSplitUrls.length > 0 && (
+            <Sound
+              slowAudioUrl={audioSlowUrl}
+              src={audioUrl}
+              style={style}
+              stop={isPlaySpeech}
+            />
+          )}
+        </div>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <>
@@ -523,18 +544,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 {lessionTitle}
               </span>
             </div>
-            <div className={style.course__englishWord_container}>
-              <span
-                onClick={() => handlerOnPlayAudio('word')}
-                className={
-                  getClassName(
-                    style.course__text_grandient,
-                    style.course__englishWord
-                  )
-                }
-              >
-                "{word?.englishWord}"
-              </span>
+            <div className={style.course__englishWord}>
+              {AudioWord('letter')}
             </div>
             <div className={style.course__spanishTranslation_container}>
               <span
@@ -571,21 +582,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             <div className={style.course__content}>
               <div className={style.course__content_text}>
                 <div>
-                  <span
-                    onClick={() => handlerOnPlayAudio('sentence')}
-                    className={
-                      getClassName(
-                        style.course__text_grandient,
-                        style.course__textSentence
-                      )
-                    }
-                  >
-                    {checkPronunciation(
-                      sentence?.englishWord,
-                      pronunciationFeedback,
-                      !(!feedback.canShow || isCorrectPronuciation)
-                    )}
-                  </span>
+                  {AudioWord('englishWord')}
                 </div>
                 <span
                   className={style.course__text_language}

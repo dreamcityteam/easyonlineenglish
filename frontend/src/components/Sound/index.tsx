@@ -7,11 +7,20 @@ interface Props {
   src: string;
   style: { [key: string]: any };
   render?: () => JSX.Element;
+  slowAudioUrl?: string;
+  stop?: boolean;
 }
 
-const Sound: React.FC<Props> = ({ src, style = {}, render }): JSX.Element => {
+const Sound: React.FC<Props> = ({
+  src,
+  style = {},
+  render,
+  slowAudioUrl,
+  stop
+}): JSX.Element => {
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
+  const [isSlowAudio, setIsSlowAudio] = useState(false);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -25,8 +34,13 @@ const Sound: React.FC<Props> = ({ src, style = {}, render }): JSX.Element => {
     };
   }, []);
 
+  useEffect(() => {
+    stop && stopAudio();
+  }, [stop]);
+
   const handleAudioEnded = (): void => {
     setCanPlay(false);
+    setIsSlowAudio((isSlowAudio: boolean) => !!slowAudioUrl ? !isSlowAudio : false);
   };
 
   const handleTogglePlay = (): void => {
@@ -35,12 +49,19 @@ const Sound: React.FC<Props> = ({ src, style = {}, render }): JSX.Element => {
         audioRef.current.play();
         setCanPlay(true);
       } else {
-        audioRef.current.pause();
-        setCanPlay(false);
+        stopAudio();
       }
     }
   };
 
+  const stopAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setIsSlowAudio((isSlowAudio: boolean) => !!slowAudioUrl ? !isSlowAudio : false);
+      setCanPlay(false);
+    }
+  }
 
   return (
     <div
@@ -65,10 +86,9 @@ const Sound: React.FC<Props> = ({ src, style = {}, render }): JSX.Element => {
             />
           )
         )}
-
       <audio
         ref={audioRef}
-        src={src}
+        src={isSlowAudio ? slowAudioUrl : src}
       />
     </div>
   );
