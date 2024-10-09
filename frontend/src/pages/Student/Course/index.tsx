@@ -589,6 +589,13 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             <div className={style.course__content}>
               <div className={style.course__content_text}>
                 {AudioWord('englishWord')}
+                {sentence?.audioSplitUrls.length === 0 && (
+                  <span
+                    className={style.course__text_language}
+                  >
+                    Inglés
+                  </span>
+                )}
               </div>
               <div className={style.course__feedback}>
                 <ImageLazy
