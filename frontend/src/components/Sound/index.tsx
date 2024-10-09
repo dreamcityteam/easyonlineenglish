@@ -35,8 +35,9 @@ const Sound: React.FC<Props> = ({
   }, []);
 
   useEffect(() => {
+    setIsSlowAudio(false);
     stop && stopAudio();
-  }, [stop]);
+  }, [src, stop]);
 
   const handleAudioEnded = (): void => {
     setCanPlay(false);
