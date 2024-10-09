@@ -3,6 +3,7 @@
 interface CssExports {
   'course': string;
   'course__arrow': string;
+  'course__audio': string;
   'course__bar': string;
   'course__button': string;
   'course__container': string;
@@ -26,8 +27,6 @@ interface CssExports {
   'course__text_grandient': string;
   'course__text_language': string;
   'course__text_lession': string;
-  'sound': string;
-  'sound__icon': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

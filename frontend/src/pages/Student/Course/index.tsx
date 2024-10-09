@@ -498,12 +498,19 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             })
           }
           {audioSplitUrls.length > 0 && (
-            <Sound
-              slowAudioUrl={audioSlowUrl}
-              src={audioUrl}
-              style={style}
-              stop={isPlaySpeech}
-            />
+            <div className={style.course__audio}>
+              <span
+                className={style.course__text_language}
+              >
+                Inglés
+              </span>
+              <Sound
+                slowAudioUrl={audioSlowUrl}
+                src={audioUrl}
+                style={style}
+                stop={isPlaySpeech}
+              />
+            </div>
           )}
         </div>
       );
@@ -581,14 +588,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           <div className={style.course__content_container}>
             <div className={style.course__content}>
               <div className={style.course__content_text}>
-                <div>
-                  {AudioWord('englishWord')}
-                </div>
-                <span
-                  className={style.course__text_language}
-                >
-                  Inglés
-                </span>
+                {AudioWord('englishWord')}
               </div>
               <div className={style.course__feedback}>
                 <ImageLazy

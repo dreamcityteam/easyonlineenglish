@@ -169,6 +169,14 @@
       position: absolute
       width: 200px
 
+  &__audio
+    display: flex
+
+    img
+      margin-top: -1px
+      height: 50px !important
+      width: 50px !important
+
   @media only screen and (max-width: 1024px)
     &__content
       padding: 0 40px
@@ -210,6 +218,12 @@
       font-size: 18px
 
   @media only screen and (max-width: 950px)
+    &__audio
+      img
+        height: 45px !important
+        margin-top: -3px
+        width: 45px !important
+
     &__button
       width: 258px
 
@@ -258,6 +272,13 @@
       width: 45px
 
   @media only screen and (max-width: 500px)
+    &__audio
+      img
+        height: 38px !important
+        margin-left: -5px
+        margin-top: -1px
+        width: 38px !important
+
     &__button
       width: 145px
 
@@ -297,14 +318,3 @@
 
     &__progress span
       font-size: 12px
-
-.sound
-  display: inline
-  left: 0
-  margin-left: 60px
-  margin-top: 41px
-  position: absolute
-
-  &__icon
-    height: 50px !important
-    width: 50px !important
