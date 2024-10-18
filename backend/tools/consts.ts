@@ -38,6 +38,8 @@ const ENDPOINT: ObjectValueString = {
   STUDENT_UPDATE: 'student-update',
   STUDENT_RATING: 'student-rating',
 
+  AZUL_PAYMENT_3DS: 'azul-payment-3ds',
+
 
   LIBRARY: 'library',
   SEND_EMAIL_RESET_PASSWORD: 'send-email-reset-password',
@@ -48,7 +50,6 @@ const ENDPOINT: ObjectValueString = {
   PAYPAL: 'paypal',
  
   STUDENT_DELETE_ACCOUNT: 'student-delete-account',
-
   SUSCRIBETE: 'suscribete',
   UPLOAD_FILE: 'upload-file',
 };
@@ -90,11 +91,30 @@ const INITIAL_COURSE = {
   PICTURE: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/06/Square1-500x311.jpg'
 };
 
+const PAYMENT_METHOD = {
+  1: {
+    DURATION_IN_MONTHS: 1,
+    AMOUNT: 13,
+    DESCRIPTION: 'MEMBRESÍA POR 1 MES'
+  },
+  2: {
+    DURATION_IN_MONTHS: 12,
+    AMOUNT: 130,
+    DESCRIPTION: 'MEMBRESÍA POR 1 AÑO'
+  },
+  3: {
+    DURATION_IN_MONTHS: 3,
+    AMOUNT: 35,
+    DESCRIPTION: 'MEMBRESÍA POR 3 MES'
+  }
+};
+
 export {
   ROLE,
   HTTP_STATUS_CODES,
   ENDPOINT,
   VALIDATOR,
   MESSAGE,
-  INITIAL_COURSE
+  INITIAL_COURSE,
+  PAYMENT_METHOD
 };

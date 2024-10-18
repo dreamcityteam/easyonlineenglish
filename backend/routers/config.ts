@@ -25,6 +25,7 @@ import studentTerms from '../api/student/terms';
 import studentTutorial from '../api/student/tutorial';
 import studentRating from '../api/student/rating';
 import studentActiveAccount from '../api/student/activeAccount';
+import azul3ds from '../api/azul3ds';
 
 const config: Router[] = [
   {
@@ -151,8 +152,12 @@ const config: Router[] = [
     path: ENDPOINT.STUDENT_ACTIVE_ACCOUNT,
     method: 'post',
     func: studentActiveAccount
+  },
+  {
+    path: ENDPOINT.AZUL_PAYMENT_3DS,
+    method: 'post',
+    func: azul3ds
   }
-
   // {
   //   path: ENDPOINT.AZUL_PAYMENT,
   //   method: 'post',

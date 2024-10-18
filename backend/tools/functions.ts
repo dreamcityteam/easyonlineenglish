@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import sharp from 'sharp';
 import { put } from '@vercel/blob';
-import { HTTP_STATUS_CODES, INITIAL_COURSE, ROLE } from './consts';
+import { HTTP_STATUS_CODES, INITIAL_COURSE, PAYMENT_METHOD, ROLE } from './consts';
 import { Cookie, ResponseSend, Token, Location, TryCatch, SendEmailProps, UploadBlodToVercelProps } from './type';
 import User from '../schemas/user.schema';
 import StudentPayment from '../schemas/studentPayment.schema';
@@ -30,8 +30,8 @@ const {
   TOKEN_NAME = '',
   EMAIL_HOST = '',
   EMAIL_PORT = '',
-  EMAIL_USER = '',
-  EMAIL_PASS = ''
+  EMAIL_PASS = '',
+  EMAIL_USER = ''
 } = process.env;
 
 /**
@@ -376,6 +376,104 @@ const uploadBlodToVercel = async ({
   return url;
 }
 
+const payment = async ({
+  idUser,
+  payment: {
+    name,
+    plan,
+    azulRRN = null,
+    azulCustomOrderId = null,
+    azulOrderId = null,
+    azulTicket = null,  
+    type  
+  }
+}: any) => {
+  let isPayment: boolean = false;
+  // @ts-ignore
+  const PAYMENT = PAYMENT_METHOD[plan];
+
+  if (!PAYMENT) {
+    return isPayment;
+  }
+
+  try {
+    await connectToDatabase();
+
+    const user = await User.findOne({ _id: idUser }).select({ __v: 0 });
+
+    if (user && PAYMENT) {
+      const payment = await StudentPayment.findOne({ idUser }).sort({ _id: -1 });
+      const lastPayment = payment ? getMonthsDiff(payment.dateStart, payment.dateEnd) : 0;
+
+      const newPayment = new StudentPayment({
+        idUser,
+        name: type === 'PAYPAL' ? user.name : name,
+        plan,
+        dateEnd: getDurationInMonth(lastPayment + PAYMENT.DURATION_IN_MONTHS),
+        azulRRN,
+        azulCustomOrderId,
+        azulOrderId,
+        azulTicket,
+        amount: PAYMENT.AMOUNT,
+        type
+      });
+
+      await newPayment.save();
+
+      const emailConfig = {
+        from: EMAIL_USER,
+        to: user.email,
+        subject: 'easyonlineenglish - FACTURA',
+        html: `
+          name: ${user.name} ${user.lastname},
+          phone: ${user.phone},
+          description: ${PAYMENT.DESCRIPTION},
+          price: ${PAYMENT.AMOUNT},
+          total: ${PAYMENT.AMOUNT},
+          dateStart: ${newPayment.dateStart},
+          dateEnd: ${newPayment.dateEnd},
+        `,
+      };
+
+      if (newPayment) {
+        await sendEmail(emailConfig);
+
+        isPayment = true;
+      }
+    }
+  } catch(error) {
+    console.error(error)
+  }
+
+  return isPayment;
+}
+
+const getMonthsDiff = (dateFrom: Date, dateTo: Date): number => {
+  const from = new Date(dateFrom);
+  const to = new Date(dateTo);
+
+  const fromYear = from.getFullYear();
+  const fromMonth = from.getMonth();
+  const toYear = to.getFullYear();
+  const toMonth = to.getMonth();
+
+  let months = (toYear - fromYear) * 12 + (toMonth - fromMonth);
+
+  if (to.getDate() < from.getDate()) {
+    months--;
+  }
+
+  return months;
+}
+
+const getDurationInMonth = (durationInMonth: number): Date => {
+  const currentDate = new Date();
+
+  currentDate.setMonth(currentDate.getMonth() + durationInMonth);
+
+  return new Date(currentDate);
+}
+
 export {
   isDev,
   serveApp,
@@ -392,5 +490,6 @@ export {
   sendEmail,
   formatPhoneNumber,
   getPayment,
-  uploadBlodToVercel
+  uploadBlodToVercel,
+  payment
 };
