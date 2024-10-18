@@ -1,16 +1,30 @@
-import { Role, StatusCode } from './type';
+import { ObjectValuValidator, Role, StatusCode } from './type';
 
-const REGEXP: { [key: string]: RegExp; } = {
-  USERNAME: /^[a-zA-Z][a-zA-Z0-9_]{2,19}$/,
-  EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  PHONE_NUMBER: /^\+?\d{1,3}[- ]?\(?\d{1,3}\)?[- ]?\d{3,5}[- ]?\d{4}$/,
-  NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
-  LAST_NAME: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/,
-  PASSWORD: /^.{8,}$/,
-};
-
-const MESSAGE: { [key: string]: string; } = {
-  PASSWORD: 'Su contraseña debería tener al menos 8 caracteres.',
+const VALIDATOR: ObjectValuValidator = {
+  USERNAME: {
+    message: 'Ingresa un nombre de usuario válido.',
+    regExp: /^[a-zA-Z][a-zA-Z0-9_]{2,19}$/
+  },
+  EMAIL: {
+    message: 'Ingresa una dirección de correo electrónico válida.',
+    regExp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  },
+  PHONE_NUMBER: {
+    message: 'Ingresa un número de teléfono válido.',
+    regExp: /^\+?\d{1,3}[- ]?\(?\d{1,3}\)?[- ]?\d{3,5}[- ]?\d{4}$/
+  },
+  NAME: {
+    message: 'Ingresa un nombre válido.',
+    regExp: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/
+  },
+  LAST_NAME: {
+    message: 'Ingresa un apellido válido.',
+    regExp: /^([a-zA-Z\xC0-\xD6\xD8-\xF6\xF8-\xFF' -]){1,50}$/
+  },
+  PASSWORD: {
+    message: 'Tu contraseña debe tener al menos 8 caracteres.',
+    regExp: /^.{8,}$/
+  },
 };
 
 const ROLE: Role = {
@@ -59,12 +73,11 @@ const PAYMENT_METHOD: {
 };
 
 export {
-  REGEXP,
+  VALIDATOR,
   ROLE,
   HTTP_STATUS_CODES,
   AUTH_TOKEN,
   DEFAULT_PHOTO,
   TUTORIAL,
-  MESSAGE,
   PAYMENT_METHOD,
 }

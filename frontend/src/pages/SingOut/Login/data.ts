@@ -1,6 +1,6 @@
-import { Inputs } from '../../../components/Form/type';
+import { Fields } from '../../../components/Form/type';
 
-const inputs: Inputs = {
+const inputs: Fields = {
   username: {
     label: 'Email o nombre de usuario',
     type: 'text',
@@ -16,4 +16,4 @@ const inputs: Inputs = {
 
 export {
   inputs
-}
+};

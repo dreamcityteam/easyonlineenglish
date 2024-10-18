@@ -15,7 +15,7 @@ const ActiveAccount: React.FC = () => {
 
   const checkToken = async (): Promise<void> => {
     await getData({
-      service: { method: 'post', endpoint: 'active-account' },
+      service: { method: 'post', endpoint: 'student-active-account' },
       token,
       modal: { dispatch, text: 'Verificando autenticación' },
       success: (data: any): void => {

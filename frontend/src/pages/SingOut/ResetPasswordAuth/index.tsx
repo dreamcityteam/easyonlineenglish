@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import Form from '../../../components/Form';
 import { inputs } from './data';
-import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import context from '../../../global/state/context';
 import { getData } from '../../../tools/function';
 import style from './style.module.sass';
@@ -10,7 +9,7 @@ import style from './style.module.sass';
 const ResetPasswordAuth: React.FC = (): JSX.Element => {
   const { token } = useParams<string>();
   const [isToken, setIsToken] = useState<boolean>(false);
-  const [, dispatch] = useContext(context);
+  const [_, dispatch] = useContext(context);
   const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
@@ -26,25 +25,8 @@ const ResetPasswordAuth: React.FC = (): JSX.Element => {
     });
   }
 
-  const onData = (payload: any, updateState: (key: string, field: any) => void): void => {
-    const { statusCode } = payload.response;
-    const field = {
-      validation: {
-        isNotValid: true,
-        serverErrorMessage: ''
-      }
-    };
-
-    if (statusCode === HTTP_STATUS_CODES.OK) {
-      navigate('/login');
-
-    } else if (statusCode === HTTP_STATUS_CODES.UNAUTHORIZED) {
-      setIsToken(false);
-
-    } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
-      field.validation.serverErrorMessage = 'Se produjo un error al intentar mas tarde.';
-      updateState('password', field);
-    }
+  const onData = (data: any): void => {
+    navigate('/login');
   }
 
   return (
@@ -54,9 +36,8 @@ const ResetPasswordAuth: React.FC = (): JSX.Element => {
           <Form
             title="Contraseña"
             api="reset-password"
-            token={token}
             buttonText="Enviar"
-            inputs={inputs}
+            fields={inputs}
             onData={onData}
           />
         </div>

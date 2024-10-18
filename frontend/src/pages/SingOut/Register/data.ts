@@ -1,87 +1,56 @@
-import { Field } from '../../../components/Form/type';
-import { MESSAGE, REGEXP } from '../../../tools/constant';
+import { Fields } from '../../../components/Form/type';
+import { VALIDATOR } from '../../../tools/constant';
 
-type Inputs = {
-  username: Field;
-  email: Field;
-  password: Field;
-  phone: Field;
-  name: Field;
-  lastname: Field;
-  repeatPassword: Field;
-};
-
-const inputs: Inputs = {
+const inputs: Fields = {
   username: {
     label: 'Nombre de usuario',
     type: 'text',
     placeholder: 'Escriba su nombre de usuario.',
-    validation: {
-      message: 'Por favor, introduzca un nombre de usuario válido.',
-      regExp: REGEXP.USERNAME,
-    },
+    validator: VALIDATOR.USERNAME
   },
 
   name: {
     label: 'Nombre',
     type: 'text',
     placeholder: 'Escriba su nombre.',
-    validation: {
-      message: 'Por favor, introduzca un nombre válido.',
-      regExp: REGEXP.NAME,
-    },
+    validator: VALIDATOR.NAME
   },
 
   lastname: {
     label: 'Apellido',
     type: 'text',
     placeholder: 'Escriba su apellido.',
-    validation: {
-      message: 'Por favor, introduzca un apellido válido.',
-      regExp: REGEXP.LAST_NAME,
-    },
+    validator: VALIDATOR.LASTNAME
   },
 
   email: {
     label: 'Email',
     type: 'email',
     placeholder: 'Escriba su email.',
-    validation: {
-      message: 'Por favor, introduzca una dirección de correo electrónico válida.',
-      regExp: REGEXP.EMAIL,
-    },
+    validator: VALIDATOR.EMAIL
   },
 
   phone: {
     label: 'Teléfono',
-    type: 'number',
+    type: 'tel',
     placeholder: 'Escriba su teléfono.',
-    validation: {
-      message: 'Por favor, introduzca un número de teléfono.',
-      regExp: REGEXP.PHONE_NUMBER,
-    },
+    validator: VALIDATOR.PHONE_NUMBER,
   },
 
   password: {
     label: 'Contraseña',
     type: 'password',
     placeholder: 'Escriba su contraseña.',
-    autoComplete: 'new-password',
-    validation: {
-      message: MESSAGE.PASSWORD,
-      regExp: REGEXP.PASSWORD,
-    },
+    autocomplete: 'new-password',
+    validator: VALIDATOR.PASSWORD,
   },
 
   repeatPassword: {
     label: 'Repetir contraseña',
     type: 'password',
     placeholder: 'Escriba su contraseña.',
-    autoComplete: 'new-password',
-    validation: {
-      message: MESSAGE.PASSWORD,
-      regExp: REGEXP.PASSWORD,
-    },
+    autocomplete: 'new-password',
+    validator: VALIDATOR.PASSWORD,
   },
 };
 

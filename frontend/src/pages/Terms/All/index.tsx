@@ -18,7 +18,7 @@ const All: React.FC = (): JSX.Element => {
 
   const handlerOnClick = async () => {
     if (isCheck) {
-      const { response: { statusCode } } = await send({ api: 'update-student-terms' }).patch();
+      const { response: { statusCode } } = await send({ api: 'student-terms' }).patch();
 
       if (statusCode === HTTP_STATUS_CODES.OK) {
         dispatch({ type: UPDATE_STUDENT_TERMS, payload: { isTerms: true } });

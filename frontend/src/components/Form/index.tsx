@@ -1,184 +1,265 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { getInitialState } from './helper';
-import { Inputs, State, FieldForm } from './type';
+import React, { useState, useMemo } from 'react';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { Fields, FormField } from './type';
+import style from './style.module.sass';
+import { ObjectValueString } from '../../tools/type';
 import { send } from '../../tools/function';
 import Loading from './Loading';
-import { Response } from '../../tools/type';
-import Input from './Input';
 import { HTTP_STATUS_CODES } from '../../tools/constant';
-import style from './style.module.sass';
+import { Link } from 'react-router-dom';
 
 interface Props {
   api: string;
-  buttonText?: string;
-  inputs: Inputs;
-  onData: (data: any, updateState: (key: string, field: any) => void) => void;
-  token?: string;
-  canCleanInput?: boolean;
-  custom?: (props: any) => JSX.Element;
+  avoidEmptyField?: boolean;
+  bannerURL?: string;
+  buttonText: string;
+  fields: Fields;
+  google?: 'signin_with' | 'signup_with' | 'continue_with' | 'signin'
+  onData?: (data: any) => void;
+  successMessage?: string;
   title?: string;
-  errorMessage?: string;
+  resetPassword?: {
+    label: string;
+    url: string;
+  };
+};
+
+interface State {
+  [key: string]: FormField
 };
 
 const Form: React.FC<Props> = ({
-  inputs,
   api,
-  buttonText = 'Enviar',
-  token,
-  onData,
-  canCleanInput = false,
-  custom,
+  bannerURL,
+  buttonText,
+  fields,
+  google,
+  onData = () => { },
+  resetPassword,
+  successMessage,
   title,
-  errorMessage
 }): JSX.Element => {
-  const keys: string[] = useMemo(() => Object.keys(inputs), []);
-  const [state, setState] = useState<State>(useMemo(() => getInitialState(keys, inputs), []));
+  const [state, setState] = useState<State>(fields);
+  const fieldKeys: string[] = useMemo(() => Object.keys(state), []);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-  const canSend = useCallback((): boolean => {
+  const onClick = async (event: any): Promise<void> => {
+    event && event.preventDefault();
+
+    if (isValid()) {
+      handleApiResponse({ data: getData(), api });
+    }
+  }
+
+  const handleApiResponse = async ({ data, api }: { data: any, api: string; }) => {
+    setIsLoading(true);
+    const { response: { data: dataResponse, statusCode } } = await send({ api, data }).post();
+    const isBadRequest: boolean = statusCode === HTTP_STATUS_CODES.BAD_REQUEST;
+    const isSuccessfully: boolean = statusCode === HTTP_STATUS_CODES.OK;
+
+    setIsSuccess(isSuccessfully);
+
+    if (isSuccessfully) {      
+      onData(dataResponse);
+      cleanAllInput();
+    }
+
+    if (isBadRequest) {
+      Object.keys(dataResponse).forEach((key: string): void => {
+        const field: FormField = state[key];
+
+        if (field) {
+          field.errorMessage = dataResponse[key] || '';
+          setField(key, field);
+        }
+      });
+    }
+
+    setIsLoading(false);
+  }
+
+  const getData = (): ObjectValueString => {
+    const data: ObjectValueString = {};
+
+    Object.keys(state).forEach((key: string) => {
+      data[key] = state[key].value || '';
+    });
+
+    return data;
+  }
+
+  const onKeyDown = ({ key }: any): void => {
+    key === 'Enter' && onClick(null);
+  }
+
+  const onChange = ({ target: { value = '', name: key } }: any): void =>
+    setField(key, { ...state[key], value });
+
+  const isValid = (): boolean => {
     let isValid: boolean = true;
 
-    keys.forEach((key: string): void => {
-      const field: FieldForm = state[key];
+    fieldKeys.forEach((fieldKey: string): void => {
+      const field: FormField = state[fieldKey];
+      const value: string = field.value || '';
+      const isEmpty: boolean = !value;
+      const isErrorMessage: boolean = !!field.validator && !field.validator.regExp.test(value);
+      const avoidEmptyField = isErrorMessage && !field.avoidEmptyField || value && isErrorMessage;
 
-      if (key === 'repeatPassword' && field.value) {
-        const fieldPassword = state['password'];
-        const isNotValid = fieldPassword.value !== field.value;
-
-        field.validation = {
-          ...field.validation,
-          emptyErrorMessage: '',
-          isNotValid,
-          message: isNotValid ? 'Las contraseñas no son iguales' : ''
-        };
-
-        isValid = !isNotValid;
-      } else if (field.validation?.isOpcional === true && !field.value) {
-        field.validation = {
-          ...field.validation,
-          emptyErrorMessage: '',
-          isNotValid: false
-        };
-      } else if (!field.value) {
-        const emptyErrorMessage = field.validation?.emptyErrorMessage || 'Por favor, complete este campo.';
-
-        field.validation = {
-          ...field.validation,
-          emptyErrorMessage,
-          isNotValid: true
-        };
-
-        isValid = false;
-      } else if (field.validation) {
-        const isNotValid = !!(field.validation.regExp && !field.validation.regExp.test(field.value));
-
-        field.validation = {
-          ...field.validation,
-          isNotValid,
-          emptyErrorMessage: ''
-        };
-
-        if (isNotValid) isValid = false;
+      if (isEmpty && !field.avoidEmptyField) {
+        field.errorMessage = 'Por favor, completa este campo obligatorio.';
+      } else if (avoidEmptyField) {
+        field.errorMessage = field.validator?.message;
+      } else {
+        field.errorMessage = '';
       }
 
-      updateState(key, field);
+      if (isValid) {
+        isValid = !(isEmpty || isErrorMessage);
+
+        if (!avoidEmptyField) {
+          isValid = true;
+        }
+      }
+
+      setField(fieldKey, field);
     });
 
     return isValid;
-  }, [state]);
+  }
 
-  const onSend = useCallback(async (): Promise<void> => {
-    if (canSend()) {
-      setIsLoading(true);
-      const data: Response = await send({ api, data: getPayload(), token }).post();
+  const setField = (key: string, value: FormField): void =>
+    setState((currentState: State): State => ({ ...currentState, [key]: value }));
 
-      onData(data, updateState);
-      data.response.statusCode === HTTP_STATUS_CODES.OK && canCleanInput && cleanInput();
-      setIsLoading(false);
-    }
-  }, [canSend]);
+  const cleanAllInput = (): void =>
+    fieldKeys.forEach((key: string) => {
+      const field = state[key];
 
-  const cleanInput = (): void => {
-    setState((currentState) => {
-      const newState: any = {};
+      field.value = '';
 
-      keys.forEach((key: string) => {
-        newState[key] = { ...currentState[key], value: '' }
-      });
-
-      return newState;
+      setField(key, field);
     });
-  }
-
-  const getPayload = (): Inputs =>
-    keys.reduce((prevState: any, key: string) =>
-      ({ ...prevState, [key]: state[key].value }), {});
-
-  const onChange = useCallback((key: string, event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { value } = event.target;
-    const field: FieldForm = { ...state[key], value };
-
-    updateState(key, field);
-  }, []);
-
-  const updateState = (key: string, field: FieldForm): void => {
-    setState((prevState: State) => ({
-      ...prevState,
-      [key]: {
-        ...prevState[key],
-        ...field
-      }
-    }));
-  }
-
-  const handleKeyPress = (event: any): void => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      onSend();
-    }
-
-    if (
-      (event.key === 'e' || event.key === 'E' || event.key === '.') &&
-      event.target.type === 'number'
-    ) {
-      event.preventDefault();
-    }
-  };
 
   return (
     <div className={style.form}>
-      {title && (
-        <header className={style.form__title}>
-          <h1>{title}</h1>
-          <span className={style.form__errorMessage}>{errorMessage}</span>
-        </header>
+      {bannerURL && (
+        <div className={style.form__banner}>
+          <img src={bannerURL} alt="banner" />
+        </div>
       )}
-      {custom ? custom({ state, onChange, handleKeyPress, onSend, isLoading }) : (
-        <form >
-          {Object.keys(state).map((field: string, index: number) => (
-            <div key={index} className={style.form__container}>
-              <Input
-                field={field}
-                state={state}
-                onChange={onChange}
-                handleKeyPress={handleKeyPress}
-              />
+
+      <form className={style.form__container}>
+        {title && (
+          <header className={style.form__header}>
+            <h1>{title}</h1>
+          </header>
+        )}
+
+        {fieldKeys.map((key: string, index: number) => {
+          const {
+            placeholder, value = '', type,
+            label, errorMessage = '', options = [],
+            autocomplete = ''
+          } = state[key];
+
+          return (
+            <div key={index} className={style.form__input}>
+              {label && <label className={style.form__label}>{label}</label>}
+              {type === 'textarea' && (
+                <textarea
+                  name={key}
+                  onChange={onChange}
+                  onKeyDown={onKeyDown}
+                  placeholder={placeholder}
+                  value={value}
+                  autoComplete={autocomplete}
+                />
+              )}
+
+              {!['select', 'textarea'].includes(type) && (
+                <input
+                  name={key}
+                  onChange={onChange}
+                  onKeyDown={onKeyDown}
+                  placeholder={placeholder}
+                  type={type}
+                  value={value}
+                  autoComplete={autocomplete}
+                />
+              )}
+
+              {!!(type === 'select' && options.length) && (
+                <select
+                  name={key}
+                  onChange={onChange}
+                  onKeyDown={onKeyDown}
+                  value={value}
+                >
+                  <option value="" disabled>
+                    {placeholder}
+                  </option>
+                  {options.map((option: string, index: number) =>
+                    <option key={index} value={option} className={style.form__option}>
+                      {option}
+                    </option>
+                  )}
+                </select>
+              )}
+
+              {errorMessage && <span className={style.form__error}>{errorMessage}</span>}
+              {
+                isSuccess && 
+                successMessage &&
+                !errorMessage &&
+                (index === fieldKeys.length - 1) && (
+                  <span className={style.form__success}>
+                    {successMessage}
+                  </span>
+                )
+              }
             </div>
-          ))}
-          <div className={style.button__container}>
-            {isLoading ? <Loading /> : (
-              <input
-                className={style.button}
-                onClick={onSend}
-                type="button"
-                value={buttonText}
-              />
-            )}
-          </div>
-        </form>
-      )}
+          )
+        })}
+
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <input
+            onClick={onClick}
+            type="submit"
+            value={buttonText}
+            className={style.form__submit}
+          />
+        )}
+
+        <GoogleOAuthProvider clientId={process.env.GOOGLE_ID_CLIENT || ''}>
+          {google &&
+            <GoogleLogin
+              onSuccess={async (credentialResponse) => {
+                const token: string = credentialResponse.credential || '';
+
+                handleApiResponse({ api: `${api}-google`, data: { token } });
+              }}
+
+              onError={() => {
+                console.log('Login Failed');
+              }}
+              text={google}
+              width="200"
+            />
+          }
+        </GoogleOAuthProvider>
+        {resetPassword && (
+          <Link
+            className={style.form__link}
+            to={resetPassword.url}
+          >
+            {resetPassword.label}
+          </Link>
+        )}
+      </form>
     </div>
   );
-};
+}
 
 export default Form;

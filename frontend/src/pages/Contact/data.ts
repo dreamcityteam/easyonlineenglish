@@ -1,55 +1,53 @@
-import { Info, Inputs } from './type';
-import { REGEXP } from '../../tools/constant';
+import { Fields } from '../../components/Form/type';
+import { VALIDATOR } from '../../tools/constant';
+import { Info } from './type';
 
-const inputs: Inputs = {
+const inputs: Fields = {
   name: {
     label: 'Nombre',
     placeholder: 'Escriba su nombre',
-    validation: {
-      message: 'Please enter a valid name.',
-      regExp: REGEXP.NAME,
-    },
+    type: 'text',
+    validator: VALIDATOR.NAME,
   },
 
   email: {
     label: 'Email',
     placeholder: 'Escriba su correo electrónico',
-    validation: {
-      message: 'Por favor, introduzca una dirección de correo válida.',
-      regExp: REGEXP.EMAIL,
-    },
+    type: 'text',
+    validator: VALIDATOR.EMAIL,
   },
 
   subject: {
     label: 'Subject',
     placeholder: 'Escriba su asunto',
+    type: 'text',
   },
 
   message: {
     label: 'Mensaje',
-    type: 'textarea',
     placeholder: 'Escriba su message',
+    type: 'textarea',
   },
 };
 
 const infos: Info[] = [
   {
-    path: 'icons/phone-s59rhmvyjSlbehTTOUQwJ6039yBCO0.jpg',
     alt: 'Phone',
+    description: '+1 (849) 410-9664',
+    path: 'icons/phone-s59rhmvyjSlbehTTOUQwJ6039yBCO0.jpg',
     title: 'Teléfono',
-    description: '+1 (849) 410-9664'
   },
   {
-    path: 'icons/email-Kwptk8RyxQ3bnzsQTrfBmJGqJXrv8X.jpg',
     alt: 'Email',
+    description: 'support@easyonlineenglish.com',
+    path: 'icons/email-Kwptk8RyxQ3bnzsQTrfBmJGqJXrv8X.jpg',
     title: 'Correo',
-    description: 'support@easyonlineenglish.com'
   },
   {
-    path: 'icons/location-EI0CinXiIt2tUHQywL0XLoD0r2CmTP.jpg',
     alt: 'Location',
+    description: 'Cabarete, Puerto Plata, República Dominicana.',
+    path: 'icons/location-EI0CinXiIt2tUHQywL0XLoD0r2CmTP.jpg',
     title: 'Localización',
-    description: 'Cabarete, Puerto Plata, República Dominicana.'
   }
 ];
 

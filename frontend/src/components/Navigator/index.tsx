@@ -26,7 +26,9 @@ const Navigator: React.FC = (): JSX.Element => {
     } else {
       tab = studentPendingPayment;
     }
+
     setTabs(tab);
+
   }, [user]);
 
   useEffect(() => {

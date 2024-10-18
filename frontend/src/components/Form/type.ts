@@ -1,39 +1,26 @@
-type Validation = {
-  message?: string;
-  regExp?: RegExp;
-  emptyErrorMessage?: string;
-  isOpcional?: boolean;
-};
-
 type Field = {
+  avoidEmptyField?: boolean;
   label?: string;
-  placeholder?: string;
-  type?: 'text' | 'password' | 'email' | 'textarea' | 'tel' | 'hidden' | 'number';
+  placeholder: string;
+  type: 'text' | 'password' | 'email' | 'textarea' | 'select' | 'tel';
   value?: string;
-  autoComplete?: 'off' | 'on' | 'new-password';
-  validation?: Validation;
+  validator?: {
+    message: string;
+    regExp: RegExp;
+    serverMessage?: string;
+  }
+  options?: string[];
+  autocomplete?: 'new-password' | 'off' | 'on'
 };
 
-type FieldForm = Field & {
-  validation: Validation & {
-    serverErrorMessage: string;
-    successMessage?:  string;
-    isNotValid: boolean;
-  };
-};
-
-type Inputs = {
+type Fields = {
   [key: string]: Field;
 };
 
-type State = {
-  [key: string]: FieldForm;
-};
+type FormField = Field & { errorMessage?: string; };
 
 export type {
   Field,
-  Inputs,
-  Validation,
-  State,
-  FieldForm
-};
+  Fields,
+  FormField
+}

@@ -1,17 +1,14 @@
-import { Inputs } from './type';
-import { REGEXP } from '../../../tools/constant';
+import { Fields } from '../../../components/Form/type';
+import { VALIDATOR } from '../../../tools/constant';
 
-const inputs: Inputs = {
+const inputs: Fields = {
   email: {
     placeholder: 'Tu correo electrónico',
     type: 'email',
-    validation: {
-      message: 'Por favor, introduzca una dirección de correo válida.',
-      regExp: REGEXP.EMAIL,
-    },
+    validator: VALIDATOR.EMAIL,
   },
 };
 
 export {
   inputs
-}
+};

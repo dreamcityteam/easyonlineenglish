@@ -68,6 +68,19 @@ type Data = {
   };
 };
 
+type ObjectValueString = {
+  [key: string]: string;
+};
+
+type Validator = {
+  message: string;
+  regExp: RegExp;
+};
+
+type ObjectValuValidator = {
+  [key: string]: Validator;
+};
+
 export type {
   Request,
   RequestOptions,
@@ -75,5 +88,7 @@ export type {
   Response,
   StatusCode,
   Role,
-  Data
+  Data,
+  ObjectValueString,
+  ObjectValuValidator
 }

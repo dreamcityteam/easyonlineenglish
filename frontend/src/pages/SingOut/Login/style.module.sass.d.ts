@@ -2,7 +2,6 @@
 // Please do not change this file!
 interface CssExports {
   'login': string;
-  'login__container': string;
   'login__error': string;
   'login__link': string;
 }

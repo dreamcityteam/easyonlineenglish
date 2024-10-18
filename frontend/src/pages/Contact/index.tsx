@@ -2,31 +2,13 @@ import React from 'react';
 import Form from '../../components/Form';
 import { infos, inputs } from './data';
 import style from './style.module.sass';
-import { HTTP_STATUS_CODES } from '../../tools/constant';
 import Image from '../../components/Image';
 import { Info } from './type';
 import Head from './Head';
 
 const Contact: React.FC = () => {
-  const onForm = (
-    { response: { statusCode } }: any,
-    updateState: (key: string, field: any) => void
-  ): void => {
-    const field = {
-      validation: {
-        isNotValid: true,
-        serverErrorMessage: '',
-        successMessage: ''
-      }
-    };
-
-    if (statusCode === HTTP_STATUS_CODES.OK) {
-      field.validation.successMessage = 'Mensaje enviado.';
-      updateState('message', field);
-    } else if (statusCode === HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR) {
-      field.validation.serverErrorMessage = 'Su mensaje no pudo ser enviado.';
-      updateState('message', field);
-    }
+  const onForm = (data: any): void => {
+    console.log(data);
   }
 
   return (
@@ -55,11 +37,12 @@ const Contact: React.FC = () => {
           </div>
           <div>
             <Form
-              canCleanInput
               api="contanct"
               buttonText="Enviar Mensaje"
-              inputs={inputs}
+              fields={inputs}
               onData={onForm}
+              title="Contacto"
+              successMessage="Su mensaje se ha enviado exitosamente."
             />
           </div>
         </article>

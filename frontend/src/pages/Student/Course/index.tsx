@@ -383,7 +383,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const saveSentenceIndex = async (): Promise<void> => {
     if (course && word && !isAdmin(user) && !isDemo) {
       await send({
-        api: 'student-updated-sentence-index',
+        api: 'student-sentence',
         data: {
           index: (sentenceIndex === word.sentences.length - 1)
             ? sentenceIndex

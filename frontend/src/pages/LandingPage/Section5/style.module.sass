@@ -20,10 +20,18 @@
       width: auto
 
     form
+      border: none
       display: flex
+      margin-top: 0
+      padding: 0
 
       > div
         margin: 0
+
+      span
+        margin-left: 5px
+        margin-top: 5px
+        position: absolute
 
       input[type="email"]
         appearance: none
@@ -37,7 +45,7 @@
         padding: 15px
         width: 430px
 
-      input[type="button"]
+      input[type="submit"]
         appearance: none
         background: black
         border-radius: 15px
@@ -78,7 +86,6 @@
     &__wrapper
       flex-direction: column-reverse
 
-
   @media only screen and (max-width: 600px)
     &__wrapper
       margin: 0
@@ -101,17 +108,20 @@
       form
         flex-direction: column
         padding: 20px
+        position: relative
+        width: 350px
 
         input[type="email"]
           width: 100%
 
-        input[type="button"]
+        input[type="submit"]
           margin-top: 10px
           margin-left: 0
 
         span
-          position: relative
-          top: -71px
+          top: 0
+          margin: 0
+          margin-left: 5px
 
     &__imageContainer
       align-items: center

@@ -5,7 +5,13 @@ interface Props {
 }
 
 const Loading: React.FC<Props> = ({ color = '#06609e' }): JSX.Element => (
-  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+  <div style={{
+      paddingBottom: '10px',
+      display: 'flex',
+      justifyContent: 'center',
+      position: 'relative',
+      top: '10px'
+    }}>
     <svg
       width={50}
       height={50}

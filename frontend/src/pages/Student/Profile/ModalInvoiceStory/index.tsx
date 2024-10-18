@@ -19,7 +19,7 @@ const ModalInvoiceStory: React.FC<Props> = ({ state }) => {
 
   const setStudentInvoiceStory = async (): Promise<void> => {
     const { response: { data = [] } } = await send({
-      api: 'student-invoice-story'
+      api: 'student-invoice'
     }).get();
 
     setInvoiceStory(formatStudentInvoiceStory(data));

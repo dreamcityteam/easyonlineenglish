@@ -1,73 +1,102 @@
-@import '../../../public/mixin/vars.module'
-@import '../../../public/mixin/index.module'
-
 .form
-  background-color: #ffffff
-  border-radius: 24px
-  border: solid 2px #06609e
-  margin-top: 50px
-  padding: 20px 36px
-  width: 400px
+  display: flex
 
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button
-    -webkit-appearance: none
-    margin: 0
+  &__banner
+    width: 500px
 
-  input[type="number"]
-    -moz-appearance: textfield
+  &__banner > img
+    height: 100%
+    opacity: 0.7
+    width: 100%
 
   &__container
-    display: block
-    margin-bottom: 15px
+    background-color: #fff
+    border-radius: 24px
+    border: solid 2px #06609e
+    margin-top: 50px
+    padding: 20px 36px
+    width: 350px
 
-  &__title
-    color: $main__color
+  &__header
+    color: #06609e
     font-family: monospace
     font-size: 25px
     margin-bottom: 25px
     text-align: center
 
-  label
-    color: #000000
-    display: block
-    font-size: 15px
-    padding: 10px 5px
+    h1
+      font-size: 1.6em
 
-  input,
-  textarea
-    border-radius: 5px
-    border: 1px solid #c0c4c9
-    display: block
-    font-size: 13px
-    outline: none
-    padding: 8px 10px
-    width: 100%
-
-  textarea
-    resize: none
-    height: 200px
-
-  .button
-    background-color: $main__color
+  &__submit
+    background-color: #06609e
     border-radius: 5px
     border: none
-    color: #ffffff
+    color: #fff
     cursor: pointer
     font-size: 15px
     padding: 15px 20px
-    transition: background-color 0.5s ease
+    transition: background-color .5s ease
+    width: 100%
 
-  &__errorMessage
-    color: #F44336
+  &__option
+    color: black
+
+  &__label
+    display: block
+    font-weight: 100
+    margin-bottom: 5px
+    margin-left: 2px
+
+  &__error
+    color: red
     font-size: 12px
 
-  @include mobile
-    margin-top: 0
+  &__success
+    color: #4caf50
+    font-size: 12px
 
-textarea.field
-  resize: none
-  height: 200px
+  &__input
+    margin-bottom: 10px
 
-.button__container
-  margin-top: 30px
+    input,
+    textarea
+      border-radius: 5px
+      border: 1px solid #c0c4c9
+      display: block
+      font-size: 13px
+      outline: none
+      padding: 8px 10px
+      width: 100%
+
+    textarea
+      resize: none
+      height: 150px
+
+  &__link
+    display: block
+    font-size: 12px
+    padding: 10px 0
+
+  @media only screen and (max-width: 936px)
+    flex-direction: column
+    align-items: center
+
+    &__banner
+      height: 500px
+
+    &__container
+      width: auto
+
+  @media only screen and (max-width: 481px)
+    height: auto
+    width: 100%
+
+    &__banner
+      height: 300px
+      width: 100%
+
+    &__container
+      padding: 20px
+
+    &__error
+      left: 20px

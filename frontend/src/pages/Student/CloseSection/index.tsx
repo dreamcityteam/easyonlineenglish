@@ -14,7 +14,7 @@ const CloseSection: React.FC = (): null => {
 
   const closeSection = async (): Promise<void> => {
     await getData({
-      service: { method: 'post', endpoint: 'logout' },
+      service: { method: 'post', endpoint: 'sign-out' },
       modal: { dispatch, text: 'Cerrando sesión' },
       success: (data): void => {
         dispatch({ type: CLEAN_CACHE });

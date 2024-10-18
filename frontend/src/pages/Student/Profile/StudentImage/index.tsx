@@ -22,7 +22,7 @@ const StudentImage: React.FC = () => {
 
   const handlerUploadPhoto = async (file: any): Promise<void> => {
     const url: string = await uploadBlob({
-      service: 'student-profile-image',
+      service: 'student-photo',
       file
     });
 
