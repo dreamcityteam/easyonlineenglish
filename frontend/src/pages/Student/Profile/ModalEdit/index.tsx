@@ -32,6 +32,7 @@ const ModalEdit: React.FC<Props> = ({ state }) => {
           buttonText="Guardar"
           fields={inputs(user)}
           onData={onData}
+          canClean={false}
         />
       </div>
     </Modal>

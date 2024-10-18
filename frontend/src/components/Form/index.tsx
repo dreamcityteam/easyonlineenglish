@@ -12,6 +12,7 @@ interface Props {
   api: string;
   avoidEmptyField?: boolean;
   bannerURL?: string;
+  canClean?: boolean;
   buttonText: string;
   fields: Fields;
   google?: 'signin_with' | 'signup_with' | 'continue_with' | 'signin'
@@ -32,6 +33,7 @@ const Form: React.FC<Props> = ({
   api,
   bannerURL,
   buttonText,
+  canClean = true,
   fields,
   google,
   onData = () => { },
@@ -62,7 +64,7 @@ const Form: React.FC<Props> = ({
 
     if (isSuccessfully) {      
       onData(dataResponse);
-      cleanAllInput();
+      canClean && cleanAllInput();
     }
 
     if (isBadRequest) {
