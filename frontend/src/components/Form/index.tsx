@@ -23,6 +23,7 @@ interface Props {
     label: string;
     url: string;
   };
+  tokenFromHeader?: string | undefined;
 };
 
 interface State {
@@ -40,6 +41,7 @@ const Form: React.FC<Props> = ({
   resetPassword,
   successMessage,
   title,
+  tokenFromHeader,
 }): JSX.Element => {
   const [state, setState] = useState<State>(fields);
   const fieldKeys: string[] = useMemo(() => Object.keys(state), []);
@@ -56,7 +58,7 @@ const Form: React.FC<Props> = ({
 
   const handleApiResponse = async ({ data, api }: { data: any, api: string; }) => {
     setIsLoading(true);
-    const { response: { data: dataResponse, statusCode } } = await send({ api, data }).post();
+    const { response: { data: dataResponse, statusCode } } = await send({ api, data, token: tokenFromHeader }).post();
     const isBadRequest: boolean = statusCode === HTTP_STATUS_CODES.BAD_REQUEST;
     const isSuccessfully: boolean = statusCode === HTTP_STATUS_CODES.OK;
 
@@ -68,6 +70,7 @@ const Form: React.FC<Props> = ({
     }
 
     if (isBadRequest) {
+
       Object.keys(dataResponse).forEach((key: string): void => {
         const field: FormField = state[key];
 

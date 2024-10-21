@@ -38,7 +38,6 @@ const ENDPOINT: ObjectValueString = {
   STUDENT_UPDATE: 'student-update',
   STUDENT_RATING: 'student-rating',
 
-
   LIBRARY: 'library',
   SEND_EMAIL_RESET_PASSWORD: 'send-email-reset-password',
   RESET_PASSWORD: 'reset-password',

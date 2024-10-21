@@ -11,6 +11,7 @@ const endpoint = async (req: RequestType, res: Response) => {
     message: 'User not found.',
     endpoint: async (response) => {
       await connectToDatabase();
+
       const { password = '' } = req.body;
       const invalidFields: ObjectValueString = {};
 

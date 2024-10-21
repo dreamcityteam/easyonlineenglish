@@ -8,7 +8,7 @@ import style from './style.module.sass';
 
 const ResetPasswordAuth: React.FC = (): JSX.Element => {
   const { token } = useParams<string>();
-  const [isToken, setIsToken] = useState<boolean>(false);
+  const [isToken, setIsToken] = useState<boolean>(true);
   const [_, dispatch] = useContext(context);
   const navigate: NavigateFunction = useNavigate();
 
@@ -34,11 +34,12 @@ const ResetPasswordAuth: React.FC = (): JSX.Element => {
       {isToken ? (
         <div className={style.resetPassword__form}>
           <Form
-            title="Contraseña"
             api="reset-password"
             buttonText="Enviar"
             fields={inputs}
             onData={onData}
+            title="Contraseña"
+            tokenFromHeader={token}
           />
         </div>
       ) : (
