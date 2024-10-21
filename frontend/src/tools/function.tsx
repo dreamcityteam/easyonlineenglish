@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import axios from 'axios';
 import { CLEAR_LOAD, SET_LOAD } from '../global/state/actionTypes';
 import { HTTP_STATUS_CODES, ROLE } from './constant';
 import { Request, RequestOptions, Send, Response, Data } from './type';
@@ -128,7 +129,7 @@ const getData = async (
     token,
     service,
     success,
-    error = () => {},
+    error = () => { },
     modal: { dispatch, text = '' }
   }: Data
 ): Promise<void> => {
@@ -188,7 +189,7 @@ const checkPronunciation = (
           condiction ? ' ' : '';
 
         return <span key={index} style={style}>
-         {canAddSpace(index !== 0)}{spliteWords[index]}{canAddSpace(index !== formattedWords.length - 1)}
+          {canAddSpace(index !== 0)}{spliteWords[index]}{canAddSpace(index !== formattedWords.length - 1)}
         </span>;
       })}
     </>
@@ -196,11 +197,11 @@ const checkPronunciation = (
 };
 
 const Cookie = {
-    /**
-   * Retrieves a cookie by name.
-   * @param {string} name - The name of the cookie to retrieve.
-   * @returns {string | null} The value of the cookie or null if not found.
-   */
+  /**
+ * Retrieves a cookie by name.
+ * @param {string} name - The name of the cookie to retrieve.
+ * @returns {string | null} The value of the cookie or null if not found.
+ */
   get: (name: string): string | null => {
     const value: string = `; ${document.cookie}`;
     const parts: string[] = value.split(`; ${name}=`);
@@ -208,12 +209,12 @@ const Cookie = {
     return parts.length === 2 ? (parts.pop()?.split(';').shift() || null) : null;
   },
 
-   /**
-   * Sets a cookie with the specified name, value, and expiration days.
-   * @param {string} name - The name of the cookie to set.
-   * @param {string} value - The value of the cookie.
-   * @param {number} [days=7] - The number of days until the cookie expires.
-   */
+  /**
+  * Sets a cookie with the specified name, value, and expiration days.
+  * @param {string} name - The name of the cookie to set.
+  * @param {string} value - The value of the cookie.
+  * @param {number} [days=7] - The number of days until the cookie expires.
+  */
   set: (name: string, value: string, days: number = 7): void => {
     const expires: Date = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
@@ -374,6 +375,55 @@ const getClassName = (...props: string[]): string => {
   return classes.trim();
 }
 
+const statusCode = async (url3d: any, creq: any, pareq: any, Termurl: any) => {
+  const form = document.createElement('form');
+
+  form.method = 'post';
+  form.action = url3d;
+
+  const hiddenFieldCreq = document.createElement('input');
+
+  hiddenFieldCreq.type = 'hidden';
+  hiddenFieldCreq.name = 'creq';
+  hiddenFieldCreq.value = creq;
+
+  const hiddenFieldMD = document.createElement('input');
+
+  hiddenFieldMD.type = 'hidden';
+  hiddenFieldMD.name = 'MD';
+  hiddenFieldMD.value = creq;
+
+  const hiddenFieldPaReq = document.createElement('input');
+
+  hiddenFieldPaReq.type = 'hidden';
+  hiddenFieldPaReq.name = 'PaReq';
+  hiddenFieldPaReq.value = pareq;
+
+  const hiddenFieldTermUrl = document.createElement('input');
+
+  hiddenFieldTermUrl.type = 'hidden';
+  hiddenFieldTermUrl.name = 'TermUrl';
+  hiddenFieldTermUrl.value = Termurl;
+
+  if (pareq !== "") {
+    form.appendChild(hiddenFieldMD);
+    form.appendChild(hiddenFieldPaReq);
+  }
+
+  if (creq !== "") {
+    form.appendChild(hiddenFieldCreq);
+  }
+
+  form.appendChild(hiddenFieldTermUrl);
+
+  document.body.appendChild(form);
+  //window.onbeforeunload = null;
+  //window.alert = () => {}
+  form.submit();
+  //window.onbeforeunload = null;
+  //window.alert = () => {}
+}
+
 export {
   send,
   formatPhoneNumber,
@@ -391,5 +441,6 @@ export {
   getClassName,
   Storage,
   Cookie,
-  checkPronunciation
+  checkPronunciation,
+  statusCode,
 };

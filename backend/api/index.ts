@@ -34,7 +34,33 @@ if (isDev()) {
 
 app.use(helmet({
   crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
+  referrerPolicy: { policy: 'no-referrer' },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      imgSrc: ["'self'", 'data:', '*'],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+    },
+  },
 }));
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow any origin
+    callback(null, true);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning'],
+}));
+
+app.use((_, res, next) => {
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  next();
+});
 
 app.use(cookieParser());
 app.use(express.json({ limit: '10mb' }));
@@ -47,5 +73,7 @@ app.use('/api/v1', router);
 isDev()
   ? app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
   : serveApp(app);
+
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
 
 export default app;

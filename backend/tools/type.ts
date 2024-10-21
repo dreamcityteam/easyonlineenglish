@@ -59,6 +59,7 @@ type TryCatch = {
   res: Response;
   message: string;
   endpoint: (response: ResponseSend) => Promise<any>;
+  serverError?: (response: ResponseSend) => void;
 };
 
 type RequestType = Request & {

@@ -20,7 +20,6 @@ const endpoint = async (req: RequestType, res: Response) => {
       );
       const { csv, expiration, number, plan = 1, name } = req.body;
       const { _id } = req.user;
-    
       // @ts-ignore
       const PAYMENT = PAYMENT_METHOD[plan];
       const API: string = 'https://pruebas.azul.com.do/WebServices/JSON/default.aspx';

@@ -14,7 +14,8 @@ import FinalUser from '../../pages/Terms/FinalUser';
 import Conditions from '../../pages/Terms/Conditions';
 import Plans from '../../pages/Plans/Index';
 import Payment from '../../pages/Payment';
-import Conversation from '../../pages/Student/Conversation';
+// import Conversation from '../../pages/Student/Conversation';
+import PaymentStatus from '../../pages/Payment/PaymentStatus';
 
 const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
   <Routes>
@@ -36,6 +37,7 @@ const RouterStudent: React.FC<{ isPayment: boolean; }> = ({ isPayment }) => (
     <Route path="/term-conditions" element={<Conditions />} />
     <Route path="/payment/:paymentMethod" element={<Payment />} />
     <Route path="/plan" element={<Plans />} />
+    <Route path="/paymentStatus" element={<PaymentStatus />} />
     <Route path="*" element={<Page404 />} />
   </Routes>
 );

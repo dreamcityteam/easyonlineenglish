@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:mac": "NODE_ENV=DEVELOPMENT ts-node-dev --respawn ./api/index.ts",
-    "start:win": "set NODE_ENV=DEVELOPMENT && ts-node-dev --respawn ./api/index.ts"
+    "start:mac": "cross-env NODE_ENV=DEVELOPMENT ts-node-dev --respawn ./api/index.ts",
+    "start:prod": "ts-node-dev --respawn ./api/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -39,6 +39,7 @@
     "@types/multer": "^1.4.12",
     "@types/node": "^22.7.5",
     "@types/nodemailer": "^6.4.16",
+    "cross-env": "^7.0.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.3"
   }

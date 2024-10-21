@@ -25,7 +25,11 @@ import studentTerms from '../api/student/terms';
 import studentTutorial from '../api/student/tutorial';
 import studentRating from '../api/student/rating';
 import studentActiveAccount from '../api/student/activeAccount';
-import azul3ds from '../api/azul3ds';
+
+import azulPayment3DS from '../api/azul3ds/3dsrequest';
+import azulPayment3DSResponse from '../api/azul3ds/3dsresponse';
+import azulPayment3DSNotification from '../api/azul3ds/3dsnotification';
+import azulPayment3DSGetResponseData from '../api/azul3ds/3dsgetresponsedata';
 
 const config: Router[] = [
   {
@@ -153,16 +157,28 @@ const config: Router[] = [
     method: 'post',
     func: studentActiveAccount
   },
+
   {
     path: ENDPOINT.AZUL_PAYMENT_3DS,
     method: 'post',
-    func: azul3ds
+    func: azulPayment3DS
+  },
+  {
+    path: ENDPOINT.AZUL_PAYMENT_3DS_RESPONSE,
+    method: 'post',
+    func: azulPayment3DSResponse
+  },
+  {
+    path: ENDPOINT.AZUL_PAYMENT_3DS_NOTIFICATION,
+    method: 'post',
+    func: azulPayment3DSNotification
+  },
+  {
+    path: ENDPOINT.AZUL_PAYMENT_3DS_GET_RESPONSE_DATA,
+    method: 'get',
+    func: azulPayment3DSGetResponseData
   }
-  // {
-  //   path: ENDPOINT.AZUL_PAYMENT,
-  //   method: 'post',
-  //   func: azulPayment,
-  // },
+
   // {
   //   path: ENDPOINT.PAYPAL,
   //   method: 'post',

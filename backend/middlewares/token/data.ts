@@ -4,7 +4,13 @@ const avoidTokenEndpoints: string[] = [
   ENDPOINT.CONTANCT,
   ENDPOINT.SUSCRIBETE,
   ENDPOINT.LOGIN,
-  ENDPOINT.SING_UP
+  ENDPOINT.SING_UP,
+
+  /* AZUL PAYMENT */
+  ENDPOINT.AZUL_PAYMENT_3DS,
+  ENDPOINT.AZUL_PAYMENT_3DS_RESPONSE,
+  ENDPOINT.AZUL_PAYMENT_3DS_NOTIFICATION,
+  ENDPOINT.AZUL_PAYMENT_3DS_GET_RESPONSE_DATA,
 ];
 
 const tokenFromHeaderEndpoints: string[] = [
@@ -23,7 +29,6 @@ const tokenFromCookieEndpoints: string[] = [
   ENDPOINT.STUDENT_UPDATE,
   ENDPOINT.STUDENT_TERMS,
   ENDPOINT.LIBRARY,
-  ENDPOINT.AZUL_PAYMENT,
   ENDPOINT.STUDENT_TUTORIAL,
   ENDPOINT.PAYPAL,
   ENDPOINT.STUDENT_DELETE_ACCOUNT,
@@ -43,4 +48,4 @@ export {
   tokenFromHeaderEndpoints,
   tokenFromCookieEndpoints,
   removeTokenAndAvoidEndpoint
-}
+};

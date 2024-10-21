@@ -34,7 +34,12 @@ const getTokenFromHeader = (req: Request): string | null => {
 
 const url = (req: Request): (urls: string[]) => boolean =>
   (urls: string[]) =>
-    urls.some((url: string) => req.originalUrl === `/api/v1/${url}`);
+    urls.some((url: string) => {
+      const regexp = new RegExp(`^/api/v1/${url}/?(\\?.*)?$`);
+      const { originalUrl } = req;
+      
+      return regexp.test(originalUrl);
+    });
 
 export {
   getTokenFromHeader,

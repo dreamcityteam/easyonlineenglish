@@ -38,20 +38,25 @@ const ENDPOINT: ObjectValueString = {
   STUDENT_UPDATE: 'student-update',
   STUDENT_RATING: 'student-rating',
 
-  AZUL_PAYMENT_3DS: 'azul-payment-3ds',
 
 
   LIBRARY: 'library',
   SEND_EMAIL_RESET_PASSWORD: 'send-email-reset-password',
   RESET_PASSWORD: 'reset-password',
   RESET_PASSWORD_AUTH: 'reset-password-auth',
-  AZUL_PAYMENT: 'azul-payment',
   STUDENT_TUTORIAL: 'tutorial',
   PAYPAL: 'paypal',
  
   STUDENT_DELETE_ACCOUNT: 'student-delete-account',
   SUSCRIBETE: 'suscribete',
   UPLOAD_FILE: 'upload-file',
+
+
+
+  AZUL_PAYMENT_3DS: 'azul-payment-3ds',
+  AZUL_PAYMENT_3DS_RESPONSE: 'azul-payment-3ds-response',
+  AZUL_PAYMENT_3DS_NOTIFICATION: 'azul-payment-3ds-notification',
+  AZUL_PAYMENT_3DS_GET_RESPONSE_DATA: 'azul-payment-3ds-get-response-data',
 };
 
 const VALIDATOR: ObjectValuValidator = {

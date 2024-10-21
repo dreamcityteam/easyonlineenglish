@@ -264,7 +264,7 @@ const getLocation = async (req: Request): Promise<Location> => {
  *
  * @returns {Promise<void>} Resolves after the endpoint function is executed or after an error is handled.
  */
-const catchTry = async ({ res, message, endpoint }: TryCatch): Promise<void> => {
+const catchTry = async ({ res, message, endpoint, serverError }: TryCatch): Promise<void> => {
   const response: ResponseSend = getResponse(res, message);
 
   try {
@@ -272,6 +272,7 @@ const catchTry = async ({ res, message, endpoint }: TryCatch): Promise<void> => 
   } catch (error) {
     response.message = `Error ${error}`;
     response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
+    serverError && serverError(response);
   }
 
   send(response);
@@ -449,15 +450,15 @@ const payment = async ({
 }
 
 const getMonthsDiff = (dateFrom: Date, dateTo: Date): number => {
-  const from = new Date(dateFrom);
-  const to = new Date(dateTo);
+  const from: Date = new Date(dateFrom);
+  const to: Date = new Date(dateTo);
 
-  const fromYear = from.getFullYear();
-  const fromMonth = from.getMonth();
-  const toYear = to.getFullYear();
-  const toMonth = to.getMonth();
+  const fromYear: number = from.getFullYear();
+  const fromMonth: number = from.getMonth();
+  const toYear: number = to.getFullYear();
+  const toMonth: number = to.getMonth();
 
-  let months = (toYear - fromYear) * 12 + (toMonth - fromMonth);
+  let months: number = (toYear - fromYear) * 12 + (toMonth - fromMonth);
 
   if (to.getDate() < from.getDate()) {
     months--;
@@ -467,7 +468,7 @@ const getMonthsDiff = (dateFrom: Date, dateTo: Date): number => {
 }
 
 const getDurationInMonth = (durationInMonth: number): Date => {
-  const currentDate = new Date();
+  const currentDate: Date = new Date();
 
   currentDate.setMonth(currentDate.getMonth() + durationInMonth);
 
