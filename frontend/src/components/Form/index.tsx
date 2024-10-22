@@ -121,6 +121,7 @@ const Form: React.FC<Props> = ({
         const isNotValid: boolean = fieldPassword.value !== field.value;
 
         field.errorMessage = isNotValid ? 'Las contraseñas ingresadas no coinciden.' : '';
+        isValid = false;
       } else if (isEmpty && !field.avoidEmptyField) {
         field.errorMessage = 'Por favor, completa este campo obligatorio.';
       } else if (avoidEmptyField) {

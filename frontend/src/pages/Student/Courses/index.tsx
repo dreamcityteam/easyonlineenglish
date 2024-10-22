@@ -76,7 +76,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 <LazyLoadImage
                   alt={title}
                   effect="blur"
-                  height="246px"
+                  height="300px"
                   src={picture}
                   width="100%"
                 />
