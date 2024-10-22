@@ -5,7 +5,7 @@ import { RequestType } from '../../../../tools/type';
 import Course from '../../../../schemas/course.schema';
 import CourseWord from '../../../../schemas/courseWord.schema';
 
-const endpoint = async (req: RequestType, res: Response) => {
+const endpoint = async (_: RequestType, res: Response) => {
   catchTry({
     res,
     message: 'There is no course available',

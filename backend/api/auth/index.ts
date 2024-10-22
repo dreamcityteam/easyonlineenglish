@@ -11,7 +11,7 @@ const endpoint = async (req: RequestType, res: Response) => {
     endpoint: async (response) => {
       await connectToDatabase();
 
-      const { _id = '' } = req.user || {};
+      const { user: { _id } = {} } = req;
       const user = await User.findById(_id, { password: 0, __v: 0 });
 
       if (user && req.user.type === 'auth') {

@@ -110,8 +110,18 @@ const Form: React.FC<Props> = ({
       const isEmpty: boolean = !value;
       const isErrorMessage: boolean = !!field.validator && !field.validator.regExp.test(value);
       const avoidEmptyField = isErrorMessage && !field.avoidEmptyField || value && isErrorMessage;
+      const isRepeatPassword: boolean = (
+        fieldKey === 'repeatPassword' &&
+        !!field.value && 
+        !!state['password']
+      );
 
-      if (isEmpty && !field.avoidEmptyField) {
+      if (isRepeatPassword) {
+        const fieldPassword: FormField = state['password'];
+        const isNotValid: boolean = fieldPassword.value !== field.value;
+
+        field.errorMessage = isNotValid ? 'Las contraseñas ingresadas no coinciden.' : '';
+      } else if (isEmpty && !field.avoidEmptyField) {
         field.errorMessage = 'Por favor, completa este campo obligatorio.';
       } else if (avoidEmptyField) {
         field.errorMessage = field.validator?.message;

@@ -10,7 +10,7 @@ const endpoint = async (req: RequestType, res: Response) => {
     res,
     message: 'User not found!',
     endpoint: async (response) => {
-      const { type, _id } = req.user;
+      const { user: { type, _id } = {} } = req;
 
       if (type !== 'active-account') {
         response.message = 'Invalid token';

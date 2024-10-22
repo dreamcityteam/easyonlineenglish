@@ -1,6 +1,6 @@
 import express, { Response, Request, Express } from 'express';
 import nodemailer from 'nodemailer';
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 import path from 'path';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -234,7 +234,7 @@ const auth = (res: Response, req: Request) => ({
  * @param {string} [message=''] - Message to include in the response.
  * @returns {Object} - Response object.
  */
-const getResponse = (res: Response, message: string = '') => ({
+const getResponse = (res: Response, message: string = ''): ResponseSend => ({
   data: null,
   res,
   message,
@@ -338,7 +338,7 @@ const formatPhoneNumber = (number: string = ''): string =>
     .replace(/\D/g, '')
     .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
 
-const getPayment = async (id: string) => {
+const getPayment = async (id: ObjectId | undefined | string) => {
   const payment = await StudentPayment.findOne({ idUser: id }).sort({ _id: -1 });
   const isPayment = payment ? new Date(payment.dateEnd) > new Date() : false;
 
