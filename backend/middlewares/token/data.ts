@@ -10,7 +10,7 @@ const avoidTokenEndpoints: string[] = [
 const tokenFromHeaderEndpoints: string[] = [
   ENDPOINT.RESET_PASSWORD_AUTH,
   ENDPOINT.RESET_PASSWORD,
-  ENDPOINT.ACTIVE_ACCOUNT,
+  ENDPOINT.STUDENT_ACTIVE_ACCOUNT,
 ];
 
 const tokenFromCookieEndpoints: string[] = [

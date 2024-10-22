@@ -3,6 +3,7 @@ import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { getData } from '../../../tools/function';
 import context from '../../../global/state/context';
 import { SET_USER } from '../../../global/state/actionTypes';
+import style from './style.module.sass';
 
 const ActiveAccount: React.FC = () => {
   const { token } = useParams<string>();
@@ -29,7 +30,7 @@ const ActiveAccount: React.FC = () => {
   }
 
   return (
-    <section>
+    <section className={style.activeAccount}>
       <div>
         <header>
           <h1>Este enlace ha expirado o no es válido.</h1>

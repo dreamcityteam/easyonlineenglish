@@ -34,7 +34,14 @@ const getTokenFromHeader = (req: Request): string | null => {
 
 const url = (req: Request): (urls: string[]) => boolean =>
   (urls: string[]) =>
-    urls.some((url: string) => req.originalUrl === `/api/v1/${url}`);
+    urls.some((url: string) => {
+      // Update regex to allow query parameters
+      const regexp = new RegExp(`^/api/v1/${url}/?(\\?.*)?$`);
+      const { originalUrl } = req;
+      
+      // Test if originalUrl matches the dynamic regex
+      return regexp.test(originalUrl);
+    });
 
 export {
   getTokenFromHeader,
