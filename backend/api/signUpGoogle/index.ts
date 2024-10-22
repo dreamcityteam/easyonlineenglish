@@ -16,6 +16,7 @@ const endpoint = async (req: RequestType, res: Response) => {
       await connectToDatabase();
 
       const { token = '' } = req.body;
+
       const ticket: LoginTicket = await client.verifyIdToken({
         idToken: token,
         audience: GOOGLE_ID_CLIENT,
@@ -34,15 +35,9 @@ const endpoint = async (req: RequestType, res: Response) => {
       user = new User({
         email: email.toLowerCase(),
         googleId: sub,
-        lastName: family_name.toLowerCase(),
-        location: await getLocation(req),
+        lastname: family_name.toLowerCase(),
         name: given_name.toLowerCase(),
         photo: picture,
-        test: {
-          questions: [],
-          dateStart: Date.now(),
-          isTest: true,
-        }
       });
 
       await user.save();

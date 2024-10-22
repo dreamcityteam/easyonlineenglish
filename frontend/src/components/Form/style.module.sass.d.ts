@@ -5,6 +5,7 @@ interface CssExports {
   'form__banner': string;
   'form__container': string;
   'form__error': string;
+  'form__google': string;
   'form__header': string;
   'form__input': string;
   'form__label': string;

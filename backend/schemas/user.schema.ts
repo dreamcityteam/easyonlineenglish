@@ -1,10 +1,16 @@
 import mongoose, { Schema } from 'mongoose';
 
 const userSchema = new Schema({
+  googleId: {
+    type: String,
+    default: null,
+  },
   username: {
     type: String,
-    unique: true,
-    required: true,
+    required: function () {
+      // @ts-ignore
+      return !this.googleId;
+    },
   },
   name: {
     type: String,
@@ -24,7 +30,10 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: function () {
+      // @ts-ignore
+      return !this.googleId;
+    },
   },
   photo: {
     type: String,

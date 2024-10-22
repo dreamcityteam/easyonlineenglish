@@ -4,7 +4,9 @@ const avoidTokenEndpoints: string[] = [
   ENDPOINT.CONTANCT,
   ENDPOINT.SUSCRIBETE,
   ENDPOINT.LOGIN,
-  ENDPOINT.SING_UP
+  ENDPOINT.SING_UP,
+  ENDPOINT.SING_UP_GOOGLE,
+  ENDPOINT.SING_IN_GOOGLE,
 ];
 
 const tokenFromHeaderEndpoints: string[] = [

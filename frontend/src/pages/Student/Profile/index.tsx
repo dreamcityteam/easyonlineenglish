@@ -66,7 +66,7 @@ const Profile: React.FC = (): JSX.Element => {
 
           <ul className={style.profile__info}>
             <li><span>Email</span>{user?.email}</li>
-            <li><span>Teléfono</span>{formatPhoneNumber(user?.phone)}</li>
+            <li><span>Teléfono</span>{formatPhoneNumber(user?.phone) || 'N/A'}</li>
             <li><span>Membresía</span>{getMembership()}</li>
           </ul>
         </div>

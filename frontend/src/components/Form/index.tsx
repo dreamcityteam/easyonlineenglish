@@ -56,7 +56,7 @@ const Form: React.FC<Props> = ({
     }
   }
 
-  const handleApiResponse = async ({ data, api }: { data: any, api: string; }) => {
+  const handleApiResponse = async ({ data, api, isGoogle }: { data: any, api: string; isGoogle?: boolean; }) => {
     setIsLoading(true);
 
     const { response: { data: dataResponse, statusCode } } = await send({ api, data, token: tokenFromHeader }).post();
@@ -65,7 +65,8 @@ const Form: React.FC<Props> = ({
 
     setIsSuccess(isSuccessfully);
 
-    if (isSuccessfully) {      
+    if (isSuccessfully) {
+      isGoogle && (dataResponse.isGoogle = isGoogle);
       onData(dataResponse);
       canClean && cleanAllInput();
     }
@@ -112,7 +113,7 @@ const Form: React.FC<Props> = ({
       const avoidEmptyField = isErrorMessage && !field.avoidEmptyField || value && isErrorMessage;
       const isRepeatPassword: boolean = (
         fieldKey === 'repeatPassword' &&
-        !!field.value && 
+        !!field.value &&
         !!state['password']
       );
 
@@ -224,7 +225,7 @@ const Form: React.FC<Props> = ({
 
               {errorMessage && <span className={style.form__error}>{errorMessage}</span>}
               {
-                isSuccess && 
+                isSuccess &&
                 successMessage &&
                 !errorMessage &&
                 (index === fieldKeys.length - 1) && (
@@ -247,24 +248,25 @@ const Form: React.FC<Props> = ({
             className={style.form__submit}
           />
         )}
+        <div className={style.form__google}>
+          <GoogleOAuthProvider clientId={process.env.GOOGLE_ID_CLIENT || ''}>
+            {google &&
+              <GoogleLogin
+                onSuccess={async (credentialResponse) => {
+                  const token: string = credentialResponse.credential || '';
 
-        <GoogleOAuthProvider clientId={process.env.GOOGLE_ID_CLIENT || ''}>
-          {google &&
-            <GoogleLogin
-              onSuccess={async (credentialResponse) => {
-                const token: string = credentialResponse.credential || '';
+                  handleApiResponse({ api: `${api}-google`, data: { token }, isGoogle: true });
+                }}
 
-                handleApiResponse({ api: `${api}-google`, data: { token } });
-              }}
-
-              onError={() => {
-                console.log('Login Failed');
-              }}
-              text={google}
-              width="200"
-            />
-          }
-        </GoogleOAuthProvider>
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+                text={google}
+                width="200"
+              />
+            }
+          </GoogleOAuthProvider>
+        </div>
         {resetPassword && (
           <Link
             className={style.form__link}

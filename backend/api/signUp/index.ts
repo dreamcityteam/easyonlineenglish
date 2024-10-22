@@ -82,7 +82,7 @@ const endpoint = async (req: RequestType, res: Response) => {
       to: email,
       subject: 'easyonlineenglish - activar cuenta',
       html: getEmailTemplate({
-        username: user.username,
+        username: user.username || '',
         supportEmail: EMAIL_USER,
         phone: '+1 (849) 410-9664',
         token: getLink({ req, path: 'active-account', token }),

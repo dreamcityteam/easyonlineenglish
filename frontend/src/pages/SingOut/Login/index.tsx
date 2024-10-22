@@ -43,6 +43,7 @@ const Login: React.FC = (): JSX.Element => {
               url: '/reset-password'
             }}
             title="Login"
+            google="signin_with"
           />
         </div>
       </section>

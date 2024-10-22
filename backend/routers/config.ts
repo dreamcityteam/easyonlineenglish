@@ -5,7 +5,7 @@ import signOut from '../api/signOut';
 import login from '../api/login';
 import auth from '../api/auth';
 import signUpGoogle from '../api/signUpGoogle';
-import loginGoogle from '../api/loginGoogle';
+import signInGoogle from '../api/loginGoogle';
 import contanct from '../api/contanct';
 import courses from '../api/student/courses';
 import library from '../api/library';
@@ -53,9 +53,9 @@ const config: Router[] = [
     func: signUpGoogle,
   },
   {
-    path: ENDPOINT.LOGIN_GOOGLE,
+    path: ENDPOINT.SING_IN_GOOGLE,
     method: 'post',
-    func: loginGoogle,
+    func: signInGoogle,
   },
   {
     path: ENDPOINT.CONTANCT,

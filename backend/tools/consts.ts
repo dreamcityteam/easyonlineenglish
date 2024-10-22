@@ -19,7 +19,7 @@ const ENDPOINT: ObjectValueString = {
   AUTH: 'auth',
   SING_UP: 'sign-up',
   SING_UP_GOOGLE: 'sign-up-google',
-  LOGIN_GOOGLE: 'login-google',
+  SING_IN_GOOGLE: 'login-google',
   SING_OUT: 'sign-out',
   LOGIN: 'login',
 
