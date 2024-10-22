@@ -15,7 +15,7 @@ interface Props {
 
 const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [courses, setCourses] = useState<TCourses[]>([]);
-  const [{ user, coursesCache, courseCache }, dispatch] = useContext(context);
+  const [{ coursesCache, courseCache }, dispatch] = useContext(context);
   const idCourseCache: 'demo' | 'courses' = isDemo ? 'demo' : 'courses';
 
   useEffect(() => {
