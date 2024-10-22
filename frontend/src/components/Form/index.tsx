@@ -58,6 +58,7 @@ const Form: React.FC<Props> = ({
 
   const handleApiResponse = async ({ data, api }: { data: any, api: string; }) => {
     setIsLoading(true);
+
     const { response: { data: dataResponse, statusCode } } = await send({ api, data, token: tokenFromHeader }).post();
     const isBadRequest: boolean = statusCode === HTTP_STATUS_CODES.BAD_REQUEST;
     const isSuccessfully: boolean = statusCode === HTTP_STATUS_CODES.OK;
@@ -69,8 +70,7 @@ const Form: React.FC<Props> = ({
       canClean && cleanAllInput();
     }
 
-    if (isBadRequest) {
-
+    if (isBadRequest && dataResponse) {
       Object.keys(dataResponse).forEach((key: string): void => {
         const field: FormField = state[key];
 

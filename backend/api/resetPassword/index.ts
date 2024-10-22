@@ -13,6 +13,7 @@ const endpoint = async (req: RequestType, res: Response) => {
       await connectToDatabase();
 
       const { password = '' } = req.body;
+      const { _id = '' } = req.user;
       const invalidFields: ObjectValueString = {};
 
       if (password && !VALIDATOR.PASSWORD.regExp.test(password)) {
@@ -21,12 +22,12 @@ const endpoint = async (req: RequestType, res: Response) => {
         return;
       }
 
-      const user = await User.findById(req.user._id);
+      const user = await User.findById(_id);
 
       if (!user) return;
 
       const updatedUser = await User.findByIdAndUpdate(
-        req.user._id,
+        _id,
         {
           $set: {
             password: await hash.create(password),
@@ -36,7 +37,7 @@ const endpoint = async (req: RequestType, res: Response) => {
         { new: true }
       );
 
-      await UserToken.deleteOne({ idUser: user._id });
+      await UserToken.deleteOne({ idUser: _id });
 
       response.statusCode = HTTP_STATUS_CODES.OK;
       response.message = MESSAGE.SUCCESSFUL;

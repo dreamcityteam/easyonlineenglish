@@ -8,7 +8,7 @@ import style from './style.module.sass';
 
 const ResetPasswordAuth: React.FC = (): JSX.Element => {
   const { token } = useParams<string>();
-  const [isToken, setIsToken] = useState<boolean>(true);
+  const [isToken, setIsToken] = useState<boolean>(false);
   const [_, dispatch] = useContext(context);
   const navigate: NavigateFunction = useNavigate();
 
