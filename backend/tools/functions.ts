@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 import sharp from 'sharp';
 import { put } from '@vercel/blob';
 import { HTTP_STATUS_CODES, INITIAL_COURSE, ROLE } from './consts';
-import { Cookie, ResponseSend, Token, Location, TryCatch, SendEmailProps, UploadBlodToVercelProps } from './type';
+import { Cookie, ResponseSend, Token, Location, TryCatch, SendEmailProps, UploadBlodToVercelProps, RequestType } from './type';
 import User from '../schemas/user.schema';
 import StudentPayment from '../schemas/studentPayment.schema';
 import Course from '../schemas/course.schema';
@@ -376,6 +376,9 @@ const uploadBlodToVercel = async ({
   return url;
 }
 
+const getLink = ({ req, path, token }: { req: RequestType; path: string; token: string; } ): string =>
+  `${req.protocol}://${req.get('host')}/${path}/${token}`;
+
 export {
   isDev,
   serveApp,
@@ -392,5 +395,6 @@ export {
   sendEmail,
   formatPhoneNumber,
   getPayment,
-  uploadBlodToVercel
+  uploadBlodToVercel,
+  getLink
 };

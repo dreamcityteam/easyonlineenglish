@@ -1,10 +1,10 @@
 import { Response } from 'express';
-import { catchTry, connectToDatabase, getToken, sendEmail } from '../../../tools/functions';
+import { catchTry, connectToDatabase, getLink, getToken, sendEmail } from '../../../tools/functions';
 import { HTTP_STATUS_CODES, MESSAGE } from '../../../tools/consts';
 import { RequestType } from '../../../tools/type';
 import User from '../../../schemas/user.schema';
 import UserToken from '../../../schemas/userToken.schema';
-import { getEmailTemplate, getLink } from './functions';
+import { getEmailTemplate } from './functions';
 
 const endpoint = async (req: RequestType, res: Response) => {
   catchTry({
@@ -49,7 +49,7 @@ const endpoint = async (req: RequestType, res: Response) => {
         to: email,
         subject: 'easyonlineenglish - Contraseña',
         html: getEmailTemplate({
-          token: getLink(req, token),
+          token: getLink({ req, path: 'reset-password-auth', token }),
           username: user.username,
           supportEmail: EMAIL_USER,
           telefono: '+1 (849) 410-9664'

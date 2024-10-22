@@ -44,7 +44,7 @@ type Messages = {
 
 type Token = {
   _id: ObjectId;
-  type?: 'auth' | 'password';
+  type?: 'auth' | 'password' | 'active-account';
   expiresIn?: string;
   role?: (
     typeof ROLE.ADMIN |

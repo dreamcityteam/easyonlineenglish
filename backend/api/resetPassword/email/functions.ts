@@ -1,8 +1,4 @@
-import { RequestType } from '../../../tools/type';
 import { EmailTemplateProps } from './type';
-
-const getLink = (req: RequestType, token: string) =>
-  `${req.protocol}://${req.get('host')}/reset-password-auth/${token}`;
 
 const getEmailTemplate = ({
   token,
@@ -26,6 +22,5 @@ const getEmailTemplate = ({
 `;
 
 export {
-  getLink,
   getEmailTemplate
-}
+};
