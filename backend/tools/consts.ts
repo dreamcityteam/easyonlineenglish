@@ -1,11 +1,12 @@
-import { ObjectValueNumber, ObjectValueString, ObjectValuValidator } from './type';
+import { HttpStatusCodes, ObjectValueString, Messages, Roles, Validators } from './type';
 
-const ROLE: ObjectValueString = {
+const ROLE: Roles = {
   ADMIN: 'ADMIN',
   STUDENT: 'STUDENT',
+  FREE: 'FREE'
 };
 
-const HTTP_STATUS_CODES: ObjectValueNumber = {
+const HTTP_STATUS_CODES: HttpStatusCodes = {
   OK: 200,
   INTERNAL_SERVER_ERROR: 500,
   BAD_REQUEST: 400,
@@ -45,14 +46,14 @@ const ENDPOINT: ObjectValueString = {
   AZUL_PAYMENT: 'azul-payment',
   STUDENT_TUTORIAL: 'tutorial',
   PAYPAL: 'paypal',
- 
+
   STUDENT_DELETE_ACCOUNT: 'student-delete-account',
 
   SUSCRIBETE: 'suscribete',
   UPLOAD_FILE: 'upload-file',
 };
 
-const VALIDATOR: ObjectValuValidator = {
+const VALIDATOR: Validators = {
   USERNAME: {
     message: 'Please enter a valid username.',
     regExp: /^[a-zA-Z][a-zA-Z0-9_]{2,19}$/
@@ -79,7 +80,7 @@ const VALIDATOR: ObjectValuValidator = {
   },
 };
 
-const MESSAGE = {
+const MESSAGE: Messages = {
   SUCCESSFUL: 'Successful!'
 };
 

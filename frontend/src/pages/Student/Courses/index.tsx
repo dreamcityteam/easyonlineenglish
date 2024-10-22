@@ -105,7 +105,7 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                   <p>{description}</p>
                 </div>
                 <div className={style.courses__title}>
-                  <p>{isDemo || !user.payment.isPayment ? '¡Prueba gratis! Las primeras 10 palabras.' : title}</p>
+                  <p>{isDemo ? '¡Prueba gratis! Las primeras 10 palabras.' : title}</p>
                 </div>
                 <Link
                   className={style.courses__button}

@@ -14,6 +14,34 @@ type ObjectValuValidator = {
   [key: string]: Validator;
 };
 
+type HttpStatusCodes = {
+  OK: 200;
+  INTERNAL_SERVER_ERROR: 500;
+  BAD_REQUEST: 400;
+  UNAUTHORIZED: 401;
+  NOT_FOUND: 404;
+  TEMPORARY_REDIRECT: 307;
+};
+
+type Roles = {
+  ADMIN: 'ADMIN';
+  STUDENT: 'STUDENT';
+  FREE: 'FREE';
+};
+
+type Validators = {
+  USERNAME: Validator;
+  EMAIL: Validator;
+  PHONE_NUMBER: Validator;
+  NAME: Validator;
+  LAST_NAME: Validator;
+  PASSWORD: Validator;
+};
+
+type Messages = {
+  SUCCESSFUL: 'Successful!'
+};
+
 type Token = {
   _id: ObjectId;
   type?: 'auth' | 'password';
@@ -25,14 +53,14 @@ type Token = {
 };
 
 type ResponseSend = {
-  res: Response; 
+  res: Response;
   statusCode?: (
     typeof HTTP_STATUS_CODES.OK |
     typeof HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR |
     typeof HTTP_STATUS_CODES.BAD_REQUEST |
     typeof HTTP_STATUS_CODES.UNAUTHORIZED |
     typeof HTTP_STATUS_CODES.NOT_FOUND |
-    typeof HTTP_STATUS_CODES.TEMPORARY_REDIRECT 
+    typeof HTTP_STATUS_CODES.TEMPORARY_REDIRECT
   );
   data?: any;
   message?: string;
@@ -70,7 +98,7 @@ type RequestType = Request & {
 
 type SendEmailProps = {
   from: string;
-  html: string; 
+  html: string;
   subject: string;
   to: string;
 };
@@ -96,5 +124,9 @@ export type {
   TryCatch,
   RequestType,
   SendEmailProps,
-  UploadBlodToVercelProps
+  UploadBlodToVercelProps,
+  HttpStatusCodes,
+  Roles,
+  Validators,
+  Messages
 };

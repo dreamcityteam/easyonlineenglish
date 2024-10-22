@@ -19,7 +19,7 @@ const endpoint = async (req: RequestType, res: Response) => {
           const studentCourse = await StudentCourse.findOne({ idCourse: course._id, idUser: req.user._id }).lean();
           return studentCourse ? { ...course, progress: studentCourse.progress } : course;
         }));
-  
+
         response.data = courses;
         response.statusCode = HTTP_STATUS_CODES.OK;
         response.message = MESSAGE.SUCCESSFUL;
