@@ -31,8 +31,7 @@ const tokenFromCookieEndpoints: string[] = [
 ];
 
 const removeTokenAndAvoidEndpoint: string[] = [
-  ENDPOINT.AUTH,
-  ENDPOINT.REGISTER,
+  ENDPOINT.SING_UP,
   ENDPOINT.STUDENT_COURSES_DEMO,
   ENDPOINT.STUDENT_COURSE_DEMO,
   ENDPOINT.SEND_EMAIL_RESET_PASSWORD
