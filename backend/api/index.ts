@@ -30,11 +30,15 @@ if (isDev()) {
     origin: DEV_HOST,
     credentials: true,
   }));
+}else {
+  app.use(cors({
+    origin: 'https://easyonlineenglish.com',
+    credentials: true,
+  }));
 }
 
 app.use(helmet({
   crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
-  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
 }));
 
 app.use(cookieParser());
