@@ -48,7 +48,7 @@ const endpoint = async (req: RequestType, res: Response) => {
 
       if (oldPassword || password) {
         // Compare oldPassword with hashed password stored in the database
-        const passwordMatch = await hash.compare({ password: oldPassword, hash: user.password });
+        const passwordMatch = await hash.compare({ password: oldPassword, hash: user.password || '' });
 
         if (!passwordMatch) {
           response.statusCode = HTTP_STATUS_CODES.UNAUTHORIZED;

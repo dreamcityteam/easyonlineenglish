@@ -50,7 +50,7 @@ const endpoint = async (req: RequestType, res: Response) => {
         subject: 'easyonlineenglish - Contraseña',
         html: getEmailTemplate({
           token: getLink({ req, path: 'reset-password-auth', token }),
-          username: user.username,
+          username: user.username || '',
           supportEmail: EMAIL_USER,
           telefono: '+1 (849) 410-9664'
         })
