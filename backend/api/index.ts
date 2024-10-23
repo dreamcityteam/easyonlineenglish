@@ -30,11 +30,6 @@ if (isDev()) {
     origin: DEV_HOST,
     credentials: true,
   }));
-}else {
-  app.use(cors({
-    origin: 'https://easyonlineenglish.com',
-    credentials: true,
-  }));
 }
 
 app.use(helmet({
