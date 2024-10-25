@@ -19,8 +19,15 @@ type Fields = {
 
 type FormField = Field & { errorMessage?: string; };
 
+type HandleApiResponse = {
+  data: any;
+  api: string;
+  isGoogle?: boolean;
+};
+
 export type {
   Field,
   Fields,
-  FormField
+  FormField,
+  HandleApiResponse
 }

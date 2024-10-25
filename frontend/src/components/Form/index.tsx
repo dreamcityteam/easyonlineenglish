@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { Fields, FormField } from './type';
+import { Fields, FormField, HandleApiResponse } from './type';
 import style from './style.module.sass';
 import { ObjectValueString } from '../../tools/type';
 import { send } from '../../tools/function';
@@ -56,7 +56,7 @@ const Form: React.FC<Props> = ({
     }
   }
 
-  const handleApiResponse = async ({ data, api, isGoogle }: { data: any, api: string; isGoogle?: boolean; }) => {
+  const handleApiResponse = async ({ data, api, isGoogle = false }: HandleApiResponse) => {
     setIsLoading(true);
 
     const { response: { data: dataResponse, statusCode } } = await send({ api, data, token: tokenFromHeader }).post();
@@ -66,8 +66,7 @@ const Form: React.FC<Props> = ({
     setIsSuccess(isSuccessfully);
 
     if (isSuccessfully) {
-      isGoogle && (dataResponse.isGoogle = isGoogle);
-      onData(dataResponse);
+      onData({ ...dataResponse, isGoogle });
       canClean && cleanAllInput();
     }
 
@@ -114,15 +113,12 @@ const Form: React.FC<Props> = ({
       const isRepeatPassword: boolean = (
         fieldKey === 'repeatPassword' &&
         !!field.value &&
-        !!state['password']
+        !!state['password'] &&
+        state['password'].value !== field.value
       );
 
       if (isRepeatPassword) {
-        const fieldPassword: FormField = state['password'];
-        const isNotValid: boolean = fieldPassword.value !== field.value;
-
-        field.errorMessage = isNotValid ? 'Las contraseñas ingresadas no coinciden.' : '';
-        isValid = false;
+        field.errorMessage = 'Las contraseñas ingresadas no coinciden.';
       } else if (isEmpty && !field.avoidEmptyField) {
         field.errorMessage = 'Por favor, completa este campo obligatorio.';
       } else if (avoidEmptyField) {

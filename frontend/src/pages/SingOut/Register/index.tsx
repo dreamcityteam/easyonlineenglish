@@ -13,7 +13,7 @@ const Register: React.FC = (): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
   const onData = (data: any): void => {
-    const { isGoogle, ...user } = data;
+    const { isGoogle = false, ...user } = data;
 
     if (isGoogle) {
       navigate('/')
