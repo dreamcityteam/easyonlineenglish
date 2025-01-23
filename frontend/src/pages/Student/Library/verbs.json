@@ -1049,8 +1049,8 @@
                   "verb": "exchange",
                   "englishWordConjugation": [],
                   "englishWordConjugationExample": "money everyday",
-                  "spanishTranslationConjugation": ["cambié", "cambiaste", "cambió", "cambió", "cambió", "cambiamos", "cambió", "cambiaron"],
-                  "spanishTranslationConjugationExample": "todos los días"
+                  "spanishTranslationConjugation": ["cambio", "cambias", "cambia", "cambia", "cambia", "cambiamos", "cambian", "cambian"],
+                  "spanishTranslationConjugationExample": "dinero todos los días"
                 },
                 {
                   "verb": "listen",
