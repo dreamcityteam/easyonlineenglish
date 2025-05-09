@@ -1,12 +1,16 @@
 import mongoose, { Schema } from 'mongoose';
 
 const userSchema = new Schema({
+  orderId: {
+    type: String,
+    require: true
+  },
   idUser: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  name: {
+  fullName: {
     type: String,
     required: true
   },
@@ -23,29 +27,13 @@ const userSchema = new Schema({
     type: Date,
     required: true
   },
-  azulRRN: {
-    type: String,
-    default: null
-  },
-  azulCustomOrderId: {
-    type: String,
-    default: null
-  },
-  azulOrderId: {
-    type: String,
-    default: null
-  },
-  azulTicket: {
-    type: String,
-    default: null
-  },
   type: {
     type: String,
     enum: ['PAYPAL', 'AZUL'],
     required: true
   },
   amount: {
-    type: Number,
+    type: String,
     required: true,
   }
 });

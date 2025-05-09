@@ -5,7 +5,7 @@ import style from './style.module.sass';
 import context from '../../global/state/context';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { send } from '../../tools/function';
-import { SET_USER } from '../../global/state/actionTypes';
+import { CLEAN_CACHE, SET_USER } from '../../global/state/actionTypes';
 import Loading from '../../components/Form/Loading';
 import { HTTP_STATUS_CODES } from '../../tools/constant';
 import { Field } from './type';
@@ -166,11 +166,15 @@ const PaymentForms: React.FC = () => {
 
   const onCompletePayPal = () => {
     setCanOpenModal(true);
+    dispatch({ type: CLEAN_CACHE });
     dispatch({
       type: SET_USER,
       payload: {
         ...user,
-        payment: { isPayment: true, plan: paymentMethod },
+        payment: {
+          isPayment: true,
+          plan: paymentMethod
+        },
       },
     });
   }
