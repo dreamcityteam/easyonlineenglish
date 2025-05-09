@@ -55,16 +55,17 @@ export const createOrder = async (plan: 1 | 2 | 3) => {
       ],
 
       application_context: {
-        return_url: process.env.PAYPAL_BASE_URL_RETURN + '/payment',
-        cancel_url: process.env.PAYPAL_BASE_URL_RETURN + '/courses',
+        return_url: `${process.env.PAYPAL_BASE_URL_RETURN}/payment`,
+        cancel_url: `${process.env.PAYPAL_BASE_URL_RETURN}/courses`,
         shipping_preference: 'NO_SHIPPING',
         user_action: 'PAY_NOW',
         brand_name: 'manfra.io'
       }
     })
-  });
+  }).catch((error: any) => console.log(error.response.data));
 
-  return response.data;
+
+  return response?.data || {};
 }
 
 export const capturePayment = async (orderId: number) => {
@@ -79,7 +80,7 @@ export const capturePayment = async (orderId: number) => {
     }
   });
 
-  return response.data
+  return response?.data || {};
 }
 
 export const countMounts = (countMount: number): Date => {
