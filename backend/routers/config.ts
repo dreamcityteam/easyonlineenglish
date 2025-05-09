@@ -25,6 +25,8 @@ import studentTerms from '../api/student/terms';
 import studentTutorial from '../api/student/tutorial';
 import studentRating from '../api/student/rating';
 import studentActiveAccount from '../api/student/activeAccount';
+import paypalCreateOrder from '../api/student/payment/paypal/createOrder';
+import paypalCompletedOrder from '../api/student/payment/paypal/completedOrder';
 
 const config: Router[] = [
   {
@@ -151,17 +153,21 @@ const config: Router[] = [
     path: ENDPOINT.STUDENT_ACTIVE_ACCOUNT,
     method: 'post',
     func: studentActiveAccount
-  }
-
+  },
+  {
+    path: ENDPOINT.PAYPAL_CREATE_ORDER,
+    method: 'post',
+    func: paypalCreateOrder,
+  },
+  {
+    path: ENDPOINT.PAYPAL_COMPLETED_ORDER,
+    method: 'post',
+    func: paypalCompletedOrder,
+  },
   // {
   //   path: ENDPOINT.AZUL_PAYMENT,
   //   method: 'post',
   //   func: azulPayment,
-  // },
-  // {
-  //   path: ENDPOINT.PAYPAL,
-  //   method: 'post',
-  //   func: paypal,
   // },
   // {
   //   path: ENDPOINT.STUDENT_DELETE_ACCOUNT,

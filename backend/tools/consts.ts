@@ -45,7 +45,8 @@ const ENDPOINT: ObjectValueString = {
   RESET_PASSWORD_AUTH: 'reset-password-auth',
   AZUL_PAYMENT: 'azul-payment',
   STUDENT_TUTORIAL: 'tutorial',
-  PAYPAL: 'paypal',
+  PAYPAL_CREATE_ORDER: 'paypal-create-order',
+  PAYPAL_COMPLETED_ORDER: 'paypal-completed-order',
 
   STUDENT_DELETE_ACCOUNT: 'student-delete-account',
 
