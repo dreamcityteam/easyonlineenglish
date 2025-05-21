@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:mac": "NODE_ENV=DEVELOPMENT ts-node-dev --respawn ./api/index.ts",
-    "start:win": "set NODE_ENV=DEVELOPMENT && ts-node-dev --respawn ./api/index.ts",
+    "start:dev": "cross-env NODE_ENV=DEVELOPMENT ts-node-dev --respawn ./api/index.ts",
     "start": "ts-node-dev --respawn ./api/index.ts"
   },
   "keywords": [],
@@ -40,6 +39,7 @@
     "@types/node-fetch": "^2.6.12",
     "@types/nodemailer": "^6.4.16",
     "@types/paypal__checkout-server-sdk": "^1.0.8",
+    "cross-env": "^7.0.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.3"
   }

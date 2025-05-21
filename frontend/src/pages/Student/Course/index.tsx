@@ -668,9 +668,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           course={course?.title}
           lesson={lessionTitle}
         />
-        {!isAdmin(user) && !isDemo && !user?.isTutorial ? (
-          <ModalTips />
-        ) : null}
       </section >
     </>
   );
