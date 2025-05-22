@@ -16,6 +16,7 @@ import alphabet from './Alphabet.json';
 import tips from './basicExpresion.json';
 import Image from '../../../components/Image';
 import Aside from '../../../components/Aside';
+import AlphabetPage from './AlphabetPage/indext';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);
@@ -169,7 +170,7 @@ const Library: React.FC = (): JSX.Element => {
             path={speech[englishWord].isCorrect
               ? 'icons/file%20(2)-rUytCHTrOOkY1XVHaQluxJV3jc8ewm.png'
               : 'icons/file%20(1)%20(1)-8wtGfDcRc7aApX2SS1WrAYNhWBfTHl.png'}
-            />
+          />
         </div>
       )}
     </>
@@ -186,182 +187,188 @@ const Library: React.FC = (): JSX.Element => {
           <h1>Librería</h1>
         </header>
         <div className={style.vocabularies__container}>
-         
           <Aside onClick={handlerOnTab} data={data} tabIndex={tabIndex} />
-          <div className={style.vocabularies__table}>
-            <Table
-              data={content}
-              style={style}
-              custom={{
-                _id: { avoid: true },
-                isFeedback: { avoid: true },
-                englishWord: {
-                  value: 'Ingles',
-                  render: (value: string): JSX.Element =>
-                    <span className={style.table__expresion}>
-                      {value}
-                      {<Feedback englishWord={value} />}
-                    </span>
-                },
-                spanishTranslation: {
-                  value: 'Español',
-                  render: (value: string): JSX.Element =>
-                    <span className={style.table__letter}>
-                      {value}
-                    </span>
-                },
-                audioUrl: {
-                  value: 'Audio',
-                  render: (value: string): JSX.Element =>
-                    <Sound src={value} style={style} />
-                },
-                // LETTER STRCUTURE
-                englishLetter: {
-                  value: 'Letra',
-                  render: (value: string, item): JSX.Element =>
-                    <div className={style.table__letter}>
-                      <Sound
-                        src={item.englishLetterAudioUrl}
-                        style={{}}
-                        render={() => <span>{value}</span>}
-                      />
-                      <Feedback englishWord={value} />
-                    </div>
-                },
 
-                reference: {
-                  value: 'Referencia',
-                  render: (value: string, item): JSX.Element =>
-                    <div className={style.table__letter}>
-                      <Sound
-                        src={item.referenceAudioUrl}
-                        style={{}}
-                        render={() => (
-                          <div>
-                            <span>
-                              <strong style={{ color: 'red' }}>{value[0]}</strong>
-                              {value.substring(1, value.length)}
-                            </span>
-                          </div>
-                        )}
-                      />
-                      <Feedback englishWord={value} />
-                    </div>
-                },
+          {
+            data.length &&
+              data[tabIndex] &&
+              data[tabIndex].name === 'Alfabeto'
+              ? <AlphabetPage />
+              : (<div className={style.vocabularies__table}>
+                <Table
+                  data={content}
+                  style={style}
+                  custom={{
+                    _id: { avoid: true },
+                    isFeedback: { avoid: true },
+                    englishWord: {
+                      value: 'Ingles',
+                      render: (value: string): JSX.Element =>
+                        <span className={style.table__expresion}>
+                          {value}
+                          {<Feedback englishWord={value} />}
+                        </span>
+                    },
+                    spanishTranslation: {
+                      value: 'Español',
+                      render: (value: string): JSX.Element =>
+                        <span className={style.table__letter}>
+                          {value}
+                        </span>
+                    },
+                    audioUrl: {
+                      value: 'Audio',
+                      render: (value: string): JSX.Element =>
+                        <Sound src={value} style={style} />
+                    },
+                    // LETTER STRCUTURE
+                    englishLetter: {
+                      value: 'Letra',
+                      render: (value: string, item): JSX.Element =>
+                        <div className={style.table__letter}>
+                          <Sound
+                            src={item.englishLetterAudioUrl}
+                            style={{}}
+                            render={() => <span>{value}</span>}
+                          />
+                          <Feedback englishWord={value} />
+                        </div>
+                    },
 
-                pronunciationLetter: {
-                  value: 'Pronunciación',
-                  render: (value: string, item: any): JSX.Element =>
-                    <div>
-                      <Speech
-                        audioUrl={value}
-                        onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishLetter)}
-                        onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.englishLetter)}
-                        word={item.englishLetter}
-                        canShowMessage={false}
-                        canNext={pronunciation}
-                        interimResults
-                      />
-                    </div>
-                },
+                    reference: {
+                      value: 'Referencia',
+                      render: (value: string, item): JSX.Element =>
+                        <div className={style.table__letter}>
+                          <Sound
+                            src={item.referenceAudioUrl}
+                            style={{}}
+                            render={() => (
+                              <div>
+                                <span>
+                                  <strong style={{ color: 'red' }}>{value[0]}</strong>
+                                  {value.substring(1, value.length)}
+                                </span>
+                              </div>
+                            )}
+                          />
+                          <Feedback englishWord={value} />
+                        </div>
+                    },
 
-                pronunciationReference: {
-                  value: 'Pronunciación',
-                  render: (value: string, item: any): JSX.Element =>
-                    <div>
-                      <Speech
-                        audioUrl={value}
-                        onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.reference)}
-                        onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.reference)}
-                        word={item.reference}
-                        canShowMessage={false}
-                        canNext={pronunciation}
-                        interimResults
-                      />
-                    </div>
-                },
+                    pronunciationLetter: {
+                      value: 'Pronunciación',
+                      render: (value: string, item: any): JSX.Element =>
+                        <div>
+                          <Speech
+                            audioUrl={value}
+                            onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishLetter)}
+                            onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.englishLetter)}
+                            word={item.englishLetter}
+                            canShowMessage={false}
+                            canNext={pronunciation}
+                            interimResults
+                          />
+                        </div>
+                    },
 
-                // LETTER STRCUTURE
-                englishLetterAudioUrl: {
-                  avoid: true,
-                  value: 'Letter'
-                },
+                    pronunciationReference: {
+                      value: 'Pronunciación',
+                      render: (value: string, item: any): JSX.Element =>
+                        <div>
+                          <Speech
+                            audioUrl={value}
+                            onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.reference)}
+                            onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.reference)}
+                            word={item.reference}
+                            canShowMessage={false}
+                            canNext={pronunciation}
+                            interimResults
+                          />
+                        </div>
+                    },
 
-                referenceAudioUrl: {
-                  avoid: true,
-                },
-                pronunciation: {
-                  value: 'Pronunciación',
-                  render: (value: string, item: Item): JSX.Element =>
-                    <div>
-                      <Speech
-                        audioUrl={value}
-                        onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
-                        onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.englishWord)}
-                        word={item.englishWord}
-                        canShowMessage={false}
-                        canNext={pronunciation}
-                        interimResults={tabIndex === 1 || tabIndex === 4 || tabIndex === 7}
-                      />
-                    </div>
-                },
-                imageUrl: {
-                  value: 'Referencia',
-                  render: (value: string, item: Item): JSX.Element => (
-                    <div className={style.table__image_container}>
-                      <ImageLazy
-                        alt={`Vocabulary - ${item.englishWord}`}
-                        className={style.table__image}
-                        src={value}
-                      />
-                    </div>
-                  )
-                },
-                // VERB STRUCTURE
-                curse: {
-                  value: 'cursos',
-                  render: handlerOnClickRow
-                },
-                avoidPronouns: {
-                  avoid: true
-                },
-                apostrophe: {
-                  avoid: true
-                },
-                lession: {
-                  value: 'lecciones',
-                  render: handlerOnClickRow
-                },
-                verb: {
-                  value: 'verbo',
-                  render: (value: string = ''): JSX.Element =>
-                    <strong className={style.table__verbText}>
-                      <span>{value.replace('-', ' ')}</span>
-                    </strong>
-                },
-                englishWordConjugation: {
-                  value: 'Inglés',
-                  render: (_: string, item: Item): JSX.Element =>
-                    englishVerbConjugation({ item })
-                },
-                spanishTranslationConjugationExample: {
-                  value: 'Ejemplos en español',
-                  render: (value: string, item: Item): JSX.Element =>
-                    englishVerbConjugation({ text: value, item, lang: 'es' })
-                },
-                englishWordConjugationExample: {
-                  value: 'Ejemplos en Inglés',
-                  render: (value: string, item: Item): JSX.Element =>
-                    englishVerbConjugation({ text: value, item })
-                },
-                spanishTranslationConjugation: {
-                  value: 'Español',
-                  render: (_: string, item: Item): JSX.Element =>
-                    englishVerbConjugation({ item, lang: 'es' })
-                },
-              }}
-            />
-          </div>
+                    // LETTER STRCUTURE
+                    englishLetterAudioUrl: {
+                      avoid: true,
+                      value: 'Letter'
+                    },
+
+                    referenceAudioUrl: {
+                      avoid: true,
+                    },
+                    pronunciation: {
+                      value: 'Pronunciación',
+                      render: (value: string, item: Item): JSX.Element =>
+                        <div>
+                          <Speech
+                            audioUrl={value}
+                            onCheck={(isCorrect: boolean) => onCheck(isCorrect, item.englishWord)}
+                            onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, item.englishWord)}
+                            word={item.englishWord}
+                            canShowMessage={false}
+                            canNext={pronunciation}
+                            interimResults={tabIndex === 1 || tabIndex === 4 || tabIndex === 7}
+                          />
+                        </div>
+                    },
+                    imageUrl: {
+                      value: 'Referencia',
+                      render: (value: string, item: Item): JSX.Element => (
+                        <div className={style.table__image_container}>
+                          <ImageLazy
+                            alt={`Vocabulary - ${item.englishWord}`}
+                            className={style.table__image}
+                            src={value}
+                          />
+                        </div>
+                      )
+                    },
+                    // VERB STRUCTURE
+                    curse: {
+                      value: 'cursos',
+                      render: handlerOnClickRow
+                    },
+                    avoidPronouns: {
+                      avoid: true
+                    },
+                    apostrophe: {
+                      avoid: true
+                    },
+                    lession: {
+                      value: 'lecciones',
+                      render: handlerOnClickRow
+                    },
+                    verb: {
+                      value: 'verbo',
+                      render: (value: string = ''): JSX.Element =>
+                        <strong className={style.table__verbText}>
+                          <span>{value.replace('-', ' ')}</span>
+                        </strong>
+                    },
+                    englishWordConjugation: {
+                      value: 'Inglés',
+                      render: (_: string, item: Item): JSX.Element =>
+                        englishVerbConjugation({ item })
+                    },
+                    spanishTranslationConjugationExample: {
+                      value: 'Ejemplos en español',
+                      render: (value: string, item: Item): JSX.Element =>
+                        englishVerbConjugation({ text: value, item, lang: 'es' })
+                    },
+                    englishWordConjugationExample: {
+                      value: 'Ejemplos en Inglés',
+                      render: (value: string, item: Item): JSX.Element =>
+                        englishVerbConjugation({ text: value, item })
+                    },
+                    spanishTranslationConjugation: {
+                      value: 'Español',
+                      render: (_: string, item: Item): JSX.Element =>
+                        englishVerbConjugation({ item, lang: 'es' })
+                    },
+                  }}
+                />
+              </div>)
+          }
         </div>
       </section>
     </>

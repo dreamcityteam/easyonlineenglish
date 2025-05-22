@@ -6,9 +6,10 @@ import { getClassName } from '../../tools/function';
 interface Props {
   src: string;
   style: { [key: string]: any };
-  render?: () => JSX.Element;
+  render?: (canPlay?: boolean) => JSX.Element;
   slowAudioUrl?: string;
   stop?: boolean;
+  onCurrentTime?: (currentTime: number) => void;
 }
 
 const Sound: React.FC<Props> = ({
@@ -16,11 +17,13 @@ const Sound: React.FC<Props> = ({
   style = {},
   render,
   slowAudioUrl,
-  stop
+  stop,
+  onCurrentTime
 }): JSX.Element => {
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
   const [isSlowAudio, setIsSlowAudio] = useState(false);
+  const [update, setUpdate] = useState<any>(null);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -45,11 +48,20 @@ const Sound: React.FC<Props> = ({
     setIsSlowAudio((isSlowAudio: boolean) => !!slowAudioUrl ? !isSlowAudio : false);
   };
 
+  const handlerOnCurrentTime = () => {
+    setUpdate(setInterval(() => {
+      const time: number = audioRef.current?.currentTime || 0;
+      // @ts-ignore
+      onCurrentTime(time);
+    }));
+  }
+
   const handleTogglePlay = (): void => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
         audioRef.current.play();
         setCanPlay(true);
+        handlerOnCurrentTime();
       } else {
         stopAudio();
       }
@@ -62,6 +74,7 @@ const Sound: React.FC<Props> = ({
       audioRef.current.currentTime = 0;
       setIsSlowAudio((isSlowAudio: boolean) => !!slowAudioUrl ? !isSlowAudio : false);
       setCanPlay(false);
+      clearInterval(update);
     }
   }
 
@@ -70,7 +83,7 @@ const Sound: React.FC<Props> = ({
       className={`${style.sound} ${styleDefault.sound}`}
     >
       {render
-        ? <div onClick={handleTogglePlay}>{render()}</div>
+        ? <div onClick={handleTogglePlay}>{render(canPlay)}</div>
         : (
           canPlay ? (
             <Image
