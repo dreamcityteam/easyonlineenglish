@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import style from './style.module.sass';
 import { alphabet } from './data';
 import Speech from '../../../../components/Speech';
@@ -9,7 +9,8 @@ import Sound from '../../../../components/Sound';
 
 const AlphabetPage: React.FC = () => {
   const refButtonAudio = useRef(null);
-  const [displayedLetters, setDisplayedLetters] = useState<string[]>([]);
+  const [displayedLetters, setDisplayedLetters] = useState<{ [key: string]: boolean; }>({});
+  const displayedLettersLen: number = useMemo(() => Object.keys(displayedLetters).length, [displayedLetters]);
 
   const [speech, setSpeech] = useState<{
     [key: string]: {
@@ -64,30 +65,29 @@ const AlphabetPage: React.FC = () => {
 
     // Clear condition
     if (Math.abs(time - 22) <= delta || Math.abs(time - 41.8) <= delta) {
-      setDisplayedLetters([]);
+      setDisplayedLetters({});
     }
 
     // Loop through and display letters at matching times
     for (const [target, letter] of letterTimings) {
-      if (Math.abs(time - target) <= delta && !displayedLetters.includes(letter)) {
-        console.log(letter);
-        setDisplayedLetters((current) => [...current, letter]);
+      if (Math.abs(time - target) <= delta && !displayedLetters[letter]) {
+        setDisplayedLetters((current) => ({ ...current, [letter]: true }));
       }
     }
   };
-
 
   const onMusic = (canPlay: boolean) => {
     setSpeech({});
 
     if (canPlay) {
-      setDisplayedLetters([])
+      setDisplayedLetters({});
     }
   }
 
   return (
-    <div className={style['alphabet-page']}>
-      <div className={style.logo}>
+    <div className={`${style['alphabet-page']}`}>
+      {/* @ts-ignore */}
+      <div className={`${displayedLettersLen ? style.moving : ''} ${style.logo}`}>
         <span className={style.red}>A</span>
         <span className={style.blue}>B</span>
         <span className={style.red}>C</span>
@@ -127,13 +127,13 @@ const AlphabetPage: React.FC = () => {
                 key={index}
                 className={
                   `${canPlay
-                    ? '' : style.beat} ${style.letter} ${index % 2 === 0 ? style['red-border']
+                      ? '' : style.beat} ${style.letter} ${index % 2 === 0 ? style['red-border']
                       : style['blue-border']
 
-                  } ${displayedLetters.includes(englishLetter) ? `${style.beat} ${style['letter-animation']}` : ''}`}
+                  } ${displayedLetters[englishLetter] ? `${style.beat} ${style['letter-animation']}` : ''}`}
                 onClick={() => {
                   // @ts-ignore
-                  refButtonAudio.current?.dataset?.play === 'true' && refButtonAudio.current?.click();
+                  displayedLettersLen && refButtonAudio.current?.click();
                   canPlay ? onPlay() : onStop();
                 }}
               >
