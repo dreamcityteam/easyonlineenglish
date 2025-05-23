@@ -50,7 +50,6 @@ const AlphabetPage: React.FC = () => {
 
   const onCurrentTime = (time: number) => {
     const delta = 0.05;
-
     const letterTimings: [number, string][] = [
       [3.8, 'a'], [4.6, 'b'], [5.6, 'c'], [6.6, 'd'], [7.6, 'e'], [8.0, 'f'],
       [8.6, 'g'], [9.0, 'h'], [9.6, 'i'], [10.0, 'j'], [10.6, 'k'], [11.4, 'l'],
@@ -64,7 +63,7 @@ const AlphabetPage: React.FC = () => {
     ];
 
     // Clear condition
-    if (Math.abs(time - 22) <= delta || Math.abs(time - 41.8) <= delta) {
+    if (Math.abs(time - 22.5) <= delta || Math.abs(time - 41.8) <= delta) {
       setDisplayedLetters({});
     }
 
@@ -115,6 +114,7 @@ const AlphabetPage: React.FC = () => {
       <div className={style['letter-grid']}>
         {alphabet.map(({ englishLetter, pronunciationLetter }, index) => (
           <Speech
+            key={index}
             audioUrl={pronunciationLetter}
             onCheck={(isCorrect: boolean) => onCheck(isCorrect, englishLetter)}
             onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, englishLetter)}

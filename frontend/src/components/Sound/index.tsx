@@ -18,7 +18,7 @@ const Sound: React.FC<Props> = ({
   render,
   slowAudioUrl,
   stop,
-  onCurrentTime
+  onCurrentTime = () => {}
 }): JSX.Element => {
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
@@ -49,11 +49,17 @@ const Sound: React.FC<Props> = ({
   };
 
   const handlerOnCurrentTime = () => {
-    setUpdate(setInterval(() => {
+    const interval = setInterval(() => {
       const time: number = audioRef.current?.currentTime || 0;
-      // @ts-ignore
+
+      if (audioRef.current?.duration === time) {
+        clearInterval(interval);
+      }
+
       onCurrentTime(time);
-    }));
+    });
+
+    setUpdate(interval);
   }
 
   const handleTogglePlay = (): void => {
