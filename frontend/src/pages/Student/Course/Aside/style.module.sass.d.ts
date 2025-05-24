@@ -16,6 +16,7 @@ interface CssExports {
   'display': string;
   'hide': string;
   'hide__default': string;
+  'tutorial__button': string;
   'tutorial__title': string;
   'word__display': string;
 }

@@ -83,8 +83,9 @@ const Aside: React.FC<Props> = ({
     const { step, action } = data;
     const element: HTMLLIElement = document.querySelector(step.target);
 
-    if (element && step.target !== '#tidio-chat-iframe' && !Cookie.get(TUTORIAL)) {
+    if (element && step.target !== '#tidio-chat-iframe') {
       element.style.cssText = 'position: relative; z-index: 2;';
+
       elements.push(element);
     }
 
@@ -92,6 +93,10 @@ const Aside: React.FC<Props> = ({
       elements.forEach((element) => element.removeAttribute('style'));
       Cookie.set(TUTORIAL, 'true');
       await send({ api: 'tutorial' }).patch();
+    }
+
+    if (['finished', 'skipped'].includes(data.status)) {
+      setRun(false);
     }
   };
 
@@ -173,7 +178,7 @@ const Aside: React.FC<Props> = ({
 
           },
           {
-            target: `.${courseStyle.course__content_text} .${courseStyle.course__text_grandient}`,
+            target: '.english_word',
             content:
               (
                 <div className={style.tutorial__title}>
@@ -313,6 +318,14 @@ const Aside: React.FC<Props> = ({
           },
         }}
       />
+
+      <button
+        className={style.tutorial__button}
+        onClick={() => setRun(true)}
+      >
+        Tutorial
+      </button>
+
       <div className={style.button__container}>
         <div
           className={`${style.aside__button} ${canOpenSideBar ? style.aside__button_static : ''}`}
