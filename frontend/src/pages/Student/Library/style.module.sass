@@ -130,3 +130,70 @@
 .sound
   &__icon
     cursor: pointer
+
+.alphabet-page
+  align-items: center
+  background-color: #fff
+  display: flex
+  flex-direction: column
+  font-family: Arial, sans-serif
+  min-height: 100vh
+  padding: 2rem
+  width: 100%
+
+  .logo
+    font-size: 4rem
+    font-weight: bold
+    margin-bottom: 1rem
+    border: solid #e3e3e3
+    padding: 33px 14px
+    border-radius: 50%
+
+    .red
+      color: #f44336
+
+    .blue
+      color: #2196f3
+
+  .title
+    font-size: 1.8rem
+    font-weight: bold
+    color: #2196f3
+    margin-bottom: 1rem
+
+  .song-button
+    background-color: #f44336
+    color: white
+    padding: 0.6rem 1.2rem
+    font-weight: 600
+    border: none
+    border-radius: 0.4rem
+    cursor: pointer
+    margin-bottom: 2rem
+    transition: background-color 0.2s ease-in-out
+
+    &:hover
+      background-color: #d32f2f
+
+  .letter-grid
+    display: grid
+    grid-template-columns: repeat(7, 3rem)
+    gap: 1rem
+
+    .letter
+      width: 3rem
+      height: 3rem
+      font-weight: bold
+      font-size: 1.2rem
+      border: 2px solid
+      border-radius: 0.4rem
+      background-color: white
+      cursor: pointer
+
+      &.red-border
+        color: #f44336
+        border-color: #f44336
+
+      &.blue-border
+        color: #2196f3
+        border-color: #2196f3

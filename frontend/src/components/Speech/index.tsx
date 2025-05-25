@@ -12,6 +12,7 @@ interface Props {
   onPlaySpeech?: (isCorrect: boolean) => void;
   word: string;
   interimResults?: boolean;
+  custom?: ({ canPlay, onStop, onPlay, text }: { canPlay: boolean; onStop: () => void; onPlay: () => void; text: string; }) => JSX.Element;
 };
 
 const Speech: React.FC<Props> = ({
@@ -22,6 +23,7 @@ const Speech: React.FC<Props> = ({
   canNext = {},
   canShowMessage = true,
   interimResults = false,
+  custom
 }): JSX.Element => {
   const [output, setOutput] = useState<string>('');
   const [canPlay, setCanPlay] = useState<boolean>(false);
@@ -108,29 +110,38 @@ const Speech: React.FC<Props> = ({
     SpeechRecognitionRef.current && SpeechRecognitionRef.current.stop();
 
   return (
-    <div className={style.speech}>
-      {canPlay && output === START_TEXT ? (
-        <Image
-          alt="Stop pronunciation"
-          className={getClassName(
-            style.speech__icon,
-            (output === START_TEXT)
-              ? style.speech__beatAnimation
-              : ''
+    <>
+      {custom ? custom({
+        canPlay: !(canPlay && output === START_TEXT),
+        onStop,
+        onPlay: canPlay ? () => { } : startListening,
+        text: output || END_TEXT
+      }) :
+        <div className={style.speech}>
+          {canPlay && output === START_TEXT ? (
+            <Image
+              alt="Stop pronunciation"
+              className={getClassName(
+                style.speech__icon,
+                (output === START_TEXT)
+                  ? style.speech__beatAnimation
+                  : ''
+              )}
+              onClick={onStop}
+              path="icons/microphone-WxMHE7VDCtwzsST9vrQOMFGL78dPYt.png"
+            />
+          ) : (
+            <Image
+              alt="Play pronunciation"
+              className={style.speech__icon}
+              onClick={canPlay ? () => { } : startListening}
+              path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
+            />
           )}
-          onClick={onStop}
-          path="icons/microphone-WxMHE7VDCtwzsST9vrQOMFGL78dPYt.png"
-        />
-      ) : (
-        <Image
-          alt="Play pronunciation"
-          className={style.speech__icon}
-          onClick={canPlay ? () => { } : startListening}
-          path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
-        />
-      )}
-      {canShowMessage && <p className={style.speech__feedback}>{output || END_TEXT}</p>}
-    </div>
+          {canShowMessage && <p className={style.speech__feedback}>{output || END_TEXT}</p>}
+        </div>
+      }
+    </>
   );
 }
 
