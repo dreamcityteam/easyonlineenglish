@@ -5,6 +5,7 @@ interface CssExports {
   'beat': string;
   'blue': string;
   'blue-border': string;
+  'feedback-message': string;
   'letter': string;
   'letter-animation': string;
   'letter-grid': string;

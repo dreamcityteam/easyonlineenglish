@@ -6,7 +6,6 @@ import pronunciation from './pronunciation.json';
 import Image from '../../../../components/Image';
 import Sound from '../../../../components/Sound';
 
-
 const AlphabetPage: React.FC = () => {
   const refButtonAudio = useRef(null);
   const [displayedLetters, setDisplayedLetters] = useState<{ [key: string]: boolean; }>({});
@@ -16,20 +15,29 @@ const AlphabetPage: React.FC = () => {
     [key: string]: {
       isCorrect: boolean;
       canShow: boolean;
+      message: string;
     };
   }>({});
 
   const onCheck = (isCorrect: boolean, englishWord: string): void => {
     setSpeech((currentState) => ({
       ...currentState,
-      [englishWord]: { isCorrect, canShow: true }
+      [englishWord]: {
+        canShow: true,
+        isCorrect,
+        message: !isCorrect ? '¡Vuelve a intentarlo!' : '',
+      }
     }));
   }
 
   const onPlaySpeech = (isPlay: boolean, englishWord: string): void => {
     isPlay && setSpeech((currentState) => ({
       ...currentState,
-      [englishWord]: { isCorrect: false, canShow: false }
+      [englishWord]: {
+        isCorrect: false,
+        canShow: false,
+        message: ''
+      }
     }));
   }
 
@@ -37,16 +45,20 @@ const AlphabetPage: React.FC = () => {
     <>
       {typeof speech[englishWord] !== 'undefined' && speech[englishWord].canShow && (
         <div style={{ position: 'absolute' }}>
-          <Image
-            alt="Feedback icon"
-            path={speech[englishWord].isCorrect
-              ? 'icons/file%20(2)-rUytCHTrOOkY1XVHaQluxJV3jc8ewm.png'
-              : 'icons/file%20(1)%20(1)-8wtGfDcRc7aApX2SS1WrAYNhWBfTHl.png'}
-          />
+          {speech[englishWord].isCorrect ? (
+            <Image
+              alt="Feedback icon"
+              path={'icons/file%20(2)-rUytCHTrOOkY1XVHaQluxJV3jc8ewm.png'}
+            />
+          ) : (
+            <div className={style['feedback-message']}>
+              {speech[englishWord].message}
+            </div>
+          )}
         </div>
       )}
     </>
-  );
+  )
 
   const onCurrentTime = (time: number) => {
     const delta = 0.05;
@@ -86,31 +98,29 @@ const AlphabetPage: React.FC = () => {
   return (
     <div className={`${style['alphabet-page']}`}>
       {/* @ts-ignore */}
-      <div className={`${displayedLettersLen ? style.moving : ''} ${style.logo}`}>
-        <span className={style.red}>A</span>
-        <span className={style.blue}>B</span>
-        <span className={style.red}>C</span>
+      <div className={style.logo}>
+        <img src="https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/logoo-rm0KVx1dnUqQODjmO2SFdpkpH54uxf.png" />
       </div>
-
-      <h1 className={style.title}>Aprende el alfabeto</h1>
-
+      <h2 className={style.title}>Alphabet</h2>
       <Sound
         src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/EOE%20Alphabet%20Song%20by%20Zamir.mp3"
         style={{}}
         onCurrentTime={onCurrentTime}
         render={(canPlay = false) => (
-          <button
-            onClick={() => onMusic(canPlay)}
-            ref={refButtonAudio}
-            data-play={canPlay}
-            className={style['song-button']}
-          >
-            {canPlay ? '❚❚' : '▶'} Escucha la canción
-          </button>
-        )
-        }
-      />
+          <>
+            <img
+              onClick={() => onMusic(canPlay)}
+              ref={refButtonAudio}
+              data-play={canPlay}
+              className={style['song-button']}
+              src={`https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/icons/${canPlay ? 'pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj' : 'audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em'}.${canPlay ? 'png' : 'jpg'}`}
+            />
 
+          </>
+        )}
+      />
+      <p>Canta la canción</p>
+      <p>Haz clic en cada letra para escuchar la pronunciación y repetir después del beep.</p>
       <div className={style['letter-grid']}>
         {alphabet.map(({ englishLetter, pronunciationLetter }, index) => (
           <Speech
@@ -126,16 +136,14 @@ const AlphabetPage: React.FC = () => {
               <div
                 key={index}
                 className={
-                  `${canPlay
-                      ? '' : style.beat} ${style.letter} ${index % 2 === 0 ? style['red-border']
-                      : style['blue-border']
-
-                  } ${displayedLetters[englishLetter] ? `${style.beat} ${style['letter-animation']}` : ''}`}
+                  `${canPlay ? '' : style.beat} ${style.letter}
+                  ${displayedLetters[englishLetter] ? `${displayedLettersLen === (index + 1) ? style.beat + ' ' + style['letter-animation'] : ''}` : ''}`}
                 onClick={() => {
                   // @ts-ignore
                   displayedLettersLen && refButtonAudio.current?.click();
                   canPlay ? onPlay() : onStop();
                 }}
+                style={index > 17 ? { left: '25px' } : {}}
               >
                 {englishLetter}
                 <Feedback englishWord={englishLetter} />

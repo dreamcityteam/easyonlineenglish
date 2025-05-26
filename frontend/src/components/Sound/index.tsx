@@ -91,21 +91,12 @@ const Sound: React.FC<Props> = ({
       {render
         ? <div onClick={handleTogglePlay}>{render(canPlay)}</div>
         : (
-          canPlay ? (
-            <Image
-              alt="Stop pronunciation"
-              className={getClassName(style.sound__icon, styleDefault.sound__icon)}
-              path="icons/pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj.png"
-              onClick={handleTogglePlay}
-            />
-          ) : (
-            <Image
-              alt="Play pronunciation"
-              className={getClassName(style.sound__icon, styleDefault.sound__icon)}
-              path="icons/audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg"
-              onClick={handleTogglePlay}
-            />
-          )
+          <Image
+            alt={`${canPlay ? 'Stop' : 'Play'} pronunciation`}
+            className={getClassName(style.sound__icon, styleDefault.sound__icon)}
+            path={`icons/${canPlay ? 'pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj.png' : 'audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em.jpg'}`}
+            onClick={handleTogglePlay}
+          />
         )}
       <audio
         ref={audioRef}

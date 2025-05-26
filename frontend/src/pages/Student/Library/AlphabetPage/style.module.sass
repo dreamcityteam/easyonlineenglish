@@ -12,14 +12,8 @@
   width: 100%
 
   .logo
-    border-radius: 50%
-    border: 4px solid transparent
-    border-image: linear-gradient(to right, #f44336 50%, #2196f3 50%)
-    border-image-slice: 1
-    font-size: 4rem
-    font-weight: bold
-    margin-bottom: 1rem
-    padding: 33px 6px
+    img
+      width: 60px
 
     span
       display: inline-block
@@ -47,55 +41,60 @@
       color: #2196f3
 
   .title
-    font-size: 1.8rem
-    font-weight: bold
-    color: #2196f3
-    margin-bottom: 1rem
+    -webkit-background-clip: text
+    background-clip: text
+    background-image: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
+    color: transparent
+    margin: 0
+    padding: 0
+    text-transform: uppercase
 
   .song-button
-    background-color: #f44336
-    color: white
-    padding: 0.6rem 1.2rem
-    font-weight: 600
-    border: none
-    border-radius: 0.4rem
     cursor: pointer
-    margin-bottom: 2rem
-    transition: background-color 0.2s ease-in-out
-
-    &:hover
-      background-color: #d32f2f
+    margin-top: 20px
+    width: 40px
 
   .letter-grid
     display: grid
-    grid-template-columns: repeat(7, 3rem)
+    grid-template-columns: repeat(9, 3rem)
     gap: 1rem
 
     .letter
+      -webkit-background-clip: text
       align-items: center
-      background-color: white
+      background-clip: text
+      background-image: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
       border-radius: 0.4rem
-      border: 2px solid
+      border: 1.5px solid #066fac
+      color: transparent
       cursor: pointer
       display: flex
-      font-size: 1.2rem
+      font-size: 1.8rem
       font-weight: bold
       height: 3rem
       justify-content: center
+      margin: 0
+      padding: 0
       position: relative
       text-transform: capitalize
       width: 3rem
 
-      &.red-border
-        color: #f44336
-        border-color: #f44336
-
-      &.blue-border
-        color: #2196f3
-        border-color: #2196f3
+      &.letter-animation
+        color: white
+        background: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
 
   .beat
     animation: beat 1s infinite
+
+  .feedback-message
+    background-color: #F44336
+    border-radius: 5px
+    color: white
+    font-size: 10px
+    font-weight: 100
+    padding: 5px
+    width: 62px
+    text-transform: capitalize
 
   div.letter-animation
     color: white !important
