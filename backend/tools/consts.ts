@@ -22,10 +22,9 @@ const ENDPOINT: ObjectValueString = {
   SING_IN_GOOGLE: 'login-google',
   SING_OUT: 'sign-out',
   LOGIN: 'login',
-
-  // code refactoring
+  SEARCH_WORD: 'search-word',
+  UPDATE_WORD: 'update-word',
   CONTANCT: 'contanct',
-
   STUDENT_COURSE: 'student-course/:courseId',
   STUDENT_COURSES: 'courses',
   STUDENT_COURSES_DEMO: 'student-courses-demo',

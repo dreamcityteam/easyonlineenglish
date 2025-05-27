@@ -27,6 +27,8 @@ import studentRating from '../api/student/rating';
 import studentActiveAccount from '../api/student/activeAccount';
 import paypalCreateOrder from '../api/student/payment/paypal/createOrder';
 import paypalCompletedOrder from '../api/student/payment/paypal/completedOrder';
+import searchWord from '../api/admin/searchWord';
+import saveWord from '../api/admin/saveWord';
 
 const config: Router[] = [
   {
@@ -163,6 +165,16 @@ const config: Router[] = [
     path: ENDPOINT.PAYPAL_COMPLETED_ORDER,
     method: 'post',
     func: paypalCompletedOrder,
+  },
+  {
+    path: ENDPOINT.SEARCH_WORD,
+    method: 'post',
+    func: searchWord,
+  },
+    {
+    path: ENDPOINT.UPDATE_WORD,
+    method: 'put',
+    func: saveWord,
   },
   // {
   //   path: ENDPOINT.AZUL_PAYMENT,

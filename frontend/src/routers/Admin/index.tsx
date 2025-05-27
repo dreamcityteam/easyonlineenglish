@@ -6,7 +6,7 @@ import Courses from '../../pages/Student/Courses';
 import Course from '../../pages/Student/Course';
 import UploadFile from '../../pages/UploadFile';
 import Library from '../../pages/Student/Library';
-import Conversation from '../../pages/Student/Conversation';
+import EditWords from '../../pages/Admin/EditWords';
 
 const Admin: React.FC = (): JSX.Element => (
   <Routes>
@@ -16,7 +16,7 @@ const Admin: React.FC = (): JSX.Element => (
     <Route path="/course/:idCourse" element={<Course />} />
     <Route path="/upload" element={<UploadFile />} />
     <Route path="/library" element={<Library />} />
-    {/* <Route path="/conversation" element={<Conversation />} /> */}
+    <Route path="/edit-words" element={<EditWords />} />
     <Route path="*" element={<Page404 />} />
   </Routes>
 );
