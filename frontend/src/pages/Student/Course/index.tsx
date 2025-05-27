@@ -29,7 +29,6 @@ import ModalCongratulation from './ModalCongratulation';
 import ImageComponent from '../../../components/Image';
 import Head from './Head';
 import ModalRating from './ModalRating';
-import ModalTips from './ModalTips';
 import ImageLazy from '../../../components/ImageLazy';
 import Sound from '../../../components/Sound';
 
