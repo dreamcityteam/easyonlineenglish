@@ -54,10 +54,11 @@ const EditWords = (): JSX.Element => {
     setWordToEdit((prev: any) => {
       if (typeof index === 'number') {
         const sentences = [...prev.sentences || []];
+        const isAudioSplitUrls: boolean = key === 'audioSplitUrls';
 
         sentences[index] = {
           ...sentences[index],
-          [key]: key === 'audioSplitUrls' ? value.split(',') : '',
+          [key]: isAudioSplitUrls ? value.split(',') : value,
         };
 
         return { ...prev, sentences };
