@@ -19,7 +19,9 @@ type User = {
   role: string;
   payment: {
     isPayment: boolean;
-    plan: string;
+    plan: string | null;
+    dateEnd: string | null;
+   dateStart: string | null;
   };
   isTutorial: boolean;
   isTerms: boolean;
