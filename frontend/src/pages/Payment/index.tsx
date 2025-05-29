@@ -87,9 +87,8 @@ const PaymentForms: React.FC = () => {
               ) : (
                 <p>
                   Su pago inició el
-                  <strong> {formatDate(user.payment.dateStart)}</strong> y terminó el
-                  <strong> {formatDate(user.payment.dateEnd)}</strong> por un monto de
-                  <strong>{user.payment.amount}</strong>
+                  <strong> {formatDate(user.payment.dateStart)}</strong> y terminará el
+                  <strong> {formatDate(user.payment.dateEnd)}</strong> 
                 </p>
               )}
             </form>
