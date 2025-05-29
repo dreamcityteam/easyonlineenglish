@@ -343,8 +343,10 @@ const getPayment = async (id: ObjectId | undefined | string) => {
   const isPayment = payment ? new Date(payment.dateEnd) > new Date() : false;
 
   return {
-    plan: payment ? payment.plan : '',
-    isPayment
+    plan: payment ? payment.plan : null,
+    isPayment,
+    dateEnd: payment ? payment.dateEnd : null,
+    dateStart: payment ? payment.dateStart : null,
   }
 }
 
