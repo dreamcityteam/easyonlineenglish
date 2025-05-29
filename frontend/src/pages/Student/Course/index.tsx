@@ -482,6 +482,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
       return (
         <div onClick={shouldPlaySingleAudio ? () => playAudio(audioUrl) : undefined}>
+          <div className="english_word">
           {
             splitTexts.map((text: string, index: number): JSX.Element => {
               let isMismatch: boolean = pronunciations.includes(removeAccents(formatWord(text)));
@@ -497,6 +498,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               )
             })
           }
+          </div>
           {audioSplitUrls.length > 0 && (
             <div className={style.course__audio}>
               <span
@@ -587,7 +589,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           </div>
           <div className={style.course__content_container}>
             <div className={style.course__content}>
-              <div className={style.course__content_text}>
+              <div className={`${style.course__content_text} klk`}>
                 {AudioWord('englishWord')}
                 {sentence?.audioSplitUrls.length === 0 && (
                   <span
