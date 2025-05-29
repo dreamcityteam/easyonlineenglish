@@ -31,6 +31,8 @@ const tokenFromCookieEndpoints: string[] = [
   ENDPOINT.PAYPAL_COMPLETED_ORDER,
   ENDPOINT.STUDENT_DELETE_ACCOUNT,
   ENDPOINT.STUDENT_RATING,
+  ENDPOINT.SEARCH_WORD,
+  ENDPOINT.UPDATE_WORD
 ];
 
 const removeTokenAndAvoidEndpoint: string[] = [
