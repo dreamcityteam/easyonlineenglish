@@ -36,18 +36,18 @@ export const createOrder = async (plan: 1 | 2 | 3) => {
               quantity: 1,
               unit_amount: {
                 currency_code: 'USD',
-                value: 1
+                value: PAYMENT_METHOD[plan].AMOUNT
               }
             }
           ],
 
           amount: {
             currency_code: 'USD',
-            value: 1,
+            value: PAYMENT_METHOD[plan].AMOUNT,
             breakdown: {
               item_total: {
                 currency_code: 'USD',
-                value: 1
+                value: PAYMENT_METHOD[plan].AMOUNT
               }
             }
           }

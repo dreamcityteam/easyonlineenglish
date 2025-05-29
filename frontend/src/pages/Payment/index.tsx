@@ -48,6 +48,16 @@ const PaymentForms: React.FC = () => {
     return `${getZero(currentDate.getMonth() + 1)}/${currentDate.getFullYear()} `
   }, []);
 
+  const formatDate = (isoString: string) => {
+    const date = new Date(isoString);
+    return date.toLocaleDateString('es-ES', {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  };
+
   return (
     <>
       {user?.isTerms ? (
@@ -67,12 +77,21 @@ const PaymentForms: React.FC = () => {
                 <h1 className={style.payment__title}>{paymentTitle}</h1>
               </header>
 
-              <div className={style.payment__inputs}>
-                <PayPal
-                  onComplete={onCompletedPayment}
-                  plan={paymentMethod}
-                />
-              </div>
+              {!user?.payment.isPayment ? (
+                <div className={style.payment__inputs}>
+                  <PayPal
+                    onComplete={onCompletedPayment}
+                    plan={paymentMethod}
+                  />
+                </div>
+              ) : (
+                <p>
+                  Su pago inició el
+                  <strong> {formatDate(user.payment.dateStart)}</strong> y terminó el
+                  <strong> {formatDate(user.payment.dateEnd)}</strong> por un monto de
+                  <strong>{user.payment.amount}</strong>
+                </p>
+              )}
             </form>
           </div>
           <SuccessPayment
