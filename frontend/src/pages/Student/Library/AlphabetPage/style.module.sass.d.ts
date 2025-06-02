@@ -10,6 +10,7 @@ interface CssExports {
   'letter-animation': string;
   'letter-grid': string;
   'letter-selected': string;
+  'letter-selected-container': string;
   'logo': string;
   'moving': string;
   'red': string;

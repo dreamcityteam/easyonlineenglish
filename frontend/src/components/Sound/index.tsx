@@ -10,6 +10,7 @@ interface Props {
   slowAudioUrl?: string;
   stop?: boolean;
   onCurrentTime?: (currentTime: number) => void;
+  onStop?: () => void;
 }
 
 const Sound: React.FC<Props> = ({
@@ -18,7 +19,8 @@ const Sound: React.FC<Props> = ({
   render,
   slowAudioUrl,
   stop,
-  onCurrentTime = () => {}
+  onCurrentTime = () => {},
+  onStop = () => {},
 }): JSX.Element => {
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
@@ -54,6 +56,7 @@ const Sound: React.FC<Props> = ({
 
       if (audioRef.current?.duration === time) {
         clearInterval(interval);
+        onStop();
       }
 
       onCurrentTime(time);

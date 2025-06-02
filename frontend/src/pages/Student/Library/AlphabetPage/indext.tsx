@@ -3,7 +3,6 @@ import style from './style.module.sass';
 import { alphabet } from './data';
 import Speech from '../../../../components/Speech';
 import pronunciation from './pronunciation.json';
-import Image from '../../../../components/Image';
 import Sound from '../../../../components/Sound';
 
 const AlphabetPage: React.FC = () => {
@@ -14,6 +13,7 @@ const AlphabetPage: React.FC = () => {
     audioUrl: string
     word: string
   } | null>(null);
+  const [canReapet, setCanReapet] = useState(true);
 
   const [speech, setSpeech] = useState<{
     [key: string]: {
@@ -48,17 +48,8 @@ const AlphabetPage: React.FC = () => {
   const Feedback = ({ englishWord }: { englishWord: string; }): JSX.Element => (
     <>
       {typeof speech[englishWord] !== 'undefined' && speech[englishWord].canShow && (
-        <div>
-          {speech[englishWord].isCorrect ? (
-            <Image
-              alt="Feedback icon"
-              path={'icons/file%20(2)-rUytCHTrOOkY1XVHaQluxJV3jc8ewm.png'}
-            />
-          ) : (
-            <div className={style['feedback-message']}>
-              {speech[englishWord].message}
-            </div>
-          )}
+        <div style={{ color: speech[englishWord].isCorrect ? 'green' : 'red' }} className={style['feedback-message']}>
+          {speech[englishWord].isCorrect ? '¡Bien hecho!' : speech[englishWord].message}
         </div>
       )}
     </>
@@ -71,9 +62,7 @@ const AlphabetPage: React.FC = () => {
       [3, 'g'], [4, 'h'], [4.4, 'i'], [5, 'j'], [5.4, 'k'], [6, 'l'],
       [6.4, 'm'], [6.6, 'n'], [6.8, 'o'], [7, 'p'], [8, 'q'], [8.4, 'r'],
       [9, 's'], [10, 't'], [10.4, 'u'], [11, 'v'], [11.8, 'w'], [12.8, 'x'],
-      [13.8, 'y'], [15, 'z'],
-
-      [18, 'a'], [18.4, 'b'], [19, 'c']
+      [13.8, 'y'], [15, 'z'], [18, 'a'], [18.4, 'b'], [19, 'c']
     ];
 
     // Clear condition
@@ -91,9 +80,22 @@ const AlphabetPage: React.FC = () => {
 
   const onMusic = (canPlay: boolean) => {
     setSpeech({});
+    setCurrentLetter(null);
 
     if (canPlay) {
       setDisplayedLetters({});
+    }
+  }
+
+  const onStopMusic = () => {
+    // @ts-ignore
+    if (refButtonAudio.current.dataset.reapet === 'true') {
+      setCanReapet(false);
+
+      // @ts-ignore
+      refButtonAudio.current?.click();
+    } else {
+      setCanReapet(true);
     }
   }
 
@@ -108,19 +110,20 @@ const AlphabetPage: React.FC = () => {
         src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/alfabeto.mp3"
         style={{}}
         onCurrentTime={onCurrentTime}
+        onStop={onStopMusic}
         render={(canPlay = false) => (
           <>
             <img
               onClick={() => onMusic(canPlay)}
               ref={refButtonAudio}
-              data-play={canPlay}
+              data-reapet={canReapet}
               className={style['song-button']}
               src={`https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/icons/${canPlay ? 'pausa-CdNhAEsQLGS76ysd8YFV9VOClFnOuj' : 'audio-CeDJSLKXnC4lwR0t1XYzlSlu09w0Em'}.${canPlay ? 'png' : 'jpg'}`}
             />
-
           </>
         )}
       />
+
       <p>Canta la canción</p>
       <p>Haz clic en cada letra para escuchar la pronunciación y repetir después del beep.</p>
       <div className={style['letter-grid']}>
@@ -140,7 +143,8 @@ const AlphabetPage: React.FC = () => {
                 setCurrentLetter({
                   word: englishLetter,
                   audioUrl: pronunciationLetter
-                })
+                });
+                setCanReapet(true);
               }}
               style={index > 17 ? { left: '25px' } : {}}
             >
@@ -151,18 +155,21 @@ const AlphabetPage: React.FC = () => {
       </div>
 
       {currentLetter && (
-        <div className={style['letter-selected']}>
-          <div className={style.letter}>{currentLetter.word}</div>
-          <Speech
-            audioUrl={currentLetter.audioUrl}
-            onCheck={(isCorrect: boolean) => onCheck(isCorrect, currentLetter.word)}
-            onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, currentLetter.word)}
-            word={currentLetter.word}
-            canShowMessage={false}
-            canNext={pronunciation}
-            interimResults
-          />
-          <Feedback englishWord={currentLetter.word} />
+        <div className={style['letter-selected-container']}>
+          <p>Haz clic en el botón para practicar tu pronunciación.</p>
+          <div className={style['letter-selected']}>
+            <div className={style.letter}>{currentLetter.word}</div>
+            <Feedback englishWord={currentLetter.word} />
+            <Speech
+              audioUrl={currentLetter.audioUrl}
+              onCheck={(isCorrect: boolean) => onCheck(isCorrect, currentLetter.word)}
+              onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, currentLetter.word)}
+              word={currentLetter.word}
+              canShowMessage={false}
+              canNext={pronunciation}
+              interimResults
+            />
+          </div>
         </div>
       )}
     </div>
