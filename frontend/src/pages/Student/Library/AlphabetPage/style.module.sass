@@ -59,32 +59,41 @@
     grid-template-columns: repeat(9, 3rem)
     gap: 1rem
 
-    .letter
-      -webkit-background-clip: text
-      align-items: center
-      background-clip: text
-      background-image: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
-      border-radius: 0.4rem
-      border: 1.5px solid #066fac
-      color: transparent
-      cursor: pointer
-      display: flex
-      font-size: 1.8rem
-      font-weight: bold
-      height: 3rem
-      justify-content: center
-      margin: 0
-      padding: 0
-      position: relative
-      text-transform: capitalize
-      width: 3rem
+  .letter
+    -webkit-background-clip: text
+    align-items: center
+    background-clip: text
+    background-image: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
+    border-radius: 0.4rem
+    border: 1.5px solid #066fac
+    color: transparent
+    cursor: pointer
+    display: flex
+    font-size: 1.8rem
+    font-weight: bold
+    height: 3rem
+    justify-content: center
+    margin: 0
+    padding: 0
+    position: relative
+    text-transform: capitalize
+    width: 3rem
 
-      &.letter-animation
-        color: white
-        background: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
+    &.letter-animation
+      color: white
+      background: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
 
   .beat
     animation: beat 1s infinite
+
+  .letter-selected
+    border-radius: 8px
+    border: solid #066fac
+    display: flex
+    justify-content: space-around
+    margin-top: 30px
+    padding: 10px
+    width: 300px
 
   .feedback-message
     background-color: #F44336

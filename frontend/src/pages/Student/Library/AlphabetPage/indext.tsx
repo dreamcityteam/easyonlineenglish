@@ -10,6 +10,10 @@ const AlphabetPage: React.FC = () => {
   const refButtonAudio = useRef(null);
   const [displayedLetters, setDisplayedLetters] = useState<{ [key: string]: boolean; }>({});
   const displayedLettersLen: number = useMemo(() => Object.keys(displayedLetters).length, [displayedLetters]);
+  const [currentLetter, setCurrentLetter] = useState<{
+    audioUrl: string
+    word: string
+  } | null>(null);
 
   const [speech, setSpeech] = useState<{
     [key: string]: {
@@ -44,7 +48,7 @@ const AlphabetPage: React.FC = () => {
   const Feedback = ({ englishWord }: { englishWord: string; }): JSX.Element => (
     <>
       {typeof speech[englishWord] !== 'undefined' && speech[englishWord].canShow && (
-        <div style={{ position: 'absolute' }}>
+        <div>
           {speech[englishWord].isCorrect ? (
             <Image
               alt="Feedback icon"
@@ -63,19 +67,17 @@ const AlphabetPage: React.FC = () => {
   const onCurrentTime = (time: number) => {
     const delta = 0.05;
     const letterTimings: [number, string][] = [
-      [3.8, 'a'], [4.6, 'b'], [5.6, 'c'], [6.6, 'd'], [7.6, 'e'], [8.0, 'f'],
-      [8.6, 'g'], [9.0, 'h'], [9.6, 'i'], [10.0, 'j'], [10.6, 'k'], [11.4, 'l'],
-      [12.0, 'm'], [12.4, 'n'], [13.4, 'o'], [14.0, 'p'], [15.0, 'q'], [15.5, 'r'],
-      [16.0, 's'], [16.4, 't'], [17.3, 'u'], [17.6, 'v'], [18.0, 'w'], [19.0, 'x'],
-      [19.6, 'y'], [20.8, 'z'], [22.8, 'a'], [23.6, 'b'], [24.6, 'c'], [25.6, 'd'],
-      [26.6, 'e'], [27.0, 'f'], [27.6, 'g'], [28.0, 'h'], [28.6, 'i'], [29.0, 'j'],
-      [29.6, 'k'], [30.4, 'l'], [31.0, 'm'], [31.4, 'n'], [32.4, 'o'], [33.0, 'p'],
-      [34.0, 'q'], [34.5, 'r'], [35.0, 's'], [35.4, 't'], [36.3, 'u'], [36.6, 'v'],
-      [37.0, 'w'], [38.0, 'x'], [38.6, 'y'], [39.8, 'z']
+      [0, 'a'], [0.4, 'b'], [1, 'c'], [1.4, 'd'], [2, 'e'], [2.4, 'f'],
+      [3, 'g'], [4, 'h'], [4.4, 'i'], [5, 'j'], [5.4, 'k'], [6, 'l'],
+      [6.4, 'm'], [6.6, 'n'], [6.8, 'o'], [7, 'p'], [8, 'q'], [8.4, 'r'],
+      [9, 's'], [10, 't'], [10.4, 'u'], [11, 'v'], [11.8, 'w'], [12.8, 'x'],
+      [13.8, 'y'], [15, 'z'],
+
+      [18, 'a'], [18.4, 'b'], [19, 'c']
     ];
 
     // Clear condition
-    if (Math.abs(time - 22.5) <= delta || Math.abs(time - 41.8) <= delta) {
+    if (Math.abs(time - 17.8) <= delta || Math.abs(time - 24.1) <= delta) {
       setDisplayedLetters({});
     }
 
@@ -103,7 +105,7 @@ const AlphabetPage: React.FC = () => {
       </div>
       <h2 className={style.title}>Alphabet</h2>
       <Sound
-        src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/EOE%20Alphabet%20Song%20by%20Zamir.mp3"
+        src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/alfabeto.mp3"
         style={{}}
         onCurrentTime={onCurrentTime}
         render={(canPlay = false) => (
@@ -122,36 +124,47 @@ const AlphabetPage: React.FC = () => {
       <p>Canta la canción</p>
       <p>Haz clic en cada letra para escuchar la pronunciación y repetir después del beep.</p>
       <div className={style['letter-grid']}>
-        {alphabet.map(({ englishLetter, pronunciationLetter }, index) => (
+        {alphabet.map(({ englishLetter, pronunciationLetter }, index) => {
+          const classNameAnimation: string = (
+            currentLetter?.word === englishLetter || displayedLettersLen === index + 1
+          ) ? `${style.beat} ${style['letter-animation']}` : '';
+
+          return (
+            <div
+              key={index}
+              className={`${style.letter} ${classNameAnimation}`}
+
+              onClick={() => {
+                // @ts-ignore
+                displayedLettersLen && refButtonAudio.current?.click();
+                setCurrentLetter({
+                  word: englishLetter,
+                  audioUrl: pronunciationLetter
+                })
+              }}
+              style={index > 17 ? { left: '25px' } : {}}
+            >
+              {englishLetter}
+            </div>
+          )
+        })}
+      </div>
+
+      {currentLetter && (
+        <div className={style['letter-selected']}>
+          <div className={style.letter}>{currentLetter.word}</div>
           <Speech
-            key={index}
-            audioUrl={pronunciationLetter}
-            onCheck={(isCorrect: boolean) => onCheck(isCorrect, englishLetter)}
-            onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, englishLetter)}
-            word={englishLetter}
+            audioUrl={currentLetter.audioUrl}
+            onCheck={(isCorrect: boolean) => onCheck(isCorrect, currentLetter.word)}
+            onPlaySpeech={(isPlay: boolean) => onPlaySpeech(isPlay, currentLetter.word)}
+            word={currentLetter.word}
             canShowMessage={false}
             canNext={pronunciation}
             interimResults
-            custom={({ onPlay, onStop, canPlay }) => (
-              <div
-                key={index}
-                className={
-                  `${canPlay ? '' : style.beat} ${style.letter}
-                  ${displayedLetters[englishLetter] ? `${displayedLettersLen === (index + 1) ? style.beat + ' ' + style['letter-animation'] : ''}` : ''}`}
-                onClick={() => {
-                  // @ts-ignore
-                  displayedLettersLen && refButtonAudio.current?.click();
-                  canPlay ? onPlay() : onStop();
-                }}
-                style={index > 17 ? { left: '25px' } : {}}
-              >
-                {englishLetter}
-                <Feedback englishWord={englishLetter} />
-              </div>
-            )}
           />
-        ))}
-      </div>
+          <Feedback englishWord={currentLetter.word} />
+        </div>
+      )}
     </div>
   );
 };
