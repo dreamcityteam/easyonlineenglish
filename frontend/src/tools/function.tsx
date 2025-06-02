@@ -277,28 +277,6 @@ const isUser = (): boolean => {
 }
 
 /**
- * Initializes Google Analytics by setting up the gtag function.
- * @returns {any} The gtag function used for Google Analytics.
- */
-const initGoogleAnalytics = (): any => {
-  // @ts-ignore
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-    // @ts-ignore
-    dataLayer.push(arguments);
-  }
-
-  // @ts-ignore
-  gtag('js', new Date());
-
-  // @ts-ignore
-  gtag('config', 'G-7K5EX1R6FM');
-
-  return gtag;
-};
-
-/**
  * Checks if the user has an admin role.
  * @param {User | null} user - The user object to check.
  * @returns {boolean} True if the user has an admin role, otherwise false.
@@ -380,7 +358,6 @@ export {
   isDev,
   getData,
   isUser,
-  initGoogleAnalytics,
   isAdmin,
   gethPathWordpress,
   isFree,

@@ -86,8 +86,8 @@ const MESSAGE: Messages = {
 
 const INITIAL_COURSE = {
   TITLE: 'Inglés Conversacional',
-  DESCRIPTION: 'Nuestro curso online de inglés conversacional te brinda la oportunidad de mejorar tus habilidades de comunicación en inglés de manera efectiva y práctica. A través de lecciones interactivas y dinámicas, te sumergirás en situaciones cotidianas para aprender a expresarte con confianza.',
-  PICTURE: 'https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/06/Square1-500x311.jpg'
+  DESCRIPTION: 'Mejora tu pronunciación y audio en este curso de inglés.',
+  PICTURE: 'https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/eoe_360-IndJPWuTuD8WaYpizoW0wiKNmuaUoo.jpg'
 };
 
 export {

@@ -19,7 +19,6 @@ const sentenceSchema = new Schema({
   },
   audioSlowUrl: {
     type: String,
-    required: true
   },
   audioSplitUrls: [String],
 });

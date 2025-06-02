@@ -39,7 +39,7 @@ interface Props {
 
 const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const { idCourse } = useParams<string>();
-  const [{ courseCache, googleAnalytics, user }, dispatch] = useContext(context);
+  const [{ courseCache, user }, dispatch] = useContext(context);
   const [feedback, setFeedback] = useState({ canShow: false, message: '' });
   const [isPlaySpeech, setPlaySpeech] = useState<boolean>(false);
   const [lessionTitle, setLessionTitle] = useState<string>('');
@@ -82,15 +82,9 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       },
       success: ({ words, ...data }): void => {
         const course = { ...data, lessons: formatLessons(words) };
-        const eventGoogle = isDemo ? 'course-demo' : 'course';
 
         setCourseData(course);
         saveCourseCacheData(course);
-
-        googleAnalytics('event', eventGoogle, {
-          'event_category': eventGoogle,
-          'event_label': `Curso - ${course.title}`
-        });
       }
     });
   };
@@ -670,7 +664,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
           course={course?.title}
           lesson={lessionTitle}
         />
-      </section >
+      </section>
     </>
   );
 };
