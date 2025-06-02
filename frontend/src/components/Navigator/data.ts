@@ -7,7 +7,6 @@ const studentPayment: Tab[] = [
   { path: '/plan', value: 'Plan' },
   { path: '/library', value: 'Librería' },
   { path: '/profile', value: 'Perfil', showMobile: true },
-  // { path: '/conversation', value: 'Conversaciones' },
   { path: '/close', value: 'Cerrar sesión' },
 ];
 
@@ -32,8 +31,8 @@ const homepage: Tab[] = [
 const admin: Tab[] = [
   { path: '/courses', value: 'Courses' },
   // { path: '/upload', value: 'upload' },
-  { path: '/conversation', value: 'Conversaciones' },
   { path: '/library', value: 'Librería' },
+  { path: '/edit-words', value: 'Edición de palabras' },
   { path: '/close', value: 'Cerrar sesión' },
 ];
 
