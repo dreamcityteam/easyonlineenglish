@@ -18,7 +18,7 @@ const Head = (): JSX.Element => (
           "url": "https://www.easyonlineenglish.com",
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+849-410-9664",
+            "telephone": "+1 (849) 505-8393",
             "email": "support@easyonlineenglish.com",
             "contactType": "customer support",
             "areaServed": "DO",

@@ -14,7 +14,7 @@ const Head = (): JSX.Element => (
       "description": "Ponte en contacto con Easy Online English. Contáctanos para cualquier consulta, soporte o comentario.",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1 (849) 410-9664",
+        "telephone": "+1 (849) 505-8393",
         "email": "support@easyonlineenglish.com",
         "contactType": "Servicio al Cliente",
         "areaServed": "Mundo",
