@@ -11,6 +11,7 @@ import Navigator from './components/Navigator';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
 import Admin from './routers/Admin';
+import WhatsAppFloat from './components/Whatsap';
 
 const App: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -56,6 +57,10 @@ const App: React.FC = (): JSX.Element => {
       <Loading
         state={[state.loading.canShow, () => {}]}
         text={state.loading.text}
+      />
+      <WhatsAppFloat 
+        phoneNumber="18495058393"
+        message = "Hola, estoy interesado en tus servicios" 
       />
     </>
   );
