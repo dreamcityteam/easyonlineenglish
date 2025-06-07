@@ -128,7 +128,7 @@ const getData = async (
     token,
     service,
     success,
-    error = () => {},
+    error = () => { },
     modal: { dispatch, text = '' }
   }: Data
 ): Promise<void> => {
@@ -188,7 +188,7 @@ const checkPronunciation = (
           condiction ? ' ' : '';
 
         return <span key={index} style={style}>
-         {canAddSpace(index !== 0)}{spliteWords[index]}{canAddSpace(index !== formattedWords.length - 1)}
+          {canAddSpace(index !== 0)}{spliteWords[index]}{canAddSpace(index !== formattedWords.length - 1)}
         </span>;
       })}
     </>
@@ -196,11 +196,11 @@ const checkPronunciation = (
 };
 
 const Cookie = {
-    /**
-   * Retrieves a cookie by name.
-   * @param {string} name - The name of the cookie to retrieve.
-   * @returns {string | null} The value of the cookie or null if not found.
-   */
+  /**
+ * Retrieves a cookie by name.
+ * @param {string} name - The name of the cookie to retrieve.
+ * @returns {string | null} The value of the cookie or null if not found.
+ */
   get: (name: string): string | null => {
     const value: string = `; ${document.cookie}`;
     const parts: string[] = value.split(`; ${name}=`);
@@ -208,12 +208,12 @@ const Cookie = {
     return parts.length === 2 ? (parts.pop()?.split(';').shift() || null) : null;
   },
 
-   /**
-   * Sets a cookie with the specified name, value, and expiration days.
-   * @param {string} name - The name of the cookie to set.
-   * @param {string} value - The value of the cookie.
-   * @param {number} [days=7] - The number of days until the cookie expires.
-   */
+  /**
+  * Sets a cookie with the specified name, value, and expiration days.
+  * @param {string} name - The name of the cookie to set.
+  * @param {string} value - The value of the cookie.
+  * @param {number} [days=7] - The number of days until the cookie expires.
+  */
   set: (name: string, value: string, days: number = 7): void => {
     const expires: Date = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
@@ -275,28 +275,6 @@ const isUser = (): boolean => {
 
   return !!user;
 }
-
-/**
- * Initializes Google Analytics by setting up the gtag function.
- * @returns {any} The gtag function used for Google Analytics.
- */
-const initGoogleAnalytics = (): any => {
-  // @ts-ignore
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-    // @ts-ignore
-    dataLayer.push(arguments);
-  }
-
-  // @ts-ignore
-  gtag('js', new Date());
-
-  // @ts-ignore
-  gtag('config', 'G-7K5EX1R6FM');
-
-  return gtag;
-};
 
 /**
  * Checks if the user has an admin role.
@@ -374,13 +352,44 @@ const getClassName = (...props: string[]): string => {
   return classes.trim();
 }
 
+const getFeedbackMessage = () => {
+  const messagesCorrect: string[] = [
+    '¡Correcto!',
+    '¡Bien!',
+    '¡Vas bien!',
+    '¡Vas muy bien!',
+    '¡Sigue así!',
+    '¡Perfecto!',
+    '¡Bien hecho!',
+    '¡Te felicito!',
+    '¡Sigue avanzando!',
+    '¡Super bien!',
+    '¡Excelente!'
+  ];
+
+  const messagesWrong: string[] = [
+    '¡Vuelve a intentarlo!',
+    '¡Estuvo cerca! Lo puedes hacer mejor.',
+    '¡Buen intento! ¿Qué tal una vez más?',
+    '¡Bien! ¿Lo intentamos de nuevo?',
+    '¡Intentamos nuevamente!',
+  ];
+
+  const getMessage = (messages: string[]) =>
+    `${messages[Math.floor(Math.random() * messages.length)]}`;
+
+  return {
+    correct: getMessage(messagesCorrect),
+    wrong: getMessage(messagesWrong)
+  };
+};
+
 export {
   send,
   formatPhoneNumber,
   isDev,
   getData,
   isUser,
-  initGoogleAnalytics,
   isAdmin,
   gethPathWordpress,
   isFree,
@@ -391,5 +400,6 @@ export {
   getClassName,
   Storage,
   Cookie,
-  checkPronunciation
+  checkPronunciation,
+  getFeedbackMessage
 };

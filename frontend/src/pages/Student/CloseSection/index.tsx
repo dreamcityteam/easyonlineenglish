@@ -5,7 +5,7 @@ import { getData } from '../../../tools/function';
 import context from '../../../global/state/context';
 
 const CloseSection: React.FC = (): null => {
-  const [{ googleAnalytics }, dispatch] = useContext(context);
+  const [_, dispatch] = useContext(context);
   const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
@@ -21,11 +21,6 @@ const CloseSection: React.FC = (): null => {
         dispatch({ type: SIGN_OUT, payload: data });
         navigate('/');
       }
-    });
-
-    googleAnalytics('event', 'sing_out', {
-      'event_category': 'sing_out',
-      'event_label': 'Cerrar sección'
     });
   }
 

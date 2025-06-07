@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import e, { Response } from 'express';
 import { catchTry, connectToDatabase, getPayment } from '../../../tools/functions';
 import { HTTP_STATUS_CODES, MESSAGE, ROLE } from '../../../tools/consts';
 import { RequestType } from '../../../tools/type';
@@ -26,10 +26,18 @@ const endpoint = async (req: RequestType, res: Response) => {
         .select({ __v: 0, idUser: 0, idCourse: 0 });
 
       const courseWord = await CourseWord
-        .find({ idCourse: idCourse })
+        .find({ idCourse: idCourse, type: 'word' })
         .select({ __v: 0, idCourse: 0 })
         .sort({ _id: 1 })
-        .limit(LIMIT);
+        .limit(LIMIT)
+        .lean();
+
+      const courseExercise = await CourseWord
+        .find({ idCourse: idCourse, type: 'exercise' })
+        .select({ __v: 0, idCourse: 0 })
+        .sort({ _id: 1 })
+        .limit(LIMIT)
+        .lean();
 
       if (!studentCourse) {
         const firstWord: string = String(courseWord[0]._id);
@@ -60,6 +68,7 @@ const endpoint = async (req: RequestType, res: Response) => {
             studentCourseObj.completedWords
           ),
           words: courseWord,
+          exercises: courseExercise,
         };
  
         //@ts-ignore

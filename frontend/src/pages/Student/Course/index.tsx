@@ -14,6 +14,7 @@ import {
   formatWord,
   getClassName,
   getData,
+  getFeedbackMessage,
   isAdmin,
   removeAccents,
   send
@@ -23,7 +24,6 @@ import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
 import pronunciation from './pronunciation.json';
-import { messagesCorrect, messagesWrong } from './data';
 import ModalWrongPronunciation from './ModalWrongPronunciation';
 import ModalCongratulation from './ModalCongratulation';
 import ImageComponent from '../../../components/Image';
@@ -31,6 +31,7 @@ import Head from './Head';
 import ModalRating from './ModalRating';
 import ImageLazy from '../../../components/ImageLazy';
 import Sound from '../../../components/Sound';
+import Exercise from './Exercise';
 
 interface Props {
   isDemo?: boolean;
@@ -38,7 +39,7 @@ interface Props {
 
 const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const { idCourse } = useParams<string>();
-  const [{ courseCache, googleAnalytics, user }, dispatch] = useContext(context);
+  const [{ courseCache, user }, dispatch] = useContext(context);
   const [feedback, setFeedback] = useState({ canShow: false, message: '' });
   const [isPlaySpeech, setPlaySpeech] = useState<boolean>(false);
   const [lessionTitle, setLessionTitle] = useState<string>('');
@@ -79,32 +80,33 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         method: 'get',
         endpoint: isDemo ? 'student-course-demo' : `student-course/${idCourse}`
       },
-      success: ({ words, ...data }): void => {
-        const course = { ...data, lessons: formatLessons(words) };
-        const eventGoogle = isDemo ? 'course-demo' : 'course';
+      success: ({ words, exercises, ...data }): void => {
+        console.log(exercises);
+        const course = { ...data, lessons: formatLessons(words, exercises) };
 
         setCourseData(course);
         saveCourseCacheData(course);
-
-        googleAnalytics('event', eventGoogle, {
-          'event_category': eventGoogle,
-          'event_label': `Curso - ${course.title}`
-        });
       }
     });
   };
 
-  const formatLessons = (words: Word[]): Lesson[] => {
+  const formatLessons = (words: Word[], exercises: Word[]): Lesson[] => {
     type Lessons = { title: string; words: Word[]; };
     const getLessonData = (title: number) => ({ title: `Lección ${title}`, words: [] });
     const lessons: Lessons[] = [getLessonData(1)];
     let currentLesson: Lessons = lessons[0];
+    let exerciseIndex: number = 0;
 
     words.forEach((word: Word, index: number): void => {
       currentLesson.words.push(word);
 
       if ((index + 1) % 25 === 0) {
         const len: number = lessons.length;
+
+        if (exercises[exerciseIndex]) {
+          currentLesson.words.push(exercises[exerciseIndex]);
+          exerciseIndex++;
+        }
 
         lessons.push(getLessonData(len + 1));
         currentLesson = lessons[len];
@@ -208,7 +210,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   }
 
   const canClickOnNextButton = (): boolean =>
-    isSavingProgress || sentence?.isCompleted || isAdmin(user);
+    isSavingProgress || !!sentence?.isCompleted
 
   const canClickOnPrevButton = (): boolean =>
     sentenceIndex > 0;
@@ -244,7 +246,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       } else {
         handleNextWord(word, wordIndex, lessonIndex, true);
       }
-
     }
   };
 
@@ -355,16 +356,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     }
 
     setCountPronunciation(countPronunciation + 1);
-  };
-
-  const getFeedbackMessage = () => {
-    const getMessage = (messages: string[]) =>
-      `${messages[Math.floor(Math.random() * messages.length)]}`;
-
-    return {
-      correct: getMessage(messagesCorrect),
-      wrong: getMessage(messagesWrong)
-    };
   };
 
   const skipWord = (): void => {
@@ -482,21 +473,21 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       return (
         <div onClick={shouldPlaySingleAudio ? () => playAudio(audioUrl) : undefined}>
           <div className="english_word">
-          {
-            splitTexts.map((text: string, index: number): JSX.Element => {
-              let isMismatch: boolean = pronunciations.includes(removeAccents(formatWord(text)));
+            {
+              splitTexts.map((text: string, index: number): JSX.Element => {
+                let isMismatch: boolean = pronunciations.includes(removeAccents(formatWord(text)));
 
-              return (
-                <React.Fragment key={index}>
-                  {WordSplit({
-                    url: audioSplitUrls[index],
-                    text: `${text} `,
-                    isHighlights: !(!feedback.canShow || isCorrectPronuciation) && !isMismatch
-                  })}
-                </React.Fragment>
-              )
-            })
-          }
+                return (
+                  <React.Fragment key={index}>
+                    {WordSplit({
+                      url: audioSplitUrls[index],
+                      text: `${text} `,
+                      isHighlights: !(!feedback.canShow || isCorrectPronuciation) && !isMismatch
+                    })}
+                  </React.Fragment>
+                )
+              })
+            }
           </div>
           {audioSplitUrls.length > 0 && (
             <div className={style.course__audio}>
@@ -526,6 +517,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         title={course?.title || ''}
         description={course?.description || ''}
       />
+
       <section className={style.course}>
         {course && (
           <Aside
@@ -586,76 +578,93 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
               </div>
             )}
           </div>
-          <div className={style.course__content_container}>
-            <div className={style.course__content}>
-              <div className={`${style.course__content_text} klk`}>
-                {AudioWord('englishWord')}
-                {sentence?.audioSplitUrls.length === 0 && (
-                  <span
-                    className={style.course__text_language}
-                  >
-                    Inglés
-                  </span>
-                )}
-              </div>
-              <div className={style.course__feedback}>
-                <ImageLazy
-                  alt={sentence?.englishWord}
-                  className={style.course__image}
-                  src={sentence?.imageUrl}
-                />
-                {feedback.canShow && (
-                  <span
-                    style={{ background: isCorrectPronuciation ? '#4caf50' : '#f44336' }}
-                    className={style.course__message}>
-                    {feedback.message}
-                  </span>
-                )}
-              </div>
-              <div className={style.course__content_text}>
-                <div>
-                  <span className={
-                    getClassName(
-                      style.course__text_grandient,
-                      style.course__textSentence
-                    )
-                  }>
-                    {sentence?.spanishTranslation}
-                  </span>
+
+          {word?.type === 'word' && (
+            <>
+              <div className={style.course__content_container}>
+                <div className={style.course__content}>
+                  <div className={`${style.course__content_text} klk`}>
+                    {AudioWord('englishWord')}
+                    {sentence?.audioSplitUrls.length === 0 && (
+                      <span
+                        className={style.course__text_language}
+                      >
+                        Inglés
+                      </span>
+                    )}
+                  </div>
+                  <div className={style.course__feedback}>
+                    <ImageLazy
+                      alt={sentence?.englishWord}
+                      className={style.course__image}
+                      src={sentence?.imageUrl}
+                    />
+                    {feedback.canShow && (
+                      <span
+                        style={{ background: isCorrectPronuciation ? '#4caf50' : '#f44336' }}
+                        className={style.course__message}>
+                        {feedback.message}
+                      </span>
+                    )}
+                  </div>
+                  <div className={style.course__content_text}>
+                    <div>
+                      <span className={
+                        getClassName(
+                          style.course__text_grandient,
+                          style.course__textSentence
+                        )
+                      }>
+                        {sentence?.spanishTranslation}
+                      </span>
+                    </div>
+                    <span className={style.course__text_language}>
+                      Español
+                    </span>
+                  </div>
                 </div>
-                <span className={style.course__text_language}>
-                  Español
-                </span>
               </div>
-            </div>
-          </div>
-          <div className={style.course__pronunciation}>
-            <div className={style.course__button}>
-              <ImageComponent
-                alt="Icon previous arrow"
-                className={style.course__arrow}
-                onClick={onPrev}
-                path="icons/arrow-left-dDv8ZNZLEXDLXMTIprH2prZLYzGDAJ.png"
-                style={disableButton(canClickOnPrevButton())}
-              />
-              <div className={style.course__speech}>
-                <Speech
-                  audioUrl={sentence?.audioUrl || ''}
-                  canNext={pronunciation}
-                  onCheck={onSpeechFeedback}
-                  onPlaySpeech={onPlaySpeech}
-                  word={sentence?.englishWord || ''}
-                />
+              <div className={style.course__pronunciation}>
+                <div className={style.course__button}>
+                  <ImageComponent
+                    alt="Icon previous arrow"
+                    className={style.course__arrow}
+                    onClick={onPrev}
+                    path="icons/arrow-left-dDv8ZNZLEXDLXMTIprH2prZLYzGDAJ.png"
+                    style={disableButton(canClickOnPrevButton())}
+                  />
+                  <div className={style.course__speech}>
+                    <Speech
+                      audioUrl={sentence?.audioUrl || ''}
+                      canNext={pronunciation}
+                      onCheck={onSpeechFeedback}
+                      onPlaySpeech={onPlaySpeech}
+                      word={sentence?.englishWord || ''}
+                    />
+                  </div>
+                  <ImageComponent
+                    alt="Icon next arrow"
+                    className={style.course__arrow}
+                    onClick={onNext}
+                    path="icons/arrow-right-yDOCuGraKYfcypi4OTVS03VQOIdSzJ.png"
+                    style={disableButton(canClickOnNextButton())}
+                  />
+                </div>
               </div>
-              <ImageComponent
-                alt="Icon next arrow"
-                className={style.course__arrow}
-                onClick={onNext}
-                path="icons/arrow-right-yDOCuGraKYfcypi4OTVS03VQOIdSzJ.png"
-                style={disableButton(canClickOnNextButton())}
-              />
-            </div>
-          </div>
+            </>
+          )}
+          {word?.type === 'exercise' && (
+            <Exercise
+              onPlaySpeech={onPlaySpeech}
+              sentenceIndex={sentenceIndex}
+              feedback={feedback}
+              word={word}
+              onNext={() => {
+                skipWord();
+                onNext();
+              }}
+            />
+          )}
         </div>
         <ModalCongratulation
           isDemo={isDemo}

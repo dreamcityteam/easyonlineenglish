@@ -15,6 +15,7 @@ import CourseWord from '../schemas/courseWord.schema';
 import Library from '../schemas/library.schema';
 import courseWords from './courseWords.json';
 import libraries from './libraries.json';
+import alphabet from './alphabet.json';
 
 const {
   NODE_ENV = '',
@@ -163,6 +164,12 @@ const initialDatabase = async (): Promise<void> => {
       console.log('Libraries inserted successfully');
     }
 
+    const existingAlphabet = await CourseWord.findOne({ englishWord: 'Alphabet' });
+
+    if (!existingAlphabet) {
+      await CourseWord.insertMany(alphabet);
+      console.log('alphabet inserted successfully');
+    }
   } catch (error) {
     console.error('Error:', error);
   }
@@ -378,7 +385,7 @@ const uploadBlodToVercel = async ({
   return url;
 }
 
-const getLink = ({ req, path, token }: { req: RequestType; path: string; token: string; } ): string =>
+const getLink = ({ req, path, token }: { req: RequestType; path: string; token: string; }): string =>
   `${req.protocol}://${req.get('host')}/${path}/${token}`;
 
 export {
