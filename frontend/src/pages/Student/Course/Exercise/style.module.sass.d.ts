@@ -3,21 +3,12 @@
 interface CssExports {
   'alphabet-page': string;
   'beat': string;
-  'blue': string;
-  'blue-border': string;
   'feedback': string;
-  'feedback-message': string;
   'letter': string;
   'letter-animation': string;
   'letter-grid': string;
-  'letter-selected': string;
-  'letter-selected-container': string;
-  'logo': string;
-  'moving': string;
-  'red': string;
-  'red-border': string;
   'song-button': string;
-  'title': string;
+  'text': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

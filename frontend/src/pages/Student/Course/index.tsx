@@ -81,7 +81,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         endpoint: isDemo ? 'student-course-demo' : `student-course/${idCourse}`
       },
       success: ({ words, exercises, ...data }): void => {
-        console.log(exercises);
         const course = { ...data, lessons: formatLessons(words, exercises) };
 
         setCourseData(course);
