@@ -33,7 +33,7 @@ const inputs: Fields = {
 const infos: Info[] = [
   {
     alt: 'Phone',
-    description: '+1 (849) 410-9664',
+    description: '+1 (849) 505-8393',
     path: 'icons/phone-s59rhmvyjSlbehTTOUQwJ6039yBCO0.jpg',
     title: 'Teléfono',
   },
