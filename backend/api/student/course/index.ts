@@ -1,4 +1,4 @@
-import e, { Response } from 'express';
+import { Response } from 'express';
 import { catchTry, connectToDatabase, getPayment } from '../../../tools/functions';
 import { HTTP_STATUS_CODES, MESSAGE, ROLE } from '../../../tools/consts';
 import { RequestType } from '../../../tools/type';
