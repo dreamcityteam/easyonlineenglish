@@ -19,7 +19,7 @@ import {
   removeAccents,
   send
 } from '../../../tools/function';
-import { SET_COURSE_CACHE } from '../../../global/state/actionTypes';
+import { CLEAR_LOAD, SET_COURSE_CACHE, SET_LOAD } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
 import { HTTP_STATUS_CODES } from '../../../tools/constant';
 import { Response } from '../../../tools/type';
@@ -35,7 +35,9 @@ import Exercise from './Exercise';
 
 interface Props {
   isDemo?: boolean;
-}
+};
+
+const loadingSettings = { type: SET_LOAD, payload: { text: 'Cargando curso', canShow: true } };
 
 const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const { idCourse } = useParams<string>();
@@ -63,6 +65,14 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     saveCourseData();
   }, []);
 
+  useEffect(() => {
+    if (courseCache[idCache]) {
+      dispatch({ type: CLEAR_LOAD });
+    } else {
+      dispatch(loadingSettings);
+    }
+  }, [user, courseCache]);
+
   const saveCourseCacheData = (course: TCourse): void =>
     dispatch({ type: SET_COURSE_CACHE, payload: { ...course, idCourse: idCache } });
 
@@ -75,7 +85,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     }
 
     await getData({
-      modal: { dispatch, text: 'Cargando curso' },
+      modal: { dispatch, text: loadingSettings.payload.text },
       service: {
         method: 'get',
         endpoint: isDemo ? 'student-course-demo' : `student-course/${idCourse}`
