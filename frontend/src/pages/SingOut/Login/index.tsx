@@ -9,19 +9,12 @@ import { isAdmin, isFree } from '../../../tools/function';
 import Head from './Head';
 
 const Login: React.FC = (): JSX.Element => {
-  const [{ googleAnalytics }, dispatch] = useContext(context);
+  const [_, dispatch] = useContext(context);
   const navigate: NavigateFunction = useNavigate();
 
   const onData = (user: any): void => {
     const isUserExemptFromPlan: boolean = isAdmin(user) || isFree(user);
     const destinationUrl: string = user.payment.isPayment || isUserExemptFromPlan ? '/courses' : '/plan';
-
-    if (!isUserExemptFromPlan) {
-      googleAnalytics('event', 'login', {
-        'event_category': 'Login',
-        'event_label': 'Iniciar sección'
-      });
-    }
 
     navigate(destinationUrl);
     dispatch({ type: CLEAN_CACHE });

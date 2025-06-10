@@ -5,7 +5,11 @@ import Speech from '../../../../components/Speech';
 import pronunciation from './pronunciation.json';
 import Sound from '../../../../components/Sound';
 
-const AlphabetPage: React.FC = () => {
+interface Prop {
+  hideHeader?: boolean;
+}
+
+const AlphabetPage: React.FC<Prop> = ({ hideHeader = false }) => {
   const refButtonAudio = useRef(null);
   const [displayedLetters, setDisplayedLetters] = useState<{ [key: string]: boolean; }>({});
   const displayedLettersLen: number = useMemo(() => Object.keys(displayedLetters).length, [displayedLetters]);
@@ -102,10 +106,16 @@ const AlphabetPage: React.FC = () => {
   return (
     <div className={`${style['alphabet-page']}`}>
       {/* @ts-ignore */}
-      <div className={style.logo}>
-        <img src="https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/logoo-rm0KVx1dnUqQODjmO2SFdpkpH54uxf.png" />
-      </div>
-      <h2 className={style.title}>Alphabet</h2>
+
+      {!hideHeader && (
+        <header>
+          <div className={style.logo}>
+            <img src="https://abaw33hy9bfvxqdq.public.blob.vercel-storage.com/logoo-rm0KVx1dnUqQODjmO2SFdpkpH54uxf.png" />
+          </div>
+          <h2 className={style.title}>Alphabet</h2>
+        </header>
+      )}
+
       <Sound
         src="https://coachingresourcecenter.com/wp-content/uploads/easyonlineenglish/2024/07/alfabeto.mp3"
         style={{}}

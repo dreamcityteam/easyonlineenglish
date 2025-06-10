@@ -84,6 +84,8 @@ type Word = {
   spanishTranslation: string;
   audioUrl: string;
   sentences: Sentence[];
+  type: 'exercise' | 'word';
+  musicUrl: string;
 }
 
 type Sentence = {
@@ -107,7 +109,6 @@ type State = {
   courseCache: CourseCache;
   coursesCache: CoursesCache;
   libraryCache: any;
-  googleAnalytics: () => void;
 }
 
 type Action =
@@ -116,8 +117,7 @@ type Action =
   | typeof SET_LOAD
   | typeof CLEAN_CACHE
   | typeof SET_COURSES_CACHE
-  | typeof SET_COURSE_CACHE
-  | typeof SET_GOOGLE_ANALITICS;
+  | typeof SET_COURSE_CACHE;
 
 type Option = {
   payload?: any;

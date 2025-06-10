@@ -1,0 +1,80 @@
+@import '../../../../../public/mixin/index.module'
+@import '../../../../../public/mixin/vars.module'
+
+.alphabet-page
+  align-items: center
+  background-color: #fff
+  display: flex
+  flex-direction: column
+  font-family: Arial, sans-serif
+  min-height: 100vh
+  width: 100%
+
+  .song-button
+    cursor: pointer
+    width: 40px
+
+  .letter-grid
+    display: grid
+    gap: 1rem
+    grid-template-columns: repeat(9, 3rem)
+
+  .letter
+    -webkit-background-clip: text
+    align-items: center
+    background-clip: text
+    background-image: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
+    border-radius: 0.4rem
+    border: 1.5px solid #066fac
+    color: transparent
+    cursor: pointer
+    display: flex
+    font-size: 1.8rem
+    font-weight: bold
+    height: 3rem
+    justify-content: center
+    margin: 0
+    padding: 0
+    position: relative
+    text-transform: capitalize
+    width: 3rem
+
+    &.letter-animation
+      color: white
+      background: linear-gradient(rgb(45, 200, 254) 0%, rgb(14, 163, 227) 39.5987%, rgb(4, 108, 169) 70.8026%, rgb(4, 62, 110) 100%)
+
+  .text 
+    color: transparent
+    background-clip: text
+    @include background-gradient()
+
+  .beat
+    animation: beat 1s infinite
+
+  div.letter-animation
+    color: white !important
+    transition: all 1s easy
+
+  .feedback
+    border-radius: 5px
+    color: white
+    font-size: 12px
+    margin-bottom: 30px
+    padding: 10px
+
+  @media only screen and (max-width: 400px)
+    .letter-grid
+      grid-template-columns: repeat(5, 3rem)
+
+  @media only screen and (min-width: 1100px)
+    zoom: 1.5
+
+@keyframes beat
+  0%, 100%
+    transform: scale(1)
+
+  25%
+    transform: scale(1.2)
+
+  50%
+    transform: scale(1)

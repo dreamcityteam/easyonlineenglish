@@ -16,7 +16,7 @@ import alphabet from './Alphabet.json';
 import tips from './basicExpresion.json';
 import Image from '../../../components/Image';
 import Aside from '../../../components/Aside';
-import AlphabetPage from './AlphabetPage/indext';
+import AlphabetPage from './Alphabet/indext';
 
 const Library: React.FC = (): JSX.Element => {
   const [data, setData] = useState<LibraryCache>([]);

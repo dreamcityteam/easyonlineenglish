@@ -9,7 +9,6 @@ import {
   CLEAN_CACHE,
   SET_LIBRARY,
   SET_TUTORIAL,
-  SET_GOOGLE_ANALITICS,
   DELETE_ACCOUNT,
   UPDATE_STUDENT_PHOTO,
   UPDATE_STUDENT_TERMS
@@ -97,11 +96,6 @@ const reducer = (state: State, { payload, type }: Option): State => ({
   [SET_LIBRARY]: ({ library = [] }: any): State => ({
     ...state,
     libraryCache: library,
-  }),
-
-  [SET_GOOGLE_ANALITICS]: ({ value = [] }: any): State => ({
-    ...state,
-    googleAnalytics: value,
   }),
 
   [DELETE_ACCOUNT]: (): State => ({

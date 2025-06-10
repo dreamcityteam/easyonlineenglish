@@ -6,7 +6,6 @@ const initialState: State = {
   courseCache: {},
   coursesCache: {},
   libraryCache: [],
-  googleAnalytics: () => {},
 }
 
 export default initialState;

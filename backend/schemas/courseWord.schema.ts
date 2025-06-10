@@ -11,7 +11,7 @@ const sentenceSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    required: true
+    default: ''
   },
   audioUrl: {
     type: String,
@@ -19,12 +19,21 @@ const sentenceSchema = new Schema({
   },
   audioSlowUrl: {
     type: String,
-    required: true
+    default: ''
   },
   audioSplitUrls: [String],
 });
 
 const courseWordSchema = new Schema({
+  type: {
+    type: String,
+    enum: ['word', 'exercise'],
+    default: 'word',
+  },
+  musicUrl: {
+    type: String,
+    default: ''
+  },
   englishWord: {
     type: String,
     required: true
