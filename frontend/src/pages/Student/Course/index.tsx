@@ -219,7 +219,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   }
 
   const canClickOnNextButton = (): boolean =>
-    isSavingProgress || !!sentence?.isCompleted
+    isSavingProgress || !!sentence?.isCompleted || isAdmin(user);
 
   const canClickOnPrevButton = (): boolean =>
     sentenceIndex > 0;
