@@ -101,28 +101,49 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
   const formatLessons = (words: Word[], exercises: Word[]): Lesson[] => {
     type Lessons = { title: string; words: Word[]; };
-    const getLessonData = (title: number) => ({ title: `Lección ${title}`, words: [] });
-    const lessons: Lessons[] = [getLessonData(1)];
-    let currentLesson: Lessons = lessons[0];
-    let exerciseIndex: number = 0;
+    const getLessonData = (title: number): Lessons => ({ title: `Lección ${title}`, words: [] as Word[] });
 
-    words.forEach((word: Word, index: number): void => {
-      currentLesson.words.push(word);
+    // Agrupar palabras por su "memoria" (lessonNumber)
+    const lessonsMap: Map<number, Word[]> = new Map();
 
-      if ((index + 1) % 25 === 0) {
-        const len: number = lessons.length;
+    words.forEach((word: Word) => {
+      // Cada palabra "recuerda" a qué lección pertenece
+      const lessonNum = (word as any).lessonNumber || 1;
 
-        if (exercises[exerciseIndex]) {
-          currentLesson.words.push(exercises[exerciseIndex]);
-          exerciseIndex++;
-        }
-
-        lessons.push(getLessonData(len + 1));
-        currentLesson = lessons[len];
+      if (!lessonsMap.has(lessonNum)) {
+        lessonsMap.set(lessonNum, [] as Word[]);
       }
+
+      const lessonWords = lessonsMap.get(lessonNum)!;
+      lessonWords.push(word);
     });
 
-    if (currentLesson.words.length === 0) lessons.pop();
+    // Convertir a array de lecciones ordenadas
+    const lessons: Lessons[] = [];
+    const sortedLessonNumbers = Array.from(lessonsMap.keys()).sort((a, b) => a - b);
+    let exerciseIndex = 0;
+
+    sortedLessonNumbers.forEach((lessonNumber) => {
+      const lessonWords: Word[] = lessonsMap.get(lessonNumber) || [];
+
+      // Dentro de cada lección, ordenar por la "posición recordada" (orderInLesson)
+      lessonWords.sort((a, b) => {
+        const orderA = (a as any).orderInLesson || 0;
+        const orderB = (b as any).orderInLesson || 0;
+        return orderA - orderB;
+      });
+
+      const lesson = getLessonData(lessonNumber);
+      lesson.words = [...lessonWords];
+
+      // Agregar ejercicio al final de la lección si está disponible
+      if (exercises[exerciseIndex]) {
+        lesson.words.push(exercises[exerciseIndex]);
+        exerciseIndex++;
+      }
+
+      lessons.push(lesson);
+    });
 
     return lessons;
   };

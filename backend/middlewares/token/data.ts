@@ -32,7 +32,8 @@ const tokenFromCookieEndpoints: string[] = [
   ENDPOINT.STUDENT_DELETE_ACCOUNT,
   ENDPOINT.STUDENT_RATING,
   ENDPOINT.SEARCH_WORD,
-  ENDPOINT.UPDATE_WORD
+  ENDPOINT.UPDATE_WORD,
+  ENDPOINT.ADMIN_UPDATE_LESSON_ORDER
 ];
 
 const removeTokenAndAvoidEndpoint: string[] = [

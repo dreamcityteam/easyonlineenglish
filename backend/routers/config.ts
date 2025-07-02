@@ -29,6 +29,7 @@ import paypalCreateOrder from '../api/student/payment/paypal/createOrder';
 import paypalCompletedOrder from '../api/student/payment/paypal/completedOrder';
 import searchWord from '../api/admin/searchWord';
 import saveWord from '../api/admin/saveWord';
+import updateLessonOrder from '../api/admin/updateLessonOrder';
 
 const config: Router[] = [
   {
@@ -176,21 +177,12 @@ const config: Router[] = [
     method: 'put',
     func: saveWord,
   },
-  // {
-  //   path: ENDPOINT.AZUL_PAYMENT,
-  //   method: 'post',
-  //   func: azulPayment,
-  // },
-  // {
-  //   path: ENDPOINT.STUDENT_DELETE_ACCOUNT,
-  //   method: 'patch',
-  //   func: studentDeleteAccount,
-  // },
-  // {
-  //   path: ENDPOINT.UPLOAD_FILE,
-  //   method: 'post',
-  //   func: uploadFile
-  // },
+  {
+    path: ENDPOINT.ADMIN_UPDATE_LESSON_ORDER,
+    method: 'put',
+    func: updateLessonOrder,
+  },
+  
 ];
 
 export default config;

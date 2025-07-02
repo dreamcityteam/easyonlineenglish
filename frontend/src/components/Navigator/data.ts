@@ -33,6 +33,7 @@ const admin: Tab[] = [
   // { path: '/upload', value: 'upload' },
   { path: '/library', value: 'Librería' },
   { path: '/edit-words', value: 'Edición de palabras' },
+  { path: '/lesson-management', value: 'Gestión de lecciones' },
   { path: '/close', value: 'Cerrar sesión' },
 ];
 

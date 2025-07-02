@@ -24,6 +24,7 @@ const ENDPOINT: ObjectValueString = {
   LOGIN: 'login',
   SEARCH_WORD: 'search-word',
   UPDATE_WORD: 'update-word',
+  ADMIN_UPDATE_LESSON_ORDER: 'admin-update-lesson-order',
   CONTANCT: 'contanct',
   STUDENT_COURSE: 'student-course/:courseId',
   STUDENT_COURSES: 'courses',
