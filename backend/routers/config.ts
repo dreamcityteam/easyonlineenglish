@@ -29,6 +29,7 @@ import paypalCreateOrder from '../api/student/payment/paypal/createOrder';
 import paypalCompletedOrder from '../api/student/payment/paypal/completedOrder';
 import searchWord from '../api/admin/searchWord';
 import saveWord from '../api/admin/saveWord';
+import updateLessonOrder from '../api/admin/updateLessonOrder';
 
 const config: Router[] = [
   {
@@ -175,6 +176,11 @@ const config: Router[] = [
     path: ENDPOINT.UPDATE_WORD,
     method: 'put',
     func: saveWord,
+  },
+  {
+    path: ENDPOINT.ADMIN_UPDATE_LESSON_ORDER,
+    method: 'put',
+    func: updateLessonOrder,
   },
   // {
   //   path: ENDPOINT.AZUL_PAYMENT,

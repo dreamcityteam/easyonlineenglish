@@ -50,6 +50,26 @@ const courseWordSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Course',
     required: true
+  },
+  lessonNumber: {
+    type: Number,
+    default: 1
+  },
+  orderInLesson: {
+    type: Number,
+    default: 0
+  },
+  globalOrder: {
+    type: Number,
+    default: 0
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
 });
 

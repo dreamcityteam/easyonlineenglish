@@ -28,14 +28,14 @@ const endpoint = async (req: RequestType, res: Response) => {
       const courseWord = await CourseWord
         .find({ idCourse: idCourse, type: 'word' })
         .select({ __v: 0, idCourse: 0 })
-        .sort({ _id: 1 })
+        .sort({ globalOrder: 1, _id: 1 })
         .limit(LIMIT)
         .lean();
 
       const courseExercise = await CourseWord
         .find({ idCourse: idCourse, type: 'exercise' })
         .select({ __v: 0, idCourse: 0 })
-        .sort({ _id: 1 })
+        .sort({ globalOrder: 1, _id: 1 })
         .limit(LIMIT)
         .lean();
 
