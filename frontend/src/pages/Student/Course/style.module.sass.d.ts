@@ -27,6 +27,7 @@ interface CssExports {
   'course__text_grandient': string;
   'course__text_language': string;
   'course__text_lession': string;
+  'modalFadeIn': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

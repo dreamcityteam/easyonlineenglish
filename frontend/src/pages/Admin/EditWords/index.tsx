@@ -89,7 +89,19 @@ const EditWords = (): JSX.Element => {
           audioSlowUrl: '',
           audioSplitUrls: []
         }
-      ]
+      ],
+      expandedExplanation: {
+        description: '',
+        usageNotes: [''],
+        additionalExamples: [
+          {
+            english: '',
+            spanish: '',
+            context: ''
+          }
+        ],
+        isActive: false
+      }
     };
   };
 
@@ -127,6 +139,79 @@ const EditWords = (): JSX.Element => {
     setNewWord({
       ...newWord,
       sentences: updatedSentences
+    });
+  };
+
+  const addUsageNote = () => {
+    setNewWord({
+      ...newWord,
+      expandedExplanation: {
+        ...newWord.expandedExplanation,
+        usageNotes: [...newWord.expandedExplanation.usageNotes, '']
+      }
+    });
+  };
+
+  const removeUsageNote = (index: number) => {
+    if (newWord.expandedExplanation.usageNotes.length > 1) {
+      const updatedNotes = newWord.expandedExplanation.usageNotes.filter((_: any, i: number) => i !== index);
+      setNewWord({
+        ...newWord,
+        expandedExplanation: {
+          ...newWord.expandedExplanation,
+          usageNotes: updatedNotes
+        }
+      });
+    }
+  };
+
+  const updateUsageNote = (index: number, value: string) => {
+    const updatedNotes = [...newWord.expandedExplanation.usageNotes];
+    updatedNotes[index] = value;
+    setNewWord({
+      ...newWord,
+      expandedExplanation: {
+        ...newWord.expandedExplanation,
+        usageNotes: updatedNotes
+      }
+    });
+  };
+
+  const addExample = () => {
+    setNewWord({
+      ...newWord,
+      expandedExplanation: {
+        ...newWord.expandedExplanation,
+        additionalExamples: [...newWord.expandedExplanation.additionalExamples, { english: '', spanish: '', context: '' }]
+      }
+    });
+  };
+
+  const removeExample = (index: number) => {
+    if (newWord.expandedExplanation.additionalExamples.length > 1) {
+      const updatedExamples = newWord.expandedExplanation.additionalExamples.filter((_: any, i: number) => i !== index);
+      setNewWord({
+        ...newWord,
+        expandedExplanation: {
+          ...newWord.expandedExplanation,
+          additionalExamples: updatedExamples
+        }
+      });
+    }
+  };
+
+  const updateExample = (index: number, field: string, value: string) => {
+    const updatedExamples = [...newWord.expandedExplanation.additionalExamples];
+    updatedExamples[index] = {
+      ...updatedExamples[index],
+      [field]: value
+    };
+    setNewWord({
+      ...newWord,
+      expandedExplanation: {
+        ...newWord.expandedExplanation,
+        additionalExamples: updatedExamples
+      }
     });
   };
 
@@ -201,6 +286,118 @@ const EditWords = (): JSX.Element => {
       }
 
       return { ...prev, [key]: value };
+    });
+  };
+
+  // Funciones para manejar explicación expandible en edición
+  const initializeExpandedExplanation = () => {
+    if (!wordToEdit.expandedExplanation) {
+      setWordToEdit({
+        ...wordToEdit,
+        expandedExplanation: {
+          description: '',
+          usageNotes: [''],
+          additionalExamples: [
+            {
+              english: '',
+              spanish: '',
+              context: ''
+            }
+          ],
+          isActive: false
+        }
+      });
+    }
+  };
+
+  const updateExpandedExplanationField = (field: string, value: any) => {
+    if (!wordToEdit.expandedExplanation) {
+      initializeExpandedExplanation();
+      return;
+    }
+    setWordToEdit({
+      ...wordToEdit,
+      expandedExplanation: {
+        ...wordToEdit.expandedExplanation,
+        [field]: value
+      }
+    });
+  };
+
+  const addUsageNoteToEdit = () => {
+    const currentNotes = wordToEdit.expandedExplanation?.usageNotes || [''];
+    setWordToEdit({
+      ...wordToEdit,
+      expandedExplanation: {
+        ...wordToEdit.expandedExplanation,
+        usageNotes: [...currentNotes, '']
+      }
+    });
+  };
+
+  const removeUsageNoteFromEdit = (index: number) => {
+    if (wordToEdit.expandedExplanation && wordToEdit.expandedExplanation.usageNotes.length > 1) {
+      const updatedNotes = wordToEdit.expandedExplanation.usageNotes.filter((_: any, i: number) => i !== index);
+      setWordToEdit({
+        ...wordToEdit,
+        expandedExplanation: {
+          ...wordToEdit.expandedExplanation,
+          usageNotes: updatedNotes
+        }
+      });
+    }
+  };
+
+  const updateUsageNoteInEdit = (index: number, value: string) => {
+    const currentNotes = wordToEdit.expandedExplanation?.usageNotes || [''];
+    const updatedNotes = [...currentNotes];
+    updatedNotes[index] = value;
+    setWordToEdit({
+      ...wordToEdit,
+      expandedExplanation: {
+        ...wordToEdit.expandedExplanation,
+        usageNotes: updatedNotes
+      }
+    });
+  };
+
+  const addExampleToEdit = () => {
+    const currentExamples = wordToEdit.expandedExplanation?.additionalExamples || [];
+    setWordToEdit({
+      ...wordToEdit,
+      expandedExplanation: {
+        ...wordToEdit.expandedExplanation,
+        additionalExamples: [...currentExamples, { english: '', spanish: '', context: '' }]
+      }
+    });
+  };
+
+  const removeExampleFromEdit = (index: number) => {
+    if (wordToEdit.expandedExplanation && wordToEdit.expandedExplanation.additionalExamples.length > 1) {
+      const updatedExamples = wordToEdit.expandedExplanation.additionalExamples.filter((_: any, i: number) => i !== index);
+      setWordToEdit({
+        ...wordToEdit,
+        expandedExplanation: {
+          ...wordToEdit.expandedExplanation,
+          additionalExamples: updatedExamples
+        }
+      });
+    }
+  };
+
+  const updateExampleInEdit = (index: number, field: string, value: string) => {
+    const currentExamples = wordToEdit.expandedExplanation?.additionalExamples || [];
+    const updatedExamples = [...currentExamples];
+    updatedExamples[index] = {
+      ...updatedExamples[index],
+      [field]: value
+    };
+    setWordToEdit({
+      ...wordToEdit,
+      expandedExplanation: {
+        ...wordToEdit.expandedExplanation,
+        additionalExamples: updatedExamples
+      }
     });
   };
 
@@ -378,6 +575,129 @@ const EditWords = (): JSX.Element => {
             + Agregar Otra Oración
           </button>
 
+          {/* Sección de Explicación Expandible */}
+          <div style={{ border: '2px solid #3498db', padding: '20px', marginBottom: '20px', borderRadius: '10px', backgroundColor: '#f8f9fa' }}>
+            <h3 style={{ color: '#3498db', marginBottom: '15px' }}>✨ Explicación Expandible (Opcional)</h3>
+
+            <div className={style['input-group']}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={newWord?.expandedExplanation?.isActive || false}
+                  onChange={(e) => setNewWord({
+                    ...newWord,
+                    expandedExplanation: {
+                      ...newWord.expandedExplanation,
+                      isActive: e.target.checked
+                    }
+                  })}
+                  style={{ marginRight: '8px' }}
+                />
+                Activar explicación expandible para esta palabra
+              </label>
+            </div>
+
+            {newWord?.expandedExplanation?.isActive && (
+              <>
+                <div className={style['input-group']}>
+                  <label>Descripción:</label>
+                  <textarea
+                    value={newWord.expandedExplanation.description || ''}
+                    onChange={(e) => setNewWord({
+                      ...newWord,
+                      expandedExplanation: {
+                        ...newWord.expandedExplanation,
+                        description: e.target.value
+                      }
+                    })}
+                    placeholder="Ej: 'Hello' es el saludo más común en inglés. Se usa en cualquier momento del día..."
+                    rows={3}
+                    style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+                  />
+                </div>
+
+                <div className={style['input-group']}>
+                  <label>Notas de Uso:</label>
+                  {newWord.expandedExplanation.usageNotes?.map((note: string, index: number) => (
+                    <div key={index} style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
+                      <input
+                        type="text"
+                        value={note}
+                        onChange={(e) => updateUsageNote(index, e.target.value)}
+                        placeholder="Ej: Se puede usar con extraños"
+                        style={{ flex: 1, padding: '8px' }}
+                      />
+                      {newWord.expandedExplanation.usageNotes.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeUsageNote(index)}
+                          style={{ backgroundColor: '#e74c3c', color: 'white', border: 'none', padding: '8px', borderRadius: '3px' }}
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={addUsageNote}
+                    style={{ backgroundColor: '#3498db', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', fontSize: '12px' }}
+                  >
+                    + Agregar Nota
+                  </button>
+                </div>
+
+                <div className={style['input-group']}>
+                  <label>Ejemplos Adicionales:</label>
+                  {newWord.expandedExplanation.additionalExamples?.map((example: any, index: number) => (
+                    <div key={index} style={{ border: '1px solid #ddd', padding: '10px', marginBottom: '10px', borderRadius: '5px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                        <h5>Ejemplo {index + 1}</h5>
+                        {newWord.expandedExplanation.additionalExamples.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => removeExample(index)}
+                            style={{ backgroundColor: '#e74c3c', color: 'white', border: 'none', padding: '5px 8px', borderRadius: '3px', fontSize: '12px' }}
+                          >
+                            Eliminar
+                          </button>
+                        )}
+                      </div>
+                      <input
+                        type="text"
+                        value={example.english}
+                        onChange={(e) => updateExample(index, 'english', e.target.value)}
+                        placeholder="Ejemplo en inglés: Hello there!"
+                        style={{ width: '100%', padding: '6px', marginBottom: '5px' }}
+                      />
+                      <input
+                        type="text"
+                        value={example.spanish}
+                        onChange={(e) => updateExample(index, 'spanish', e.target.value)}
+                        placeholder="Traducción: ¡Hola!"
+                        style={{ width: '100%', padding: '6px', marginBottom: '5px' }}
+                      />
+                      <input
+                        type="text"
+                        value={example.context}
+                        onChange={(e) => updateExample(index, 'context', e.target.value)}
+                        placeholder="Contexto (opcional): Saludo casual entre amigos"
+                        style={{ width: '100%', padding: '6px' }}
+                      />
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={addExample}
+                    style={{ backgroundColor: '#3498db', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', fontSize: '12px' }}
+                  >
+                    + Agregar Ejemplo
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+
           <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
             <button
               type="button"
@@ -441,6 +761,122 @@ const EditWords = (): JSX.Element => {
               })}
             </div>
           ))}
+
+          {/* Sección de Explicación Expandible para Edición */}
+          <div style={{ border: '2px solid #e67e22', padding: '20px', marginBottom: '20px', borderRadius: '10px', backgroundColor: '#fdf2e9' }}>
+            <h3 style={{ color: '#e67e22', marginBottom: '15px' }}>✨ Explicación Expandible (Opcional)</h3>
+
+            <div className={style['input-group']}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={wordToEdit?.expandedExplanation?.isActive || false}
+                  onChange={(e) => {
+                    if (!wordToEdit.expandedExplanation) {
+                      initializeExpandedExplanation();
+                    }
+                    updateExpandedExplanationField('isActive', e.target.checked);
+                  }}
+                  style={{ marginRight: '8px' }}
+                />
+                Activar explicación expandible para esta palabra
+              </label>
+            </div>
+
+            {wordToEdit?.expandedExplanation?.isActive && (
+              <>
+                <div className={style['input-group']}>
+                  <label>Descripción:</label>
+                  <textarea
+                    value={wordToEdit.expandedExplanation?.description || ''}
+                    onChange={(e) => updateExpandedExplanationField('description', e.target.value)}
+                    placeholder="Ej: 'Hello' es el saludo más común en inglés. Se usa en cualquier momento del día..."
+                    rows={3}
+                    style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+                  />
+                </div>
+
+                <div className={style['input-group']}>
+                  <label>Notas de Uso:</label>
+                  {(wordToEdit.expandedExplanation?.usageNotes || ['']).map((note: string, index: number) => (
+                    <div key={index} style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
+                      <input
+                        type="text"
+                        value={note}
+                        onChange={(e) => updateUsageNoteInEdit(index, e.target.value)}
+                        placeholder="Ej: Se puede usar con extraños"
+                        style={{ flex: 1, padding: '8px' }}
+                      />
+                      {(wordToEdit.expandedExplanation?.usageNotes || ['']).length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeUsageNoteFromEdit(index)}
+                          style={{ backgroundColor: '#e74c3c', color: 'white', border: 'none', padding: '8px', borderRadius: '3px' }}
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={addUsageNoteToEdit}
+                    style={{ backgroundColor: '#e67e22', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', fontSize: '12px' }}
+                  >
+                    + Agregar Nota
+                  </button>
+                </div>
+
+                <div className={style['input-group']}>
+                  <label>Ejemplos Adicionales:</label>
+                  {(wordToEdit.expandedExplanation?.additionalExamples || []).map((example: any, index: number) => (
+                    <div key={index} style={{ border: '1px solid #ddd', padding: '10px', marginBottom: '10px', borderRadius: '5px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                        <h5>Ejemplo {index + 1}</h5>
+                        {(wordToEdit.expandedExplanation?.additionalExamples || []).length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => removeExampleFromEdit(index)}
+                            style={{ backgroundColor: '#e74c3c', color: 'white', border: 'none', padding: '5px 8px', borderRadius: '3px', fontSize: '12px' }}
+                          >
+                            Eliminar
+                          </button>
+                        )}
+                      </div>
+                      <input
+                        type="text"
+                        value={example?.english || ''}
+                        onChange={(e) => updateExampleInEdit(index, 'english', e.target.value)}
+                        placeholder="Ejemplo en inglés: Hello there!"
+                        style={{ width: '100%', padding: '6px', marginBottom: '5px' }}
+                      />
+                      <input
+                        type="text"
+                        value={example?.spanish || ''}
+                        onChange={(e) => updateExampleInEdit(index, 'spanish', e.target.value)}
+                        placeholder="Traducción: ¡Hola!"
+                        style={{ width: '100%', padding: '6px', marginBottom: '5px' }}
+                      />
+                      <input
+                        type="text"
+                        value={example?.context || ''}
+                        onChange={(e) => updateExampleInEdit(index, 'context', e.target.value)}
+                        placeholder="Contexto (opcional): Saludo casual entre amigos"
+                        style={{ width: '100%', padding: '6px' }}
+                      />
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={addExampleToEdit}
+                    style={{ backgroundColor: '#e67e22', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', fontSize: '12px' }}
+                  >
+                    + Agregar Ejemplo
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
 
           <button
             type="button"

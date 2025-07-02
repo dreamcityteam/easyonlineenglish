@@ -86,6 +86,16 @@ type Word = {
   sentences: Sentence[];
   type: 'exercise' | 'word';
   musicUrl: string;
+  expandedExplanation?: {
+    description: string;
+    usageNotes: string[];
+    additionalExamples: {
+      english: string;
+      spanish: string;
+      context: string;
+    }[];
+    isActive: boolean;
+  };
 }
 
 type Sentence = {

@@ -18,6 +18,16 @@ interface CreateWordRequest {
     audioSplitUrls?: string[];
   }[];
   courseId: string;
+  expandedExplanation?: {
+    description?: string;
+    usageNotes?: string[];
+    additionalExamples?: {
+      english: string;
+      spanish: string;
+      context?: string;
+    }[];
+    isActive?: boolean;
+  };
 }
 
 const endpoint = async (req: RequestType, res: Response) => {
@@ -27,7 +37,7 @@ const endpoint = async (req: RequestType, res: Response) => {
     endpoint: async (response) => {
       await connectToDatabase();
 
-      const { englishWord, spanishTranslation, audioUrl, sentences, courseId }: CreateWordRequest = req.body;
+      const { englishWord, spanishTranslation, audioUrl, sentences, courseId, expandedExplanation }: CreateWordRequest = req.body;
 
       // Validate required fields
       if (!englishWord || !spanishTranslation || !courseId) {
@@ -97,6 +107,14 @@ const endpoint = async (req: RequestType, res: Response) => {
             audioSlowUrl: sentence.audioSlowUrl || '',
             audioSplitUrls: sentence.audioSplitUrls || []
           })),
+          ...(expandedExplanation && {
+            expandedExplanation: {
+              description: expandedExplanation.description || '',
+              usageNotes: expandedExplanation.usageNotes || [],
+              additionalExamples: expandedExplanation.additionalExamples || [],
+              isActive: expandedExplanation.isActive || false
+            }
+          }),
           idCourse: courseId,
           lessonNumber,
           orderInLesson,
