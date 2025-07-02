@@ -182,21 +182,7 @@ const config: Router[] = [
     method: 'put',
     func: updateLessonOrder,
   },
-  // {
-  //   path: ENDPOINT.AZUL_PAYMENT,
-  //   method: 'post',
-  //   func: azulPayment,
-  // },
-  // {
-  //   path: ENDPOINT.STUDENT_DELETE_ACCOUNT,
-  //   method: 'patch',
-  //   func: studentDeleteAccount,
-  // },
-  // {
-  //   path: ENDPOINT.UPLOAD_FILE,
-  //   method: 'post',
-  //   func: uploadFile
-  // },
+  
 ];
 
 export default config;
