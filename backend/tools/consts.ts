@@ -8,10 +8,12 @@ const ROLE: Roles = {
 
 const HTTP_STATUS_CODES: HttpStatusCodes = {
   OK: 200,
+  CREATED: 201,
   INTERNAL_SERVER_ERROR: 500,
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   NOT_FOUND: 404,
+  CONFLICT: 409,
   TEMPORARY_REDIRECT: 307,
 };
 
@@ -24,6 +26,7 @@ const ENDPOINT: ObjectValueString = {
   LOGIN: 'login',
   SEARCH_WORD: 'search-word',
   UPDATE_WORD: 'update-word',
+  CREATE_WORD: 'create-word',
   ADMIN_UPDATE_LESSON_ORDER: 'admin-update-lesson-order',
   CONTANCT: 'contanct',
   STUDENT_COURSE: 'student-course/:courseId',

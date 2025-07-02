@@ -16,10 +16,12 @@ type ObjectValuValidator = {
 
 type HttpStatusCodes = {
   OK: 200;
+  CREATED: 201;
   INTERNAL_SERVER_ERROR: 500;
   BAD_REQUEST: 400;
   UNAUTHORIZED: 401;
   NOT_FOUND: 404;
+  CONFLICT: 409;
   TEMPORARY_REDIRECT: 307;
 };
 
@@ -56,10 +58,12 @@ type ResponseSend = {
   res: Response;
   statusCode?: (
     typeof HTTP_STATUS_CODES.OK |
+    typeof HTTP_STATUS_CODES.CREATED |
     typeof HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR |
     typeof HTTP_STATUS_CODES.BAD_REQUEST |
     typeof HTTP_STATUS_CODES.UNAUTHORIZED |
     typeof HTTP_STATUS_CODES.NOT_FOUND |
+    typeof HTTP_STATUS_CODES.CONFLICT |
     typeof HTTP_STATUS_CODES.TEMPORARY_REDIRECT
   );
   data?: any;
