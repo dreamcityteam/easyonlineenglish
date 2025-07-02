@@ -39,7 +39,7 @@ const endpoint = async (req: RequestType, res: Response) => {
 
       const { englishWord, spanishTranslation, audioUrl, sentences, courseId, expandedExplanation }: CreateWordRequest = req.body;
 
-      // Validate required fields
+      // Validar campos requeridos
       if (!englishWord || !spanishTranslation || !courseId) {
         response.statusCode = HTTP_STATUS_CODES.BAD_REQUEST;
         response.message = 'englishWord, spanishTranslation, and courseId are required.';
@@ -52,7 +52,7 @@ const endpoint = async (req: RequestType, res: Response) => {
         return;
       }
 
-      // Validate course exists
+      // Validar que el curso exista
       const course = await Course.findById(courseId);
       if (!course) {
         response.statusCode = HTTP_STATUS_CODES.NOT_FOUND;
@@ -60,38 +60,32 @@ const endpoint = async (req: RequestType, res: Response) => {
         return;
       }
 
-      // Check if word already exists in this course
+      // Revisar si ya existe la palabra en este curso
       const existingWord = await CourseWord.findOne({ 
         englishWord: englishWord.trim(),
         idCourse: courseId,
         type: 'word'
       });
-
       if (existingWord) {
         response.statusCode = HTTP_STATUS_CODES.CONFLICT;
         response.message = `Word "${englishWord}" already exists in this course.`;
         return;
       }
 
-      try {
-        // Calculate automatic lesson assignment
-        const totalWords = await CourseWord.countDocuments({ 
-          idCourse: courseId, 
-          type: 'word' 
-        });
+      // Calcular lesson/orden
+      const totalWords = await CourseWord.countDocuments({ idCourse: courseId, type: 'word' });
+      const globalOrder = totalWords;
+      const lessonNumber = Math.floor(totalWords / 25) + 1;
+      const orderInLesson = totalWords % 25;
 
-        const globalOrder = totalWords;
-        const lessonNumber = Math.floor(totalWords / 25) + 1;
-        const orderInLesson = totalWords % 25;
-
-        // Validate sentences
-        for (const sentence of sentences) {
-          if (!sentence.englishWord || !sentence.spanishTranslation || !sentence.audioUrl) {
-            response.statusCode = HTTP_STATUS_CODES.BAD_REQUEST;
-            response.message = 'Each sentence must have englishWord, spanishTranslation, and audioUrl.';
-            return;
-          }
+      // Validar cada sentence
+      for (const sentence of sentences) {
+        if (!sentence.englishWord || !sentence.spanishTranslation || !sentence.audioUrl) {
+          response.statusCode = HTTP_STATUS_CODES.BAD_REQUEST;
+          response.message = 'Each sentence must have englishWord, spanishTranslation, and audioUrl.';
+          return;
         }
+      }
 
         // Create new word
         const newWord = new CourseWord({
@@ -135,24 +129,13 @@ const endpoint = async (req: RequestType, res: Response) => {
           timestamp: new Date().toISOString()
         });
 
-        response.statusCode = HTTP_STATUS_CODES.CREATED;
-        response.message = 'Word created successfully';
-        response.data = {
-          _id: savedWord._id,
-          englishWord: savedWord.englishWord,
-          spanishTranslation: savedWord.spanishTranslation,
-          lessonNumber: savedWord.lessonNumber,
-          orderInLesson: savedWord.orderInLesson,
-          globalOrder: savedWord.globalOrder,
-          sentencesCount: savedWord.sentences.length,
-          message: `Word "${savedWord.englishWord}" created and assigned to Lesson ${savedWord.lessonNumber}`
-        };
 
-      } catch (error: any) {
-        console.error('Error creating word:', error);
-        response.statusCode = HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR;
-        response.message = 'Database error while creating word.';
-      }
+      const savedWord = await newWord.save();
+
+      // Respuesta simplificada según recomendación
+      response.statusCode = HTTP_STATUS_CODES.CREATED;
+      response.message = 'Word created successfully';
+      response.data = savedWord;
     },
   });
 };

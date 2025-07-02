@@ -21,19 +21,13 @@ const EditWords = (): JSX.Element => {
   }, []);
 
   const loadCourses = async (): Promise<void> => {
-    try {
-      const { response: { data, statusCode } } = await send({ api: 'courses' }).get();
+    const { response: { data, statusCode } } = await send({ api: 'courses' }).get();
 
-      if (statusCode === HTTP_STATUS_CODES.OK && data) {
-        setCourses(data);
-        // Set first course as default if available
-        if (data.length > 0) {
-          setSelectedCourseId(data[0]._id);
-        }
+    if (statusCode === HTTP_STATUS_CODES.OK && data) {
+      setCourses(data);
+      if (data.length > 0) {
+        setSelectedCourseId(data[0]._id);
       }
-    } catch (error) {
-      console.error('Error loading courses:', error);
-      alert('Error al cargar los cursos');
     }
   };
 
@@ -42,15 +36,13 @@ const EditWords = (): JSX.Element => {
   };
 
   const onSearchSubmit = async (): Promise<void> => {
-    const {
-      response: { data },
-    } = await send({ api: 'search-word', data: { searchTerm } }).post();
+    const { response: { data } } = await send({ api: 'search-word', data: { searchTerm } }).post();
 
     if (data) {
       setWords(data);
       setWordToEdit(null);
     } else {
-      console.error('Error fetching words:');
+      alert('Error al buscar palabras.');
     }
   };
 
@@ -59,14 +51,13 @@ const EditWords = (): JSX.Element => {
   };
 
   const handleSave = async () => {
-   const { response: { data, statusCode } } =  await send({ api: 'update-word', data: wordToEdit }).put();
+    const { response: { data, statusCode } } = await send({ api: 'update-word', data: wordToEdit }).put();
 
     if (statusCode === HTTP_STATUS_CODES.OK) {
       setWords([]);
       setWordToEdit(null);
       alert('Se ha actualizado exitosamente.');
       dispatch({ type: CLEAN_CACHE });
-      console.log(data);
     } else {
       alert('Error al actualizar los datos.');
     }
@@ -74,6 +65,7 @@ const EditWords = (): JSX.Element => {
 
   const formatFieldName = (input: string): string =>
     input.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase()).trim();
+
 
   const initializeNewWord = () => {
     return {
@@ -104,6 +96,7 @@ const EditWords = (): JSX.Element => {
       }
     };
   };
+
 
   const addSentence = () => {
     const newSentence = {
@@ -238,7 +231,6 @@ const EditWords = (): JSX.Element => {
       return;
     }
 
-    // Verificar que al menos una oración esté completa
     const completeSentences = newWord.sentences.filter((sentence: any) =>
       sentence.englishWord && sentence.spanishTranslation && sentence.audioUrl
     );
@@ -248,25 +240,20 @@ const EditWords = (): JSX.Element => {
       return;
     }
 
-    try {
-      const { response: { data, statusCode } } = await send({
-        api: 'create-word',
-        data: {
-          ...newWord,
-          courseId: selectedCourseId
-        }
-      }).post();
-
-      if (statusCode >= 200 && statusCode < 300) {
-        alert(`¡Palabra "${data.englishWord}" creada exitosamente!\n\n${data.message}`);
-        setIsCreating(false);
-        setNewWord(null);
-        dispatch({ type: CLEAN_CACHE });
-      } else {
-        alert('Error al crear la palabra. Por favor, inténtalo de nuevo.');
+    const { response: { data, statusCode } } = await send({
+      api: 'create-word',
+      data: {
+        ...newWord,
+        courseId: selectedCourseId
       }
-    } catch (error) {
-      console.error('Error creating word:', error);
+    }).post();
+
+    if (statusCode >= 200 && statusCode < 300) {
+      alert(`¡Palabra "${data.englishWord}" creada exitosamente!\n\n${data.message}`);
+      setIsCreating(false);
+      setNewWord(null);
+      dispatch({ type: CLEAN_CACHE });
+    } else {
       alert('Error al crear la palabra. Por favor, inténtalo de nuevo.');
     }
   };
