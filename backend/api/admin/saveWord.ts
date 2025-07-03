@@ -3,7 +3,6 @@ import { catchTry, connectToDatabase } from '../../tools/functions';
 import { HTTP_STATUS_CODES } from '../../tools/consts';
 import { RequestType } from '../../tools/type';
 import CourseWord from '../../schemas/courseWord.schema';
-
 const endpoint = async (req: RequestType, res: Response) => {
   await catchTry({
     res,

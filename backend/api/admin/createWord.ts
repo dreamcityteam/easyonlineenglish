@@ -117,19 +117,6 @@ const endpoint = async (req: RequestType, res: Response) => {
           updatedAt: new Date()
         });
 
-        const savedWord = await newWord.save();
-
-        // Log the creation for audit purposes
-        console.log(`Admin ${req.user._id} created new word:`, {
-          wordId: savedWord._id,
-          englishWord: savedWord.englishWord,
-          courseId: courseId,
-          lessonNumber: savedWord.lessonNumber,
-          globalOrder: savedWord.globalOrder,
-          timestamp: new Date().toISOString()
-        });
-
-
       const savedWord = await newWord.save();
 
       // Respuesta simplificada según recomendación
