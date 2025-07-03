@@ -24,6 +24,34 @@ const sentenceSchema = new Schema({
   audioSplitUrls: [String],
 });
 
+const expandedExplanationSchema = new Schema({
+  description: {
+    type: String,
+    default: ''
+  },
+  usageNotes: [{
+    type: String
+  }],
+  additionalExamples: [{
+    english: {
+      type: String,
+      required: true
+    },
+    spanish: {
+      type: String,
+      required: true
+    },
+    context: {
+      type: String,
+      default: ''
+    }
+  }],
+  isActive: {
+    type: Boolean,
+    default: false
+  }
+});
+
 const courseWordSchema = new Schema({
   type: {
     type: String,
@@ -46,6 +74,11 @@ const courseWordSchema = new Schema({
     type: String,
   },
   sentences: [sentenceSchema],
+  expandedExplanation: {
+    type: expandedExplanationSchema,
+    required: false,
+    default: undefined
+  },
   idCourse: {
     type: Schema.Types.ObjectId,
     ref: 'Course',

@@ -18,6 +18,16 @@ interface CreateWordRequest {
     audioSplitUrls?: string[];
   }[];
   courseId: string;
+  expandedExplanation?: {
+    description?: string;
+    usageNotes?: string[];
+    additionalExamples?: {
+      english: string;
+      spanish: string;
+      context?: string;
+    }[];
+    isActive?: boolean;
+  };
 }
 
 const endpoint = async (req: RequestType, res: Response) => {
@@ -27,7 +37,7 @@ const endpoint = async (req: RequestType, res: Response) => {
     endpoint: async (response) => {
       await connectToDatabase();
 
-      const { englishWord, spanishTranslation, audioUrl, sentences, courseId }: CreateWordRequest = req.body;
+      const { englishWord, spanishTranslation, audioUrl, sentences, courseId, expandedExplanation }: CreateWordRequest = req.body;
 
       // Validar campos requeridos
       if (!englishWord || !spanishTranslation || !courseId) {
@@ -77,27 +87,48 @@ const endpoint = async (req: RequestType, res: Response) => {
         }
       }
 
-      // Crear la nueva palabra
-      const newWord = new CourseWord({
-        type: 'word',
-        englishWord: englishWord.trim(),
-        spanishTranslation: spanishTranslation.trim(),
-        audioUrl: audioUrl || '',
-        sentences: sentences.map(sentence => ({
-          englishWord: sentence.englishWord.trim(),
-          spanishTranslation: sentence.spanishTranslation.trim(),
-          imageUrl: sentence.imageUrl || '',
-          audioUrl: sentence.audioUrl.trim(),
-          audioSlowUrl: sentence.audioSlowUrl || '',
-          audioSplitUrls: sentence.audioSplitUrls || []
-        })),
-        idCourse: courseId,
-        lessonNumber,
-        orderInLesson,
-        globalOrder,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      });
+        // Create new word
+        const newWord = new CourseWord({
+          type: 'word',
+          englishWord: englishWord.trim(),
+          spanishTranslation: spanishTranslation.trim(),
+          audioUrl: audioUrl || '',
+          sentences: sentences.map(sentence => ({
+            englishWord: sentence.englishWord.trim(),
+            spanishTranslation: sentence.spanishTranslation.trim(),
+            imageUrl: sentence.imageUrl || '',
+            audioUrl: sentence.audioUrl.trim(),
+            audioSlowUrl: sentence.audioSlowUrl || '',
+            audioSplitUrls: sentence.audioSplitUrls || []
+          })),
+          ...(expandedExplanation && {
+            expandedExplanation: {
+              description: expandedExplanation.description || '',
+              usageNotes: expandedExplanation.usageNotes || [],
+              additionalExamples: expandedExplanation.additionalExamples || [],
+              isActive: expandedExplanation.isActive || false
+            }
+          }),
+          idCourse: courseId,
+          lessonNumber,
+          orderInLesson,
+          globalOrder,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+
+        const savedWord = await newWord.save();
+
+        // Log the creation for audit purposes
+        console.log(`Admin ${req.user._id} created new word:`, {
+          wordId: savedWord._id,
+          englishWord: savedWord.englishWord,
+          courseId: courseId,
+          lessonNumber: savedWord.lessonNumber,
+          globalOrder: savedWord.globalOrder,
+          timestamp: new Date().toISOString()
+        });
+
 
       const savedWord = await newWord.save();
 

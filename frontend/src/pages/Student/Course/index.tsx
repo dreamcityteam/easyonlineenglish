@@ -60,6 +60,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [isCorrectPronuciation, setIsCorrectPronunciation] = useState<boolean>(false);
   const [pronunciationFeedback, setPronunciationFeedback] = useState<string>('');
   const [canShowModalRating, setCanShowModalRating] = useState<boolean>(false);
+  const [showExplanationModal, setShowExplanationModal] = useState<boolean>(false);
+  const [currentExplanation, setCurrentExplanation] = useState<any>(null);
 
   useEffect(() => {
     saveCourseData();
@@ -249,6 +251,16 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     opacity: canClick ? 1 : 0.5,
     transition: 'opacity 1s ease'
   });
+
+  const handleLearnMore = (): void => {
+    if (word?.expandedExplanation) {
+      setCurrentExplanation({
+        word: word.englishWord,
+        ...word.expandedExplanation
+      });
+      setShowExplanationModal(true);
+    }
+  };
 
   const onNext = (): void => {
     if (!canClickOnNextButton()) return;
@@ -589,6 +601,35 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                 {word?.spanishTranslation}
               </span>
             </div>
+
+            {/* Botón "Haz click y aprende más" */}
+            {word?.expandedExplanation?.isActive && (
+              <div style={{ textAlign: 'center', margin: '10px 0' }}>
+                <button
+                  onClick={handleLearnMore}
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid #ccc',
+                    borderRadius: '20px',
+                    padding: '8px 16px',
+                    fontSize: '14px',
+                    color: '#666',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = '#f0f0f0';
+                    e.currentTarget.style.borderColor = '#999';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = '#ccc';
+                  }}
+                >
+                  🔍 Haz click y aprende más
+                </button>
+              </div>
+            )}
           </div>
           <div className={style.course__progress_container}>
             <div className={style.course__progress}>
@@ -696,6 +737,180 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             />
           )}
         </div>
+        {/* Modal de Explicación Expandible */}
+        {showExplanationModal && currentExplanation && (
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 1000
+            }}
+            onClick={() => setShowExplanationModal(false)}
+          >
+            <div
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '15px',
+                padding: '30px',
+                maxWidth: '500px',
+                maxHeight: '80vh',
+                overflow: 'auto',
+                margin: '20px',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+                animation: 'modalFadeIn 0.3s ease-out'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                <h2 style={{
+                  color: '#2c3e50',
+                  margin: '0 0 10px 0',
+                  fontSize: '24px'
+                }}>
+                  ✨ APRENDE MÁS SOBRE
+                </h2>
+                <h3 style={{
+                  color: '#3498db',
+                  margin: '0',
+                  fontSize: '28px',
+                  fontWeight: 'bold'
+                }}>
+                  "{currentExplanation.word?.toUpperCase()}"
+                </h3>
+              </div>
+
+              {currentExplanation.description && (
+                <div style={{ marginBottom: '20px' }}>
+                  <h4 style={{
+                    color: '#34495e',
+                    fontSize: '16px',
+                    marginBottom: '10px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    📝 DESCRIPCIÓN:
+                  </h4>
+                  <p style={{
+                    color: '#2c3e50',
+                    lineHeight: '1.6',
+                    margin: '0',
+                    fontSize: '15px'
+                  }}>
+                    {currentExplanation.description}
+                  </p>
+                </div>
+              )}
+
+              {currentExplanation.usageNotes && currentExplanation.usageNotes.length > 0 && (
+                <div style={{ marginBottom: '20px' }}>
+                  <h4 style={{
+                    color: '#34495e',
+                    fontSize: '16px',
+                    marginBottom: '10px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    💡 NOTAS DE USO:
+                  </h4>
+                  <ul style={{
+                    color: '#2c3e50',
+                    lineHeight: '1.6',
+                    margin: '0',
+                    paddingLeft: '20px',
+                    fontSize: '15px'
+                  }}>
+                    {currentExplanation.usageNotes.map((note: string, index: number) => (
+                      <li key={index} style={{ marginBottom: '6px' }}>{note}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {currentExplanation.additionalExamples && currentExplanation.additionalExamples.length > 0 && (
+                <div style={{ marginBottom: '20px' }}>
+                  <h4 style={{
+                    color: '#34495e',
+                    fontSize: '16px',
+                    marginBottom: '10px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    📚 EJEMPLOS ADICIONALES:
+                  </h4>
+                  {currentExplanation.additionalExamples.map((example: any, index: number) => (
+                    <div key={index} style={{
+                      marginBottom: '12px',
+                      padding: '12px',
+                      backgroundColor: '#f8f9fa',
+                      borderRadius: '8px',
+                      borderLeft: '4px solid #3498db'
+                    }}>
+                      <div style={{
+                        color: '#2c3e50',
+                        fontWeight: '600',
+                        marginBottom: '4px',
+                        fontSize: '15px'
+                      }}>
+                        • "{example.english}"
+                      </div>
+                      <div style={{
+                        color: '#7f8c8d',
+                        fontSize: '14px',
+                        marginLeft: '12px',
+                        marginBottom: '4px'
+                      }}>
+                        → "{example.spanish}"
+                      </div>
+                      {example.context && (
+                        <div style={{
+                          color: '#95a5a6',
+                          fontSize: '13px',
+                          marginLeft: '12px',
+                          fontStyle: 'italic'
+                        }}>
+                          ({example.context})
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div style={{ textAlign: 'center', marginTop: '25px' }}>
+                <button
+                  onClick={() => setShowExplanationModal(false)}
+                  style={{
+                    backgroundColor: '#3498db',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '25px',
+                    padding: '12px 24px',
+                    fontSize: '16px',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.3s ease',
+                    fontWeight: '500'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = '#2980b9';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = '#3498db';
+                  }}
+                >
+                  ✓ Entendido
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         <ModalCongratulation
           isDemo={isDemo}
           state={[canShowModal, setCanShowModal]}
