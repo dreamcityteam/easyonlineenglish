@@ -7,6 +7,8 @@ const avoidTokenEndpoints: string[] = [
   ENDPOINT.SING_UP,
   ENDPOINT.SING_UP_GOOGLE,
   ENDPOINT.SING_IN_GOOGLE,
+  ENDPOINT.PAYPAL_CREATE_SUBCRIPTION,
+  ENDPOINT.PAYPAL_CAPTURE_SUBCRIPTION
 ];
 
 const tokenFromHeaderEndpoints: string[] = [

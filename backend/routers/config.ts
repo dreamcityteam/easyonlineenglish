@@ -1,194 +1,172 @@
 import { Router } from './type';
 import { ENDPOINT } from '../tools/consts';
-import register from '../api/signUp';
-import signOut from '../api/signOut';
-import login from '../api/login';
-import auth from '../api/auth';
-import signUpGoogle from '../api/signUpGoogle';
-import signInGoogle from '../api/loginGoogle';
-import contanct from '../api/contanct';
-import courses from '../api/student/courses';
-import library from '../api/library';
-import resetPassword from '../api/resetPassword';
-import resetPasswordAuth from '../api/resetPassword/auth';
-import emailResetPassword from '../api/resetPassword/email';
-import suscribete from '../api/suscribete';
-import studentCourse from '../api/student/course';
-import studentCourseProgress from '../api/student/course/progress';
-import studentCourseDemo from '../api/student/course/demo';
-import studentCoursesDemo from '../api/student/courses/demo';
-import studentSentence from '../api/student/course/sentence';
-import studentPhoto from '../api/student/photo';
-import studentUpdate from '../api/student/update';
-import studentInvoice from '../api/student/invoice';
-import studentTerms from '../api/student/terms';
-import studentTutorial from '../api/student/tutorial';
-import studentRating from '../api/student/rating';
-import studentActiveAccount from '../api/student/activeAccount';
-import paypalCreateOrder from '../api/student/payment/paypal/createOrder';
-import paypalCompletedOrder from '../api/student/payment/paypal/completedOrder';
-import searchWord from '../api/admin/searchWord';
-import saveWord from '../api/admin/saveWord';
-import createWord from '../api/admin/createWord';
-import updateLessonOrder from '../api/admin/updateLessonOrder';
 
 const config: Router[] = [
   {
     path: ENDPOINT.LOGIN,
     method: 'post',
-    func: login,
+    func: require('../api/login').default,
   },
   {
     path: ENDPOINT.AUTH,
     method: 'post',
-    func: auth,
+    func: require('../api/auth').default,
   },
   {
     path: ENDPOINT.SING_UP,
     method: 'post',
-    func: register,
+    func: require('../api/signUp').default,
   },
   {
     path: ENDPOINT.SING_OUT,
     method: 'post',
-    func: signOut,
+    func: require('../api/signOut').default,
   },
   {
     path: ENDPOINT.SING_UP_GOOGLE,
     method: 'post',
-    func: signUpGoogle,
+    func: require('../api/signUpGoogle').default,
   },
   {
     path: ENDPOINT.SING_IN_GOOGLE,
     method: 'post',
-    func: signInGoogle,
+    func: require('../api/loginGoogle').default,
   },
   {
     path: ENDPOINT.CONTANCT,
     method: 'post',
-    func: contanct,
+    func: require('../api/contanct').default,
   },
   {
     path: ENDPOINT.LIBRARY,
     method: 'get',
-    func: library,
+    func: require('../api/library').default,
   },
   {
     path: ENDPOINT.RESET_PASSWORD,
     method: 'post',
-    func: resetPassword,
+    func: require('../api/resetPassword').default,
   },
   {
     path: ENDPOINT.SEND_EMAIL_RESET_PASSWORD,
     method: 'post',
-    func: emailResetPassword,
+    func: require('../api/resetPassword/email').default,
   },
   {
     path: ENDPOINT.RESET_PASSWORD_AUTH,
     method: 'get',
-    func: resetPasswordAuth,
+    func: require('../api/resetPassword/auth').default,
   },
   {
     path: ENDPOINT.STUDENT_COURSE,
     method: 'get',
-    func: studentCourse,
+    func: require('../api/student/course').default,
   },
   {
     path: ENDPOINT.SUSCRIBETE,
     method: 'post',
-    func: suscribete,
+    func: require('../api/suscribete').default,
   },
   {
     path: ENDPOINT.STUDENT_COURSE_PROGRESS,
     method: 'post',
-    func: studentCourseProgress,
+    func: require('../api/student/course/progress').default,
   },
   {
     path: ENDPOINT.STUDENT_COURSE_DEMO,
     method: 'get',
-    func: studentCourseDemo,
+    func: require('../api/student/course/demo').default,
   },
   {
     path: ENDPOINT.STUDENT_COURSES,
     method: 'get',
-    func: courses,
+    func: require('../api/student/courses').default,
   },
   {
     path: ENDPOINT.STUDENT_COURSES_DEMO,
     method: 'get',
-    func: studentCoursesDemo,
+    func: require('../api/student/courses/demo').default,
   },
   {
     path: ENDPOINT.STUDENT_SENTENCE,
     method: 'post',
-    func: studentSentence
+    func: require('../api/student/course/sentence').default,
   },
   {
     path: ENDPOINT.STUDENT_PHOTO,
     method: 'post',
-    func: studentPhoto,
+    func: require('../api/student/photo').default,
   },
   {
     path: ENDPOINT.STUDENT_UPDATE,
     method: 'post',
-    func: studentUpdate,
+    func: require('../api/student/update').default,
   },
   {
     path: ENDPOINT.STUDENT_INVOICE,
     method: 'get',
-    func: studentInvoice,
+    func: require('../api/student/invoice').default,
   },
   {
     path: ENDPOINT.STUDENT_TERMS,
     method: 'patch',
-    func: studentTerms,
+    func: require('../api/student/terms').default,
   },
   {
     path: ENDPOINT.STUDENT_TUTORIAL,
     method: 'patch',
-    func: studentTutorial,
+    func: require('../api/student/tutorial').default,
   },
   {
     path: ENDPOINT.STUDENT_RATING,
     method: 'post',
-    func: studentRating
+    func: require('../api/student/rating').default,
   },
   {
     path: ENDPOINT.STUDENT_ACTIVE_ACCOUNT,
     method: 'post',
-    func: studentActiveAccount
+    func: require('../api/student/activeAccount').default,
   },
   {
     path: ENDPOINT.PAYPAL_CREATE_ORDER,
     method: 'post',
-    func: paypalCreateOrder,
+    func: require('../api/student/payment/paypal/createOrder').default,
   },
   {
     path: ENDPOINT.PAYPAL_COMPLETED_ORDER,
     method: 'post',
-    func: paypalCompletedOrder,
+    func: require('../api/student/payment/paypal/completedOrder').default,
   },
   {
     path: ENDPOINT.SEARCH_WORD,
     method: 'post',
-    func: searchWord,
+    func: require('../api/admin/searchWord').default,
   },
-    {
+  {
     path: ENDPOINT.UPDATE_WORD,
     method: 'put',
-    func: saveWord,
+    func: require('../api/admin/saveWord').default,
   },
   {
     path: ENDPOINT.CREATE_WORD,
     method: 'post',
-    func: createWord,
+    func: require('../api/admin/createWord').default,
   },
   {
     path: ENDPOINT.ADMIN_UPDATE_LESSON_ORDER,
     method: 'put',
-    func: updateLessonOrder,
+    func: require('../api/admin/updateLessonOrder').default,
   },
-  
+  {
+    path: ENDPOINT.PAYPAL_CREATE_SUBCRIPTION,
+    method: 'post',
+    func: require('../api/student/payment/paypal/createSubscription').default,
+  },
+  {
+    path: ENDPOINT.PAYPAL_CAPTURE_SUBCRIPTION,
+    method: 'post',
+    func: require('../api/student/payment/paypal/captureSubscription').default,
+  }
 ];
 
 export default config;

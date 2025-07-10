@@ -9,6 +9,7 @@ import { PAYMENT_METHOD } from '../../tools/constant';
 import PayPal from './PayPal';
 import AllTerms from '../Terms/All';
 import SuccessPayment from './SuccessModal';
+import PayPalSubcription from './PayPal/Subscription';
 
 const PaymentForms: React.FC = () => {
   const { paymentMethod = '' } = useParams<string>();
@@ -79,7 +80,7 @@ const PaymentForms: React.FC = () => {
 
               {!user?.payment.isPayment ? (
                 <div className={style.payment__inputs}>
-                  <PayPal
+                  <PayPalSubcription
                     onComplete={onCompletedPayment}
                     plan={paymentMethod}
                   />
