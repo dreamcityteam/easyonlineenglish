@@ -43,6 +43,7 @@ const ENDPOINT: ObjectValueString = {
   STUDENT_RATING: 'student-rating',
   PAYPAL_CREATE_SUBCRIPTION: 'paypal-create-subscription',
   PAYPAL_CAPTURE_SUBCRIPTION: 'paypal-capture-subscription',
+  PAYPAL_CANCEL_SUBCRIPTION: 'paypal-cancel-subscription',
 
   LIBRARY: 'library',
   SEND_EMAIL_RESET_PASSWORD: 'send-email-reset-password',

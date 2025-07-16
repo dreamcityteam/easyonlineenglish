@@ -166,6 +166,11 @@ const config: Router[] = [
     path: ENDPOINT.PAYPAL_CAPTURE_SUBCRIPTION,
     method: 'post',
     func: require('../api/student/payment/paypal/captureSubscription').default,
+  },
+  {
+    path: ENDPOINT.PAYPAL_CANCEL_SUBCRIPTION,
+    method: 'post',
+    func: require('../api/student/payment/paypal/cancelSubscription').default,
   }
 ];
 

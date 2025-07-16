@@ -12,7 +12,7 @@ interface Props {
   /** The payment plan identifier (must be one of the valid plans) */
   plan: string;
   /** Callback function called when subscription is successfully completed */
-  onComplete: () => void;
+  onComplete: (payment: any) => void;
 }
 
 /**
@@ -287,7 +287,7 @@ const PayPal: React.FC<Props> = ({ plan, onComplete }): JSX.Element => {
 
         // Small delay to show success message before completing
         setTimeout(() => {
-          onComplete();
+          onComplete(responseData.studentPayment);
         }, 1500);
       } else {
         // Log error for monitoring

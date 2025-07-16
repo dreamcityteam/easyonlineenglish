@@ -41,7 +41,8 @@ const endpoint = async (req: RequestType, res: Response) => {
       response.data = {
         subscriptionId: subscription.id,
         status: subscription.status,
-        approveUrl: subscription.approveUrl
+        approveUrl: subscription.approveUrl,
+        plan: plan
       };
     }
   });

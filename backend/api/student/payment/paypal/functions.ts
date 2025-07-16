@@ -227,3 +227,82 @@ export const countMounts = (countMount: number): Date => {
 
 export const isPlan = (plan: string): boolean =>
   ['1', '2', '3'].includes(plan);
+
+export const cancelSubscription = async (subscriptionId: string, reason: string = 'User requested cancellation'): Promise<boolean> => {
+  try {
+    const accessToken = await generateAccessToken();
+    const baseURL = process.env.PAYPAL_BASE_URL;
+
+    if (!accessToken) {
+      console.error('Failed to get PayPal access token');
+      return false;
+    }
+
+    const response = await axios.post(
+      `${baseURL}/v1/billing/subscriptions/${subscriptionId}/cancel`,
+      {
+        reason: reason.substring(0, 128) // PayPal limita la razón a 128 caracteres
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        timeout: 10000 // 10 segundos timeout
+      }
+    );
+
+    // PayPal devuelve 204 No Content para cancelación exitosa
+    return response.status === 204;
+  } catch (error: any) {
+    console.error('Error cancelling PayPal subscription:', {
+      subscriptionId,
+      error: error.message,
+      status: error.response?.status,
+      data: error.response?.data
+    });
+
+    // Si el error es que ya está cancelada, considerarlo como éxito
+    if (error.response?.status === 422 && 
+        error.response?.data?.details?.[0]?.issue === 'SUBSCRIPTION_STATUS_INVALID') {
+      console.log('Subscription already cancelled in PayPal');
+      return true;
+    }
+
+    return false;
+  }
+};
+
+export const getSubscriptionDetails = async (subscriptionId: string) => {
+  try {
+    const accessToken = await generateAccessToken();
+    const baseURL = process.env.PAYPAL_BASE_URL || 'https://api-m.sandbox.paypal.com';
+
+    if (!accessToken) {
+      throw new Error('Failed to get PayPal access token');
+    }
+
+    const response = await axios.get(
+      `${baseURL}/v1/billing/subscriptions/${subscriptionId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        timeout: 10000 // 10 segundos timeout
+      }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    console.error('Error getting subscription details:', {
+      subscriptionId,
+      error: error.message,
+      status: error.response?.status,
+      data: error.response?.data
+    });
+    throw new Error(`Failed to get subscription details: ${error.message}`);
+  }
+};
