@@ -139,7 +139,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       lesson.words = [...lessonWords];
 
       // Agregar ejercicio al final de la lección si está disponible
-      if (exercises[exerciseIndex]) {
+      if (exercises && exercises[exerciseIndex]) {
         lesson.words.push(exercises[exerciseIndex]);
         exerciseIndex++;
       }
