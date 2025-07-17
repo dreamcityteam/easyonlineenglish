@@ -128,7 +128,6 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     sortedLessonNumbers.forEach((lessonNumber) => {
       const lessonWords: Word[] = lessonsMap.get(lessonNumber) || [];
 
-      // Dentro de cada lección, ordenar por la "posición recordada" (orderInLesson)
       lessonWords.sort((a, b) => {
         const orderA = (a as any).orderInLesson || 0;
         const orderB = (b as any).orderInLesson || 0;
@@ -138,8 +137,7 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       const lesson = getLessonData(lessonNumber);
       lesson.words = [...lessonWords];
 
-      // Agregar ejercicio al final de la lección si está disponible
-      if (exercises[exerciseIndex]) {
+      if (exercises && exercises[exerciseIndex]) {
         lesson.words.push(exercises[exerciseIndex]);
         exerciseIndex++;
       }
