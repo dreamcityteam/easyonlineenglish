@@ -11,15 +11,6 @@ const INITIAL_OPTION: {
   'data-sdk-integration-source': 'integrationbuilder_sc',
 };
 
-const STATUS_PAYPAL: {
-  COMPLETED: 'COMPLETED';
-  INSTRUMENT_DECLINED: 'INSTRUMENT_DECLINED';
-} = {
-  COMPLETED: 'COMPLETED',
-  INSTRUMENT_DECLINED: 'INSTRUMENT_DECLINED'
-}
-
 export {
   INITIAL_OPTION,
-  STATUS_PAYPAL
 }

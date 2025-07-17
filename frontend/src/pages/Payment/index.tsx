@@ -1,3 +1,4 @@
+
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cards from 'react-credit-cards-2';
@@ -6,9 +7,10 @@ import style from './style.module.sass';
 import context from '../../global/state/context';
 import { CLEAN_CACHE, SET_USER } from '../../global/state/actionTypes';
 import { PAYMENT_METHOD } from '../../tools/constant';
-import PayPal from './PayPal';
 import AllTerms from '../Terms/All';
 import SuccessPayment from './SuccessModal';
+import PayPalSubcription from './PayPal/Subscription';
+import CancelSubscription from './PayPal/CancelSubscription';
 
 const PaymentForms: React.FC = () => {
   const { paymentMethod = '' } = useParams<string>();
@@ -26,7 +28,7 @@ const PaymentForms: React.FC = () => {
   }, []);
 
 
-  const onCompletedPayment = (): void => {
+  const onCompletedPayment = (payment: any): void => {
     setCanOpenModal(true);
     dispatch({ type: CLEAN_CACHE });
     dispatch({
@@ -35,7 +37,11 @@ const PaymentForms: React.FC = () => {
         ...user,
         payment: {
           isPayment: true,
-          plan: paymentMethod
+          plan: paymentMethod,
+          dateEnd: payment.dateEnd,
+          dateStart: payment.dateStart,
+          orderId: payment.orderId,
+          status: payment.status
         },
       },
     });
@@ -74,22 +80,39 @@ const PaymentForms: React.FC = () => {
 
             <form className={style.payment__form}>
               <header>
-                <h1 className={style.payment__title}>{paymentTitle}</h1>
+                <h1 className={style.payment__title}>{
+                  user?.payment?.plan && PAYMENT_METHOD[Number(user?.payment?.plan)].DESCRIPTION ||
+                  paymentTitle
+                }</h1>
               </header>
 
-              {!user?.payment.isPayment ? (
+              {!user?.payment?.isPayment && (
                 <div className={style.payment__inputs}>
-                  <PayPal
+                  <PayPalSubcription
                     onComplete={onCompletedPayment}
                     plan={paymentMethod}
                   />
                 </div>
-              ) : (
-                <p>
-                  Su pago inició el
-                  <strong> {formatDate(user.payment.dateStart)}</strong> y terminará el
-                  <strong> {formatDate(user.payment.dateEnd)}</strong> 
-                </p>
+              )}
+
+              {user?.payment?.isPayment && user?.payment?.status === 'ACTIVE' && (
+                <div className={style.payment__subscription}>
+                  <p>
+                    Tu pago recurrente ha comenzado
+                    <strong> {formatDate(user.payment.dateStart)}</strong> y se renovará automáticamente hasta el
+                    <strong> {formatDate(user.payment.dateEnd)}</strong>.
+                  </p>
+                  <CancelSubscription
+                    onCancelled={() => {
+                      // Actualizar estado del usuario o recargar datos
+                      window.location.reload();
+                    }}
+                    onError={(message) => {
+                      console.error('Error al cancelar:', message);
+                      alert(message); // Mostrar mensaje de error al usuario
+                    }}
+                  />
+                </div>
               )}
             </form>
           </div>

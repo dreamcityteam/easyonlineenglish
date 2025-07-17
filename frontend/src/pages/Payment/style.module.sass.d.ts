@@ -15,6 +15,7 @@ interface CssExports {
   'payment__modalButton': string;
   'payment__modalIcon': string;
   'payment__modalText': string;
+  'payment__subscription': string;
   'payment__title': string;
 }
 export const cssExports: CssExports;

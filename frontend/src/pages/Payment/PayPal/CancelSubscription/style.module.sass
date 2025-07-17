@@ -1,0 +1,88 @@
+.cancelSubscription
+  text-align: center
+  margin: 20px 0
+
+.cancelButton
+  background-color: #dc3545
+  color: white
+  border: none
+  padding: 10px 20px
+  border-radius: 4px
+  cursor: pointer
+  font-size: 14px
+  transition: background-color 0.3s
+
+  &:hover
+    background-color: #c82333
+
+  &:disabled
+    background-color: #6c757d
+    cursor: not-allowed
+
+.confirmDialog
+  background: white
+  border: 1px solid #dc3545
+  border-radius: 8px
+  padding: 20px
+  max-width: 500px
+  margin: 0 auto
+
+  h3
+    color: #dc3545
+    margin-bottom: 10px
+
+  p
+    color: #666
+    margin-bottom: 20px
+
+.reasonInput
+  margin-bottom: 20px
+
+  label
+    display: block
+    margin-bottom: 5px
+    font-weight: bold
+
+  textarea
+    width: 100%
+    min-height: 80px
+    padding: 10px
+    border: 1px solid #ddd
+    border-radius: 4px
+    resize: vertical
+
+.buttons
+  display: flex
+  gap: 10px
+  justify-content: center
+
+.confirmButton
+  background-color: #dc3545
+  color: white
+  border: none
+  padding: 12px 24px
+  border-radius: 4px
+  cursor: pointer
+  font-weight: bold
+
+  &:hover
+    background-color: #c82333
+
+  &:disabled
+    background-color: #6c757d
+    cursor: not-allowed
+
+.backButton
+  background-color: #6c757d
+  color: white
+  border: none
+  padding: 12px 24px
+  border-radius: 4px
+  cursor: pointer
+
+  &:hover
+    background-color: #5a6268
+
+  &:disabled
+    opacity: 0.6
+    cursor: not-allowed

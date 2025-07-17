@@ -347,13 +347,15 @@ const formatPhoneNumber = (number: string = ''): string =>
 
 const getPayment = async (id: ObjectId | undefined | string) => {
   const payment = await StudentPayment.findOne({ idUser: id }).sort({ _id: -1 });
-  const isPayment = payment ? new Date(payment.dateEnd) > new Date() : false;
+  const isPayment = payment ? new Date(payment.dateEnd) > new Date() && payment.status === 'ACTIVE' : false;
 
   return {
     plan: payment ? payment.plan : null,
     isPayment,
     dateEnd: payment ? payment.dateEnd : null,
     dateStart: payment ? payment.dateStart : null,
+    orderId: payment ? payment.orderId : null,
+    status: payment ? payment.status : null,
   }
 }
 

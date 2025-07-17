@@ -21,7 +21,9 @@ type User = {
     isPayment: boolean;
     plan: string | null;
     dateEnd: string | null;
-   dateStart: string | null;
+    dateStart: string | null;
+    orderId?: string | null;
+    status?: 'ACTIVE' | 'CANCELLED' | 'EXPIRED' | null;
   };
   isTutorial: boolean;
   isTerms: boolean;
