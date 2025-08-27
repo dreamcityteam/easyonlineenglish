@@ -551,7 +551,15 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       const pronunciations: string[] = pronunciationFeedback.toLowerCase().split(' ');
 
       // If admin, show inline editor for englishWord
+      console.log('Admin check:', {
+        user,
+        userRole: user?.role,
+        isAdminResult: isAdmin(user),
+        ROLE_ADMIN: 'ADMIN'
+      });
+
       if (isAdmin(user)) {
+        console.log('Showing inline editor for admin');
         return (
           <div>
             <div className="english_word">
@@ -749,26 +757,29 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                   </div>
                   <div className={style.course__content_text}>
                     <div>
-                      {isAdmin(user) ? (
-                        <InlineEditor
-                          value={sentence?.spanishTranslation || ''}
-                          onSave={(newValue) => updateSentenceField('spanishTranslation', newValue)}
-                          placeholder="Spanish translation..."
-                          className={getClassName(
-                            style.course__text_grandient,
-                            style.course__textSentence
-                          )}
-                        />
-                      ) : (
-                        <span className={
-                          getClassName(
-                            style.course__text_grandient,
-                            style.course__textSentence
-                          )
-                        }>
-                          {sentence?.spanishTranslation}
-                        </span>
-                      )}
+                      {(() => {
+                        console.log('Spanish translation admin check:', isAdmin(user));
+                        return isAdmin(user) ? (
+                          <InlineEditor
+                            value={sentence?.spanishTranslation || ''}
+                            onSave={(newValue) => updateSentenceField('spanishTranslation', newValue)}
+                            placeholder="Spanish translation..."
+                            className={getClassName(
+                              style.course__text_grandient,
+                              style.course__textSentence
+                            )}
+                          />
+                        ) : (
+                          <span className={
+                            getClassName(
+                              style.course__text_grandient,
+                              style.course__textSentence
+                            )
+                          }>
+                            {sentence?.spanishTranslation}
+                          </span>
+                        );
+                      })()}
                     </div>
                     <span className={style.course__text_language}>
                       Español
