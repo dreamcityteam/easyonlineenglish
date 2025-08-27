@@ -45,10 +45,11 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [{ courseCache, user }, dispatch] = useContext(context);
 
   // Debug logging at component start
-  console.log('=== COURSE COMPONENT LOADED ===');
+  console.log('=== COURSE COMPONENT LOADED - VERSION 2.0 ===');
   console.log('User object:', user);
   console.log('User role:', user?.role);
   console.log('isAdmin result:', isAdmin(user));
+  console.log('Environment:', process.env.NODE_ENV);
   const [feedback, setFeedback] = useState({ canShow: false, message: '' });
   const [isPlaySpeech, setPlaySpeech] = useState<boolean>(false);
   const [lessionTitle, setLessionTitle] = useState<string>('');
