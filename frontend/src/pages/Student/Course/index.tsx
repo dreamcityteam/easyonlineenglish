@@ -495,16 +495,16 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
 
       // Log for production debugging
       console.log('Attempting to update sentence:', {
-        api: 'update-sentence',
+        api: 'admin/updateSentence',
         data: updateData,
         environment: process.env.NODE_ENV,
         domain: getDomainBasedOnEnvironment(),
-        fullUrl: `${getDomainBasedOnEnvironment()}/api/v1/update-sentence`,
+        fullUrl: `${getDomainBasedOnEnvironment()}/api/v1/admin/updateSentence`,
         isDev: isDev()
       });
 
       const response = await send({
-        api: 'update-sentence',
+        api: 'admin/updateSentence',
         data: updateData
       }).put();
 
