@@ -27,6 +27,7 @@ const ENDPOINT: ObjectValueString = {
   SEARCH_WORD: 'search-word',
   UPDATE_WORD: 'update-word',
   CREATE_WORD: 'create-word',
+  UPDATE_SENTENCE: 'update-sentence',
   ADMIN_UPDATE_LESSON_ORDER: 'admin-update-lesson-order',
   CONTANCT: 'contanct',
   STUDENT_COURSE: 'student-course/:courseId',

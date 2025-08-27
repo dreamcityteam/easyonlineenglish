@@ -153,6 +153,11 @@ const config: Router[] = [
     func: require('../api/admin/createWord').default,
   },
   {
+    path: ENDPOINT.UPDATE_SENTENCE,
+    method: 'put',
+    func: require('../api/admin/updateSentence').default,
+  },
+  {
     path: ENDPOINT.ADMIN_UPDATE_LESSON_ORDER,
     method: 'put',
     func: require('../api/admin/updateLessonOrder').default,

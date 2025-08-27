@@ -8,6 +8,7 @@ import {
 } from '../../../global/state/type';
 import Aside from './Aside';
 import Speech from '../../../components/Speech';
+import InlineEditor from '../../../components/InlineEditor';
 import style from './style.module.sass';
 import { CourseProgress, OnWord, WordSplitType } from './types';
 import {
@@ -468,6 +469,45 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
     );
   }
 
+  // Function to update sentence fields
+  const updateSentenceField = async (field: 'englishWord' | 'spanishTranslation', newValue: string): Promise<void> => {
+    if (!word || !sentence) {
+      return;
+    }
+
+    try {
+      const updateData = {
+        wordId: word._id,
+        sentenceIndex: sentenceIndex,
+        [field]: newValue
+      };
+
+      const response = await send({
+        api: 'update-sentence',
+        data: updateData
+      }).put();
+
+      if (response?.response?.statusCode === HTTP_STATUS_CODES.OK) {
+
+        // Update local state
+        setSentence(prev => prev ? { ...prev, [field]: newValue } : prev);
+
+        // Update word state
+        setWord(prev => {
+          if (!prev) return prev;
+          const updatedSentences = [...prev.sentences];
+          updatedSentences[sentenceIndex] = { ...updatedSentences[sentenceIndex], [field]: newValue };
+          return { ...prev, sentences: updatedSentences };
+        });
+      } else {
+        throw new Error(`Server error: ${response?.response?.statusCode || 'Unknown'}`);
+      }
+    } catch (error) {
+      console.error('Error updating sentence:', error);
+      throw error;
+    }
+  };
+
   const AudioWord = (type: 'englishWord' | 'letter'): JSX.Element | null => {
     // Handles playing audio when a URL is provided
     const playAudio = (url: string) => {
@@ -509,6 +549,37 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
       const splitTexts: string[] = englishWord.split(' ');
       const shouldPlaySingleAudio: boolean = audioSplitUrls.length === 0;
       const pronunciations: string[] = pronunciationFeedback.toLowerCase().split(' ');
+
+      // If admin, show inline editor for englishWord
+      if (isAdmin(user)) {
+        return (
+          <div>
+            <div className="english_word">
+              <InlineEditor
+                value={englishWord}
+                onSave={(newValue) => updateSentenceField('englishWord', newValue)}
+                placeholder="English word..."
+                className={getClassName(style.course__text_grandient, style.course__textSentence)}
+              />
+            </div>
+            {audioSplitUrls.length > 0 && (
+              <div className={style.course__audio}>
+                <span
+                  className={style.course__text_language}
+                >
+                  Inglés
+                </span>
+                <Sound
+                  slowAudioUrl={audioSlowUrl}
+                  src={audioUrl}
+                  style={style}
+                  stop={isPlaySpeech}
+                />
+              </div>
+            )}
+          </div>
+        );
+      }
 
       return (
         <div onClick={shouldPlaySingleAudio ? () => playAudio(audioUrl) : undefined}>
@@ -678,14 +749,26 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
                   </div>
                   <div className={style.course__content_text}>
                     <div>
-                      <span className={
-                        getClassName(
-                          style.course__text_grandient,
-                          style.course__textSentence
-                        )
-                      }>
-                        {sentence?.spanishTranslation}
-                      </span>
+                      {isAdmin(user) ? (
+                        <InlineEditor
+                          value={sentence?.spanishTranslation || ''}
+                          onSave={(newValue) => updateSentenceField('spanishTranslation', newValue)}
+                          placeholder="Spanish translation..."
+                          className={getClassName(
+                            style.course__text_grandient,
+                            style.course__textSentence
+                          )}
+                        />
+                      ) : (
+                        <span className={
+                          getClassName(
+                            style.course__text_grandient,
+                            style.course__textSentence
+                          )
+                        }>
+                          {sentence?.spanishTranslation}
+                        </span>
+                      )}
                     </div>
                     <span className={style.course__text_language}>
                       Español
