@@ -1,0 +1,126 @@
+.inlineEditor
+  position: relative
+  display: inline-block
+  
+  &.display
+    cursor: pointer
+    padding: 4px 8px
+    border-radius: 4px
+    transition: all 0.2s ease
+    border: 1px solid transparent
+    min-height: 20px
+    color: inherit
+
+    // Estilo para cuando no hay valor (placeholder)
+    &:empty::before
+      content: attr(data-placeholder)
+      color: #6c757d
+      font-style: italic
+      opacity: 0.7
+
+    &:hover:not(.disabled)
+      background-color: rgba(0, 123, 255, 0.1)
+      border-color: rgba(0, 123, 255, 0.3)
+
+      .editIcon
+        opacity: 1
+
+    &.disabled
+      cursor: not-allowed
+      opacity: 0.6
+      
+  &.editing
+    display: flex
+    align-items: center
+    gap: 8px
+    
+.input
+  border: 2px solid #007bff
+  border-radius: 4px
+  padding: 6px 10px
+  font-size: inherit
+  font-family: inherit
+  color: #212529 !important
+  background-color: white
+  outline: none
+  min-width: 150px
+
+  &::placeholder
+    color: #6c757d
+    opacity: 0.8
+    font-style: italic
+
+  &:focus
+    border-color: #0056b3
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25)
+    color: #212529 !important
+
+    &::placeholder
+      color: #adb5bd
+      opacity: 0.6
+
+  &::selection
+    background-color: #007bff
+    color: white
+
+  &:disabled
+    background-color: #f8f9fa
+    cursor: not-allowed
+
+    &::placeholder
+      color: #ced4da
+      opacity: 0.5
+    
+.buttons
+  display: flex
+  gap: 4px
+  
+.button
+  border: none
+  border-radius: 3px
+  padding: 4px 8px
+  cursor: pointer
+  font-size: 12px
+  font-weight: bold
+  transition: all 0.2s ease
+  min-width: 24px
+  height: 24px
+  display: flex
+  align-items: center
+  justify-content: center
+  
+  &:disabled
+    cursor: not-allowed
+    opacity: 0.6
+    
+  &.save
+    background-color: #28a745
+    color: white
+    
+    &:hover:not(:disabled)
+      background-color: #218838
+      
+  &.cancel
+    background-color: #dc3545
+    color: white
+    
+    &:hover:not(:disabled)
+      background-color: #c82333
+      
+.editIcon
+  opacity: 0
+  transition: opacity 0.2s ease
+  margin-left: 4px
+  font-size: 12px
+  color: #007bff
+
+// Responsive adjustments
+@media (max-width: 768px)
+  .input
+    min-width: 120px
+    font-size: 14px
+    
+  .button
+    min-width: 28px
+    height: 28px
+    font-size: 14px
