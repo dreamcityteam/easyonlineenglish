@@ -21,7 +21,7 @@ const ActiveAccount: React.FC = () => {
       modal: { dispatch, text: 'Verificando autenticación' },
       success: (data: any): void => {
         dispatch({ type: SET_USER, payload: data });
-        navigate('/plan');
+        navigate('/courses');
       },
       error: () => {
         navigate('/');
