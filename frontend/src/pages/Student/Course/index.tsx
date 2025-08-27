@@ -43,6 +43,12 @@ const loadingSettings = { type: SET_LOAD, payload: { text: 'Cargando curso', can
 const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const { idCourse } = useParams<string>();
   const [{ courseCache, user }, dispatch] = useContext(context);
+
+  // Debug logging at component start
+  console.log('=== COURSE COMPONENT LOADED ===');
+  console.log('User object:', user);
+  console.log('User role:', user?.role);
+  console.log('isAdmin result:', isAdmin(user));
   const [feedback, setFeedback] = useState({ canShow: false, message: '' });
   const [isPlaySpeech, setPlaySpeech] = useState<boolean>(false);
   const [lessionTitle, setLessionTitle] = useState<string>('');
@@ -65,6 +71,8 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
   const [currentExplanation, setCurrentExplanation] = useState<any>(null);
 
   useEffect(() => {
+    console.log('=== COURSE useEffect TRIGGERED ===');
+    console.log('User in useEffect:', user);
     saveCourseData();
   }, []);
 
