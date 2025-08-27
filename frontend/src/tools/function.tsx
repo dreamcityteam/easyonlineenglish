@@ -401,5 +401,6 @@ export {
   Storage,
   Cookie,
   checkPronunciation,
-  getFeedbackMessage
+  getFeedbackMessage,
+  getDomainBasedOnEnvironment
 };

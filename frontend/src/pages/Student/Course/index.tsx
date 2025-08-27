@@ -18,7 +18,9 @@ import {
   getFeedbackMessage,
   isAdmin,
   removeAccents,
-  send
+  send,
+  getDomainBasedOnEnvironment,
+  isDev
 } from '../../../tools/function';
 import { CLEAR_LOAD, SET_COURSE_CACHE, SET_LOAD } from '../../../global/state/actionTypes';
 import context from '../../../global/state/context';
@@ -490,6 +492,16 @@ const Course: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
         sentenceIndex: sentenceIndex,
         [field]: newValue
       };
+
+      // Log for production debugging
+      console.log('Attempting to update sentence:', {
+        api: 'update-sentence',
+        data: updateData,
+        environment: process.env.NODE_ENV,
+        domain: getDomainBasedOnEnvironment(),
+        fullUrl: `${getDomainBasedOnEnvironment()}/api/v1/update-sentence`,
+        isDev: isDev()
+      });
 
       const response = await send({
         api: 'update-sentence',
