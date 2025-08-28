@@ -5,6 +5,8 @@
     }
   },
   "rewrites": [
+    { "source": "/(en|es|fr)/(.*)", "destination": "/$2" },
+    { "source": "/(en|es|fr)", "destination": "/" },
     { "source": "/(.*)", "destination": "/api" }
   ]
 }
