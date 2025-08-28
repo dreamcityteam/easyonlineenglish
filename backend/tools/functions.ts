@@ -180,10 +180,10 @@ const initialDatabase = async (): Promise<void> => {
  * @param {Object} param
  * @param {string} param.id - User ID or unique identifier.
  * @param {string} [param.type='auth'] - Token type (e.g., 'auth', 'refresh').
- * @param {string} [param.expiresIn='30d'] - Token expiration time.
+ * @param {string} [param.expiresIn='2h'] - Token expiration time.
  * @returns {string} - JWT token.
  */
-const getToken = ({ _id, role = ROLE.STUDENT, type = 'auth', expiresIn = '30d' }: Token): string =>
+const getToken = ({ _id, role = ROLE.STUDENT, type = 'auth', expiresIn = '2h' }: Token): string =>
   jwt.sign({ _id, role, type }, ACCESS_KEY_TOKEN, { expiresIn });
 
 /**
@@ -191,23 +191,28 @@ const getToken = ({ _id, role = ROLE.STUDENT, type = 'auth', expiresIn = '30d' }
  * @param {Object} param
  * @param {Object} param.res - Express response object.
  * @param {Object} param.value - Value to store in the cookie.
- * @param {number} [param.expires=30] - Expiration time in days.
+ * @param {number} [param.expires] - Expiration time in days (optional for session cookies).
  */
 const setCookie = ({
   res,
   value,
-  expires = 30,
+  expires,
 }: Cookie) => {
-  const expiryDate: Date = new Date();
-
-  expiryDate.setDate(expiryDate.getDate() + expires);
-  // @ts-ignore
-  res.cookie(TOKEN_NAME, JSON.stringify(value), {
+  const cookieOptions: any = {
     secure: true,
     httpOnly: true,
     sameSite: 'strict',
-    expires: expiryDate,
-  });
+  };
+
+  // Si no se especifica expires, será una cookie de sesión (se borra al cerrar navegador)
+  if (expires) {
+    const expiryDate: Date = new Date();
+    expiryDate.setDate(expiryDate.getDate() + expires);
+    cookieOptions.expires = expiryDate;
+  }
+
+  // @ts-ignore
+  res.cookie(TOKEN_NAME, JSON.stringify(value), cookieOptions);
 };
 
 /**

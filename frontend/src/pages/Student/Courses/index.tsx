@@ -72,7 +72,13 @@ const Courses: React.FC<Props> = ({ isDemo = false }): JSX.Element => {
             _progress = isDemo ? getDemoCourseProgress(_id) : _progress;
 
             return (
-              <article className={style.courses__container} key={index}>
+              <article
+                className={style.courses__container}
+                key={index}
+                style={{
+                  display: index === 1 ? 'none' : 'block' // Ocultar el segundo curso (index 1)
+                }}
+              >
                 <LazyLoadImage
                   alt={title}
                   effect="blur"
