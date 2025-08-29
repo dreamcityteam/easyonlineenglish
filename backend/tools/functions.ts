@@ -43,18 +43,25 @@ const isDev = (): boolean =>
   !!(NODE_ENV && NODE_ENV.includes('DEVELOPMENT'));
 
 /**
- * Serves the application in production mode by setting up static file serving 
+ * Serves the application in production mode by setting up static file serving
  * and handling any unmatched routes to return the index.html file.
  * @returns {void}
  */
 const serveApp = (app: Express): void => {
   const BUILD_PATH: string = '../build';
 
+  // Servir archivos estáticos
   app.use(express.static(path.join(__dirname, BUILD_PATH)));
-  app.get('*', (_: Response, res: Request) =>
-    // @ts-ignore
-    res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'))
-  );
+
+  // Manejar todas las rutas que no sean de API
+  app.get('*', (req: any, res: any) => {
+    // Si la ruta empieza con /api, no servir el HTML
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ message: 'API endpoint not found' });
+    }
+    // Para todas las demás rutas, servir el index.html
+    res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
+  });
 };
 
 let isConnected: any;
