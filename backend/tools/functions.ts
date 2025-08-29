@@ -50,22 +50,10 @@ const isDev = (): boolean =>
 const serveApp = (app: Express): void => {
   const BUILD_PATH: string = '../build';
 
-  // Servir archivos estáticos primero
   app.use(express.static(path.join(__dirname, BUILD_PATH)));
-
-  // Manejar todas las rutas
-  app.get('*', (req: any, res: any) => {
-    const { path: requestPath } = req;
-
-    // Si es un archivo estático (tiene extensión), intentar servirlo
-    if (/\.(png|jpg|jpeg|gif|svg|css|js|ico|webp|json|txt|woff|woff2|ttf|eot)$/i.test(requestPath)) {
-      // Si el archivo no existe, express.static ya manejó esto
-      return res.status(404).json({ message: 'File not found' });
-    }
-
-    // Para todas las demás rutas (SPA routes), servir el index.html
-    res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
-  });
+  app.get('*', (_: any, res: any) =>
+    res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'))
+  );
 };
 
 let isConnected: any;
