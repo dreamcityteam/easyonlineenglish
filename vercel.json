@@ -1,13 +1,13 @@
 {
   "functions": {
-    "api/*": {
+    "backend/api/*": {
       "maxDuration": 300
     }
   },
   "rewrites": [
     {
       "source": "/api/v1/(.*)",
-      "destination": "/api"
+      "destination": "/backend/api"
     },
     {
       "source": "/(.*)",
