@@ -6,6 +6,7 @@ interface CssExports {
   'navigator__container': string;
   'navigator__crateAccountTab': string;
   'navigator__hamburger': string;
+  'navigator__languageSwitcher': string;
   'navigator__line': string;
   'navigator__link': string;
   'navigator__links': string;

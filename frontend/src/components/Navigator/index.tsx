@@ -5,6 +5,7 @@ import { Tab } from './type';
 import context from '../../global/state/context';
 import { getClassName, isAdmin, isFree } from '../../tools/function';
 import Image from '../Image';
+import LanguageSwitcher from '../LanguageSwitcher';
 import style from './style.module.sass'
 
 const Navigator: React.FC = (): JSX.Element => {
@@ -124,6 +125,9 @@ const Navigator: React.FC = (): JSX.Element => {
                 </Link>
               </li>
             )}
+            <li className={style.navigator__languageSwitcher}>
+              <LanguageSwitcher />
+            </li>
           </ul>
           <div
             className={style.navigator__hamburger}
