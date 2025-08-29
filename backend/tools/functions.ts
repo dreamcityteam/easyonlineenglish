@@ -50,10 +50,18 @@ const isDev = (): boolean =>
 const serveApp = (app: Express): void => {
   const BUILD_PATH: string = '../build';
 
+  // Servir archivos estáticos
   app.use(express.static(path.join(__dirname, BUILD_PATH)));
-  app.get('*', (_: any, res: any) =>
-    res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'))
-  );
+
+  // Manejar todas las rutas que no sean de API
+  app.get('*', (req: any, res: any) => {
+    // Si la ruta empieza con /api, no servir el HTML
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ message: 'API endpoint not found' });
+    }
+    // Para todas las demás rutas, servir el index.html
+    res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
+  });
 };
 
 let isConnected: any;

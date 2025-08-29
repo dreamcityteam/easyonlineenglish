@@ -35,15 +35,12 @@ const getTokenFromHeader = (req: Request): string | null => {
 const url = (req: Request): (urls: string[]) => boolean =>
   (urls: string[]) =>
     urls.some((url: string) => {
-      // Update regex to allow query parameters - remove /api/v1 prefix since it's already in the route
-      const regexp = new RegExp(`^/${url}/?(\\?.*)?$`);
+      // Update regex to allow query parameters
+      const regexp = new RegExp(`^/api/v1/${url}/?(\\?.*)?$`);
       const { originalUrl } = req;
-
-      // Remove /api/v1 prefix from originalUrl for comparison
-      const pathWithoutPrefix = originalUrl.replace(/^\/api\/v1/, '');
-
-      // Test if path matches the dynamic regex
-      return regexp.test(pathWithoutPrefix);
+      
+      // Test if originalUrl matches the dynamic regex
+      return regexp.test(originalUrl);
     });
 
 export {
