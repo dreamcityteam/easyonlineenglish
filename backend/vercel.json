@@ -4,22 +4,22 @@
       "maxDuration": 300
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/v1/(.*)",
-      "dest": "/api"
+      "source": "/api/v1/(.*)",
+      "destination": "/api"
     },
     {
-      "src": "/(en|es|fr)/(.*)",
-      "dest": "/$2"
+      "source": "/(en|es|fr)/(.*)",
+      "destination": "/$2"
     },
     {
-      "src": "/(en|es|fr)/?$",
-      "dest": "/index.html"
+      "source": "/(en|es|fr)",
+      "destination": "/"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
