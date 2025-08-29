@@ -10,16 +10,8 @@
       "destination": "/api"
     },
     {
-      "source": "/(en|es|fr)/(.*)",
-      "destination": "/$2"
-    },
-    {
-      "source": "/(en|es|fr)",
-      "destination": "/"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/api"
     }
   ]
 }
