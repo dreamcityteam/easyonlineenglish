@@ -8,7 +8,6 @@ import cors from 'cors';
 import router from '../routers/index';
 import {
   isDev,
-  serveApp,
   connectToDatabase,
   initialDatabase
 } from '../tools/functions';
@@ -43,8 +42,21 @@ app.use(middlewareCache);
 app.use(middlewareImage);
 app.use('/api/v1', router);
 
-isDev()
-  ? app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
-  : serveApp(app);
+if (isDev()) {
+  app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+} else {
+  // En Vercel, configurar archivos estáticos pero no llamar serveApp
+  const path = require('path');
+  const BUILD_PATH = '../build';
+  app.use(express.static(path.join(__dirname, BUILD_PATH)));
+
+  // Manejar SPA routing - servir index.html para rutas no-API
+  app.get('*', (req: any, res: any) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ message: 'API endpoint not found' });
+    }
+    res.sendFile(path.resolve(__dirname, BUILD_PATH, 'index.html'));
+  });
+}
 
 export default app;
