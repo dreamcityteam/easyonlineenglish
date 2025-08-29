@@ -38,9 +38,11 @@ app.use(helmet({
 app.use(cookieParser());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: false }));
-app.use(middlewareToken);
-app.use(middlewareCache);
-app.use(middlewareImage);
+
+// Aplicar middlewares solo a rutas de API
+app.use('/api/v1', middlewareToken);
+app.use('/api/v1', middlewareCache);
+app.use('/api/v1', middlewareImage);
 app.use('/api/v1', router);
 
 isDev()

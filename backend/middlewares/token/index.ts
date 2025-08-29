@@ -27,20 +27,21 @@ const endpoint = async (req: Request, res: Response, next: NextFunction) => {
 
   if (
     tokenFromCookie && (
-      checkEndPoints(tokenFromCookieEndpoints) ||  
-      /^\/api\/v1\/student-course\/\w/.test(URL) ||
-      /^\/api\/v1\/upload-file(?:\?filename=[^&]*)?$/.test(URL) ||
-      /^\/api\/v1\/student-photo(?:\?filename=[^&]*)?$/.test(URL)
+      checkEndPoints(tokenFromCookieEndpoints) ||
+      /^\/student-course\/\w/.test(URL) ||
+      /^\/upload-file(?:\?filename=[^&]*)?$/.test(URL) ||
+      /^\/student-photo(?:\?filename=[^&]*)?$/.test(URL)
     )
   ) return verifyToken(verifyTokenOpcion, tokenFromCookie);
-  
+
 
   if (checkEndPoints(removeTokenAndAvoidEndpoint)) {
     authenticator.remove();
     return next();
   }
 
-  if (URL.includes('/api/v1')) return send(response);
+  // Si llegamos aquí y no es un endpoint válido, enviar error
+  return send(response);
 
   return next();
 };
