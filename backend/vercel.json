@@ -7,7 +7,20 @@
   "rewrites": [
     { "source": "/(en|es|fr)/(.*)", "destination": "/$2" },
     { "source": "/(en|es|fr)", "destination": "/" },
-    { "source": "/api/v1/(.*)", "destination": "/api" },
-    { "source": "/((?!api|_next|favicon\\.ico|robots\\.txt|manifest\\.json|.*\\.(png|jpg|jpeg|gif|svg|css|js|ico|webp)).*)", "destination": "/api" }
+    { "source": "/api/v1/(.*)", "destination": "/api" }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api"
+    },
+    {
+      "src": "/(.*\\.(png|jpg|jpeg|gif|svg|css|js|ico|webp|json|txt))",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api"
+    }
   ]
 }
